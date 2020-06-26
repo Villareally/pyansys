@@ -1,0 +1,12 @@
+
+:orphan:
+
+.. _sphx_glr_examples_01-mapdl-examples_sg_execution_times:
+
+Computation times
+=================
+**00:15.168** total execution time for **examples_01-mapdl-examples** files:
+
++----------------------------------------------------------------------------------+-----------+--------+
+| :ref:`sphx_glr_examples_01-mapdl-examples_pyvista_mesh.py` (``pyvista_mesh.py``) | 00:15.168 | 0.0 MB |
++----------------------------------------------------------------------------------+-----------+--------+

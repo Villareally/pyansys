@@ -1,6 +1,5 @@
 
 
-
 <!DOCTYPE html>
 <!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
@@ -9,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Index &mdash; pyansys 0.41.3 documentation</title>
+  <title>Index &mdash; pyansys 0.41.6 documentation</title>
   
 
   
@@ -65,7 +64,7 @@
             
             
               <div class="version">
-                0.41.3
+                0.41.6
               </div>
             
           
@@ -103,7 +102,11 @@
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Archive and Result File Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="loading_km.html">Working with a ANSYS Full File (full)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="loading_emat.html">Working with a ANSYS Element Matrix File (.emat)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/index.html">Result Visulization Gallery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/index.html">Result MAPDL and Result Reader Examples</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Miscellaneous</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="quality.html">Compute Cell Quality</a></li>
 </ul>
 
             
@@ -276,6 +279,8 @@
       <ul>
         <li><a href="loading_results.html#pyansys.geometry.Geometry.element_components">(pyansys.geometry.Geometry property)</a>
 </li>
+        <li><a href="loading_results.html#pyansys.rst.ResultFile.element_components">(pyansys.rst.ResultFile property)</a>
+</li>
       </ul></li>
       <li><a href="ansys_write_archive.html#pyansys.archive.Archive.element_coord_system">element_coord_system() (pyansys.archive.Archive method)</a>
 
@@ -291,6 +296,8 @@
 </li>
       <li><a href="loading_results.html#pyansys.rst.ResultFile.element_stress">element_stress() (pyansys.rst.ResultFile method)</a>
 </li>
+      <li><a href="ansys_control.html#pyansys.mapdl._Mapdl.elements">elements() (pyansys.mapdl._Mapdl property)</a>
+</li>
       <li><a href="loading_emat.html#pyansys.emat.EmatFile">EmatFile (class in pyansys.emat)</a>
 </li>
       <li><a href="ansys_control.html#pyansys.mapdl._Mapdl.enable_interactive_plotting">enable_interactive_plotting() (pyansys.mapdl._Mapdl method)</a>
@@ -303,6 +310,8 @@
         <li><a href="loading_results.html#pyansys.geometry.Geometry.enum">(pyansys.geometry.Geometry property)</a>
 </li>
       </ul></li>
+      <li><a href="ansys_control.html#pyansys.mapdl._Mapdl.eplot">eplot() (pyansys.mapdl._Mapdl method)</a>
+</li>
       <li><a href="ansys_write_archive.html#pyansys.archive.Archive.etype">etype() (pyansys.archive.Archive property)</a>
 
       <ul>
@@ -407,6 +416,8 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="loading_results.html#pyansys.rst.ResultFile.materials">materials() (pyansys.rst.ResultFile property)</a>
 </li>
+      <li><a href="ansys_control.html#pyansys.mapdl._Mapdl.modal_analysis">modal_analysis() (pyansys.mapdl._Mapdl method)</a>
+</li>
       <li><a href="loading_results.html#pyansys.cyclic_reader.CyclicResult.mode_table">mode_table() (pyansys.cyclic_reader.CyclicResult property)</a>
 </li>
   </ul></td>
@@ -431,6 +442,8 @@
         <li><a href="loading_emat.html#pyansys.emat.EmatFile.nnum">(pyansys.emat.EmatFile property)</a>
 </li>
         <li><a href="loading_results.html#pyansys.geometry.Geometry.nnum">(pyansys.geometry.Geometry property)</a>
+</li>
+        <li><a href="ansys_control.html#pyansys.mapdl._Mapdl.nnum">(pyansys.mapdl._Mapdl property)</a>
 </li>
       </ul></li>
       <li><a href="loading_results.html#pyansys.rst.ResultFile.nodal_displacement">nodal_displacement() (pyansys.rst.ResultFile method)</a>
@@ -478,7 +491,11 @@
       <ul>
         <li><a href="loading_results.html#pyansys.geometry.Geometry.nodes">(pyansys.geometry.Geometry property)</a>
 </li>
+        <li><a href="ansys_control.html#pyansys.mapdl._Mapdl.nodes">(pyansys.mapdl._Mapdl property)</a>
+</li>
       </ul></li>
+      <li><a href="ansys_control.html#pyansys.mapdl._Mapdl.nplot">nplot() (pyansys.mapdl._Mapdl method)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -507,8 +524,6 @@
 
       <ul>
         <li><a href="loading_results.html#pyansys.cyclic_reader.CyclicResult.plot">(pyansys.cyclic_reader.CyclicResult method)</a>
-</li>
-        <li><a href="loading_results.html#pyansys.geometry.Geometry.plot">(pyansys.geometry.Geometry method)</a>
 </li>
         <li><a href="loading_results.html#pyansys.rst.ResultFile.plot">(pyansys.rst.ResultFile method)</a>
 </li>
@@ -563,8 +578,12 @@
 <h2 id="Q">Q</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="ansys_write_archive.html#pyansys.archive.Archive.quality">quality() (pyansys.archive.Archive property)</a>
+      <li><a href="quality.html#pyansys.quality">quality() (in module pyansys)</a>
+
+      <ul>
+        <li><a href="ansys_write_archive.html#pyansys.archive.Archive.quality">(pyansys.archive.Archive property)</a>
 </li>
+      </ul></li>
   </ul></td>
 </tr></table>
 

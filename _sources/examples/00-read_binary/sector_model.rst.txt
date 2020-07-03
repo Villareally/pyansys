@@ -11,13 +11,15 @@
 
 .. _ref_sector_model:
 
-Shaft Modal Analysis
-~~~~~~~~~~~~~~~~~~~~
+Cyclic Model Visualization
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Visualize a full cyclic model
 
 
 .. code-block:: default
+
+    # sphinx_gallery_thumbnail_number = 2
 
     import pyansys
 
@@ -34,8 +36,8 @@ load a sector modal analysis file
 .. code-block:: default
 
     rotor = pyansys.download_sector_modal()
+    rotor._positive_cyclic_dir = True  # necessary for this example
     print(rotor)
-
 
 
 
@@ -73,7 +75,7 @@ plot the rotor
 
 .. code-block:: default
 
-    rotor.plot(smooth_shading=True)
+    rotor.plot(smooth_shading=False)
 
 
 
@@ -91,18 +93,18 @@ plot the rotor
  .. code-block:: none
 
 
-    [(6.501737475645392, 6.524253991464702, 6.091648804199281),
-     (-0.0006467092362623106, 0.021869806583048046, -0.41073538068237314),
+    [(6.502881597560323, 6.525398113379634, 6.096741047623229),
+     (-0.0006467092362623106, 0.021869806583048046, -0.4067872591733571),
      (0.0, 0.0, 1.0)]
 
 
 
-plot a sector of the rotor
+plot nodal displacement for result 10
 
 
 .. code-block:: default
 
-    rotor.mas_grid.plot(color='w', smooth_shading=True)
+    rotor.plot_nodal_displacement(9)
 
 
 
@@ -120,52 +122,24 @@ plot a sector of the rotor
  .. code-block:: none
 
 
-    [(1.5632969566470036, 1.094216390469371, 1.732764281460423),
-     (-0.5802027054957924, -1.049283271673425, -0.41073538068237303),
-     (0.0, 0.0, 1.0)]
-
-
-
-plot a nodal solution
-
-
-.. code-block:: default
-
-    rotor.plot_nodal_solution(0)
-
-
-
-
-
-.. image:: /examples/00-read_binary/images/sphx_glr_sector_model_003.png
-    :alt: sector model
-    :class: sphx-glr-single-img
-
-
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-
     [(6.501737475645392, 6.524253991464702, 6.091648804199281),
      (-0.0006467092362623106, 0.021869806583048046, -0.41073538068237314),
      (0.0, 0.0, 1.0)]
 
 
 
-animate a mode
+animate mode 11
 
 
 .. code-block:: default
 
-    rotor.animate_nodal_solution(10, loop=False)
-    # set loop to True to enable continuous plotting
+    rotor.animate_nodal_solution(10, loop=False, movie_filename='rotor_mode.gif',
+                                 nangles=30)
+    # Disable movie_filename and increase nangles for a smoother plot
 
 
 
-.. image:: /examples/00-read_binary/images/sphx_glr_sector_model_004.png
+.. image:: /examples/00-read_binary/images/sphx_glr_sector_model_003.png
     :alt: sector model
     :class: sphx-glr-single-img
 
@@ -176,7 +150,7 @@ animate a mode
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  2.633 seconds)
+   **Total running time of the script:** ( 0 minutes  10.883 seconds)
 
 
 .. _sphx_glr_download_examples_00-read_binary_sector_model.py:

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Shaft Modal Analysis &mdash; pyansys 0.41.3 documentation</title>
+  <title>Cyclic Model Visualization &mdash; pyansys 0.41.6 documentation</title>
   
 
   
@@ -41,7 +41,7 @@
   <link rel="stylesheet" href="../../_static/gallery-dataframe.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="PyVista Mesh Integration" href="../01-mapdl-examples/pyvista_mesh.html" />
+    <link rel="next" title="MAPDL 3D Beam Example" href="../01-mapdl-examples/mapdl_3d_beam.html" />
     <link rel="prev" title="Shell Static Analysis" href="pontoon.html" /> 
 </head>
 
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.41.3
+                0.41.6
               </div>
             
           
@@ -104,17 +104,21 @@
 <li class="toctree-l1"><a class="reference internal" href="../../examples.html">Archive and Result File Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../loading_km.html">Working with a ANSYS Full File (full)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../loading_emat.html">Working with a ANSYS Element Matrix File (.emat)</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Result Visulization Gallery</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Result MAPDL and Result Reader Examples</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html#loading-and-visualizing-result-files">Loading and Visualizing Result Files</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="load_shaft_result.html">Shaft Modal Analysis</a></li>
 <li class="toctree-l3"><a class="reference internal" href="load_thermal_result.html">Thermal Analysis</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pontoon.html">Shell Static Analysis</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Shaft Modal Analysis</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Cyclic Model Visualization</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../index.html#ansys-mapdl-examples-with-pyansys">ANSYS MAPDL examples with Pyansys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#ansys-mapdl-examples-using-pyansys">ANSYS MAPDL Examples Using Pyansys</a></li>
 </ul>
 </li>
+</ul>
+<p class="caption"><span class="caption-text">Miscellaneous</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../quality.html">Compute Cell Quality</a></li>
 </ul>
 
             
@@ -160,9 +164,9 @@
     
       <li><a href="../../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="../index.html">Result Visulization Gallery</a> &raquo;</li>
+          <li><a href="../index.html">Result MAPDL and Result Reader Examples</a> &raquo;</li>
         
-      <li>Shaft Modal Analysis</li>
+      <li>Cyclic Model Visualization</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -185,14 +189,17 @@
 <p class="admonition-title">Note</p>
 <p>Click <a class="reference internal" href="#sphx-glr-download-examples-00-read-binary-sector-model-py"><span class="std std-ref">here</span></a>     to download the full example code</p>
 </div>
-<div class="sphx-glr-example-title section" id="shaft-modal-analysis">
-<span id="ref-sector-model"></span><span id="sphx-glr-examples-00-read-binary-sector-model-py"></span><h1>Shaft Modal Analysis<a class="headerlink" href="#shaft-modal-analysis" title="Permalink to this headline">¶</a></h1>
+<div class="sphx-glr-example-title section" id="cyclic-model-visualization">
+<span id="ref-sector-model"></span><span id="sphx-glr-examples-00-read-binary-sector-model-py"></span><h1>Cyclic Model Visualization<a class="headerlink" href="#cyclic-model-visualization" title="Permalink to this headline">¶</a></h1>
 <p>Visualize a full cyclic model</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyansys</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># sphinx_gallery_thumbnail_number = 2</span>
+
+<span class="kn">import</span> <span class="nn">pyansys</span>
 </pre></div>
 </div>
 <p>load a sector modal analysis file</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rotor</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">download_sector_modal</span><span class="p">()</span>
+<span class="n">rotor</span><span class="o">.</span><span class="n">_positive_cyclic_dir</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># necessary for this example</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">rotor</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -217,45 +224,35 @@ EPT : Element temperatures
 </pre></div>
 </div>
 <p>plot the rotor</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rotor</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">smooth_shading</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rotor</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">smooth_shading</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 <img alt="sector model" class="sphx-glr-single-img" src="../../_images/sphx_glr_sector_model_001.png" />
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[(6.501737475645392, 6.524253991464702, 6.091648804199281),
- (-0.0006467092362623106, 0.021869806583048046, -0.41073538068237314),
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[(6.502881597560323, 6.525398113379634, 6.096741047623229),
+ (-0.0006467092362623106, 0.021869806583048046, -0.4067872591733571),
  (0.0, 0.0, 1.0)]
 </pre></div>
 </div>
-<p>plot a sector of the rotor</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rotor</span><span class="o">.</span><span class="n">mas_grid</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">smooth_shading</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<p>plot nodal displacement for result 10</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rotor</span><span class="o">.</span><span class="n">plot_nodal_displacement</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span>
 </pre></div>
 </div>
 <img alt="sector model" class="sphx-glr-single-img" src="../../_images/sphx_glr_sector_model_002.png" />
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[(1.5632969566470036, 1.094216390469371, 1.732764281460423),
- (-0.5802027054957924, -1.049283271673425, -0.41073538068237303),
- (0.0, 0.0, 1.0)]
-</pre></div>
-</div>
-<p>plot a nodal solution</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rotor</span><span class="o">.</span><span class="n">plot_nodal_solution</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-</pre></div>
-</div>
-<img alt="sector model" class="sphx-glr-single-img" src="../../_images/sphx_glr_sector_model_003.png" />
-<p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[(6.501737475645392, 6.524253991464702, 6.091648804199281),
  (-0.0006467092362623106, 0.021869806583048046, -0.41073538068237314),
  (0.0, 0.0, 1.0)]
 </pre></div>
 </div>
-<p>animate a mode</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rotor</span><span class="o">.</span><span class="n">animate_nodal_solution</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">loop</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="c1"># set loop to True to enable continuous plotting</span>
+<p>animate mode 11</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rotor</span><span class="o">.</span><span class="n">animate_nodal_solution</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">loop</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">movie_filename</span><span class="o">=</span><span class="s1">&#39;rotor_mode.gif&#39;</span><span class="p">,</span>
+                             <span class="n">nangles</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<span class="c1"># Disable movie_filename and increase nangles for a smoother plot</span>
 </pre></div>
 </div>
-<img alt="sector model" class="sphx-glr-single-img" src="../../_images/sphx_glr_sector_model_004.png" />
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  2.633 seconds)</p>
+<img alt="sector model" class="sphx-glr-single-img" src="../../_images/sphx_glr_sector_model_003.png" />
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  10.883 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-00-read-binary-sector-model-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/4894182b8f3a37d0ee28d21df8a81d09/sector_model.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">sector_model.py</span></code></a></p>
@@ -275,7 +272,7 @@ EPT : Element temperatures
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../01-mapdl-examples/pyvista_mesh.html" class="btn btn-neutral float-right" title="PyVista Mesh Integration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../01-mapdl-examples/mapdl_3d_beam.html" class="btn btn-neutral float-right" title="MAPDL 3D Beam Example" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="pontoon.html" class="btn btn-neutral float-left" title="Shell Static Analysis" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

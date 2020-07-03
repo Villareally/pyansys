@@ -6,9 +6,9 @@
 
 .. _ref_examples:
 
-Result Visulization Gallery
-===========================
-Here is a gallery of pyansys result visualization examples.
+Result MAPDL and Result Reader Examples
+=======================================
+Here are a series of examples using MAPDL with ``pyansys``.
 
 
 .. raw:: html
@@ -94,7 +94,7 @@ Loading and Visualizing Result Files
 .. only:: html
 
  .. figure:: /examples/00-read_binary/images/thumb/sphx_glr_sector_model_thumb.png
-     :alt: Shaft Modal Analysis
+     :alt: Cyclic Model Visualization
 
      :ref:`sphx_glr_examples_00-read_binary_sector_model.py`
 
@@ -115,14 +115,57 @@ Loading and Visualizing Result Files
 
 .. _sphx_glr_examples_01-mapdl-examples:
 
-ANSYS MAPDL examples with Pyansys
----------------------------------
+ANSYS MAPDL Examples Using Pyansys
+----------------------------------
+These examples demonstrate using MAPDL and pyansys together.
 
 
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Run a modal analysis from a mesh generated from pyvista within MAPDL">
+    <div class="sphx-glr-thumbcontainer" tooltip="This is a simple example that loads an archive file containing a beam and then runs a modal ana...">
+
+.. only:: html
+
+ .. figure:: /examples/01-mapdl-examples/images/thumb/sphx_glr_mapdl_3d_beam_thumb.png
+     :alt: MAPDL 3D Beam Example
+
+     :ref:`sphx_glr_examples_01-mapdl-examples_mapdl_3d_beam.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/01-mapdl-examples/mapdl_3d_beam
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This is an example from FINITE ELEMENT ANALYSIS USING ANSYS 11.0">
+
+.. only:: html
+
+ .. figure:: /examples/01-mapdl-examples/images/thumb/sphx_glr_mapdl_beam_thumb.png
+     :alt: MAPDL 2D Beam Example
+
+     :ref:`sphx_glr_examples_01-mapdl-examples_mapdl_beam.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/01-mapdl-examples/mapdl_beam
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Run a modal analysis on a mesh generated from pyvista within MAPDL.">
 
 .. only:: html
 

@@ -39,7 +39,7 @@ Launch MAPDL with interactive plotting
 
  .. code-block:: none
 
-    <pyansys.mapdl_console.MapdlConsole object at 0x7f93214e3590>
+    <pyansys.mapdl_console.MapdlConsole object at 0x7f664931cf90>
 
 
 
@@ -80,7 +80,7 @@ Define an I-beam
 
     Matplotlib is currently using agg, which is a non-GUI backend, so cannot show the figure.
 
-    'SECPLOT,1,,,\r\n\r\n CUMULATIVE DISPLAY NUMBER   1 WRITTEN TO FILE file021.png       - RASTER MODE.\r\n DISPLAY TITLE='
+    'SECPLOT,1,,,\r\n\r\n CUMULATIVE DISPLAY NUMBER   1 WRITTEN TO FILE file023.png       - RASTER MODE.\r\n DISPLAY TITLE='
 
 
 
@@ -298,13 +298,13 @@ run the static analysis
 
     SOLVE,
 
-     *** NOTE ***                            CP =       1.042   TIME= 06:59:28
+     *** NOTE ***                            CP =       1.090   TIME= 15:55:01
      The automatic domain decomposition logic has selected the MESH domain   
      decomposition method with 2 processes per solution.                     
 
      *****  ANSYS SOLVE    COMMAND  *****
 
-     *** NOTE ***                            CP =       1.043   TIME= 06:59:28
+     *** NOTE ***                            CP =       1.091   TIME= 15:55:01
      There is no title defined for this analysis.                            
 
      *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***
@@ -327,14 +327,14 @@ run the static analysis
        ANALYSIS TYPE . . . . . . . . . . . . . . . . .STATIC (STEADY-STATE)
        GLOBALLY ASSEMBLED MATRIX . . . . . . . . . . .SYMMETRIC  
 
-     *** NOTE ***                            CP =       1.044   TIME= 06:59:28
+     *** NOTE ***                            CP =       1.092   TIME= 15:55:01
      Present time 0 is less than or equal to the previous time.  Time will   
      default to 1.                                                           
 
-     *** NOTE ***                            CP =       1.045   TIME= 06:59:28
+     *** NOTE ***                            CP =       1.092   TIME= 15:55:01
      Results printout suppressed for interactive execute.                    
 
-     *** NOTE ***                            CP =       1.045   TIME= 06:59:28
+     *** NOTE ***                            CP =       1.092   TIME= 15:55:01
      The conditions for direct assembly have been met.  No .emat or .erot    
      files will be produced.                                                 
 
@@ -361,7 +361,7 @@ run the static analysis
 
      SOLUTION MONITORING INFO IS WRITTEN TO FILE= file.mntr                                                                                                                                                                                                                                                           
 
-     *** NOTE ***                            CP =       1.055   TIME= 06:59:28
+     *** NOTE ***                            CP =       1.103   TIME= 15:55:01
      Predictor is ON by default for structural elements with rotational      
      degrees of freedom.  Use the PRED,OFF command to turn the predictor     
      OFF if it adversely affects the convergence.                            
@@ -374,8 +374,8 @@ run the static analysis
        *** ELEMENT MATRIX FORMULATION TIMES
          TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-            1        22  BEAM188       0.003   0.000125
-     Time at end of element matrix formulation CP = 1.05900705.              
+            1        22  BEAM188       0.003   0.000136
+     Time at end of element matrix formulation CP = 1.10712695.              
 
      DISTRIBUTED SPARSE MATRIX DIRECT SOLVER.
       Number of equations =          44,    Maximum wavefront =     12
@@ -388,15 +388,15 @@ run the static analysis
       Total memory required for in-core solution     =      0.353 MB
       Total memory required for out-of-core solution =      0.353 MB
 
-     *** NOTE ***                            CP =       1.065   TIME= 06:59:28
+     *** NOTE ***                            CP =       1.113   TIME= 15:55:01
      The Distributed Sparse Matrix Solver is currently running in the        
      in-core memory mode.  This memory mode uses the most amount of memory   
      in order to avoid using the hard drive as much as possible, which most  
      often results in the fastest solution time.  This mode is recommended   
      if enough physical memory is present to accommodate all of the solver   
      data.                                                                   
-     curEqn=     25  totEqn=     25 Job CP sec=      0.873
-          Factor Done= 100% Factor Wall sec=      0.007 rate=       0.1 Mflops
+     curEqn=     25  totEqn=     25 Job CP sec=      0.915
+          Factor Done= 100% Factor Wall sec=      0.001 rate=       0.7 Mflops
      Distributed sparse solver maximum pivot= 5.009534302E+10 at node 4      
      ROTY.                                                                   
      Distributed sparse solver minimum pivot= 861490.522 at node 12 UZ.      
@@ -406,12 +406,12 @@ run the static analysis
        *** ELEMENT RESULT CALCULATION TIMES
          TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-            1        22  BEAM188       0.015   0.000673
+            1        22  BEAM188       0.015   0.000683
 
        *** NODAL LOAD CALCULATION TIMES
          TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-            1        22  BEAM188       0.001   0.000036
+            1        22  BEAM188       0.001   0.000035
      *** LOAD STEP     1   SUBSTEP     1  COMPLETED.    CUM ITER =      1
      *** TIME =   1.00000         TIME INC =   1.00000      NEW TRIANG MATRIX
 
@@ -428,7 +428,7 @@ run the static analysis
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  6.355 seconds)
+   **Total running time of the script:** ( 0 minutes  6.492 seconds)
 
 
 .. _sphx_glr_download_examples_01-mapdl-examples_mapdl_beam.py:

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Working with a ANSYS Result File (rst) &mdash; pyansys 0.41.6 documentation</title>
+  <title>Working with a ANSYS Result File (rst) &mdash; pyansys 0.41.8 documentation</title>
   
 
   
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.41.6
+                0.41.8
               </div>
             
           
@@ -120,6 +120,9 @@
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Archive and Result File Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="loading_km.html">Working with a ANSYS Full File (full)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="loading_emat.html">Working with a ANSYS Element Matrix File (.emat)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Examples Gallery</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="examples/index.html">MAPDL and Result Reader Examples</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Miscellaneous</span></p>
@@ -260,7 +263,7 @@ numbering, element numbering, etc.</p>
 <p>Which contains the following attributes:</p>
 <dl class="py class">
 <dt id="pyansys.geometry.Geometry">
-<em class="property">class </em><code class="sig-prename descclassname">pyansys.geometry.</code><code class="sig-name descname">Geometry</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nnum</span></em>, <em class="sig-param"><span class="n">nodes</span></em>, <em class="sig-param"><span class="n">elem</span></em>, <em class="sig-param"><span class="n">elem_off</span></em>, <em class="sig-param"><span class="n">ekey</span></em>, <em class="sig-param"><span class="n">node_comps</span><span class="o">=</span><span class="default_value">{}</span></em>, <em class="sig-param"><span class="n">elem_comps</span><span class="o">=</span><span class="default_value">{}</span></em>, <em class="sig-param"><span class="n">rdat</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">rnum</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">keyopt</span><span class="o">=</span><span class="default_value">{}</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.geometry.Geometry" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">pyansys.geometry.</code><code class="sig-name descname">Geometry</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nnum</span></em>, <em class="sig-param"><span class="n">nodes</span></em>, <em class="sig-param"><span class="n">elem</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">elem_off</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">ekey</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">node_comps</span><span class="o">=</span><span class="default_value">{}</span></em>, <em class="sig-param"><span class="n">elem_comps</span><span class="o">=</span><span class="default_value">{}</span></em>, <em class="sig-param"><span class="n">rdat</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">rnum</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">keyopt</span><span class="o">=</span><span class="default_value">{}</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.geometry.Geometry" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="py method">
 <dt id="pyansys.geometry.Geometry.ekey">
 <em class="property">property </em><code class="sig-name descname">ekey</code><a class="headerlink" href="#pyansys.geometry.Geometry.ekey" title="Permalink to this definition">¶</a></dt>
@@ -974,6 +977,45 @@ without looping</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="pyansys.rst.ResultFile.cylindrical_nodal_stress">
+<code class="sig-name descname">cylindrical_nodal_stress</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rnum</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.cylindrical_nodal_stress" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves the stresses for each node in the solution in the
+cylindrical coordinate system as the following values:</p>
+<p><code class="docutils literal notranslate"><span class="pre">R</span></code>, <code class="docutils literal notranslate"><span class="pre">THETA</span></code>, <code class="docutils literal notranslate"><span class="pre">Z</span></code>, <code class="docutils literal notranslate"><span class="pre">RTHETA</span></code>, <code class="docutils literal notranslate"><span class="pre">THETAZ</span></code>, and <code class="docutils literal notranslate"><span class="pre">RZ</span></code></p>
+<p>The order of the results corresponds to the sorted node
+numbering.</p>
+<p>Computes the nodal stress by averaging the stress for each
+element at each node.  Due to the discontinuities across
+elements, stresses will vary based on the element they are
+evaluated from.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>rnum</strong> (<em>int</em><em> or </em><em>list</em>) – Cumulative result number with zero based indexing, or a
+list containing (step, substep) of the requested result.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>nnum</strong> (<em>numpy.ndarray</em>) – Node numbers of the result.</p></li>
+<li><p><strong>stress</strong> (<em>numpy.ndarray</em>) – Stresses at R, THETA, Z, RTHETA, THETAZ, and RZ averaged
+at each corner node where R is radial.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rst</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">read_binary</span><span class="p">(</span><span class="s1">&#39;file.rst&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nnum</span><span class="p">,</span> <span class="n">stress</span> <span class="o">=</span> <span class="n">rst</span><span class="o">.</span><span class="n">cylindrical_nodal_stress</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="rubric">Notes</p>
+<p>Nodes without a stress value will be NAN.
+Equivalent ANSYS commands:
+RSYS, 1
+PRNSOL, S</p>
+</dd></dl>
+
+<dl class="py method">
 <dt id="pyansys.rst.ResultFile.element_components">
 <em class="property">property </em><code class="sig-name descname">element_components</code><a class="headerlink" href="#pyansys.rst.ResultFile.element_components" title="Permalink to this definition">¶</a></dt>
 <dd><p>Dictionary of ansys element components from the result file.</p>
@@ -999,8 +1041,8 @@ without looping</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>rnum</strong> (<em>int</em><em> or </em><em>list</em>) – Cumulative result number with zero based indexing, or a list containing
-(step, substep) of the requested result.</p></li>
+<li><p><strong>rnum</strong> (<em>int</em><em> or </em><em>list</em>) – Cumulative result number with zero based indexing, or a
+list containing (step, substep) of the requested result.</p></li>
 <li><p><strong>datatype</strong> (<em>str</em>) – <p>Element data type to retreive.</p>
 <ul>
 <li><p>EMS: misc. data</p></li>
@@ -1036,25 +1078,49 @@ without looping</p>
 <dd class="field-even"><p><ul class="simple">
 <li><p><strong>enum</strong> (<em>np.ndarray</em>) – Element numbers.</p></li>
 <li><p><strong>element_data</strong> (<em>list</em>) – List with one data item for each element.</p></li>
+<li><p><strong>enode</strong> (<em>list</em>) – Node numbers corresponding to each element.
+results.  One list entry for each element.</p></li>
 </ul>
 </p>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
-<p>See ANSYS element documentation for available items for each element type.</p>
-<dl class="simple">
-<dt>ENG - Element volume and energies.</dt><dd><p>volume: Element volume
-senergy: Element energy associated with the stiffness matrix
-aenergy: Artificial hourglass energy
-kenergy: Kinetic energy
-coenergy: Co-energy (magnetics)
-incenergy: Position not used
-position not used
-thenergy: Thermal dissipation energy (see ThermMat, shell131/132 only)
-position not used
-position not used</p>
-</dd>
-</dl>
+<p>See ANSYS element documentation for available items for each
+element type.  See:</p>
+<p><a class="reference external" href="https://www.mm.bme.hu/~gyebro/files/ans_help_v182/ans_elem/">https://www.mm.bme.hu/~gyebro/files/ans_help_v182/ans_elem/</a></p>
+<p class="rubric">Examples</p>
+<p>Retreive “LS” solution results from an PIPE59 element for result set 1</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">enum</span><span class="p">,</span> <span class="n">edata</span><span class="p">,</span> <span class="n">enode</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">element_solution_data</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">datatype</span><span class="o">=</span><span class="s1">&#39;ENS&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">enum</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># first element number</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">enode</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># nodes belonging to element 1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">edata</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># data belonging to element 1</span>
+<span class="go">array([ -4266.19   ,   -376.18857,  -8161.785  , -64706.766  ,</span>
+<span class="go">        -4266.19   ,   -376.18857,  -8161.785  , -45754.594  ,</span>
+<span class="go">        -4266.19   ,   -376.18857,  -8161.785  ,      0.     ,</span>
+<span class="go">        -4266.19   ,   -376.18857,  -8161.785  ,  45754.594  ,</span>
+<span class="go">        -4266.19   ,   -376.18857,  -8161.785  ,  64706.766  ,</span>
+<span class="go">        -4266.19   ,   -376.18857,  -8161.785  ,  45754.594  ,</span>
+<span class="go">        -4266.19   ,   -376.18857,  -8161.785  ,      0.     ,</span>
+<span class="go">        -4266.19   ,   -376.18857,  -8161.785  , -45754.594  ,</span>
+<span class="go">        -4274.038  ,   -376.62527,  -8171.2603 ,   2202.7085 ,</span>
+<span class="go">       -29566.24   ,   -376.62527,  -8171.2603 ,   1557.55   ,</span>
+<span class="go">       -40042.613  ,   -376.62527,  -8171.2603 ,      0.     ,</span>
+<span class="go">       -29566.24   ,   -376.62527,  -8171.2603 ,  -1557.55   ,</span>
+<span class="go">        -4274.038  ,   -376.62527,  -8171.2603 ,  -2202.7085 ,</span>
+<span class="go">        21018.164  ,   -376.62527,  -8171.2603 ,  -1557.55   ,</span>
+<span class="go">        31494.537  ,   -376.62527,  -8171.2603 ,      0.     ,</span>
+<span class="go">        21018.164  ,   -376.62527,  -8171.2603 ,   1557.55   ],</span>
+<span class="go">      dtype=float32)</span>
+</pre></div>
+</div>
+<p>This data corresponds to the results you would obtain directly
+from MAPDL with ESOL commands:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ansys</span><span class="o">.</span><span class="n">esol</span><span class="p">(</span><span class="n">nvar</span><span class="o">=</span><span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="n">elem</span><span class="o">=</span><span class="n">enum</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">node</span><span class="o">=</span><span class="n">enode</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">item</span><span class="o">=</span><span class="s1">&#39;LS&#39;</span><span class="p">,</span> <span class="n">comp</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ansys</span><span class="o">.</span><span class="n">vget</span><span class="p">(</span><span class="n">par</span><span class="o">=</span><span class="s1">&#39;SD_LOC1&#39;</span><span class="p">,</span> <span class="n">ir</span><span class="o">=</span><span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="n">tstrt</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">)</span> <span class="c1"># store in a variable</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ansys</span><span class="o">.</span><span class="n">read_float_parameter</span><span class="p">(</span><span class="s1">&#39;SD_LOC1(1)&#39;</span><span class="p">)</span>
+<span class="go">-4266.19</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
@@ -1323,7 +1389,7 @@ list containing (step, substep) of the requested result.</p>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><ul class="simple">
 <li><p><strong>nnum</strong> (<em>numpy.ndarray</em>) – Node numbers of the result.</p></li>
-<li><p><strong>stress</strong> (<em>numpy.ndarray</em>) – Stresses at X, Y, Z, XY, YZ, and XZ Sxz averaged at each corner
+<li><p><strong>stress</strong> (<em>numpy.ndarray</em>) – Stresses at X, Y, Z, XY, YZ, and XZ averaged at each corner
 node.</p></li>
 </ul>
 </p>
@@ -1530,6 +1596,44 @@ containing all nodes of the component.  Default True.</p></li>
 </dd></dl>
 
 <dl class="py method">
+<dt id="pyansys.rst.ResultFile.plot_cylindrical_nodal_stress">
+<code class="sig-name descname">plot_cylindrical_nodal_stress</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rnum</span></em>, <em class="sig-param"><span class="n">comp</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">show_displacement</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">displacement_factor</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">node_components</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">element_components</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">sel_type_all</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.plot_cylindrical_nodal_stress" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot nodal_stress in the cylindrical coordinate system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rnum</strong> (<em>int</em>) – Result number</p></li>
+<li><p><strong>comp</strong> (<em>str</em><em>, </em><em>optional</em>) – Stress component to display.  Available options:
+- <code class="docutils literal notranslate"><span class="pre">&quot;R&quot;</span></code>
+- <code class="docutils literal notranslate"><span class="pre">&quot;THETA&quot;</span></code>
+- <code class="docutils literal notranslate"><span class="pre">&quot;Z&quot;</span></code>
+- <code class="docutils literal notranslate"><span class="pre">&quot;RTHETA&quot;</span></code>
+- <code class="docutils literal notranslate"><span class="pre">&quot;THETAZ&quot;</span></code>
+- <code class="docutils literal notranslate"><span class="pre">&quot;RZ&quot;</span></code></p></li>
+<li><p><strong>show_displacement</strong> (<em>bool</em><em>, </em><em>optional</em>) – Deforms mesh according to the result.</p></li>
+<li><p><strong>displacement_factor</strong> (<em>float</em><em>, </em><em>optional</em>) – Increases or decreases displacement by a factor.</p></li>
+<li><p><strong>node_components</strong> (<em>list</em><em>, </em><em>optional</em>) – Accepts either a string or a list strings of node
+components to plot.  For example:
+<code class="docutils literal notranslate"><span class="pre">['MY_COMPONENT',</span> <span class="pre">'MY_OTHER_COMPONENT]</span></code></p></li>
+<li><p><strong>element_components</strong> (<em>list</em><em>, </em><em>optional</em>) – Accepts either a string or a list strings of element
+components to plot.  For example:
+<code class="docutils literal notranslate"><span class="pre">['MY_COMPONENT',</span> <span class="pre">'MY_OTHER_COMPONENT]</span></code></p></li>
+<li><p><strong>sel_type_all</strong> (<em>bool</em><em>, </em><em>optional</em>) – If node_components is specified, plots those elements
+containing all nodes of the component.  Default True.</p></li>
+<li><p><strong>**kwargs</strong> (<em>keyword arguments</em>) – Optional keyword arguments.  See help(pyvista.plot)</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Plot nodal stress in the radial direction</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">read_binary</span><span class="p">(</span><span class="s1">&#39;file.rst&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span><span class="o">.</span><span class="n">plot_cylindrical_nodal_stress</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;R&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
 <dt id="pyansys.rst.ResultFile.plot_nodal_displacement">
 <code class="sig-name descname">plot_nodal_displacement</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.plot_nodal_displacement" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plots the nodal solution.</p>
@@ -1708,7 +1812,7 @@ example</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>rnum</strong> (<em>int</em><em> or </em><em>list</em>) – Cumulative result number with zero based indexing, or a
 list containing (step, substep) of the requested result.</p></li>
-<li><p><strong>comp</strong> (<em>str</em><em>, </em><em>optional</em>) – Thermal strain component to display.  Available options:
+<li><p><strong>comp</strong> (<em>str</em><em>, </em><em>optional</em>) – Stress component to display.  Available options:
 - <code class="docutils literal notranslate"><span class="pre">&quot;X&quot;</span></code>
 - <code class="docutils literal notranslate"><span class="pre">&quot;Y&quot;</span></code>
 - <code class="docutils literal notranslate"><span class="pre">&quot;Z&quot;</span></code>
@@ -1763,7 +1867,7 @@ containing all nodes of the component.  Default True.</p></li>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<p>Plot thermal strain of a sample file</p>
+<p>Plot temperature of a result</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">read_binary</span><span class="p">(</span><span class="s1">&#39;file.rst&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">result</span><span class="o">.</span><span class="n">plot_nodal_temperature</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>

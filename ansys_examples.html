@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ANSYS APDL Interactive Control Examples &mdash; pyansys 0.41.6 documentation</title>
+  <title>ANSYS APDL Interactive Control Examples &mdash; pyansys 0.41.8 documentation</title>
   
 
   
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.41.6
+                0.41.8
               </div>
             
           
@@ -113,6 +113,9 @@
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Archive and Result File Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="loading_km.html">Working with a ANSYS Full File (full)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="loading_emat.html">Working with a ANSYS Element Matrix File (.emat)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Examples Gallery</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="examples/index.html">MAPDL and Result Reader Examples</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Miscellaneous</span></p>
@@ -184,7 +187,9 @@
             
   <div class="section" id="ansys-apdl-interactive-control-examples">
 <h1>ANSYS APDL Interactive Control Examples<a class="headerlink" href="#ansys-apdl-interactive-control-examples" title="Permalink to this headline">¶</a></h1>
-<p>These examples are used to demonstrate how to convert an existing ANSYS APDL script to a python <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> script.  You could also simply use the built-in <code class="docutils literal notranslate"><span class="pre">convert_script</span></code> function within pyansys:</p>
+<p>These examples are used to demonstrate how to convert an existing
+ANSYS APDL script to a python <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> script.  You could also
+simply use the built-in <code class="docutils literal notranslate"><span class="pre">convert_script</span></code> function within pyansys:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyansys</span>
 
 <span class="n">inputfile</span> <span class="o">=</span> <span class="s1">&#39;ansys_inputfile.inp&#39;</span>
@@ -194,7 +199,8 @@
 </div>
 <div class="section" id="torsional-load-on-a-bar-using-surf154-elements">
 <h2>Torsional Load on a Bar using SURF154 Elements<a class="headerlink" href="#torsional-load-on-a-bar-using-surf154-elements" title="Permalink to this headline">¶</a></h2>
-<p>This ANSYS APDL script builds a bar and applies torque to it using SURF154 elements.  This is a static analysis example.</p>
+<p>This ANSYS APDL script builds a bar and applies torque to it using
+SURF154 elements.  This is a static analysis example.</p>
 <div class="section" id="script-initialization">
 <h3>Script Initialization<a class="headerlink" href="#script-initialization" title="Permalink to this headline">¶</a></h3>
 <p>Beginning of ANSYS script:</p>
@@ -212,7 +218,8 @@ FORCE = 100/RADIUS
 PRESSURE = FORCE/(H_TIP*2*PI*RADIUS)
 </pre></div>
 </div>
-<p>Corresponding <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> script including the initialization of pyansys:</p>
+<p>Corresponding <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> script including the initialization of
+pyansys:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">pyansys</span>

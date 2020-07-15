@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>MAPDL and Result Reader Examples &mdash; pyansys 0.41.6 documentation</title>
+  <title>MAPDL and Result Reader Examples &mdash; pyansys 0.41.8 documentation</title>
   
 
   
@@ -41,7 +41,7 @@
   <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Shaft Modal Analysis" href="00-read_binary/load_shaft_result.html" />
+    <link rel="next" title="Cylindrical Nodal Stress" href="00-read_binary/load_corner_result.html" />
     <link rel="prev" title="Working with a ANSYS Element Matrix File (.emat)" href="../loading_emat.html" /> 
 </head>
 
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.41.6
+                0.41.8
               </div>
             
           
@@ -98,14 +98,18 @@
 <li class="toctree-l1"><a class="reference internal" href="../ansys_examples.html">ANSYS APDL Interactive Control Examples</a></li>
 </ul>
 <p class="caption"><span class="caption-text">File IO and Visualization</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../ansys_write_archive.html">Reading and Writing ANSYS Archive Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../loading_results.html">Working with a ANSYS Result File (rst)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples.html">Archive and Result File Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../loading_km.html">Working with a ANSYS Full File (full)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../loading_emat.html">Working with a ANSYS Element Matrix File (.emat)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Examples Gallery</span></p>
+<ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">MAPDL and Result Reader Examples</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#loading-and-visualizing-result-files">Loading and Visualizing Result Files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="00-read_binary/load_corner_result.html">Cylindrical Nodal Stress</a></li>
 <li class="toctree-l3"><a class="reference internal" href="00-read_binary/load_shaft_result.html">Shaft Modal Analysis</a></li>
 <li class="toctree-l3"><a class="reference internal" href="00-read_binary/load_thermal_result.html">Thermal Analysis</a></li>
 <li class="toctree-l3"><a class="reference internal" href="00-read_binary/pontoon.html">Shell Static Analysis</a></li>
@@ -193,27 +197,33 @@
 <p>Here are a series of examples using MAPDL with <code class="docutils literal notranslate"><span class="pre">pyansys</span></code>.</p>
 <div class="sphx-glr-clear"></div><div class="section" id="loading-and-visualizing-result-files">
 <span id="sphx-glr-examples-00-read-binary"></span><h2>Loading and Visualizing Result Files<a class="headerlink" href="#loading-and-visualizing-result-files" title="Permalink to this headline">¶</a></h2>
-<div class="sphx-glr-thumbcontainer" tooltip="Visualize a shaft modal analysis"><div class="figure align-default" id="id1">
+<div class="sphx-glr-thumbcontainer" tooltip="Visualize the nodal stress in the radial direction"><div class="figure align-default" id="id1">
+<img alt="Cylindrical Nodal Stress" src="../_images/sphx_glr_load_corner_result_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="00-read_binary/load_corner_result.html#sphx-glr-examples-00-read-binary-load-corner-result-py"><span class="std std-ref">Cylindrical Nodal Stress</span></a></span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="Visualize a shaft modal analysis"><div class="figure align-default" id="id2">
 <img alt="Shaft Modal Analysis" src="../_images/sphx_glr_load_shaft_result_thumb.png" />
-<p class="caption"><span class="caption-text"><a class="reference internal" href="00-read_binary/load_shaft_result.html#sphx-glr-examples-00-read-binary-load-shaft-result-py"><span class="std std-ref">Shaft Modal Analysis</span></a></span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="00-read_binary/load_shaft_result.html#sphx-glr-examples-00-read-binary-load-shaft-result-py"><span class="std std-ref">Shaft Modal Analysis</span></a></span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 </div><div class="toctree-wrapper compound">
 </div>
-<div class="sphx-glr-thumbcontainer" tooltip="Visualize the result of verification manual test 33."><div class="figure align-default" id="id2">
+<div class="sphx-glr-thumbcontainer" tooltip="Visualize the result of verification manual test 33."><div class="figure align-default" id="id3">
 <img alt="Thermal Analysis" src="../_images/sphx_glr_load_thermal_result_thumb.png" />
-<p class="caption"><span class="caption-text"><a class="reference internal" href="00-read_binary/load_thermal_result.html#sphx-glr-examples-00-read-binary-load-thermal-result-py"><span class="std std-ref">Thermal Analysis</span></a></span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="00-read_binary/load_thermal_result.html#sphx-glr-examples-00-read-binary-load-thermal-result-py"><span class="std std-ref">Thermal Analysis</span></a></span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 </div><div class="toctree-wrapper compound">
 </div>
-<div class="sphx-glr-thumbcontainer" tooltip="Visualize a shell static analysis"><div class="figure align-default" id="id3">
+<div class="sphx-glr-thumbcontainer" tooltip="Visualize a shell static analysis"><div class="figure align-default" id="id4">
 <img alt="Shell Static Analysis" src="../_images/sphx_glr_pontoon_thumb.png" />
-<p class="caption"><span class="caption-text"><a class="reference internal" href="00-read_binary/pontoon.html#sphx-glr-examples-00-read-binary-pontoon-py"><span class="std std-ref">Shell Static Analysis</span></a></span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="00-read_binary/pontoon.html#sphx-glr-examples-00-read-binary-pontoon-py"><span class="std std-ref">Shell Static Analysis</span></a></span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
 </div><div class="toctree-wrapper compound">
 </div>
-<div class="sphx-glr-thumbcontainer" tooltip="Visualize a full cyclic model"><div class="figure align-default" id="id4">
+<div class="sphx-glr-thumbcontainer" tooltip="Visualize a full cyclic model"><div class="figure align-default" id="id5">
 <img alt="Cyclic Model Visualization" src="../_images/sphx_glr_sector_model_thumb.png" />
-<p class="caption"><span class="caption-text"><a class="reference internal" href="00-read_binary/sector_model.html#sphx-glr-examples-00-read-binary-sector-model-py"><span class="std std-ref">Cyclic Model Visualization</span></a></span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="00-read_binary/sector_model.html#sphx-glr-examples-00-read-binary-sector-model-py"><span class="std std-ref">Cyclic Model Visualization</span></a></span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </div>
 </div><div class="toctree-wrapper compound">
 </div>
@@ -221,21 +231,21 @@
 <div class="section" id="ansys-mapdl-examples-using-pyansys">
 <span id="sphx-glr-examples-01-mapdl-examples"></span><h2>ANSYS MAPDL Examples Using Pyansys<a class="headerlink" href="#ansys-mapdl-examples-using-pyansys" title="Permalink to this headline">¶</a></h2>
 <p>These examples demonstrate using MAPDL and pyansys together.</p>
-<div class="sphx-glr-thumbcontainer" tooltip="This is a simple example that loads an archive file containing a beam and then runs a modal ana..."><div class="figure align-default" id="id5">
+<div class="sphx-glr-thumbcontainer" tooltip="This is a simple example that loads an archive file containing a beam and then runs a modal ana..."><div class="figure align-default" id="id6">
 <img alt="MAPDL 3D Beam Example" src="../_images/sphx_glr_mapdl_3d_beam_thumb.png" />
-<p class="caption"><span class="caption-text"><a class="reference internal" href="01-mapdl-examples/mapdl_3d_beam.html#sphx-glr-examples-01-mapdl-examples-mapdl-3d-beam-py"><span class="std std-ref">MAPDL 3D Beam Example</span></a></span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="01-mapdl-examples/mapdl_3d_beam.html#sphx-glr-examples-01-mapdl-examples-mapdl-3d-beam-py"><span class="std std-ref">MAPDL 3D Beam Example</span></a></span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
 </div>
 </div><div class="toctree-wrapper compound">
 </div>
-<div class="sphx-glr-thumbcontainer" tooltip="This is an example from FINITE ELEMENT ANALYSIS USING ANSYS 11.0"><div class="figure align-default" id="id6">
+<div class="sphx-glr-thumbcontainer" tooltip="This is an example from FINITE ELEMENT ANALYSIS USING ANSYS 11.0"><div class="figure align-default" id="id7">
 <img alt="MAPDL 2D Beam Example" src="../_images/sphx_glr_mapdl_beam_thumb.png" />
-<p class="caption"><span class="caption-text"><a class="reference internal" href="01-mapdl-examples/mapdl_beam.html#sphx-glr-examples-01-mapdl-examples-mapdl-beam-py"><span class="std std-ref">MAPDL 2D Beam Example</span></a></span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="01-mapdl-examples/mapdl_beam.html#sphx-glr-examples-01-mapdl-examples-mapdl-beam-py"><span class="std std-ref">MAPDL 2D Beam Example</span></a></span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
 </div>
 </div><div class="toctree-wrapper compound">
 </div>
-<div class="sphx-glr-thumbcontainer" tooltip="Run a modal analysis on a mesh generated from pyvista within MAPDL."><div class="figure align-default" id="id7">
+<div class="sphx-glr-thumbcontainer" tooltip="Run a modal analysis on a mesh generated from pyvista within MAPDL."><div class="figure align-default" id="id8">
 <img alt="PyVista Mesh Integration" src="../_images/sphx_glr_pyvista_mesh_thumb.png" />
-<p class="caption"><span class="caption-text"><a class="reference internal" href="01-mapdl-examples/pyvista_mesh.html#sphx-glr-examples-01-mapdl-examples-pyvista-mesh-py"><span class="std std-ref">PyVista Mesh Integration</span></a></span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="01-mapdl-examples/pyvista_mesh.html#sphx-glr-examples-01-mapdl-examples-pyvista-mesh-py"><span class="std std-ref">PyVista Mesh Integration</span></a></span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
 </div>
 </div><div class="toctree-wrapper compound">
 </div>
@@ -259,7 +269,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="00-read_binary/load_shaft_result.html" class="btn btn-neutral float-right" title="Shaft Modal Analysis" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="00-read_binary/load_corner_result.html" class="btn btn-neutral float-right" title="Cylindrical Nodal Stress" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../loading_emat.html" class="btn btn-neutral float-left" title="Working with a ANSYS Element Matrix File (.emat)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

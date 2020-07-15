@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ANSYS APDL Interactive Control &mdash; pyansys 0.41.6 documentation</title>
+  <title>ANSYS APDL Interactive Control &mdash; pyansys 0.41.8 documentation</title>
   
 
   
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.41.6
+                0.41.8
               </div>
             
           
@@ -112,6 +112,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#plotting-non-interactively">Plotting Non-Interactively</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#interactive-breakpoint">Interactive Breakpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#running-a-batch">Running a Batch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sending-arrays-to-mapdl">Sending Arrays to MAPDL</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#mapdl-object-methods">MAPDL Object Methods</a></li>
 </ul>
 </li>
@@ -126,6 +127,9 @@
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Archive and Result File Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="loading_km.html">Working with a ANSYS Full File (full)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="loading_emat.html">Working with a ANSYS Element Matrix File (.emat)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Examples Gallery</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="examples/index.html">MAPDL and Result Reader Examples</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Miscellaneous</span></p>
@@ -197,24 +201,44 @@
             
   <div class="section" id="ansys-apdl-interactive-control">
 <h1>ANSYS APDL Interactive Control<a class="headerlink" href="#ansys-apdl-interactive-control" title="Permalink to this headline">¶</a></h1>
-<p>ANSYS APDL allows for the direct scripting of ANSYS through ANSYS input files.  Unfortunately, APDL relies on an outdated scripting language that is difficult to read and control.  The weaknesses of this language are often compensated by generating APDL scripts using a secondary scripting tool like <code class="docutils literal notranslate"><span class="pre">MATLAB</span></code> or <code class="docutils literal notranslate"><span class="pre">Python</span></code>.  However, this added layer of complexity means that the development feedback loop is quite long as the user must export and run an entire script before determining if it ran correctly or of the results are valid.  This module seeks to rectify that.</p>
-<p>The interface control module requires ANSYS to be installed on the system running <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> for it to operate.</p>
+<p>ANSYS APDL allows for the direct scripting of ANSYS through ANSYS
+input files.  Unfortunately, APDL relies on an outdated scripting
+language that is difficult to read and control.  The weaknesses of
+this language are often compensated by generating APDL scripts using a
+secondary scripting tool like <code class="docutils literal notranslate"><span class="pre">MATLAB</span></code> or <code class="docutils literal notranslate"><span class="pre">Python</span></code>.  However, this
+added layer of complexity means that the development feedback loop is
+quite long as the user must export and run an entire script before
+determining if it ran correctly or of the results are valid.  This
+module seeks to rectify that.</p>
+<p>The interface control module requires ANSYS to be installed on the
+system running <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> for it to operate.</p>
 <div class="section" id="initial-setup-and-example">
 <h2>Initial Setup and Example<a class="headerlink" href="#initial-setup-and-example" title="Permalink to this headline">¶</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">ANSYS</span></code> control module within <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> creates an instance of an interactive Shell of <code class="docutils literal notranslate"><span class="pre">ANSYS</span></code> in the background and sends commands to that shell.  Errors and warnings are processed Pythonically letting the user develop a script real-time without worrying about if it will function correctly when deployed in batch mode.</p>
-<p>To run, <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> needs to know the location of the ANSYS binary.  When running for the first time, <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> will request the location of the ANSYS executable.  You can test your installation <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> and set it up by running the following in python:</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">ANSYS</span></code> control module within <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> creates an instance of
+an interactive Shell of <code class="docutils literal notranslate"><span class="pre">ANSYS</span></code> in the background and sends commands
+to that shell.  Errors and warnings are processed Pythonically letting
+the user develop a script real-time without worrying about if it will
+function correctly when deployed in batch mode.</p>
+<p>To run, <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> needs to know the location of the ANSYS binary.
+When running for the first time, <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> will request the location
+of the ANSYS executable.  You can test your installation <code class="docutils literal notranslate"><span class="pre">pyansys</span></code>
+and set it up by running the following in python:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyansys</span> <span class="kn">import</span> <span class="n">examples</span>
 <span class="n">examples</span><span class="o">.</span><span class="n">ansys_cylinder_demo</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>Python will automatically attempt to detect your ANSYS binary based on environmental variables.  If it is unable to find a copy of ANSYS, you will be prompted for the location of the ANSYS executable.  Here is a sample input for Linux and Windows:</p>
+<p>Python will automatically attempt to detect your ANSYS binary based on
+environmental variables.  If it is unable to find a copy of ANSYS, you
+will be prompted for the location of the ANSYS executable.  Here is a
+sample input for Linux and Windows:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Enter</span> <span class="n">location</span> <span class="n">of</span> <span class="n">ANSYS</span> <span class="n">executable</span><span class="p">:</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">ansys_inc</span><span class="o">/</span><span class="n">v182</span><span class="o">/</span><span class="n">ansys</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">ansys182</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Enter</span> <span class="n">location</span> <span class="n">of</span> <span class="n">ANSYS</span> <span class="n">executable</span><span class="p">:</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Program</span> <span class="n">Files</span>\<span class="n">ANSYS</span> <span class="n">Inc</span>\<span class="n">v170</span>\<span class="n">ANSYS</span>\<span class="nb">bin</span>\<span class="n">winx64</span>\<span class="n">ansys170</span><span class="o">.</span><span class="n">exe</span>
 </pre></div>
 </div>
-<p>The settings file is stored locally and do not need to enter it again.  If you need to change the default ansys path, run the following:</p>
+<p>The settings file is stored locally and do not need to enter it again.
+If you need to change the default ansys path, run the following:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyansys</span>
 <span class="n">new_path</span> <span class="o">=</span> <span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Program Files</span><span class="se">\\</span><span class="s1">ANSYS Inc</span><span class="se">\\</span><span class="s1">v170</span><span class="se">\\</span><span class="s1">ANSYS</span><span class="se">\\</span><span class="s1">bin</span><span class="se">\\</span><span class="s1">winx64</span><span class="se">\\</span><span class="s1">ansys170.exe&#39;</span>
 <span class="n">pyansys</span><span class="o">.</span><span class="n">change_default_ansys_path</span><span class="p">(</span><span class="n">new_path</span><span class="p">)</span>
@@ -232,7 +256,8 @@ to your current directory with:</p>
 <span class="n">mapdl</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">launch_mapdl</span><span class="p">(</span><span class="n">run_location</span><span class="o">=</span><span class="n">path</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>ANSYS is now active and you can send commands to it as if it was just a Python object.</p>
+<p>ANSYS is now active and you can send commands to it as if it was just
+a Python object.</p>
 </div>
 <div class="section" id="using-ansys-from-pyansys">
 <h3>Using ANSYS from <code class="docutils literal notranslate"><span class="pre">pyansys</span></code><a class="headerlink" href="#using-ansys-from-pyansys" title="Permalink to this headline">¶</a></h3>
@@ -249,7 +274,9 @@ to your current directory with:</p>
 <span class="n">mapdl</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;AL, 1, 2, 3, 4&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>ANSYS interactively returns the result of each command and it is stored to the logging module.  Errors are caught immediately.  For example:</p>
+<p>ANSYS interactively returns the result of each command and it is
+stored to the logging module.  Errors are caught immediately.  For
+example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span> <span class="o">&gt;&gt;&gt;</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;AL, 1, 2, 3&#39;</span><span class="p">)</span>
 
 <span class="ne">Exception</span><span class="p">:</span>
@@ -454,7 +481,9 @@ Translates to:
 </div>
 <div class="section" id="retreiving-parameters">
 <h2>Retreiving Parameters<a class="headerlink" href="#retreiving-parameters" title="Permalink to this headline">¶</a></h2>
-<p>APDL parameters can be retrieved using <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> using the <code class="docutils literal notranslate"><span class="pre">load_parameters</span></code> method.  For example, after using the <code class="docutils literal notranslate"><span class="pre">*GET</span></code> command:</p>
+<p>APDL parameters can be retrieved using <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> using the
+<code class="docutils literal notranslate"><span class="pre">load_parameters</span></code> method.  For example, after using the <code class="docutils literal notranslate"><span class="pre">*GET</span></code>
+command:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;DEF_Y&#39;</span><span class="p">,</span> <span class="s1">&#39;NODE&#39;</span> <span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;U&#39;</span> <span class="p">,</span><span class="s1">&#39;Y&#39;</span><span class="p">)</span>
 <span class="n">mapdl</span><span class="o">.</span><span class="n">load_parameters</span><span class="p">()</span>
 </pre></div>
@@ -477,8 +506,18 @@ Translates to:
 <h2>Caveats and Notes<a class="headerlink" href="#caveats-and-notes" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="command-naming-conventions-and-rules">
 <h3>Command Naming Conventions and Rules<a class="headerlink" href="#command-naming-conventions-and-rules" title="Permalink to this headline">¶</a></h3>
-<p>When calling MAPDL commands as functions, each command has been translated from its original MAPDL all CAPS format to a PEP8 compatible format.  For example, <code class="docutils literal notranslate"><span class="pre">ESEL</span></code> is now <code class="docutils literal notranslate"><span class="pre">esel</span></code>.  Additionally, MAPDL commands containing a <code class="docutils literal notranslate"><span class="pre">/</span></code> or <code class="docutils literal notranslate"><span class="pre">*</span></code> have had those characters removed, unless this causes a conflict with an existing name.  Most notable is <code class="docutils literal notranslate"><span class="pre">/SOLU</span></code> which would conflict with <code class="docutils literal notranslate"><span class="pre">SOLU</span></code>.  Therefore, the <code class="docutils literal notranslate"><span class="pre">/SOLU</span></code> has been renamed to <code class="docutils literal notranslate"><span class="pre">slashsolu</span></code> to differentiate it from <code class="docutils literal notranslate"><span class="pre">solu</span></code>.  Out of the 1500 MAPDL commands, about 15 start with <code class="docutils literal notranslate"><span class="pre">slash</span></code> and 8 with <code class="docutils literal notranslate"><span class="pre">star</span></code>.  Check the <code class="docutils literal notranslate"><span class="pre">MAPDL</span> <span class="pre">Object</span> <span class="pre">Methods</span></code> reference below when necessary.</p>
-<p>MAPDL commands that normally have an empty space, such as <code class="docutils literal notranslate"><span class="pre">ESEL,</span> <span class="pre">S,</span> <span class="pre">TYPE,</span> <span class="pre">,</span> <span class="pre">1</span></code> should include an empty string when called by Python:</p>
+<p>When calling MAPDL commands as functions, each command has been
+translated from its original MAPDL all CAPS format to a PEP8
+compatible format.  For example, <code class="docutils literal notranslate"><span class="pre">ESEL</span></code> is now <code class="docutils literal notranslate"><span class="pre">esel</span></code>.
+Additionally, MAPDL commands containing a <code class="docutils literal notranslate"><span class="pre">/</span></code> or <code class="docutils literal notranslate"><span class="pre">*</span></code> have had
+those characters removed, unless this causes a conflict with an
+existing name.  Most notable is <code class="docutils literal notranslate"><span class="pre">/SOLU</span></code> which would conflict with
+<code class="docutils literal notranslate"><span class="pre">SOLU</span></code>.  Therefore, the <code class="docutils literal notranslate"><span class="pre">/SOLU</span></code> has been renamed to <code class="docutils literal notranslate"><span class="pre">slashsolu</span></code>
+to differentiate it from <code class="docutils literal notranslate"><span class="pre">solu</span></code>.  Out of the 1500 MAPDL commands,
+about 15 start with <code class="docutils literal notranslate"><span class="pre">slash</span></code> and 8 with <code class="docutils literal notranslate"><span class="pre">star</span></code>.  Check the <code class="docutils literal notranslate"><span class="pre">MAPDL</span>
+<span class="pre">Object</span> <span class="pre">Methods</span></code> reference below when necessary.</p>
+<p>MAPDL commands that normally have an empty space, such as <code class="docutils literal notranslate"><span class="pre">ESEL,</span> <span class="pre">S,</span>
+<span class="pre">TYPE,</span> <span class="pre">,</span> <span class="pre">1</span></code> should include an empty string when called by Python:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">esel</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;type&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -491,13 +530,20 @@ Translates to:
 <span class="n">mapdl</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>Some commands can only be run non-interactively in a script.  <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> gets around this restriction by writing the commands to a temporary input file and then reading the input file.  To run a group of commands that must be run non-interactively, set the <code class="docutils literal notranslate"><span class="pre">MAPDL</span></code> object to run a series of commands as an input file by using <code class="docutils literal notranslate"><span class="pre">non_interactive</span></code> as in this example:</p>
+<p>Some commands can only be run non-interactively in a script.
+<code class="docutils literal notranslate"><span class="pre">pyansys</span></code> gets around this restriction by writing the commands to a
+temporary input file and then reading the input file.  To run a group
+of commands that must be run non-interactively, set the <code class="docutils literal notranslate"><span class="pre">MAPDL</span></code>
+object to run a series of commands as an input file by using
+<code class="docutils literal notranslate"><span class="pre">non_interactive</span></code> as in this example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">non_interactive</span><span class="p">:</span>
     <span class="n">mapdl</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;*VWRITE,LABEL(1),VALUE(1,1),VALUE(1,2),VALUE(1,3)&quot;</span><span class="p">)</span>
     <span class="n">mapdl</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;(1X,A8,&#39;   &#39;,F10.1,&#39;  &#39;,F10.1,&#39;   &#39;,1F5.3)&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Also note that macros created within pyansys (rather than loaded from a file) do not appear to run correctly.  For example, the macro <code class="docutils literal notranslate"><span class="pre">DISP</span></code> created using the <code class="docutils literal notranslate"><span class="pre">*CREATE</span></code> command within APDL:</p>
+<p>Also note that macros created within pyansys (rather than loaded from
+a file) do not appear to run correctly.  For example, the macro
+<code class="docutils literal notranslate"><span class="pre">DISP</span></code> created using the <code class="docutils literal notranslate"><span class="pre">*CREATE</span></code> command within APDL:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>*CREATE,DISP
 NSEL,R,LOC,Z,10                      ! SELECT NODES AT Z = 10 TO APPLY DISPLACEMENT
 D,ALL,UZ,ARG1
@@ -528,7 +574,8 @@ SOLVE
 <span class="n">DISP</span><span class="p">(</span><span class="o">-.</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>If you have an existing input file with a macro, it can be converted using the <code class="docutils literal notranslate"><span class="pre">convert_script</span></code> function:</p>
+<p>If you have an existing input file with a macro, it can be converted
+using the <code class="docutils literal notranslate"><span class="pre">convert_script</span></code> function:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pyansys</span><span class="o">.</span><span class="n">convert_script</span><span class="p">(</span><span class="n">apdl_inputfile</span><span class="p">,</span> <span class="n">pyscript</span><span class="p">,</span> <span class="n">macros_as_functions</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -536,7 +583,10 @@ SOLVE
 </div>
 <div class="section" id="conditional-statements-and-loops">
 <h3>Conditional Statements and Loops<a class="headerlink" href="#conditional-statements-and-loops" title="Permalink to this headline">¶</a></h3>
-<p>APDL conditional statements such as <code class="docutils literal notranslate"><span class="pre">*IF</span></code> must be either implemented pythonically or using <code class="docutils literal notranslate"><span class="pre">with</span> <span class="pre">mapdl.non_interactive:</span></code>.  See the <code class="docutils literal notranslate"><span class="pre">vm8.dat</span></code> example in the APDL Conversion Examples page.  For example:</p>
+<p>APDL conditional statements such as <code class="docutils literal notranslate"><span class="pre">*IF</span></code> must be either implemented
+pythonically or using <code class="docutils literal notranslate"><span class="pre">with</span> <span class="pre">mapdl.non_interactive:</span></code>.  See the
+<code class="docutils literal notranslate"><span class="pre">vm8.dat</span></code> example in the APDL Conversion Examples page.  For
+example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>*IF,ARG1,EQ,0,THEN
   *GET,ARG4,NX,ARG2     ! RETRIEVE COORDINATE LOCATIONS OF BOTH NODES
   *GET,ARG5,NY,ARG2
@@ -686,9 +736,9 @@ such as <code class="docutils literal notranslate"><span class="pre">APLOT</span
 <span class="n">mapdl</span><span class="o">.</span><span class="n">kplot</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="figure align-default" id="id45">
+<div class="figure align-default" id="id47">
 <a class="reference internal image-reference" href="_images/aplot.png"><img alt="_images/aplot.png" src="_images/aplot.png" style="width: 300pt;" /></a>
-<p class="caption"><span class="caption-text">Area Plot from ANSYS using <code class="docutils literal notranslate"><span class="pre">pyansys</span></code></span><a class="headerlink" href="#id45" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Area Plot from ANSYS using <code class="docutils literal notranslate"><span class="pre">pyansys</span></code></span><a class="headerlink" href="#id47" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="interactive-breakpoint">
@@ -864,6 +914,25 @@ with torsional loading.</p>
 <span class="n">Element</span> <span class="n">size</span> <span class="mf">0.214286</span><span class="p">:</span> <span class="mi">142496</span> <span class="n">nodes</span> <span class="ow">and</span> <span class="n">maximum</span> <span class="n">vom</span> <span class="n">Mises</span> <span class="n">stress</span> <span class="mf">143.559128</span>
 <span class="n">Element</span> <span class="n">size</span> <span class="mf">0.182143</span><span class="p">:</span> <span class="mi">211966</span> <span class="n">nodes</span> <span class="ow">and</span> <span class="n">maximum</span> <span class="n">vom</span> <span class="n">Mises</span> <span class="n">stress</span> <span class="mf">143.953430</span>
 <span class="n">Element</span> <span class="n">size</span> <span class="mf">0.150000</span><span class="p">:</span> <span class="mi">412324</span> <span class="n">nodes</span> <span class="ow">and</span> <span class="n">maximum</span> <span class="n">vom</span> <span class="n">Mises</span> <span class="n">stress</span> <span class="mf">144.275406</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="sending-arrays-to-mapdl">
+<h2>Sending Arrays to MAPDL<a class="headerlink" href="#sending-arrays-to-mapdl" title="Permalink to this headline">¶</a></h2>
+<p>You can send <code class="docutils literal notranslate"><span class="pre">numpy</span></code> arrays or Python lists directly to MAPDL using
+<code class="docutils literal notranslate"><span class="pre">load_array</span></code>.  This is far more efficient than individually sending
+parameters to MAPDL through python or MAPDL.  It uses <code class="docutils literal notranslate"><span class="pre">*VREAD</span></code>
+behind the scenes and will be replaced with a faster interface in the
+future.</p>
+<p>Verify the data has been propertly loaded to MAPDL by accessing the
+first element.  Note that MAPDL uses fortran (1) based indexing.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">read_float_parameter</span><span class="p">(</span><span class="s1">&#39;MYARR(1, 1)&#39;</span><span class="p">)</span>
+<span class="go">2020-07-03 21:49:54,387 [INFO] pyansys.mapdl: MYARR(1, 1) = MYARR(1, 1)</span>
+
+<span class="go">PARAMETER MYARR(1,1) =    0.7960742456</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">0.7960742456194109</span>
 </pre></div>
 </div>
 </div>
@@ -1381,6 +1450,50 @@ drive letter) on Windows systems.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="pyansys.mapdl._Mapdl.load_array">
+<code class="sig-name descname">load_array</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">arr</span></em>, <em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.mapdl._Mapdl.load_array" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load a numpy array or python list directly to MAPDL</p>
+<p>Writes the numpy array to disk and then reads it in within MAPDL
+using <a href="#id45"><span class="problematic" id="id46">*</span></a>VREAD.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>arr</strong> (<em>np.ndarray</em><em> or </em><em>List</em>) – </p></li>
+<li><p><strong>name</strong> (<em>str</em>) – Name of the array to write to within MAPDL.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Load a 1D numpy array into MAPDL</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">load_array</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="s1">&#39;MYARR&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parm</span><span class="p">,</span> <span class="n">mapdl_arrays</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">load_parameters</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl_arrays</span><span class="p">[</span><span class="s1">&#39;MYARR&#39;</span><span class="p">]</span>
+<span class="go">array([10., 20., 30.])</span>
+</pre></div>
+</div>
+<p>Load a 2D numpy array into MAPDL</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">load_array</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="s1">&#39;MYARR&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parm</span><span class="p">,</span> <span class="n">mapdl_arrays</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">load_parameters</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl_arrays</span><span class="p">[</span><span class="s1">&#39;MYARR&#39;</span><span class="p">]</span>
+<span class="go">array([[0.39806635, 0.15060953, 0.3990557 ],</span>
+<span class="go">       [0.26837768, 0.02033222, 0.15655861],</span>
+<span class="go">       [0.46110226, 0.06381489, 0.20068533],</span>
+<span class="go">       [0.20122863, 0.5727896 , 0.85636037],</span>
+<span class="go">       [0.68126612, 0.67460878, 0.3678797 ]])</span>
+</pre></div>
+</div>
+<p>Load a python list into MAPDL</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">load_array</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="s1">&#39;MYARR&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parm</span><span class="p">,</span> <span class="n">mapdl_arrays</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">load_parameters</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl_arrays</span><span class="p">[</span><span class="s1">&#39;MYARR&#39;</span><span class="p">]</span>
+<span class="go">array([10., -1.,  8.,  4., 10.])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
 <dt id="pyansys.mapdl._Mapdl.load_parameters">
 <code class="sig-name descname">load_parameters</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.mapdl._Mapdl.load_parameters" title="Permalink to this definition">¶</a></dt>
 <dd><p>Loads and returns all current parameters</p>
@@ -1475,17 +1588,19 @@ activated if a mode-superposition analysis is intended.</p></li>
 <li><p><strong>memory_option</strong> (<em>str</em><em>, </em><em>optional</em>) – <p>Memory allocation option:</p>
 <ul>
 <li><dl class="simple">
-<dt>DEFAULT<span class="classifier">Use the default memory allocation strategy for</span></dt><dd><p>the sparse solver. The default strategy attempts
+<dt><code class="docutils literal notranslate"><span class="pre">DEFAULT</span></code> - Default Memory mode</dt><dd><p>Use the default memory allocation strategy for
+the sparse solver. The default strategy attempts
 to run in the INCORE memory mode. If there is
 not enough available physical memory when the
-solver starts to run in the INCORE memory mode,
-the solver will then attempt to run in the
-OUTOFCORE memory mode.</p>
+solver starts to run in the <code class="docutils literal notranslate"><span class="pre">INCORE</span></code> memory
+mode, the solver will then attempt to run in the
+<code class="docutils literal notranslate"><span class="pre">OUTOFCORE</span></code> memory mode.</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple">
-<dt>INCORE<span class="classifier">Use a memory allocation strategy in the sparse</span></dt><dd><p>solver that will attempt to obtain enough memory
+<dt><code class="docutils literal notranslate"><span class="pre">INCORE</span></code> - In-core memory mode</dt><dd><p>Use a memory allocation strategy in the sparse
+solver that will attempt to obtain enough memory
 to run with the entire factorized matrix in
 memory. This option uses the most amount of
 memory and should avoid doing any I/O. By
@@ -1500,14 +1615,15 @@ out-of-core memory mode.</p>
 </dl>
 </li>
 <li><dl class="simple">
-<dt>OUTOFCORE<span class="classifier">Use a memory allocation strategy in the</span></dt><dd><p>sparse solver that will attempt to allocate
-only enough work space to factor each
-individual frontal matrix in memory, but will
-store the entire factorized matrix on
-disk. Typically, this memory mode results in
-poor performance due to the potential
-bottleneck caused by the I/O to the various
-files written by the solver.</p>
+<dt><code class="docutils literal notranslate"><span class="pre">OUTOFCORE</span></code> - Out of core memory mode.</dt><dd><p>Use a memory allocation strategy in the sparse
+solver that will attempt to allocate only
+enough work space to factor each individual
+frontal matrix in memory, but will store the
+entire factorized matrix on disk. Typically,
+this memory mode results in poor performance
+due to the potential bottleneck caused by the
+I/O to the various files written by the
+solver.</p>
 </dd>
 </dl>
 </li>
@@ -1517,7 +1633,8 @@ files written by the solver.</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="go">&gt;&gt;&gt;</span>
+<p>Modal analysis using default parameters for the first 6 modes</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">modal_analysis</span><span class="p">(</span><span class="n">nmode</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
 </pre></div>
 </div>
 <p class="rubric">Notes</p>
@@ -1535,6 +1652,17 @@ matrix eigensolver (MODOPT,UNSYM).</p>
 <p>The DAMP and QRDAMP options cannot be followed by a subsequent
 spectrum analysis. The UNSYM method supports spectrum analysis
 when eigensolutions are real.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyansys.mapdl._Mapdl.n_node">
+<em class="property">property </em><code class="sig-name descname">n_node</code><a class="headerlink" href="#pyansys.mapdl._Mapdl.n_node" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of nodes currently selected</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">n_node</span>
+<span class="go">665</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">

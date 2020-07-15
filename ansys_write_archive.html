@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Reading and Writing ANSYS Archive Files &mdash; pyansys 0.41.6 documentation</title>
+  <title>Reading and Writing ANSYS Archive Files &mdash; pyansys 0.41.8 documentation</title>
   
 
   
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.41.6
+                0.41.8
               </div>
             
           
@@ -112,6 +112,9 @@
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Archive and Result File Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="loading_km.html">Working with a ANSYS Full File (full)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="loading_emat.html">Working with a ANSYS Element Matrix File (.emat)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Examples Gallery</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="examples/index.html">MAPDL and Result Reader Examples</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Miscellaneous</span></p>
@@ -284,6 +287,7 @@ will be written as SOLID187.</p>
 <em class="property">class </em><code class="sig-prename descclassname">pyansys.archive.</code><code class="sig-name descname">Archive</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span></em>, <em class="sig-param"><span class="n">read_parameters</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">parse_vtk</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">force_linear</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">allowable_types</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">null_unallowed</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">verbose</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.archive.Archive" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read a blocked ANSYS archive file.</p>
 <p>Reads a blocked CDB file and optionally parses it to a vtk grid.</p>
+<p>Write the archive file using <code class="docutils literal notranslate"><span class="pre">CDWRITE,</span> <span class="pre">DB,</span> <span class="pre">archive.cdb</span></code></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">

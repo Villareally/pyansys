@@ -31,7 +31,7 @@ method.
 
  .. code-block:: none
 
-    2020-07-03 15:54:23,107 [INFO] pyansys.mapdl: CDREAD,db,/home/alex/python/pyansys/pyansys/examples/HexBeam.cdb,,,,
+    2020-07-03 21:38:04,263 [INFO] pyansys.mapdl: CDREAD,db,/home/alex/python/pyansys/pyansys/examples/HexBeam.cdb,,,,
 
      READ CDWRITE FILE: /home/alex/python/pyansys/pyansys/examples/HexBeam.cdb                                                                                                                                                                                                              
 
@@ -43,7 +43,7 @@ method.
      *** ANSYS - ENGINEERING ANALYSIS SYSTEM  RELEASE                  20.1BETA ***
      DISTRIBUTED ANSYS Mechanical Enterprise                       
 
-     88888888  VERSION=LINUX x64     15:54:23  JUL 03, 2020 CP=      0.440
+     88888888  VERSION=LINUX x64     21:38:04  JUL 03, 2020 CP=      0.426
 
                                                                                
 
@@ -59,29 +59,29 @@ method.
      PRINTOUT KEY SET TO /GOPR (USE /NOPR TO SUPPRESS)
 
 
-     ***** ROUTINE COMPLETED *****  CP =         0.445
-    2020-07-03 15:54:23,108 [INFO] pyansys.mapdl: ESEL,s,ELEM,,5,20,,
+     ***** ROUTINE COMPLETED *****  CP =         0.432
+    2020-07-03 21:38:04,264 [INFO] pyansys.mapdl: ESEL,s,ELEM,,5,20,,
 
      SELECT       FOR ITEM=ELEM COMPONENT=    
       IN RANGE         5 TO         20 STEP          1
 
              16  ELEMENTS (OF         40  DEFINED) SELECTED BY  ESEL  COMMAND.
-    2020-07-03 15:54:23,109 [INFO] pyansys.mapdl: CM,ELEM_COMP,ELEM
+    2020-07-03 21:38:04,265 [INFO] pyansys.mapdl: CM,ELEM_COMP,ELEM
 
      DEFINITION OF COMPONENT = ELEM_COMP  ENTITY=ELEM
-    2020-07-03 15:54:23,110 [INFO] pyansys.mapdl: NSEL,s,NODE,,5,20,,
+    2020-07-03 21:38:04,266 [INFO] pyansys.mapdl: NSEL,s,NODE,,5,20,,
 
      SELECT       FOR ITEM=NODE COMPONENT=    
       IN RANGE         5 TO         20 STEP          1
 
              16  NODES (OF        321  DEFINED) SELECTED BY  NSEL  COMMAND.
-    2020-07-03 15:54:23,111 [INFO] pyansys.mapdl: CM,NODE_COMP,NODE
+    2020-07-03 21:38:04,267 [INFO] pyansys.mapdl: CM,NODE_COMP,NODE
 
      DEFINITION OF COMPONENT = NODE_COMP  ENTITY=NODE
-    2020-07-03 15:54:23,111 [INFO] pyansys.mapdl: ALLSEL,,
+    2020-07-03 21:38:04,267 [INFO] pyansys.mapdl: ALLSEL,,
 
      SELECT ALL ENTITIES OF TYPE= ALL  AND BELOW
-    2020-07-03 15:54:23,112 [INFO] pyansys.mapdl: /PREP7,
+    2020-07-03 21:38:04,269 [INFO] pyansys.mapdl: /PREP7,
 
      ** WARNING: PRE-RELEASE VERSION OF ANSYS 20.1BETA
       ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **
@@ -91,70 +91,70 @@ method.
      ENTER  /SHOW,DEVICE-NAME  TO ENABLE GRAPHIC DISPLAY
      ENTER  FINISH             TO LEAVE PREP7
      PRINTOUT KEY SET TO /GOPR (USE /NOPR TO SUPPRESS)
-    2020-07-03 15:54:23,113 [INFO] pyansys.mapdl: MP,EX,1,200000000000.0,,,,
+    2020-07-03 21:38:04,270 [INFO] pyansys.mapdl: MP,EX,1,200000000000.0,,,,
 
      MATERIAL          1     EX   =  0.2000000E+12
-    2020-07-03 15:54:23,114 [INFO] pyansys.mapdl: MP,DENS,1,7800,,,,
+    2020-07-03 21:38:04,270 [INFO] pyansys.mapdl: MP,DENS,1,7800,,,,
 
      MATERIAL          1     DENS =   7800.000
-    2020-07-03 15:54:23,115 [INFO] pyansys.mapdl: MP,NUXY,1,0.3,,,,
+    2020-07-03 21:38:04,271 [INFO] pyansys.mapdl: MP,NUXY,1,0.3,,,,
 
      MATERIAL          1     NUXY =  0.3000000
-    2020-07-03 15:54:23,115 [INFO] pyansys.mapdl: EMODIF,ALL,MAT,1,,,,,,,
+    2020-07-03 21:38:04,271 [INFO] pyansys.mapdl: EMODIF,ALL,MAT,1,,,,,,,
 
      MODIFY ALL SELECTED ELEMENTS TO HAVE  MAT  =         1
-    2020-07-03 15:54:23,116 [INFO] pyansys.mapdl: NSEL,S,LOC,Z,,,,
+    2020-07-03 21:38:04,272 [INFO] pyansys.mapdl: NSEL,S,LOC,Z,,,,
 
      SELECT       FOR ITEM=LOC  COMPONENT=Z     BETWEEN  0.0000     AND   0.0000    
        KABS=  0.  TOLERANCE= 0.100000E-05
 
              21  NODES (OF        321  DEFINED) SELECTED BY  NSEL  COMMAND.
-    2020-07-03 15:54:23,117 [INFO] pyansys.mapdl: D,all,all,,,,,,,,,
+    2020-07-03 21:38:04,273 [INFO] pyansys.mapdl: D,all,all,,,,,,,,,
 
      SPECIFIED CONSTRAINT UX   FOR SELECTED NODES            1 TO         321 BY           1
      REAL=  0.00000000       IMAG=  0.00000000    
      ADDITIONAL DOFS=  UY    UZ
-    2020-07-03 15:54:23,118 [INFO] pyansys.mapdl: ALLSEL,,
+    2020-07-03 21:38:04,274 [INFO] pyansys.mapdl: ALLSEL,,
 
      SELECT ALL ENTITIES OF TYPE= ALL  AND BELOW
-    2020-07-03 15:54:23,118 [INFO] pyansys.mapdl: MXPAND,,,,YES,,,
+    2020-07-03 21:38:04,274 [INFO] pyansys.mapdl: MXPAND,,,,YES,,,
 
 
      EXPAND ALL EXTRACTED MODES
       CALCULATE ELEMENT RESULTS AND NODAL DOF SOLUTION
-    2020-07-03 15:54:23,119 [INFO] pyansys.mapdl: /SOLU,
+    2020-07-03 21:38:04,275 [INFO] pyansys.mapdl: /SOLU,
 
 
-     ***** ROUTINE COMPLETED *****  CP =         0.461
+     ***** ROUTINE COMPLETED *****  CP =         0.447
 
 
 
      *****  ANSYS SOLUTION ROUTINE  *****
-    2020-07-03 15:54:23,120 [INFO] pyansys.mapdl: ANTYPE,2,new,,,
+    2020-07-03 21:38:04,276 [INFO] pyansys.mapdl: ANTYPE,2,new,,,
 
 
      PERFORM A MODAL ANALYSIS
       THIS WILL BE A NEW ANALYSIS
-    2020-07-03 15:54:23,121 [INFO] pyansys.mapdl: MODOPT,lanb,6,,,,OFF,,,
+    2020-07-03 21:38:04,276 [INFO] pyansys.mapdl: MODOPT,lanb,6,,,,OFF,,,
 
 
      USE SYM. BLOCK LANCZOS MODE EXTRACTION METHOD
       EXTRACT    6 MODES
       NORMALIZE THE MODE SHAPES TO THE MASS MATRIX
-    2020-07-03 15:54:23,122 [INFO] pyansys.mapdl: BCSOPTION,,,
+    2020-07-03 21:38:04,277 [INFO] pyansys.mapdl: BCSOPTION,,,
 
-     *** NOTE ***                            CP =       0.464   TIME= 15:54:23
+     *** NOTE ***                            CP =       0.450   TIME= 21:38:04
      Use of the BCSOPTION has been deprecated.  Please use the DSPOPTION     
      command instead to control the sparse solver behavior.
-    2020-07-03 15:54:23,218 [INFO] pyansys.mapdl: SOLVE,
+    2020-07-03 21:38:04,366 [INFO] pyansys.mapdl: SOLVE,
 
-     *** NOTE ***                            CP =       0.468   TIME= 15:54:23
+     *** NOTE ***                            CP =       0.455   TIME= 21:38:04
      The automatic domain decomposition logic has selected the MESH domain   
      decomposition method with 2 processes per solution.                     
 
      *****  ANSYS SOLVE    COMMAND  *****
 
-     *** NOTE ***                            CP =       0.469   TIME= 15:54:23
+     *** NOTE ***                            CP =       0.456   TIME= 21:38:04
      There is no title defined for this analysis.                            
 
      *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***
@@ -178,10 +178,10 @@ method.
        NUMBER OF MODES TO EXPAND . . . . . . . . . . .ALL
        ELEMENT RESULTS CALCULATION . . . . . . . . . .ON 
 
-     *** NOTE ***                            CP =       0.471   TIME= 15:54:23
+     *** NOTE ***                            CP =       0.458   TIME= 21:38:04
      Results printout suppressed for interactive execute.                    
 
-     *** NOTE ***                            CP =       0.471   TIME= 15:54:23
+     *** NOTE ***                            CP =       0.458   TIME= 21:38:04
      The conditions for direct assembly have been met.  No .emat or .erot    
      files will be produced.                                                 
 
@@ -241,8 +241,8 @@ method.
        *** ELEMENT MATRIX FORMULATION TIMES
          TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-            1        40  SOLID186      0.008   0.000200
-     Time at end of element matrix formulation CP = 0.504405975.             
+            1        40  SOLID186      0.009   0.000221
+     Time at end of element matrix formulation CP = 0.492555976.             
 
       BLOCK LANCZOS CALCULATION OF UP TO     6 EIGENVECTORS.
       NUMBER OF EQUATIONS              =          900
@@ -260,20 +260,20 @@ method.
       Total memory required for in-core solution     =      2.656 MB
       Total memory required for out-of-core solution =      2.012 MB
 
-     *** NOTE ***                            CP =       0.573   TIME= 15:54:23
+     *** NOTE ***                            CP =       0.563   TIME= 21:38:04
      The Distributed Sparse Matrix Solver used by the Block Lanczos          
      eigensolver is currently running in the in-core memory mode.  This      
      memory mode uses the most amount of memory in order to avoid using the  
      hard drive as much as possible, which most often results in the         
      fastest solution time.  This mode is recommended if enough physical     
      memory is present to accommodate all of the solver data.                
-     curEqn=    482  totEqn=    482 Job CP sec=      0.386
-          Factor Done= 100% Factor Wall sec=      0.005 rate=    1671.2 Mflops
+     curEqn=    482  totEqn=    482 Job CP sec=      0.375
+          Factor Done= 100% Factor Wall sec=      0.004 rate=    1914.3 Mflops
 
      *** ANSYS - ENGINEERING ANALYSIS SYSTEM  RELEASE                  20.1BETA ***
      DISTRIBUTED ANSYS Mechanical Enterprise                       
 
-     88888888  VERSION=LINUX x64     15:54:23  JUL 03, 2020 CP=      0.643
+     88888888  VERSION=LINUX x64     21:38:04  JUL 03, 2020 CP=      0.615
 
                                                                                
 
@@ -300,11 +300,11 @@ method.
             0.438 MB WRITTEN ON ASSEMBLED MATRIX FILE: file0.full
             0.062 MB WRITTEN ON MODAL MATRIX FILE: file0.mode
             0.312 MB WRITTEN ON RESULTS FILE: file0.rst
-    2020-07-03 15:54:23,365 [INFO] pyansys.mapdl: FINISH,
+    2020-07-03 21:38:04,479 [INFO] pyansys.mapdl: FINISH,
 
      *****  ANSYS FINISH   COMMAND  *****
 
-     *** NOTE ***                            CP =       0.654   TIME= 15:54:23
+     *** NOTE ***                            CP =       0.624   TIME= 21:38:04
      Results printout suppressed for interactive execute.                    
 
      ** WARNING: PRE-RELEASE VERSION OF ANSYS 20.1BETA
@@ -314,17 +314,17 @@ method.
        *** ELEMENT RESULT CALCULATION TIMES
          TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-            1        40  SOLID186      0.008   0.000202
+            1        40  SOLID186      0.005   0.000129
 
        *** NODAL LOAD CALCULATION TIMES
          TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-            1        40  SOLID186      0.001   0.000021
+            1        40  SOLID186      0.001   0.000014
 
      *** ANSYS - ENGINEERING ANALYSIS SYSTEM  RELEASE                  20.1BETA ***
      DISTRIBUTED ANSYS Mechanical Enterprise                       
 
-     88888888  VERSION=LINUX x64     15:54:23  JUL 03, 2020 CP=      0.700
+     88888888  VERSION=LINUX x64     21:38:04  JUL 03, 2020 CP=      0.659
 
                                                                                
 
@@ -427,7 +427,7 @@ method.
 
 
 
-     *** NOTE ***                            CP =       0.701   TIME= 15:54:23
+     *** NOTE ***                            CP =       0.660   TIME= 21:38:04
      The modes requested are mass normalized (Nrmkey on MODOPT).  However,   
      the modal masses and kinetic energies below are calculated with unit    
      normalized modes.                                                       
@@ -462,7 +462,7 @@ method.
         TOTAL SIZE =        0.250 MB
 
 
-     ***** ROUTINE COMPLETED *****  CP =         0.891
+     ***** ROUTINE COMPLETED *****  CP =         0.828
 
 
 
@@ -479,7 +479,7 @@ method.
     from pyansys import examples
     import pyansys
 
-    os.environ['I_MPI_SHM_LMT'] = 'shm'
+    os.environ['I_MPI_SHM_LMT'] = 'shm'  # necessary on ubuntu
     mapdl = pyansys.launch_mapdl(override=True)
 
     mapdl.cdread('db', examples.hexarchivefile)
@@ -515,7 +515,7 @@ method.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  38.159 seconds)
+   **Total running time of the script:** ( 0 minutes  36.014 seconds)
 
 
 .. _sphx_glr_download_examples_01-mapdl-examples_mapdl_3d_beam.py:

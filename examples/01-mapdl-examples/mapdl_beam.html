@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>MAPDL 2D Beam Example &mdash; pyansys 0.41.8 documentation</title>
+  <title>MAPDL 2D Beam Example &mdash; pyansys 0.41.9 documentation</title>
   
 
   
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.41.8
+                0.41.9
               </div>
             
           
@@ -205,7 +205,18 @@
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;pyansys.mapdl_console.MapdlConsole object at 0x7f664931cf90&gt;
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>ANSYS Mechanical Enterprise
+ RELEASE                    BUILD 20.1BETA  UPDATE 20191009
+
+ Current routine. . . . . . . . . . . .None (BEGIN level)
+
+ Active coordinate system . . . . . . .   0 (Cartesian)
+
+ Display coordinate system. . . . . . .   0 (Cartesian)
+
+ Analysis type. . . . . . . . . . . . .Static (steady-state)
+
+ pyansys version: 0.41.9
 </pre></div>
 </div>
 <p>Define an I-beam</p>
@@ -229,7 +240,7 @@
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Matplotlib is currently using agg, which is a non-GUI backend, so cannot show the figure.
 
-&#39;SECPLOT,1,,,\r\n\r\n CUMULATIVE DISPLAY NUMBER   1 WRITTEN TO FILE file023.png       - RASTER MODE.\r\n DISPLAY TITLE=&#39;
+&#39;SECPLOT,1,,,\r\n\r\n CUMULATIVE DISPLAY NUMBER   1 WRITTEN TO FILE file043.png       - RASTER MODE.\r\n DISPLAY TITLE=&#39;
 </pre></div>
 </div>
 <p>Create nodes within MAPDL</p>
@@ -255,33 +266,33 @@
 <img alt="mapdl beam" class="sphx-glr-single-img" src="../../_images/sphx_glr_mapdl_beam_002.png" />
 <img alt="mapdl beam" class="sphx-glr-single-img" src="../../_images/sphx_glr_mapdl_beam_003.png" />
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[  0.   0.   0.]
- [ 10.   0.   0.]
- [ 20.   0.   0.]
- [ 30.   0.   0.]
- [ 40.   0.   0.]
- [ 50.   0.   0.]
- [ 60.   0.   0.]
- [ 70.   0.   0.]
- [ 80.   0.   0.]
- [ 90.   0.   0.]
- [100.   0.   0.]
- [110.   0.   0.]
- [120.   0.   0.]
- [130.   0.   0.]
- [140.   0.   0.]
- [150.   0.   0.]
- [160.   0.   0.]
- [170.   0.   0.]
- [180.   0.   0.]
- [190.   0.   0.]
- [200.   0.   0.]
- [210.   0.   0.]
- [220.   0.   0.]]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[   0.    0.    0.]
+ [  10.    0.    0.]
+ [  20.    0.    0.]
+ [  30.    0.    0.]
+ [  40.    0.    0.]
+ [  50.    0.    0.]
+ [  60.    0.    0.]
+ [  70.    0.    0.]
+ [  80.    0.    0.]
+ [  90.    0.    0.]
+ [1000.    0.    0.]
+ [1100.    0.    0.]
+ [1200.    0.    0.]
+ [1300.    0.    0.]
+ [1400.    0.    0.]
+ [1500.    0.    0.]
+ [1600.    0.    0.]
+ [1700.    0.    0.]
+ [1800.    0.    0.]
+ [1900.    0.    0.]
+ [2000.    0.    0.]
+ [2100.    0.    0.]
+ [2200.    0.    0.]]
 [ 1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23]
 
-[(110.00000000000001, 0.0, 425.0073635671901),
- (110.00000000000001, 0.0, 0.0),
+[(1100.0, 0.0, 4250.073635671901),
+ (1100.0, 0.0, 0.0),
  (0.0, 1.0, 0.0)]
 </pre></div>
 </div>
@@ -372,13 +383,13 @@ y
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>SOLVE,
 
- *** NOTE ***                            CP =       1.090   TIME= 15:55:01
+ *** NOTE ***                            CP =       1.047   TIME= 22:36:01
  The automatic domain decomposition logic has selected the MESH domain
  decomposition method with 2 processes per solution.
 
  *****  ANSYS SOLVE    COMMAND  *****
 
- *** NOTE ***                            CP =       1.091   TIME= 15:55:01
+ *** NOTE ***                            CP =       1.048   TIME= 22:36:01
  There is no title defined for this analysis.
 
  *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***
@@ -401,14 +412,14 @@ y
    ANALYSIS TYPE . . . . . . . . . . . . . . . . .STATIC (STEADY-STATE)
    GLOBALLY ASSEMBLED MATRIX . . . . . . . . . . .SYMMETRIC
 
- *** NOTE ***                            CP =       1.092   TIME= 15:55:01
+ *** NOTE ***                            CP =       1.049   TIME= 22:36:01
  Present time 0 is less than or equal to the previous time.  Time will
  default to 1.
 
- *** NOTE ***                            CP =       1.092   TIME= 15:55:01
+ *** NOTE ***                            CP =       1.049   TIME= 22:36:01
  Results printout suppressed for interactive execute.
 
- *** NOTE ***                            CP =       1.092   TIME= 15:55:01
+ *** NOTE ***                            CP =       1.049   TIME= 22:36:01
  The conditions for direct assembly have been met.  No .emat or .erot
  files will be produced.
 
@@ -435,7 +446,7 @@ y
 
  SOLUTION MONITORING INFO IS WRITTEN TO FILE= file.mntr
 
- *** NOTE ***                            CP =       1.103   TIME= 15:55:01
+ *** NOTE ***                            CP =       1.059   TIME= 22:36:01
  Predictor is ON by default for structural elements with rotational
  degrees of freedom.  Use the PRED,OFF command to turn the predictor
  OFF if it adversely affects the convergence.
@@ -448,8 +459,8 @@ y
    *** ELEMENT MATRIX FORMULATION TIMES
      TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-        1        22  BEAM188       0.003   0.000136
- Time at end of element matrix formulation CP = 1.10712695.
+        1        22  BEAM188       0.003   0.000139
+ Time at end of element matrix formulation CP = 1.06336701.
 
  DISTRIBUTED SPARSE MATRIX DIRECT SOLVER.
   Number of equations =          44,    Maximum wavefront =     12
@@ -462,14 +473,14 @@ y
   Total memory required for in-core solution     =      0.353 MB
   Total memory required for out-of-core solution =      0.353 MB
 
- *** NOTE ***                            CP =       1.113   TIME= 15:55:01
+ *** NOTE ***                            CP =       1.069   TIME= 22:36:01
  The Distributed Sparse Matrix Solver is currently running in the
  in-core memory mode.  This memory mode uses the most amount of memory
  in order to avoid using the hard drive as much as possible, which most
  often results in the fastest solution time.  This mode is recommended
  if enough physical memory is present to accommodate all of the solver
  data.
- curEqn=     25  totEqn=     25 Job CP sec=      0.915
+ curEqn=     25  totEqn=     25 Job CP sec=      0.871
       Factor Done= 100% Factor Wall sec=      0.001 rate=       0.7 Mflops
  Distributed sparse solver maximum pivot= 5.009534302E+10 at node 4
  ROTY.
@@ -480,12 +491,12 @@ y
    *** ELEMENT RESULT CALCULATION TIMES
      TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-        1        22  BEAM188       0.015   0.000683
+        1        22  BEAM188       0.009   0.000401
 
    *** NODAL LOAD CALCULATION TIMES
      TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-        1        22  BEAM188       0.001   0.000035
+        1        22  BEAM188       0.000   0.000023
  *** LOAD STEP     1   SUBSTEP     1  COMPLETED.    CUM ITER =      1
  *** TIME =   1.00000         TIME INC =   1.00000      NEW TRIANG MATRIX
 
@@ -498,7 +509,7 @@ y
 0
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  6.492 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  9.813 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-01-mapdl-examples-mapdl-beam-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/c9e524337c91097761fcfd2121a222b3/mapdl_beam.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">mapdl_beam.py</span></code></a></p>

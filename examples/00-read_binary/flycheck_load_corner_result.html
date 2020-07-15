@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Thermal Analysis &mdash; pyansys 0.41.8 documentation</title>
+  <title>Cylindrical Nodal Stress &mdash; pyansys 0.41.8 documentation</title>
   
 
   
@@ -41,8 +41,8 @@
   <link rel="stylesheet" href="../../_static/gallery-dataframe.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Shell Static Analysis" href="pontoon.html" />
-    <link rel="prev" title="Shaft Modal Analysis" href="load_shaft_result.html" /> 
+    <link rel="next" title="Cylindrical Nodal Stress" href="load_corner_result.html" />
+    <link rel="prev" title="MAPDL and Result Reader Examples" href="../index.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -109,10 +109,10 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">MAPDL and Result Reader Examples</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html#loading-and-visualizing-result-files">Loading and Visualizing Result Files</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="flycheck_load_corner_result.html">Cylindrical Nodal Stress</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Cylindrical Nodal Stress</a></li>
 <li class="toctree-l3"><a class="reference internal" href="load_corner_result.html">Cylindrical Nodal Stress</a></li>
 <li class="toctree-l3"><a class="reference internal" href="load_shaft_result.html">Shaft Modal Analysis</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Thermal Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="load_thermal_result.html">Thermal Analysis</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pontoon.html">Shell Static Analysis</a></li>
 <li class="toctree-l3"><a class="reference internal" href="sector_model.html">Cyclic Model Visualization</a></li>
 </ul>
@@ -171,13 +171,13 @@
         
           <li><a href="../index.html">MAPDL and Result Reader Examples</a> &raquo;</li>
         
-      <li>Thermal Analysis</li>
+      <li>Cylindrical Nodal Stress</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../../_sources/examples/00-read_binary/load_thermal_result.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/examples/00-read_binary/flycheck_load_corner_result.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -192,53 +192,50 @@
             
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
-<p>Click <a class="reference internal" href="#sphx-glr-download-examples-00-read-binary-load-thermal-result-py"><span class="std std-ref">here</span></a>     to download the full example code</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-examples-00-read-binary-flycheck-load-corner-result-py"><span class="std std-ref">here</span></a>     to download the full example code</p>
 </div>
-<div class="sphx-glr-example-title section" id="thermal-analysis">
-<span id="ref-load-thermal-result"></span><span id="sphx-glr-examples-00-read-binary-load-thermal-result-py"></span><h1>Thermal Analysis<a class="headerlink" href="#thermal-analysis" title="Permalink to this headline">¶</a></h1>
-<p>Visualize the result of verification manual test 33.</p>
+<div class="sphx-glr-example-title section" id="cylindrical-nodal-stress">
+<span id="ref-load-cylindrical-result"></span><span id="sphx-glr-examples-00-read-binary-flycheck-load-corner-result-py"></span><h1>Cylindrical Nodal Stress<a class="headerlink" href="#cylindrical-nodal-stress" title="Permalink to this headline">¶</a></h1>
+<p>Visualize the nodal stress in the radial direction</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyansys</span>
-</pre></div>
-</div>
-<p>Download the result file from verification manual test case 33</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vm33</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">download_verification_result</span><span class="p">(</span><span class="mi">33</span><span class="p">)</span>
 
-<span class="c1"># get nodal thermal strain for result set 1</span>
-<span class="n">nnum</span><span class="p">,</span> <span class="n">tstrain</span> <span class="o">=</span> <span class="n">vm33</span><span class="o">.</span><span class="n">nodal_thermal_strain</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="c1"># Download a small result file containing the corner of a thick pipe</span>
+<span class="n">rst</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">download_corner_pipe</span><span class="p">()</span>
 
-<span class="c1"># plot nodal thermal strain for result set 11 in the X direction</span>
-<span class="n">vm33</span><span class="o">.</span><span class="n">plot_nodal_thermal_strain</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="n">show_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                               <span class="n">lighting</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bwr&#39;</span><span class="p">,</span> <span class="n">show_axes</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1"># obtain the cylindrical_nodal_stress</span>
+<span class="n">nnum</span><span class="p">,</span> <span class="n">stress</span> <span class="o">=</span> <span class="n">rst</span><span class="o">.</span><span class="n">cylindrical_nodal_stress</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># contains results for each node in following directions</span>
+<span class="c1"># R, THETA, Z, RTHETA, THETAZ, and RZ</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">stress</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="c1"># plot cylindrical nodal stress in the radial direction</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">rst</span><span class="o">.</span><span class="n">plot_cylindrical_nodal_stress</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;R&#39;</span><span class="p">,</span> <span class="n">show_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">show_axes</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="load thermal result" class="sphx-glr-single-img" src="../../_images/sphx_glr_load_thermal_result_001.png" />
+<img alt="flycheck load corner result" class="sphx-glr-single-img" src="../../_images/sphx_glr_flycheck_load_corner_result_001.png" />
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[(4.256762018493109, 2.258665575329393, 2.3586655753293932),
- (1.9980964431637156, 2.7755575615628914e-17, 0.10000000000000002),
- (0.0, 0.0, 1.0)]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>(150, 6)
 </pre></div>
 </div>
-<p>Plot with contours</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Disable lighting and set number of colors to 10 to make an MAPDL-like plot</span>
-<span class="n">vm33</span><span class="o">.</span><span class="n">plot_nodal_thermal_strain</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="n">show_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">n_colors</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-                               <span class="n">interpolate_before_map</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                               <span class="n">lighting</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">show_axes</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<p>plot cylindrical nodal stress in the theta direction</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">_</span> <span class="o">=</span> <span class="n">rst</span><span class="o">.</span><span class="n">plot_cylindrical_nodal_stress</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;THETA&#39;</span><span class="p">,</span> <span class="n">show_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">show_axes</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                      <span class="n">add_text</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="load thermal result" class="sphx-glr-single-img" src="../../_images/sphx_glr_load_thermal_result_002.png" />
-<p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[(4.256762018493109, 2.258665575329393, 2.3586655753293932),
- (1.9980964431637156, 2.7755575615628914e-17, 0.10000000000000002),
- (0.0, 0.0, 1.0)]
+<img alt="flycheck load corner result" class="sphx-glr-single-img" src="../../_images/sphx_glr_flycheck_load_corner_result_002.png" />
+<p>Plot cartesian stress in the “X” direction</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rst</span><span class="o">.</span><span class="n">plot_nodal_stress</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="n">show_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">show_axes</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.453 seconds)</p>
-<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-00-read-binary-load-thermal-result-py">
+<img alt="flycheck load corner result" class="sphx-glr-single-img" src="../../_images/sphx_glr_flycheck_load_corner_result_003.png" />
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  1.354 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-00-read-binary-flycheck-load-corner-result-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
-<p><a class="reference download internal" download="" href="../../_downloads/edf9892c3cec4368a3db41f2bc859eab/load_thermal_result.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">load_thermal_result.py</span></code></a></p>
+<p><a class="reference download internal" download="" href="../../_downloads/0d2c89c5498e832f489b8167844169e8/flycheck_load_corner_result.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">flycheck_load_corner_result.py</span></code></a></p>
 </div>
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
-<p><a class="reference download internal" download="" href="../../_downloads/648c11c1df0269b9cbc267b06922ec08/load_thermal_result.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">load_thermal_result.ipynb</span></code></a></p>
+<p><a class="reference download internal" download="" href="../../_downloads/e1b7084a7619557da5525388deac4172/flycheck_load_corner_result.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">flycheck_load_corner_result.ipynb</span></code></a></p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
@@ -252,10 +249,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="pontoon.html" class="btn btn-neutral float-right" title="Shell Static Analysis" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="load_corner_result.html" class="btn btn-neutral float-right" title="Cylindrical Nodal Stress" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="load_shaft_result.html" class="btn btn-neutral float-left" title="Shaft Modal Analysis" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../index.html" class="btn btn-neutral float-left" title="MAPDL and Result Reader Examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

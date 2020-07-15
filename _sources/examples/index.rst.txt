@@ -30,6 +30,27 @@ Loading and Visualizing Result Files
 
 .. only:: html
 
+ .. figure:: /examples/00-read_binary/images/thumb/sphx_glr_flycheck_load_corner_result_thumb.png
+     :alt: Cylindrical Nodal Stress
+
+     :ref:`sphx_glr_examples_00-read_binary_flycheck_load_corner_result.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/00-read_binary/flycheck_load_corner_result
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Visualize the nodal stress in the radial direction">
+
+.. only:: html
+
  .. figure:: /examples/00-read_binary/images/thumb/sphx_glr_load_corner_result_thumb.png
      :alt: Cylindrical Nodal Stress
 

@@ -8,8 +8,9 @@ Visualize the nodal stress in the radial direction
 
 """
 ################################################################################
-# Download a small result file containing the corner of a thick pipe
 import pyansys
+
+# Download a small result file containing the corner of a thick pipe
 rst = pyansys.download_corner_pipe()
 
 # obtain the cylindrical_nodal_stress

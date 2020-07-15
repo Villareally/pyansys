@@ -3,10 +3,10 @@
     .. note::
         :class: sphx-glr-download-link-note
 
-        Click :ref:`here <sphx_glr_download_examples_00-read_binary_load_corner_result.py>`     to download the full example code
+        Click :ref:`here <sphx_glr_download_examples_00-read_binary_flycheck_load_corner_result.py>`     to download the full example code
     .. rst-class:: sphx-glr-example-title
 
-    .. _sphx_glr_examples_00-read_binary_load_corner_result.py:
+    .. _sphx_glr_examples_00-read_binary_flycheck_load_corner_result.py:
 
 
 .. _ref_load_cylindrical_result:
@@ -16,12 +16,12 @@ Cylindrical Nodal Stress
 
 Visualize the nodal stress in the radial direction
 
-Download a small result file containing the corner of a thick pipe
-
 
 .. code-block:: default
 
     import pyansys
+
+    # Download a small result file containing the corner of a thick pipe
     rst = pyansys.download_corner_pipe()
 
     # obtain the cylindrical_nodal_stress
@@ -37,8 +37,8 @@ Download a small result file containing the corner of a thick pipe
 
 
 
-.. image:: /examples/00-read_binary/images/sphx_glr_load_corner_result_001.png
-    :alt: load corner result
+.. image:: /examples/00-read_binary/images/sphx_glr_flycheck_load_corner_result_001.png
+    :alt: flycheck load corner result
     :class: sphx-glr-single-img
 
 
@@ -65,8 +65,8 @@ plot cylindrical nodal stress in the theta direction
 
 
 
-.. image:: /examples/00-read_binary/images/sphx_glr_load_corner_result_002.png
-    :alt: load corner result
+.. image:: /examples/00-read_binary/images/sphx_glr_flycheck_load_corner_result_002.png
+    :alt: flycheck load corner result
     :class: sphx-glr-single-img
 
 
@@ -83,8 +83,8 @@ Plot cartesian stress in the "X" direction
 
 
 
-.. image:: /examples/00-read_binary/images/sphx_glr_load_corner_result_003.png
-    :alt: load corner result
+.. image:: /examples/00-read_binary/images/sphx_glr_flycheck_load_corner_result_003.png
+    :alt: flycheck load corner result
     :class: sphx-glr-single-img
 
 
@@ -94,10 +94,10 @@ Plot cartesian stress in the "X" direction
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  1.036 seconds)
+   **Total running time of the script:** ( 0 minutes  1.354 seconds)
 
 
-.. _sphx_glr_download_examples_00-read_binary_load_corner_result.py:
+.. _sphx_glr_download_examples_00-read_binary_flycheck_load_corner_result.py:
 
 
 .. only :: html
@@ -109,13 +109,13 @@ Plot cartesian stress in the "X" direction
 
   .. container:: sphx-glr-download sphx-glr-download-python
 
-     :download:`Download Python source code: load_corner_result.py <load_corner_result.py>`
+     :download:`Download Python source code: flycheck_load_corner_result.py <flycheck_load_corner_result.py>`
 
 
 
   .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-     :download:`Download Jupyter notebook: load_corner_result.ipynb <load_corner_result.ipynb>`
+     :download:`Download Jupyter notebook: flycheck_load_corner_result.ipynb <flycheck_load_corner_result.ipynb>`
 
 
 .. only:: html

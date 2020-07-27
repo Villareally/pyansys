@@ -56,14 +56,19 @@ Print the pontoon result
     Nodes       : 8765
     Elements    : 8640
 
+
     Available Results:
-    EMS : Misc. data
+    EMS : Miscellaneous summable items (normally includes face pressures)
     ENF : Nodal forces
     ENS : Nodal stresses
-    ENG : Volume and energies
-    EEL : Elastic strains
-    EUL : Euler angles
-    MNL : Material nonlinear record
+    ENG : Element energies and volume
+    EEL : Nodal elastic strains
+    ETH : Nodal thermal strains (includes swelling strains)
+    EUL : Element euler angles
+    EPT : Nodal temperatures
+    NSL : Nodal displacements
+    RF  : Nodal reaction forces
+
 
 
 
@@ -73,8 +78,7 @@ Plot the nodal displacement
 
 .. code-block:: default
 
-    pontoon.plot_nodal_solution(0, show_displacement=True, max_disp=10,
-                                overlay_wireframe=True)
+    pontoon.plot_nodal_solution(0, show_displacement=True, overlay_wireframe=True)
 
 
 
@@ -116,7 +120,18 @@ print the available result types
  .. code-block:: none
 
 
-    {'EMS': 'Misc. data', 'ENF': 'Nodal forces', 'ENS': 'Nodal stresses', 'ENG': 'Volume and energies', 'EEL': 'Elastic strains', 'EUL': 'Euler angles', 'MNL': 'Material nonlinear record'}
+    Available Results:
+    EMS : Miscellaneous summable items (normally includes face pressures)
+    ENF : Nodal forces
+    ENS : Nodal stresses
+    ENG : Element energies and volume
+    EEL : Nodal elastic strains
+    ETH : Nodal thermal strains (includes swelling strains)
+    EUL : Element euler angles
+    EPT : Nodal temperatures
+    NSL : Nodal displacements
+    RF  : Nodal reaction forces
+
 
 
 
@@ -214,7 +229,7 @@ Missing solution data will plot as a white mesh
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  1.069 seconds)
+   **Total running time of the script:** ( 0 minutes  1.113 seconds)
 
 
 .. _sphx_glr_download_examples_00-read_binary_pontoon.py:

@@ -1,0 +1,402 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>PyVista Mesh Integration &mdash; pyansys 0.41.9 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script src="../../_static/clipboard.min.js"></script>
+        <script src="../../_static/copybutton.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery-dataframe.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Compute Cell Quality" href="../../quality.html" />
+    <link rel="prev" title="MAPDL 2D Beam Example" href="mapdl_beam.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> pyansys
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.41.9
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">APDL Python Scripting</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../ansys_control.html">ANSYS APDL Interactive Control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ansys_functions.html">ANSYS Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../apdl_conversion.html">APDL Conversion Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ansys_examples.html">ANSYS APDL Interactive Control Examples</a></li>
+</ul>
+<p class="caption"><span class="caption-text">File IO and Visualization</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../ansys_write_archive.html">Reading and Writing ANSYS Archive Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../loading_results.html">Working with a ANSYS Result File (rst)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">Archive and Result File Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../loading_km.html">Working with a ANSYS Full File (full)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../loading_emat.html">Working with a ANSYS Element Matrix File (.emat)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Examples Gallery</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">MAPDL and Result Reader Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#loading-and-visualizing-result-files">Loading and Visualizing Result Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#cyclic-result-analysis">Cyclic Result Analysis</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#ansys-mapdl-examples-using-pyansys">ANSYS MAPDL Examples Using Pyansys</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="mapdl_3d_beam.html">MAPDL 3D Beam Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mapdl_beam.html">MAPDL 2D Beam Example</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">PyVista Mesh Integration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Miscellaneous</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../quality.html">Compute Cell Quality</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">pyansys</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">MAPDL and Result Reader Examples</a> &raquo;</li>
+        
+      <li>PyVista Mesh Integration</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/examples/02-mapdl-examples/pyvista_mesh.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-examples-02-mapdl-examples-pyvista-mesh-py"><span class="std std-ref">here</span></a>     to download the full example code</p>
+</div>
+<div class="sphx-glr-example-title section" id="pyvista-mesh-integration">
+<span id="ref-pyvista-mesh"></span><span id="sphx-glr-examples-02-mapdl-examples-pyvista-mesh-py"></span><h1>PyVista Mesh Integration<a class="headerlink" href="#pyvista-mesh-integration" title="Permalink to this headline">¶</a></h1>
+<p>Run a modal analysis on a mesh generated from pyvista within MAPDL.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># sphinx_gallery_thumbnail_number = 2</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
+<span class="kn">import</span> <span class="nn">pyansys</span>
+
+<span class="c1"># launch MAPDL and run a modal analysis</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;I_MPI_SHM_LMT&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;shm&#39;</span>  <span class="c1"># necessary for Ubuntu</span>
+<span class="n">mapdl</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">launch_mapdl</span><span class="p">(</span><span class="n">loglevel</span><span class="o">=</span><span class="s1">&#39;WARNING&#39;</span><span class="p">,</span> <span class="n">override</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Create a simple plane mesh centered at (0, 0, 0) on the XY plane</span>
+<span class="n">mesh</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Plane</span><span class="p">(</span><span class="n">i_resolution</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">j_resolution</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="n">mesh</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">show_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="pyvista mesh" class="sphx-glr-single-img" src="../../_images/sphx_glr_pyvista_mesh_001.png" />
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[(1.5773502691896262, 1.5773502691896262, 1.5773502691896262),
+ (0.0, 0.0, 0.0),
+ (0.0, 0.0, 1.0)]
+</pre></div>
+</div>
+<p>Write the mesh to an archive file</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">archive_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">mapdl</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;tmp.cdb&#39;</span><span class="p">)</span>
+<span class="n">pyansys</span><span class="o">.</span><span class="n">save_as_archive</span><span class="p">(</span><span class="n">archive_filename</span><span class="p">,</span> <span class="n">mesh</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>mapdl = pyansys.launch_mapdl(prefer_pexpect=True, override=True)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read in the archive file</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">cdread</span><span class="p">(</span><span class="s1">&#39;db&#39;</span><span class="p">,</span> <span class="n">archive_filename</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">prep7</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mapdl</span><span class="o">.</span><span class="n">shpp</span><span class="p">(</span><span class="s1">&#39;SUMM&#39;</span><span class="p">))</span>
+
+<span class="c1"># specify shell thickness</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">sectype</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;shell&quot;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">secdata</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">emodif</span><span class="p">(</span><span class="s1">&#39;ALL&#39;</span><span class="p">,</span> <span class="s1">&#39;SECNUM&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># specify material properties</span>
+<span class="c1"># using aprox values for AISI 5000 Series Steel</span>
+<span class="c1"># http://www.matweb.com/search/datasheet.aspx?matguid=89d4b891eece40fbbe6b71f028b64e9e</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">units</span><span class="p">(</span><span class="s1">&#39;SI&#39;</span><span class="p">)</span>  <span class="c1"># not necessary, but helpful for book keeping</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">mp</span><span class="p">(</span><span class="s1">&#39;EX&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">200E9</span><span class="p">)</span>  <span class="c1"># Elastic moduli in Pa (kg/(m*s**2))</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">mp</span><span class="p">(</span><span class="s1">&#39;DENS&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">7800</span><span class="p">)</span>  <span class="c1"># Density in kg/m3</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">mp</span><span class="p">(</span><span class="s1">&#39;NUXY&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>  <span class="c1"># Poissons Ratio</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">emodif</span><span class="p">(</span><span class="s1">&#39;ALL&#39;</span><span class="p">,</span> <span class="s1">&#39;MAT&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Run an unconstrained modal analysis</span>
+<span class="c1"># for the first 20 modes above 1 Hz</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">modal_analysis</span><span class="p">(</span><span class="n">nmode</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">freqb</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># you could have also run:</span>
+<span class="c1"># mapdl.run(&#39;/SOLU&#39;)</span>
+<span class="c1"># mapdl.antype(&#39;MODAL&#39;)  # default NEW</span>
+<span class="c1"># mapdl.modopt(&#39;LANB&#39;, 20, 1)</span>
+<span class="c1"># mapdl.solve()</span>
+
+<span class="n">mapdl</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>SHPP,SUMM,,
+
+ SUMMARIZE SHAPE TESTING FOR ALL SELECTED ELEMENTS
+
+ ------------------------------------------------------------------------------
+            &lt;&lt;&lt;&lt;&lt;&lt;          SHAPE TESTING SUMMARY           &gt;&gt;&gt;&gt;&gt;&gt;
+            &lt;&lt;&lt;&lt;&lt;&lt;        FOR ALL SELECTED ELEMENTS         &gt;&gt;&gt;&gt;&gt;&gt;
+ ------------------------------------------------------------------------------
+                    --------------------------------------
+                    |  Element count     10000 SHELL181  |
+                    --------------------------------------
+
+  Test                Number tested  Warning count  Error count    Warn+Err %
+  ----                -------------  -------------  -----------    ----------
+  Aspect Ratio              10000              0             0         0.00 %
+  Parallel Deviation        10000              0             0         0.00 %
+  Maximum Angle             10000              0             0         0.00 %
+  Jacobian Ratio            10000              0             0         0.00 %
+  Warping Factor            10000              0             0         0.00 %
+
+  Any                       10000              0             0         0.00 %
+ ------------------------------------------------------------------------------
+
+0
+</pre></div>
+</div>
+<p>Load the result file within <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> and plot the 8th mode.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">result</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+<span class="n">result</span><span class="o">.</span><span class="n">plot_nodal_displacement</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="n">show_displacement</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">displacement_factor</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="pyvista mesh" class="sphx-glr-single-img" src="../../_images/sphx_glr_pyvista_mesh_002.png" />
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>PyANSYS MAPDL Result file object
+Units       : User Defined
+Version     : 20.1
+Cyclic      : False
+Result Sets : 20
+Nodes       : 10201
+Elements    : 10000
+
+
+Available Results:
+NSL : Nodal displacements
+
+
+[(1.6018615354204973, 1.6018615354204786, 1.5911447281442),
+ (8.715250743307479e-15, -1.0047518372857667e-14, -0.010716807276288584),
+ (0.0, 0.0, 1.0)]
+</pre></div>
+</div>
+<p>plot the 1st mode using contours</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">result</span><span class="o">.</span><span class="n">plot_nodal_displacement</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">show_displacement</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                               <span class="n">displacement_factor</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">n_colors</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="pyvista mesh" class="sphx-glr-single-img" src="../../_images/sphx_glr_pyvista_mesh_003.png" />
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[(1.6007557758795974, 1.600755775879598, 1.6007557758935074),
+ (1.6653345369377348e-16, 8.326672684688674e-16, 1.3910178564557896e-11),
+ (0.0, 0.0, 1.0)]
+</pre></div>
+</div>
+<p>Animate a high frequency mode</p>
+<p>Get a smoother plot by disabling movie_filename and increasing <code class="docutils literal notranslate"><span class="pre">nangles</span></code>.
+Enable a continous plot looping with <code class="docutils literal notranslate"><span class="pre">`loop=True`</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">result</span><span class="o">.</span><span class="n">animate_nodal_displacement</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="n">loop</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">add_text</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                  <span class="n">nangles</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">displacement_factor</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span>
+                                  <span class="n">show_axes</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">background</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span>
+                                  <span class="n">movie_filename</span><span class="o">=</span><span class="s1">&#39;plane_vib.gif&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="pyvista mesh" class="sphx-glr-single-img" src="../../_images/sphx_glr_pyvista_mesh_004.png" />
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[(1.5773502691896262, 1.5773502691896262, 1.5773502691896262),
+ (0.0, 0.0, 0.0),
+ (0.0, 0.0, 1.0)]
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  18.803 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-02-mapdl-examples-pyvista-mesh-py">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/b5d3cd54aa3e5597f4917e93d0d15ab4/pyvista_mesh.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">pyvista_mesh.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/23c35bf721c15ba31f5a0667a0f3d559/pyvista_mesh.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">pyvista_mesh.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../quality.html" class="btn btn-neutral float-right" title="Compute Cell Quality" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="mapdl_beam.html" class="btn btn-neutral float-left" title="MAPDL 2D Beam Example" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Alex Kaszynski
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

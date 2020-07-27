@@ -26,7 +26,7 @@ Loading and Visualizing Result Files
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Visualize the nodal stress in the radial direction">
+    <div class="sphx-glr-thumbcontainer" tooltip="Visualize the nodal stress in the radial direction.  This is equivalant to setting the result c...">
 
 .. only:: html
 
@@ -107,17 +107,31 @@ Loading and Visualizing Result Files
    :hidden:
 
    /examples/00-read_binary/pontoon
+.. raw:: html
+
+    <div class="sphx-glr-clear"></div>
+
+
+
+.. _sphx_glr_examples_01-cyclic_results:
+
+Cyclic Result Analysis
+----------------------
+The following examples demonstrate how to load results from and
+directly analyze MAPDL result files from a cyclic analysis.
+
+
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Visualize a full cyclic model">
+    <div class="sphx-glr-thumbcontainer" tooltip="This example shows how to interpret modes from a cyclic analysis from MAPDL result file from bo...">
 
 .. only:: html
 
- .. figure:: /examples/00-read_binary/images/thumb/sphx_glr_sector_model_thumb.png
-     :alt: Cyclic Model Visualization
+ .. figure:: /examples/01-cyclic_results/images/thumb/sphx_glr_academic_sector_nd_thumb.png
+     :alt: Understanding Nodal Diameters from a Cyclic Model Analysis
 
-     :ref:`sphx_glr_examples_00-read_binary_sector_model.py`
+     :ref:`sphx_glr_examples_01-cyclic_results_academic_sector_nd.py`
 
 .. raw:: html
 
@@ -127,14 +141,56 @@ Loading and Visualizing Result Files
 .. toctree::
    :hidden:
 
-   /examples/00-read_binary/sector_model
+   /examples/01-cyclic_results/academic_sector_nd
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example shows how to extract strain and stress from a cyclic modal analysis.">
+
+.. only:: html
+
+ .. figure:: /examples/01-cyclic_results/images/thumb/sphx_glr_academic_sector_stress_strain_thumb.png
+     :alt: Stress and Strain from a Cyclic Modal Analysis
+
+     :ref:`sphx_glr_examples_01-cyclic_results_academic_sector_stress_strain.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/01-cyclic_results/academic_sector_stress_strain
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Visualize and animate a full cyclic model.  This model is based on the jetcat rotor.">
+
+.. only:: html
+
+ .. figure:: /examples/01-cyclic_results/images/thumb/sphx_glr_sector_model_thumb.png
+     :alt: Cyclic Model Visualization
+
+     :ref:`sphx_glr_examples_01-cyclic_results_sector_model.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/01-cyclic_results/sector_model
 .. raw:: html
 
     <div class="sphx-glr-clear"></div>
 
 
 
-.. _sphx_glr_examples_01-mapdl-examples:
+.. _sphx_glr_examples_02-mapdl-examples:
 
 ANSYS MAPDL Examples Using Pyansys
 ----------------------------------
@@ -148,10 +204,10 @@ These examples demonstrate using MAPDL and pyansys together.
 
 .. only:: html
 
- .. figure:: /examples/01-mapdl-examples/images/thumb/sphx_glr_mapdl_3d_beam_thumb.png
+ .. figure:: /examples/02-mapdl-examples/images/thumb/sphx_glr_mapdl_3d_beam_thumb.png
      :alt: MAPDL 3D Beam Example
 
-     :ref:`sphx_glr_examples_01-mapdl-examples_mapdl_3d_beam.py`
+     :ref:`sphx_glr_examples_02-mapdl-examples_mapdl_3d_beam.py`
 
 .. raw:: html
 
@@ -161,7 +217,7 @@ These examples demonstrate using MAPDL and pyansys together.
 .. toctree::
    :hidden:
 
-   /examples/01-mapdl-examples/mapdl_3d_beam
+   /examples/02-mapdl-examples/mapdl_3d_beam
 
 .. raw:: html
 
@@ -169,10 +225,10 @@ These examples demonstrate using MAPDL and pyansys together.
 
 .. only:: html
 
- .. figure:: /examples/01-mapdl-examples/images/thumb/sphx_glr_mapdl_beam_thumb.png
+ .. figure:: /examples/02-mapdl-examples/images/thumb/sphx_glr_mapdl_beam_thumb.png
      :alt: MAPDL 2D Beam Example
 
-     :ref:`sphx_glr_examples_01-mapdl-examples_mapdl_beam.py`
+     :ref:`sphx_glr_examples_02-mapdl-examples_mapdl_beam.py`
 
 .. raw:: html
 
@@ -182,7 +238,7 @@ These examples demonstrate using MAPDL and pyansys together.
 .. toctree::
    :hidden:
 
-   /examples/01-mapdl-examples/mapdl_beam
+   /examples/02-mapdl-examples/mapdl_beam
 
 .. raw:: html
 
@@ -190,10 +246,10 @@ These examples demonstrate using MAPDL and pyansys together.
 
 .. only:: html
 
- .. figure:: /examples/01-mapdl-examples/images/thumb/sphx_glr_pyvista_mesh_thumb.png
+ .. figure:: /examples/02-mapdl-examples/images/thumb/sphx_glr_pyvista_mesh_thumb.png
      :alt: PyVista Mesh Integration
 
-     :ref:`sphx_glr_examples_01-mapdl-examples_pyvista_mesh.py`
+     :ref:`sphx_glr_examples_02-mapdl-examples_pyvista_mesh.py`
 
 .. raw:: html
 
@@ -203,7 +259,7 @@ These examples demonstrate using MAPDL and pyansys together.
 .. toctree::
    :hidden:
 
-   /examples/01-mapdl-examples/pyvista_mesh
+   /examples/02-mapdl-examples/pyvista_mesh
 .. raw:: html
 
     <div class="sphx-glr-clear"></div>

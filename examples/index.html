@@ -113,13 +113,24 @@
 <li class="toctree-l3"><a class="reference internal" href="00-read_binary/load_shaft_result.html">Shaft Modal Analysis</a></li>
 <li class="toctree-l3"><a class="reference internal" href="00-read_binary/load_thermal_result.html">Thermal Analysis</a></li>
 <li class="toctree-l3"><a class="reference internal" href="00-read_binary/pontoon.html">Shell Static Analysis</a></li>
-<li class="toctree-l3"><a class="reference internal" href="00-read_binary/sector_model.html">Cyclic Model Visualization</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#cyclic-result-analysis">Cyclic Result Analysis</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="01-cyclic_results/academic_sector_nd.html">Understanding Nodal Diameters from a Cyclic Model Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="01-cyclic_results/academic_sector_nd.html#rotor-sector-order">Rotor Sector Order</a></li>
+<li class="toctree-l3"><a class="reference internal" href="01-cyclic_results/academic_sector_nd.html#understanding-harmonic-indexing">Understanding Harmonic Indexing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="01-cyclic_results/academic_sector_nd.html#multi-bladed-sectors">Multi-Bladed Sectors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="01-cyclic_results/academic_sector_nd.html#plot-the-multi-bladed-sector">Plot the Multi-Bladed Sector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="01-cyclic_results/academic_sector_nd.html#traveling-wave-animation">Traveling Wave Animation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="01-cyclic_results/academic_sector_stress_strain.html">Stress and Strain from a Cyclic Modal Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="01-cyclic_results/sector_model.html">Cyclic Model Visualization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="01-cyclic_results/sector_model.html#animate-mode-21">Animate Mode 21</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#ansys-mapdl-examples-using-pyansys">ANSYS MAPDL Examples Using Pyansys</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="01-mapdl-examples/mapdl_3d_beam.html">MAPDL 3D Beam Example</a></li>
-<li class="toctree-l3"><a class="reference internal" href="01-mapdl-examples/mapdl_beam.html">MAPDL 2D Beam Example</a></li>
-<li class="toctree-l3"><a class="reference internal" href="01-mapdl-examples/pyvista_mesh.html">PyVista Mesh Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02-mapdl-examples/mapdl_3d_beam.html">MAPDL 3D Beam Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02-mapdl-examples/mapdl_beam.html">MAPDL 2D Beam Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02-mapdl-examples/pyvista_mesh.html">PyVista Mesh Integration</a></li>
 </ul>
 </li>
 </ul>
@@ -197,7 +208,7 @@
 <p>Here are a series of examples using MAPDL with <code class="docutils literal notranslate"><span class="pre">pyansys</span></code>.</p>
 <div class="sphx-glr-clear"></div><div class="section" id="loading-and-visualizing-result-files">
 <span id="sphx-glr-examples-00-read-binary"></span><h2>Loading and Visualizing Result Files<a class="headerlink" href="#loading-and-visualizing-result-files" title="Permalink to this headline">¶</a></h2>
-<div class="sphx-glr-thumbcontainer" tooltip="Visualize the nodal stress in the radial direction"><div class="figure align-default" id="id1">
+<div class="sphx-glr-thumbcontainer" tooltip="Visualize the nodal stress in the radial direction.  This is equivalant to setting the result c..."><div class="figure align-default" id="id1">
 <img alt="Cylindrical Nodal Stress" src="../_images/sphx_glr_load_corner_result_thumb.png" />
 <p class="caption"><span class="caption-text"><a class="reference internal" href="00-read_binary/load_corner_result.html#sphx-glr-examples-00-read-binary-load-corner-result-py"><span class="std std-ref">Cylindrical Nodal Stress</span></a></span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
@@ -221,31 +232,48 @@
 </div>
 </div><div class="toctree-wrapper compound">
 </div>
-<div class="sphx-glr-thumbcontainer" tooltip="Visualize a full cyclic model"><div class="figure align-default" id="id5">
+<div class="sphx-glr-clear"></div></div>
+<div class="section" id="cyclic-result-analysis">
+<span id="sphx-glr-examples-01-cyclic-results"></span><h2>Cyclic Result Analysis<a class="headerlink" href="#cyclic-result-analysis" title="Permalink to this headline">¶</a></h2>
+<p>The following examples demonstrate how to load results from and
+directly analyze MAPDL result files from a cyclic analysis.</p>
+<div class="sphx-glr-thumbcontainer" tooltip="This example shows how to interpret modes from a cyclic analysis from MAPDL result file from bo..."><div class="figure align-default" id="id5">
+<img alt="Understanding Nodal Diameters from a Cyclic Model Analysis" src="../_images/sphx_glr_academic_sector_nd_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="01-cyclic_results/academic_sector_nd.html#sphx-glr-examples-01-cyclic-results-academic-sector-nd-py"><span class="std std-ref">Understanding Nodal Diameters from a Cyclic Model Analysis</span></a></span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="This example shows how to extract strain and stress from a cyclic modal analysis."><div class="figure align-default" id="id6">
+<img alt="Stress and Strain from a Cyclic Modal Analysis" src="../_images/sphx_glr_academic_sector_stress_strain_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="01-cyclic_results/academic_sector_stress_strain.html#sphx-glr-examples-01-cyclic-results-academic-sector-stress-strain-py"><span class="std std-ref">Stress and Strain from a Cyclic Modal Analysis</span></a></span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="Visualize and animate a full cyclic model.  This model is based on the jetcat rotor."><div class="figure align-default" id="id7">
 <img alt="Cyclic Model Visualization" src="../_images/sphx_glr_sector_model_thumb.png" />
-<p class="caption"><span class="caption-text"><a class="reference internal" href="00-read_binary/sector_model.html#sphx-glr-examples-00-read-binary-sector-model-py"><span class="std std-ref">Cyclic Model Visualization</span></a></span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="01-cyclic_results/sector_model.html#sphx-glr-examples-01-cyclic-results-sector-model-py"><span class="std std-ref">Cyclic Model Visualization</span></a></span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
 </div>
 </div><div class="toctree-wrapper compound">
 </div>
 <div class="sphx-glr-clear"></div></div>
 <div class="section" id="ansys-mapdl-examples-using-pyansys">
-<span id="sphx-glr-examples-01-mapdl-examples"></span><h2>ANSYS MAPDL Examples Using Pyansys<a class="headerlink" href="#ansys-mapdl-examples-using-pyansys" title="Permalink to this headline">¶</a></h2>
+<span id="sphx-glr-examples-02-mapdl-examples"></span><h2>ANSYS MAPDL Examples Using Pyansys<a class="headerlink" href="#ansys-mapdl-examples-using-pyansys" title="Permalink to this headline">¶</a></h2>
 <p>These examples demonstrate using MAPDL and pyansys together.</p>
-<div class="sphx-glr-thumbcontainer" tooltip="This is a simple example that loads an archive file containing a beam and then runs a modal ana..."><div class="figure align-default" id="id6">
+<div class="sphx-glr-thumbcontainer" tooltip="This is a simple example that loads an archive file containing a beam and then runs a modal ana..."><div class="figure align-default" id="id8">
 <img alt="MAPDL 3D Beam Example" src="../_images/sphx_glr_mapdl_3d_beam_thumb.png" />
-<p class="caption"><span class="caption-text"><a class="reference internal" href="01-mapdl-examples/mapdl_3d_beam.html#sphx-glr-examples-01-mapdl-examples-mapdl-3d-beam-py"><span class="std std-ref">MAPDL 3D Beam Example</span></a></span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="02-mapdl-examples/mapdl_3d_beam.html#sphx-glr-examples-02-mapdl-examples-mapdl-3d-beam-py"><span class="std std-ref">MAPDL 3D Beam Example</span></a></span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
 </div>
 </div><div class="toctree-wrapper compound">
 </div>
-<div class="sphx-glr-thumbcontainer" tooltip="This is an example from FINITE ELEMENT ANALYSIS USING ANSYS 11.0"><div class="figure align-default" id="id7">
+<div class="sphx-glr-thumbcontainer" tooltip="This is an example from FINITE ELEMENT ANALYSIS USING ANSYS 11.0"><div class="figure align-default" id="id9">
 <img alt="MAPDL 2D Beam Example" src="../_images/sphx_glr_mapdl_beam_thumb.png" />
-<p class="caption"><span class="caption-text"><a class="reference internal" href="01-mapdl-examples/mapdl_beam.html#sphx-glr-examples-01-mapdl-examples-mapdl-beam-py"><span class="std std-ref">MAPDL 2D Beam Example</span></a></span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="02-mapdl-examples/mapdl_beam.html#sphx-glr-examples-02-mapdl-examples-mapdl-beam-py"><span class="std std-ref">MAPDL 2D Beam Example</span></a></span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
 </div>
 </div><div class="toctree-wrapper compound">
 </div>
-<div class="sphx-glr-thumbcontainer" tooltip="Run a modal analysis on a mesh generated from pyvista within MAPDL."><div class="figure align-default" id="id8">
+<div class="sphx-glr-thumbcontainer" tooltip="Run a modal analysis on a mesh generated from pyvista within MAPDL."><div class="figure align-default" id="id10">
 <img alt="PyVista Mesh Integration" src="../_images/sphx_glr_pyvista_mesh_thumb.png" />
-<p class="caption"><span class="caption-text"><a class="reference internal" href="01-mapdl-examples/pyvista_mesh.html#sphx-glr-examples-01-mapdl-examples-pyvista-mesh-py"><span class="std std-ref">PyVista Mesh Integration</span></a></span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="02-mapdl-examples/pyvista_mesh.html#sphx-glr-examples-02-mapdl-examples-pyvista-mesh-py"><span class="std std-ref">PyVista Mesh Integration</span></a></span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
 </div>
 </div><div class="toctree-wrapper compound">
 </div>

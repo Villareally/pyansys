@@ -1,0 +1,16 @@
+
+:orphan:
+
+.. _sphx_glr_examples_01-cyclic_results_sg_execution_times:
+
+Computation times
+=================
+**00:35.124** total execution time for **examples_01-cyclic_results** files:
+
++--------------------------------------------------------------------------------------------------------------------+-----------+--------+
+| :ref:`sphx_glr_examples_01-cyclic_results_academic_sector_nd.py` (``academic_sector_nd.py``)                       | 00:20.150 | 0.0 MB |
++--------------------------------------------------------------------------------------------------------------------+-----------+--------+
+| :ref:`sphx_glr_examples_01-cyclic_results_sector_model.py` (``sector_model.py``)                                   | 00:12.328 | 0.0 MB |
++--------------------------------------------------------------------------------------------------------------------+-----------+--------+
+| :ref:`sphx_glr_examples_01-cyclic_results_academic_sector_stress_strain.py` (``academic_sector_stress_strain.py``) | 00:02.646 | 0.0 MB |
++--------------------------------------------------------------------------------------------------------------------+-----------+--------+

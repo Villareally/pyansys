@@ -1523,7 +1523,7 @@ using <a href="#id45"><span class="problematic" id="id46">*</span></a>VREAD.</p>
 
 <dl class="py method">
 <dt id="pyansys.mapdl._Mapdl.modal_analysis">
-<code class="sig-name descname">modal_analysis</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">method</span><span class="o">=</span><span class="default_value">'lanb'</span></em>, <em class="sig-param"><span class="n">nmode</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">freqb</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">freqe</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">cpxmod</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">nrmkey</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">modtype</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">memory_option</span><span class="o">=</span><span class="default_value">''</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.mapdl._Mapdl.modal_analysis" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">modal_analysis</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">method</span><span class="o">=</span><span class="default_value">'lanb'</span></em>, <em class="sig-param"><span class="n">nmode</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">freqb</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">freqe</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">cpxmod</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">nrmkey</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">modtype</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">memory_option</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">elcalc</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.mapdl._Mapdl.modal_analysis" title="Permalink to this definition">¶</a></dt>
 <dd><p>Run a modal with basic settings analysis</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1629,6 +1629,8 @@ solver.</p>
 </li>
 </ul>
 </p></li>
+<li><p><strong>elcalc</strong> (<em>bool</em><em>, </em><em>optional</em>) – Calculate element results, reaction forces, energies, and
+the nodal degree of freedom solution.  Default <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
 </ul>
 </dd>
 </dl>

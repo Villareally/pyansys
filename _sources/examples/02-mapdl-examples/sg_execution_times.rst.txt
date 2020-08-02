@@ -5,12 +5,12 @@
 
 Computation times
 =================
-**01:01.274** total execution time for **examples_02-mapdl-examples** files:
+**01:01.334** total execution time for **examples_02-mapdl-examples** files:
 
 +------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_02-mapdl-examples_mapdl_3d_beam.py` (``mapdl_3d_beam.py``) | 00:36.154 | 0.0 MB |
+| :ref:`sphx_glr_examples_02-mapdl-examples_mapdl_3d_beam.py` (``mapdl_3d_beam.py``) | 00:35.758 | 0.0 MB |
 +------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_02-mapdl-examples_pyvista_mesh.py` (``pyvista_mesh.py``)   | 00:18.803 | 0.0 MB |
+| :ref:`sphx_glr_examples_02-mapdl-examples_pyvista_mesh.py` (``pyvista_mesh.py``)   | 00:18.852 | 0.0 MB |
 +------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_02-mapdl-examples_mapdl_beam.py` (``mapdl_beam.py``)       | 00:06.317 | 0.0 MB |
+| :ref:`sphx_glr_examples_02-mapdl-examples_mapdl_beam.py` (``mapdl_beam.py``)       | 00:06.724 | 0.0 MB |
 +------------------------------------------------------------------------------------+-----------+--------+

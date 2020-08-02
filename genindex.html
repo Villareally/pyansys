@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Index &mdash; pyansys 0.42.0 documentation</title>
+  <title>Index &mdash; pyansys 0.42.2 documentation</title>
   
 
   
@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.42.0
+                0.42.2
               </div>
             
           
@@ -98,7 +98,7 @@
 <p class="caption"><span class="caption-text">File IO and Visualization</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="ansys_write_archive.html">Reading and Writing ANSYS Archive Files</a></li>
-<li class="toctree-l1"><a class="reference internal" href="loading_results.html">Working with a ANSYS Result File (rst)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="loading_results.html">Working with a ANSYS Result Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Archive and Result File Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="loading_km.html">Working with a ANSYS Full File (full)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="loading_emat.html">Working with a ANSYS Element Matrix File (.emat)</a></li>
@@ -409,11 +409,13 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="ansys_control.html#pyansys.mapdl._Mapdl.load_array">load_array() (pyansys.mapdl._Mapdl method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="loading_km.html#pyansys.full.FullFile.load_km">load_km() (pyansys.full.FullFile method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="ansys_control.html#pyansys.mapdl._Mapdl.load_parameters">load_parameters() (pyansys.mapdl._Mapdl method)</a>
+</li>
+      <li><a href="loading_km.html#pyansys.full.FullFile.load_vector">load_vector() (pyansys.full.FullFile property)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -455,6 +457,8 @@
 </li>
       <li><a href="loading_results.html#pyansys.rst.ResultFile.n_sector">n_sector() (pyansys.rst.ResultFile property)</a>
 </li>
+      <li><a href="loading_km.html#pyansys.full.FullFile.neqn">neqn() (pyansys.full.FullFile property)</a>
+</li>
       <li><a href="loading_emat.html#pyansys.emat.EmatFile.neqv">neqv() (pyansys.emat.EmatFile property)</a>
 </li>
       <li><a href="ansys_write_archive.html#pyansys.archive.Archive.nnum">nnum() (pyansys.archive.Archive property)</a>
@@ -467,6 +471,8 @@
         <li><a href="ansys_control.html#pyansys.mapdl._Mapdl.nnum">(pyansys.mapdl._Mapdl property)</a>
 </li>
       </ul></li>
+      <li><a href="loading_results.html#pyansys.rst.ResultFile.nodal_boundary_conditions">nodal_boundary_conditions() (pyansys.rst.ResultFile method)</a>
+</li>
       <li><a href="loading_results.html#pyansys.cyclic_reader.CyclicResult.nodal_displacement">nodal_displacement() (pyansys.cyclic_reader.CyclicResult method)</a>
 
       <ul>
@@ -479,6 +485,8 @@
         <li><a href="loading_results.html#pyansys.rst.ResultFile.nodal_elastic_strain">(pyansys.rst.ResultFile method)</a>
 </li>
       </ul></li>
+      <li><a href="loading_results.html#pyansys.rst.ResultFile.nodal_input_force">nodal_input_force() (pyansys.rst.ResultFile method)</a>
+</li>
       <li><a href="loading_results.html#pyansys.cyclic_reader.CyclicResult.nodal_plastic_strain">nodal_plastic_strain() (pyansys.cyclic_reader.CyclicResult method)</a>
 
       <ul>
@@ -661,6 +669,8 @@
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="loading_results.html#pyansys.rst.ResultFile.result_dof">result_dof() (pyansys.rst.ResultFile method)</a>
+</li>
       <li><a href="loading_results.html#pyansys.rst.ResultFile">ResultFile (class in pyansys.rst)</a>
 </li>
       <li><a href="ansys_write_archive.html#pyansys.archive.Archive.rlblock">rlblock() (pyansys.archive.Archive property)</a>

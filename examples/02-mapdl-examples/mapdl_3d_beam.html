@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>MAPDL 3D Beam Example &mdash; pyansys 0.42.0 documentation</title>
+  <title>MAPDL 3D Beam Example &mdash; pyansys 0.42.2 documentation</title>
   
 
   
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.42.0
+                0.42.2
               </div>
             
           
@@ -100,7 +100,7 @@
 <p class="caption"><span class="caption-text">File IO and Visualization</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../ansys_write_archive.html">Reading and Writing ANSYS Archive Files</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../loading_results.html">Working with a ANSYS Result File (rst)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../loading_results.html">Working with a ANSYS Result Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples.html">Archive and Result File Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../loading_km.html">Working with a ANSYS Full File (full)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../loading_emat.html">Working with a ANSYS Element Matrix File (.emat)</a></li>
@@ -199,7 +199,7 @@ and then runs a modal analysis using the simplified <code class="docutils litera
 method.</p>
 <img alt="mapdl 3d beam" class="sphx-glr-single-img" src="../../_images/sphx_glr_mapdl_3d_beam_001.png" />
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>2020-07-27 13:14:32,332 [INFO] pyansys.mapdl: CDREAD,db,/home/alex/python/pyansys/pyansys/examples/HexBeam.cdb,,,,
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>2020-08-02 17:16:11,387 [INFO] pyansys.mapdl: CDREAD,db,/home/alex/python/pyansys/pyansys/examples/HexBeam.cdb,,,,
 
  READ CDWRITE FILE: /home/alex/python/pyansys/pyansys/examples/HexBeam.cdb
 
@@ -209,9 +209,8 @@ method.</p>
  ANSYS RELEASE 2019 R2           BUILD 19.4      UP20190416       13:35:55
 
  *** ANSYS - ENGINEERING ANALYSIS SYSTEM  RELEASE                  20.1BETA ***
- DISTRIBUTED ANSYS Mechanical Enterprise
-
- 88888888  VERSION=LINUX x64     13:14:32  JUL 27, 2020 CP=      0.423
+ ANSYS Mechanical Enterprise
+ 88888888  VERSION=LINUX x64     17:16:11  AUG 02, 2020 CP=      0.403
 
 
 
@@ -227,29 +226,29 @@ method.</p>
  PRINTOUT KEY SET TO /GOPR (USE /NOPR TO SUPPRESS)
 
 
- ***** ROUTINE COMPLETED *****  CP =         0.429
-2020-07-27 13:14:32,333 [INFO] pyansys.mapdl: ESEL,s,ELEM,,5,20,,
+ ***** ROUTINE COMPLETED *****  CP =         0.405
+2020-08-02 17:16:11,388 [INFO] pyansys.mapdl: ESEL,s,ELEM,,5,20,,
 
  SELECT       FOR ITEM=ELEM COMPONENT=
   IN RANGE         5 TO         20 STEP          1
 
          16  ELEMENTS (OF         40  DEFINED) SELECTED BY  ESEL  COMMAND.
-2020-07-27 13:14:32,334 [INFO] pyansys.mapdl: CM,ELEM_COMP,ELEM
+2020-08-02 17:16:11,389 [INFO] pyansys.mapdl: CM,ELEM_COMP,ELEM
 
  DEFINITION OF COMPONENT = ELEM_COMP  ENTITY=ELEM
-2020-07-27 13:14:32,334 [INFO] pyansys.mapdl: NSEL,s,NODE,,5,20,,
+2020-08-02 17:16:11,389 [INFO] pyansys.mapdl: NSEL,s,NODE,,5,20,,
 
  SELECT       FOR ITEM=NODE COMPONENT=
   IN RANGE         5 TO         20 STEP          1
 
          16  NODES (OF        321  DEFINED) SELECTED BY  NSEL  COMMAND.
-2020-07-27 13:14:32,335 [INFO] pyansys.mapdl: CM,NODE_COMP,NODE
+2020-08-02 17:16:11,390 [INFO] pyansys.mapdl: CM,NODE_COMP,NODE
 
  DEFINITION OF COMPONENT = NODE_COMP  ENTITY=NODE
-2020-07-27 13:14:32,336 [INFO] pyansys.mapdl: ALLSEL,,
+2020-08-02 17:16:11,391 [INFO] pyansys.mapdl: ALLSEL,,
 
  SELECT ALL ENTITIES OF TYPE= ALL  AND BELOW
-2020-07-27 13:14:32,337 [INFO] pyansys.mapdl: /PREP7,
+2020-08-02 17:16:11,392 [INFO] pyansys.mapdl: /PREP7,
 
  ** WARNING: PRE-RELEASE VERSION OF ANSYS 20.1BETA
   ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **
@@ -259,70 +258,66 @@ method.</p>
  ENTER  /SHOW,DEVICE-NAME  TO ENABLE GRAPHIC DISPLAY
  ENTER  FINISH             TO LEAVE PREP7
  PRINTOUT KEY SET TO /GOPR (USE /NOPR TO SUPPRESS)
-2020-07-27 13:14:32,338 [INFO] pyansys.mapdl: MP,EX,1,200000000000.0,,,,
+2020-08-02 17:16:11,392 [INFO] pyansys.mapdl: MP,EX,1,200000000000.0,,,,
 
  MATERIAL          1     EX   =  0.2000000E+12
-2020-07-27 13:14:32,338 [INFO] pyansys.mapdl: MP,DENS,1,7800,,,,
+2020-08-02 17:16:11,393 [INFO] pyansys.mapdl: MP,DENS,1,7800,,,,
 
  MATERIAL          1     DENS =   7800.000
-2020-07-27 13:14:32,339 [INFO] pyansys.mapdl: MP,NUXY,1,0.3,,,,
+2020-08-02 17:16:11,393 [INFO] pyansys.mapdl: MP,NUXY,1,0.3,,,,
 
  MATERIAL          1     NUXY =  0.3000000
-2020-07-27 13:14:32,339 [INFO] pyansys.mapdl: EMODIF,ALL,MAT,1,,,,,,,
+2020-08-02 17:16:11,394 [INFO] pyansys.mapdl: EMODIF,ALL,MAT,1,,,,,,,
 
  MODIFY ALL SELECTED ELEMENTS TO HAVE  MAT  =         1
-2020-07-27 13:14:32,340 [INFO] pyansys.mapdl: NSEL,S,LOC,Z,,,,
+2020-08-02 17:16:11,395 [INFO] pyansys.mapdl: NSEL,S,LOC,Z,,,,
 
  SELECT       FOR ITEM=LOC  COMPONENT=Z     BETWEEN  0.0000     AND   0.0000
    KABS=  0.  TOLERANCE= 0.100000E-05
 
          21  NODES (OF        321  DEFINED) SELECTED BY  NSEL  COMMAND.
-2020-07-27 13:14:32,341 [INFO] pyansys.mapdl: D,all,all,,,,,,,,,
+2020-08-02 17:16:11,396 [INFO] pyansys.mapdl: D,all,all,,,,,,,,,
 
  SPECIFIED CONSTRAINT UX   FOR SELECTED NODES            1 TO         321 BY           1
  REAL=  0.00000000       IMAG=  0.00000000
  ADDITIONAL DOFS=  UY    UZ
-2020-07-27 13:14:32,341 [INFO] pyansys.mapdl: ALLSEL,,
+2020-08-02 17:16:11,396 [INFO] pyansys.mapdl: ALLSEL,,
 
  SELECT ALL ENTITIES OF TYPE= ALL  AND BELOW
-2020-07-27 13:14:32,342 [INFO] pyansys.mapdl: MXPAND,,,,YES,,,
+2020-08-02 17:16:11,397 [INFO] pyansys.mapdl: MXPAND,,,,YES,,,
 
 
  EXPAND ALL EXTRACTED MODES
   CALCULATE ELEMENT RESULTS AND NODAL DOF SOLUTION
-2020-07-27 13:14:32,342 [INFO] pyansys.mapdl: /SOLU,
+2020-08-02 17:16:11,398 [INFO] pyansys.mapdl: /SOLU,
 
 
- ***** ROUTINE COMPLETED *****  CP =         0.442
+ ***** ROUTINE COMPLETED *****  CP =         0.408
 
 
 
  *****  ANSYS SOLUTION ROUTINE  *****
-2020-07-27 13:14:32,343 [INFO] pyansys.mapdl: ANTYPE,2,new,,,
+2020-08-02 17:16:11,399 [INFO] pyansys.mapdl: ANTYPE,2,new,,,
 
 
  PERFORM A MODAL ANALYSIS
   THIS WILL BE A NEW ANALYSIS
-2020-07-27 13:14:32,344 [INFO] pyansys.mapdl: MODOPT,lanb,6,,,,OFF,,,
+2020-08-02 17:16:11,399 [INFO] pyansys.mapdl: MODOPT,lanb,6,,,,OFF,,,
 
 
  USE SYM. BLOCK LANCZOS MODE EXTRACTION METHOD
   EXTRACT    6 MODES
   NORMALIZE THE MODE SHAPES TO THE MASS MATRIX
-2020-07-27 13:14:32,344 [INFO] pyansys.mapdl: BCSOPTION,,,
+2020-08-02 17:16:11,400 [INFO] pyansys.mapdl: BCSOPTION,,,
 
- *** NOTE ***                            CP =       0.445   TIME= 13:14:32
+ *** NOTE ***                            CP =       0.409   TIME= 17:16:11
  Use of the BCSOPTION has been deprecated.  Please use the DSPOPTION
  command instead to control the sparse solver behavior.
-2020-07-27 13:14:32,440 [INFO] pyansys.mapdl: SOLVE,
-
- *** NOTE ***                            CP =       0.449   TIME= 13:14:32
- The automatic domain decomposition logic has selected the MESH domain
- decomposition method with 2 processes per solution.
+2020-08-02 17:16:11,467 [INFO] pyansys.mapdl: SOLVE,
 
  *****  ANSYS SOLVE    COMMAND  *****
 
- *** NOTE ***                            CP =       0.451   TIME= 13:14:32
+ *** NOTE ***                            CP =       0.410   TIME= 17:16:11
  There is no title defined for this analysis.
 
  *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***
@@ -346,22 +341,12 @@ method.</p>
    NUMBER OF MODES TO EXPAND . . . . . . . . . . .ALL
    ELEMENT RESULTS CALCULATION . . . . . . . . . .ON
 
- *** NOTE ***                            CP =       0.453   TIME= 13:14:32
+ *** NOTE ***                            CP =       0.411   TIME= 17:16:11
  Results printout suppressed for interactive execute.
 
- *** NOTE ***                            CP =       0.453   TIME= 13:14:32
+ *** NOTE ***                            CP =       0.412   TIME= 17:16:11
  The conditions for direct assembly have been met.  No .emat or .erot
  files will be produced.
-
-
-
-     D I S T R I B U T E D   D O M A I N   D E C O M P O S E R
-
-  ...Number of elements: 40
-  ...Number of nodes:    321
-  ...Decompose to 2 CPU domains
-  ...Element load balance ratio =     1.000
-
 
                       L O A D   S T E P   O P T I O N S
 
@@ -391,9 +376,9 @@ method.</p>
    CENTER OF MASS (X,Y,Z)=   0.50000       0.50000        2.5000
 
    TOTAL INERTIA ABOUT CENTER OF MASS
-         84500.      -0.49072E-11  -0.29301E-10
-       -0.49072E-11    84500.      -0.37526E-10
-       -0.29301E-10  -0.37526E-10    6500.0
+         84500.      -0.92371E-11  -0.79876E-10
+       -0.92371E-11    84500.      -0.32069E-10
+       -0.79876E-10  -0.32069E-10    6500.0
      The inertia principal axes coincide with the global Cartesian axes
 
 
@@ -409,39 +394,33 @@ method.</p>
    *** ELEMENT MATRIX FORMULATION TIMES
      TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-        1        40  SOLID186      0.008   0.000201
- Time at end of element matrix formulation CP = 0.486009002.
+        1        40  SOLID186      0.009   0.000235
+ Time at end of element matrix formulation CP = 0.429940999.
 
   BLOCK LANCZOS CALCULATION OF UP TO     6 EIGENVECTORS.
   NUMBER OF EQUATIONS              =          900
-  MAXIMUM WAVEFRONT                =          225
+  MAXIMUM WAVEFRONT                =          174
   MAXIMUM MODES STORED             =            6
   MINIMUM EIGENVALUE               =  0.00000E+00
   MAXIMUM EIGENVALUE               =  0.10000E+31
 
+  Memory allocated for solver              =     2.262 MB
+  Memory required for in-core solution     =     2.158 MB
+  Memory required for out-of-core solution =     1.368 MB
 
-  Local memory allocated for solver              =      1.626 MB
-  Local memory required for in-core solution     =      1.410 MB
-  Local memory required for out-of-core solution =      1.053 MB
-
-  Total memory allocated for solver              =      3.063 MB
-  Total memory required for in-core solution     =      2.656 MB
-  Total memory required for out-of-core solution =      2.012 MB
-
- *** NOTE ***                            CP =       0.554   TIME= 13:14:32
- The Distributed Sparse Matrix Solver used by the Block Lanczos
- eigensolver is currently running in the in-core memory mode.  This
- memory mode uses the most amount of memory in order to avoid using the
- hard drive as much as possible, which most often results in the
- fastest solution time.  This mode is recommended if enough physical
- memory is present to accommodate all of the solver data.
- curEqn=    482  totEqn=    482 Job CP sec=      0.366
-      Factor Done= 100% Factor Wall sec=      0.004 rate=    2127.3 Mflops
+ *** NOTE ***                            CP =       0.485   TIME= 17:16:11
+ The Sparse Matrix Solver used by the Block Lanczos eigensolver is
+ currently running in the in-core memory mode.  This memory mode uses
+ the most amount of memory in order to avoid using the hard drive as
+ much as possible, which most often results in the fastest solution
+ time.  This mode is recommended if enough physical memory is present
+ to accommodate all of the solver data.
+ curEqn=    900  totEqn=    900 Job CP sec=      0.295
+      Factor Done= 100% Factor Wall sec=      0.000 rate=       0.0 Mflops
 
  *** ANSYS - ENGINEERING ANALYSIS SYSTEM  RELEASE                  20.1BETA ***
- DISTRIBUTED ANSYS Mechanical Enterprise
-
- 88888888  VERSION=LINUX x64     13:14:32  JUL 27, 2020 CP=      0.622
+ ANSYS Mechanical Enterprise
+ 88888888  VERSION=LINUX x64     17:16:11  AUG 02, 2020 CP=      0.527
 
 
 
@@ -455,8 +434,8 @@ method.</p>
   MODE    FREQUENCY (HERTZ)
 
 
-    1     32.13951614479
-    2     32.13951614484
+    1     32.13951614478
+    2     32.13951614483
     3     145.4783895431
     4     173.4557943042
     5     173.4557943042
@@ -465,14 +444,14 @@ method.</p>
 
  *** ANSYS BINARY FILE STATISTICS
   BUFFER SIZE USED= 16384
-        0.438 MB WRITTEN ON ASSEMBLED MATRIX FILE: file0.full
-        0.062 MB WRITTEN ON MODAL MATRIX FILE: file0.mode
-        0.312 MB WRITTEN ON RESULTS FILE: file0.rst
-2020-07-27 13:14:32,566 [INFO] pyansys.mapdl: FINISH,
+        0.750 MB WRITTEN ON ASSEMBLED MATRIX FILE: file.full
+        0.062 MB WRITTEN ON MODAL MATRIX FILE: file.mode
+        0.312 MB WRITTEN ON RESULTS FILE: file.rst
+2020-08-02 17:16:11,489 [INFO] pyansys.mapdl: FINISH,
 
  *****  ANSYS FINISH   COMMAND  *****
 
- *** NOTE ***                            CP =       0.633   TIME= 13:14:32
+ *** NOTE ***                            CP =       0.533   TIME= 17:16:11
  Results printout suppressed for interactive execute.
 
  ** WARNING: PRE-RELEASE VERSION OF ANSYS 20.1BETA
@@ -482,7 +461,7 @@ method.</p>
    *** ELEMENT RESULT CALCULATION TIMES
      TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-        1        40  SOLID186      0.008   0.000206
+        1        40  SOLID186      0.009   0.000214
 
    *** NODAL LOAD CALCULATION TIMES
      TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
@@ -490,9 +469,8 @@ method.</p>
         1        40  SOLID186      0.001   0.000021
 
  *** ANSYS - ENGINEERING ANALYSIS SYSTEM  RELEASE                  20.1BETA ***
- DISTRIBUTED ANSYS Mechanical Enterprise
-
- 88888888  VERSION=LINUX x64     13:14:32  JUL 27, 2020 CP=      0.670
+ ANSYS Mechanical Enterprise
+ 88888888  VERSION=LINUX x64     17:16:11  AUG 02, 2020 CP=      0.563
 
 
 
@@ -506,11 +484,11 @@ method.</p>
           ***** PARTICIPATION FACTOR CALCULATION *****  X  DIRECTION
                                                                                   CUMULATIVE     RATIO EFF.MASS
   MODE   FREQUENCY       PERIOD      PARTIC.FACTOR     RATIO    EFFECTIVE MASS   MASS FRACTION   TO TOTAL MASS
-     1     32.1395       0.31114E-01   -92.408        0.748010     8539.17        0.269185        0.218953
-     2     32.1395       0.31114E-01    123.54        1.000000     15261.6        0.750285        0.391324
+     1     32.1395       0.31114E-01   -69.753        0.506908     4865.52        0.153378        0.124757
+     2     32.1395       0.31114E-01    137.61        1.000000     18935.3        0.750285        0.485520
      3     145.478       0.68739E-02    0.0000        0.000000     0.00000        0.750285         0.00000
-     4     173.456       0.57652E-02   -73.460        0.594637     5396.41        0.920399        0.138370
-     5     173.456       0.57652E-02   -50.251        0.406764     2525.14         1.00000        0.647472E-01
+     4     173.456       0.57652E-02    57.205        0.415720     3272.45        0.853444        0.839090E-01
+     5     173.456       0.57652E-02   -68.184        0.495506     4649.10         1.00000        0.119208
      6     254.851       0.39239E-02    0.0000        0.000000     0.00000         1.00000         0.00000
  -----------------------------------------------------------------------------------------------------------------
    sum                                                             31722.3                        0.813393
@@ -521,11 +499,11 @@ method.</p>
           ***** PARTICIPATION FACTOR CALCULATION *****  Y  DIRECTION
                                                                                   CUMULATIVE     RATIO EFF.MASS
   MODE   FREQUENCY       PERIOD      PARTIC.FACTOR     RATIO    EFFECTIVE MASS   MASS FRACTION   TO TOTAL MASS
-     1     32.1395       0.31114E-01    123.54        1.000000     15261.6        0.481100        0.391324
-     2     32.1395       0.31114E-01    92.408        0.748010     8539.17        0.750285        0.218953
+     1     32.1395       0.31114E-01    137.61        1.000000     18935.3        0.596906        0.485520
+     2     32.1395       0.31114E-01    69.753        0.506908     4865.52        0.750285        0.124757
      3     145.478       0.68739E-02    0.0000        0.000000     0.00000        0.750285         0.00000
-     4     173.456       0.57652E-02    50.251        0.406764     2525.14        0.829886        0.647472E-01
-     5     173.456       0.57652E-02   -73.460        0.594637     5396.41         1.00000        0.138370
+     4     173.456       0.57652E-02   -68.184        0.495506     4649.10        0.896841        0.119208
+     5     173.456       0.57652E-02   -57.205        0.415720     3272.45         1.00000        0.839090E-01
      6     254.851       0.39239E-02    0.0000        0.000000     0.00000         1.00000         0.00000
  -----------------------------------------------------------------------------------------------------------------
    sum                                                             31722.3                        0.813393
@@ -551,12 +529,12 @@ method.</p>
           ***** PARTICIPATION FACTOR CALCULATION *****ROTX DIRECTION
                                                                                   CUMULATIVE     RATIO EFF.MASS
   MODE   FREQUENCY       PERIOD      PARTIC.FACTOR     RATIO    EFFECTIVE MASS   MASS FRACTION   TO TOTAL MASS
-     1     32.1395       0.31114E-01   -452.14        1.000000     204434.        0.610698        0.604833
-     2     32.1395       0.31114E-01   -338.21        0.748010     114384.        0.952396        0.338415
+     1     32.1395       0.31114E-01   -503.63        1.000000     253643.        0.757700        0.750423
+     2     32.1395       0.31114E-01   -255.29        0.506908     65175.0        0.952396        0.192825
      3     145.478       0.68739E-02    0.0000        0.000000     0.00000        0.952396         0.00000
-     4     173.456       0.57652E-02   -50.803        0.112360     2580.94        0.960106        0.763591E-02
-     5     173.456       0.57652E-02    74.267        0.164256     5515.66        0.976582        0.163185E-01
-     6     254.851       0.39239E-02    88.539        0.195820     7839.10         1.00000        0.231926E-01
+     4     173.456       0.57652E-02    68.934        0.136873     4751.83        0.966591        0.140587E-01
+     5     173.456       0.57652E-02    57.834        0.114834     3344.76        0.976582        0.989574E-02
+     6     254.851       0.39239E-02    88.539        0.175801     7839.10         1.00000        0.231926E-01
  -----------------------------------------------------------------------------------------------------------------
    sum                                                             334754.                        0.990395
  -----------------------------------------------------------------------------------------------------------------
@@ -566,12 +544,12 @@ method.</p>
           ***** PARTICIPATION FACTOR CALCULATION *****ROTY DIRECTION
                                                                                   CUMULATIVE     RATIO EFF.MASS
   MODE   FREQUENCY       PERIOD      PARTIC.FACTOR     RATIO    EFFECTIVE MASS   MASS FRACTION   TO TOTAL MASS
-     1     32.1395       0.31114E-01   -338.21        0.748010     114384.        0.341697        0.338415
-     2     32.1395       0.31114E-01    452.14        1.000000     204434.        0.952396        0.604833
+     1     32.1395       0.31114E-01   -255.29        0.506908     65175.0        0.194695        0.192825
+     2     32.1395       0.31114E-01    503.63        1.000000     253643.        0.952396        0.750423
      3     145.478       0.68739E-02    0.0000        0.000000     0.00000        0.952396         0.00000
-     4     173.456       0.57652E-02   -74.267        0.164256     5515.66        0.968873        0.163185E-01
-     5     173.456       0.57652E-02   -50.803        0.112360     2580.94        0.976582        0.763591E-02
-     6     254.851       0.39239E-02   -88.539        0.195820     7839.10         1.00000        0.231926E-01
+     4     173.456       0.57652E-02    57.834        0.114834     3344.76        0.962387        0.989574E-02
+     5     173.456       0.57652E-02   -68.934        0.136873     4751.83        0.976582        0.140587E-01
+     6     254.851       0.39239E-02   -88.539        0.175801     7839.10         1.00000        0.231926E-01
  -----------------------------------------------------------------------------------------------------------------
    sum                                                             334754.                        0.990395
  -----------------------------------------------------------------------------------------------------------------
@@ -581,11 +559,11 @@ method.</p>
           ***** PARTICIPATION FACTOR CALCULATION *****ROTZ DIRECTION
                                                                                   CUMULATIVE     RATIO EFF.MASS
   MODE   FREQUENCY       PERIOD      PARTIC.FACTOR     RATIO    EFFECTIVE MASS   MASS FRACTION   TO TOTAL MASS
-     1     32.1395       0.31114E-01    107.97        1.000000     11658.1        0.552416        0.448389
-     2     32.1395       0.31114E-01   -15.565        0.144158     242.275        0.563896        0.931825E-02
-     3     145.478       0.68739E-02    72.407        0.670601     5242.73        0.812320        0.201643
-     4     173.456       0.57652E-02    61.856        0.572881     3826.10        0.993619        0.147158
-     5     173.456       0.57652E-02   -11.605        0.107478     134.670         1.00000        0.517963E-02
+     1     32.1395       0.31114E-01    103.68        1.000000     10749.4        0.509357        0.413439
+     2     32.1395       0.31114E-01   -33.926        0.327221     1150.98        0.563896        0.442685E-01
+     3     145.478       0.68739E-02    72.407        0.698371     5242.73        0.812320        0.201643
+     4     173.456       0.57652E-02   -62.695        0.604699     3930.64        0.998572        0.151178
+     5     173.456       0.57652E-02    5.4895        0.052947     30.1345         1.00000        0.115902E-02
      6     254.851       0.39239E-02    0.0000        0.000000     0.00000         1.00000         0.00000
  -----------------------------------------------------------------------------------------------------------------
    sum                                                             21103.9                        0.811688
@@ -595,7 +573,7 @@ method.</p>
 
 
 
- *** NOTE ***                            CP =       0.670   TIME= 13:14:32
+ *** NOTE ***                            CP =       0.563   TIME= 17:16:11
  The modes requested are mass normalized (Nrmkey on MODOPT).  However,
  the modal masses and kinetic energies below are calculated with unit
  normalized modes.
@@ -604,11 +582,11 @@ method.</p>
 
                                                                          EFFECTIVE MASS
   MODE  FREQUENCY   MODAL MASS     KENE      |      X-DIR      RATIO%   Y-DIR      RATIO%   Z-DIR      RATIO%
-     1   32.14      0.1566E+05  0.3193E+09   |     8539.       21.90  0.1526E+05   39.13   0.000        0.00
-     2   32.14      0.1566E+05  0.3193E+09   |    0.1526E+05   39.13   8539.       21.90   0.000        0.00
+     1   32.14      0.1262E+05  0.2573E+09   |     4866.       12.48  0.1894E+05   48.55   0.000        0.00
+     2   32.14      0.1262E+05  0.2573E+09   |    0.1894E+05   48.55   4866.       12.48   0.000        0.00
      3   145.5      0.1290E+05  0.5390E+10   |     0.000        0.00   0.000        0.00   0.000        0.00
-     4   173.5      0.1780E+05  0.1057E+11   |     5396.       13.84   2525.        6.47   0.000        0.00
-     5   173.5      0.1780E+05  0.1057E+11   |     2525.        6.47   5396.       13.84   0.000        0.00
+     4   173.5      0.2066E+05  0.1227E+11   |     3272.        8.39   4649.       11.92   0.000        0.00
+     5   173.5      0.2066E+05  0.1227E+11   |     4649.       11.92   3272.        8.39   0.000        0.00
      6   254.9      0.1929E+05  0.2473E+11   |     0.000        0.00   0.000        0.00  0.3136E+05   80.40
  --------------------------------------------------------------------------------------------------------------
    sum                                       |    0.3172E+05   81.34  0.3172E+05   81.34  0.3136E+05   80.40
@@ -617,20 +595,17 @@ method.</p>
 
  *** ANSYS BINARY FILE STATISTICS
   BUFFER SIZE USED= 16384
-        0.438 MB WRITTEN ON ASSEMBLED MATRIX FILE: file0.full
-        0.062 MB WRITTEN ON MODAL MATRIX FILE: file0.mode
-        0.625 MB WRITTEN ON RESULTS FILE: file0.rst
+        0.750 MB WRITTEN ON ASSEMBLED MATRIX FILE: file.full
+        0.062 MB WRITTEN ON MODAL MATRIX FILE: file.mode
+        0.875 MB WRITTEN ON RESULTS FILE: file.rst
 
  FINISH SOLUTION PROCESSING
 
  RESULTS WRITTEN TO FILE: file.mode
     TOTAL SIZE =        0.438 MB
 
- RESULTS WRITTEN TO FILE: file0.mode
-    TOTAL SIZE =        0.250 MB
 
-
- ***** ROUTINE COMPLETED *****  CP =         0.845
+ ***** ROUTINE COMPLETED *****  CP =         0.571
 
 [(6.295554957734411, 6.295554957734411, 8.29555495773441),
  (0.5, 0.5, 2.5),
@@ -645,7 +620,7 @@ method.</p>
 <span class="kn">import</span> <span class="nn">pyansys</span>
 
 <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;I_MPI_SHM_LMT&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;shm&#39;</span>  <span class="c1"># necessary on ubuntu</span>
-<span class="n">mapdl</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">launch_mapdl</span><span class="p">(</span><span class="n">override</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">mapdl</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">launch_mapdl</span><span class="p">(</span><span class="n">override</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">additional_switches</span><span class="o">=</span><span class="s1">&#39;-smp&#39;</span><span class="p">)</span>
 
 <span class="n">mapdl</span><span class="o">.</span><span class="n">cdread</span><span class="p">(</span><span class="s1">&#39;db&#39;</span><span class="p">,</span> <span class="n">examples</span><span class="o">.</span><span class="n">hexarchivefile</span><span class="p">)</span>
 <span class="n">mapdl</span><span class="o">.</span><span class="n">esel</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;ELEM&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
@@ -674,11 +649,11 @@ method.</p>
 
 <span class="c1"># view the results using pyansys&#39;s result viewer</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">result</span>
-<span class="n">result</span><span class="o">.</span><span class="n">animate_nodal_solution</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">show_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">loop</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="n">result</span><span class="o">.</span><span class="n">animate_nodal_solution</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">show_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">loop</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">displacement_factor</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
                               <span class="n">movie_filename</span><span class="o">=</span><span class="s1">&#39;demo.gif&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  36.154 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  35.758 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-02-mapdl-examples-mapdl-3d-beam-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/22f48a4cba202f6a451107ab70bf7b8e/mapdl_3d_beam.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">mapdl_3d_beam.py</span></code></a></p>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>MAPDL 2D Beam Example &mdash; pyansys 0.42.0 documentation</title>
+  <title>MAPDL 2D Beam Example &mdash; pyansys 0.42.2 documentation</title>
   
 
   
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.42.0
+                0.42.2
               </div>
             
           
@@ -100,7 +100,7 @@
 <p class="caption"><span class="caption-text">File IO and Visualization</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../ansys_write_archive.html">Reading and Writing ANSYS Archive Files</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../loading_results.html">Working with a ANSYS Result File (rst)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../loading_results.html">Working with a ANSYS Result Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples.html">Archive and Result File Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../loading_km.html">Working with a ANSYS Full File (full)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../loading_emat.html">Working with a ANSYS Element Matrix File (.emat)</a></li>
@@ -217,7 +217,7 @@
 
  Analysis type. . . . . . . . . . . . .Static (steady-state)
 
- pyansys version: 0.41.9
+ pyansys version: 0.42.2
 </pre></div>
 </div>
 <p>Define an I-beam</p>
@@ -241,7 +241,7 @@
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Matplotlib is currently using agg, which is a non-GUI backend, so cannot show the figure.
 
-&#39;SECPLOT,1,,,\r\n\r\n CUMULATIVE DISPLAY NUMBER   1 WRITTEN TO FILE file028.png       - RASTER MODE.\r\n DISPLAY TITLE=&#39;
+&#39;SECPLOT,1,,,\r\n\r\n CUMULATIVE DISPLAY NUMBER   1 WRITTEN TO FILE file140.png       - RASTER MODE.\r\n DISPLAY TITLE=&#39;
 </pre></div>
 </div>
 <p>Create nodes within MAPDL</p>
@@ -384,13 +384,13 @@ y
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>SOLVE,
 
- *** NOTE ***                            CP =       1.020   TIME= 13:15:09
+ *** NOTE ***                            CP =       1.144   TIME= 17:16:49
  The automatic domain decomposition logic has selected the MESH domain
  decomposition method with 2 processes per solution.
 
  *****  ANSYS SOLVE    COMMAND  *****
 
- *** NOTE ***                            CP =       1.021   TIME= 13:15:09
+ *** NOTE ***                            CP =       1.145   TIME= 17:16:49
  There is no title defined for this analysis.
 
  *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***
@@ -413,14 +413,14 @@ y
    ANALYSIS TYPE . . . . . . . . . . . . . . . . .STATIC (STEADY-STATE)
    GLOBALLY ASSEMBLED MATRIX . . . . . . . . . . .SYMMETRIC
 
- *** NOTE ***                            CP =       1.022   TIME= 13:15:09
+ *** NOTE ***                            CP =       1.146   TIME= 17:16:49
  Present time 0 is less than or equal to the previous time.  Time will
  default to 1.
 
- *** NOTE ***                            CP =       1.022   TIME= 13:15:09
+ *** NOTE ***                            CP =       1.146   TIME= 17:16:49
  Results printout suppressed for interactive execute.
 
- *** NOTE ***                            CP =       1.022   TIME= 13:15:09
+ *** NOTE ***                            CP =       1.146   TIME= 17:16:49
  The conditions for direct assembly have been met.  No .emat or .erot
  files will be produced.
 
@@ -447,7 +447,7 @@ y
 
  SOLUTION MONITORING INFO IS WRITTEN TO FILE= file.mntr
 
- *** NOTE ***                            CP =       1.033   TIME= 13:15:09
+ *** NOTE ***                            CP =       1.158   TIME= 17:16:49
  Predictor is ON by default for structural elements with rotational
  degrees of freedom.  Use the PRED,OFF command to turn the predictor
  OFF if it adversely affects the convergence.
@@ -460,8 +460,8 @@ y
    *** ELEMENT MATRIX FORMULATION TIMES
      TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-        1        22  BEAM188       0.003   0.000121
- Time at end of element matrix formulation CP = 1.03710306.
+        1        22  BEAM188       0.003   0.000141
+ Time at end of element matrix formulation CP = 1.16186702.
 
  DISTRIBUTED SPARSE MATRIX DIRECT SOLVER.
   Number of equations =          44,    Maximum wavefront =     12
@@ -474,15 +474,15 @@ y
   Total memory required for in-core solution     =      0.353 MB
   Total memory required for out-of-core solution =      0.353 MB
 
- *** NOTE ***                            CP =       1.043   TIME= 13:15:09
+ *** NOTE ***                            CP =       1.167   TIME= 17:16:49
  The Distributed Sparse Matrix Solver is currently running in the
  in-core memory mode.  This memory mode uses the most amount of memory
  in order to avoid using the hard drive as much as possible, which most
  often results in the fastest solution time.  This mode is recommended
  if enough physical memory is present to accommodate all of the solver
  data.
- curEqn=     25  totEqn=     25 Job CP sec=      0.845
-      Factor Done= 100% Factor Wall sec=      0.001 rate=       0.8 Mflops
+ curEqn=     25  totEqn=     25 Job CP sec=      0.970
+      Factor Done= 100% Factor Wall sec=      0.001 rate=       0.7 Mflops
  Distributed sparse solver maximum pivot= 5.009534302E+10 at node 4
  ROTY.
  Distributed sparse solver minimum pivot= 861490.522 at node 12 UZ.
@@ -492,12 +492,12 @@ y
    *** ELEMENT RESULT CALCULATION TIMES
      TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-        1        22  BEAM188       0.009   0.000399
+        1        22  BEAM188       0.010   0.000447
 
    *** NODAL LOAD CALCULATION TIMES
      TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-        1        22  BEAM188       0.001   0.000024
+        1        22  BEAM188       0.001   0.000026
  *** LOAD STEP     1   SUBSTEP     1  COMPLETED.    CUM ITER =      1
  *** TIME =   1.00000         TIME INC =   1.00000      NEW TRIANG MATRIX
 
@@ -510,7 +510,7 @@ y
 0
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  6.317 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  6.724 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-02-mapdl-examples-mapdl-beam-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/8ff48f19145b89370dd5f4c3c4937dae/mapdl_beam.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">mapdl_beam.py</span></code></a></p>

@@ -78,7 +78,7 @@ Geometry is stored as a class
 
  .. code-block:: none
 
-    UnstructuredGrid (0x7fdd68eeeec0)
+    UnstructuredGrid (0x7f7f18cd60c0)
       N Cells:      25051
       N Points:     27132
       X Bounds:     0.000e+00, 2.700e+02
@@ -350,7 +350,7 @@ Disable ``movie_filename`` and increase ``nangles`` for a smoother plot
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  11.203 seconds)
+   **Total running time of the script:** ( 0 minutes  11.859 seconds)
 
 
 .. _sphx_glr_download_examples_00-read_binary_load_shaft_result.py:

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Working with a ANSYS Result File (rst) &mdash; pyansys 0.42.0 documentation</title>
+  <title>Working with a ANSYS Result Files &mdash; pyansys 0.42.2 documentation</title>
   
 
   
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.42.0
+                0.42.2
               </div>
             
           
@@ -100,7 +100,7 @@
 <p class="caption"><span class="caption-text">File IO and Visualization</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="ansys_write_archive.html">Reading and Writing ANSYS Archive Files</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Working with a ANSYS Result File (rst)</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Working with a ANSYS Result Files</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#loading-the-result-file">Loading the Result File</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#resultfile-properties">ResultFile Properties</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#geometry">Geometry</a><ul>
@@ -173,7 +173,7 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Working with a ANSYS Result File (rst)</li>
+      <li>Working with a ANSYS Result Files</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -192,20 +192,33 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="working-with-a-ansys-result-file-rst">
-<h1>Working with a ANSYS Result File (rst)<a class="headerlink" href="#working-with-a-ansys-result-file-rst" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="working-with-a-ansys-result-files">
+<h1>Working with a ANSYS Result Files<a class="headerlink" href="#working-with-a-ansys-result-files" title="Permalink to this headline">¶</a></h1>
+<p>The <cite>pyansys</cite> module supports the following result types from MAPDL:</p>
+<ul class="simple">
+<li><p>“.rfl”</p></li>
+<li><p>“.rmg”</p></li>
+<li><p>“.rst”</p></li>
+<li><p>“.rth”</p></li>
+</ul>
 <p>The ANSYS result file is a FORTRAN formatted binary file containing
 the results written from an ANSYS analysis.  The results, at a
 minimum, contain the geometry of the model analyzed along with the
 nodal and element results.  Depending on the analysis, these results
-could be anything from modal displacements to nodal temperatures.  At
-this time, only the following results are supported by this code:</p>
+could be anything from modal displacements to nodal temperatures.
+This includes (and is not limited to):</p>
 <blockquote>
 <div><ul class="simple">
 <li><p>Nodal DOF results from a static analysis or modal analysis.</p></li>
 <li><p>Nodal DOF results from a cyclic static or modal analysis.</p></li>
 <li><p>Nodal averaged component stresses (i.e. x, y, z, xy, xz, yz)</p></li>
 <li><p>Nodal principal stresses (i.e. S1, S2, S3, SEQV, SINT)</p></li>
+<li><p>Nodal elastic, plastic, and thermal stress</p></li>
+<li><p>Nodal time history</p></li>
+<li><p>Nodal boundary conditions and force</p></li>
+<li><p>Nodal temperatures</p></li>
+<li><p>Nodal thermal strain</p></li>
+<li><p>Various element results (see <code class="docutils literal notranslate"><span class="pre">element_solution_data</span></code>)</p></li>
 </ul>
 </div></blockquote>
 <p>We’re working on adding additional plotting and retrieval functions to the code If you would like us to add an additional result type to be loaded, please open an issue in <a class="reference external" href="https://github.com/akaszynski/pyansys">GitHub</a>  and include result file for the result type you wish to load.</p>
@@ -214,7 +227,7 @@ this time, only the following results are supported by this code:</p>
 <p>As the ANSYS result files are binary files, the entire file does not
 need to be loaded into memory in order to retrieve results.  This
 module accesses the results through a python object <cite>result</cite> which you
-can create with:</p>
+can initialize with:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyansys</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">read_binary</span><span class="p">(</span><span class="s1">&#39;file.rst&#39;</span><span class="p">)</span>
 </pre></div>
@@ -222,23 +235,71 @@ can create with:</p>
 <p>Upon initialization the <code class="docutils literal notranslate"><span class="pre">ResultFile</span></code> object contains several
 properties to include the time values from the analysis, node
 numbering, element numbering, etc.</p>
+<p>The <cite>pyansys</cite> module can determine the correct result type by reading
+the header of the file, which means that if it is an ANSYS binary
+file, <cite>pyansys</cite> can probably read it (at least to some degree.  For
+example, a thermal result file can be read with</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">rth</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">read_binary</span><span class="p">(</span><span class="s1">&#39;file.rth&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="resultfile-properties">
 <h2>ResultFile Properties<a class="headerlink" href="#resultfile-properties" title="Permalink to this headline">¶</a></h2>
-<p>The properties of the <code class="docutils literal notranslate"><span class="pre">ResultFile</span></code> are contained in the result header.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">result</span><span class="o">.</span><span class="n">resultheader</span>
+<p>The properties of the <code class="docutils literal notranslate"><span class="pre">ResultFile</span></code> can be quickly shown by printing the result file with:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">read_binary</span><span class="p">(</span><span class="s1">&#39;file.rst&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+<span class="go">PyANSYS MAPDL Result file object</span>
+<span class="go">Units       : User Defined</span>
+<span class="go">Version     : 20.1</span>
+<span class="go">Cyclic      : False</span>
+<span class="go">Result Sets : 1</span>
+<span class="go">Nodes       : 321</span>
+<span class="go">Elements    : 40</span>
+
+
+<span class="go">Available Results:</span>
+<span class="go">EMS : Miscellaneous summable items (normally includes face pressures)</span>
+<span class="go">ENF : Nodal forces</span>
+<span class="go">ENS : Nodal stresses</span>
+<span class="go">ENG : Element energies and volume</span>
+<span class="go">EEL : Nodal elastic strains</span>
+<span class="go">ETH : Nodal thermal strains (includes swelling strains)</span>
+<span class="go">EUL : Element euler angles</span>
+<span class="go">EPT : Nodal temperatures</span>
+<span class="go">NSL : Nodal displacements</span>
+<span class="go">RF  : Nodal reaction forces</span>
 </pre></div>
 </div>
 <p>To obtain the time or frequency values of an analysis use:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tval</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">time_values</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">result</span><span class="o">.</span><span class="n">time_values</span>
+<span class="go">array([1.])</span>
+</pre></div>
+</div>
+<p>Individual results can be obtained with one of the many methods
+available to the result object.  For example, the nodal displacement
+for the first result can be accessed with:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">nnum</span><span class="p">,</span> <span class="n">disp</span> <span class="o">=</span> <span class="n">rst</span><span class="o">.</span><span class="n">nodal_displacement</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nnum</span>
+<span class="go">array([  1,   2,   3, ..., 318, 319, 320, 321], dtype=int32)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span>
+<span class="go">array([[-2.03146520e-09, -3.92491045e-03,  5.00047448e-05],</span>
+<span class="go">       [ 1.44630651e-09,  1.17747356e-02, -1.49992672e-04],</span>
+<span class="go">       [ 0.00000000e+00,  0.00000000e+00,  0.00000000e+00],</span>
+<span class="go">       ...</span>
+<span class="go">       [-7.14982194e-03,  3.12495002e-03,  5.74992265e-04],</span>
+<span class="go">       [-7.04982329e-03,  2.44996706e-03,  5.74992939e-04],</span>
+<span class="go">       [-6.94982520e-03,  1.77498362e-03,  5.74992891e-04]])</span>
 </pre></div>
 </div>
 <p>The sorted node and element numbering of a result can be obtained with:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># sorted node numbering</span>
-<span class="n">nnum</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">nnum</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rst</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">nnum</span>
+<span class="go">array([  1,   2,   3, ..., 318, 319, 320, 321], dtype=int32)</span>
 
-<span class="c1"># sorted element numbering</span>
-<span class="n">enum</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">enum</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">enum</span>
+<span class="go">array([ 1,  3,  2,  4,  5,  7,  6,  8,  9, 11, 10, 12, 13, 15, 14, 16, 17,</span>
+<span class="go">       19, 18, 20, 21, 23, 22, 24, 25, 27, 26, 28, 29, 31, 30, 32, 33, 35,</span>
+<span class="go">       34, 36, 37, 39, 38, 40], dtype=int32)</span>
 </pre></div>
 </div>
 </div>
@@ -563,7 +624,9 @@ component.  The keys are node component names.</p>
 
 <div class="section" id="coordinate-systems">
 <h3>Coordinate Systems<a class="headerlink" href="#coordinate-systems" title="Permalink to this headline">¶</a></h3>
-<p>Non default coordinate systems are always saved to an ANSYS result file.  The coordinate system is zero indexed and individual coordinate systems can be accessed with:</p>
+<p>Non-default coordinate systems are always saved to an ANSYS result
+file.  The coordinate system is zero indexed and individual coordinate
+systems can be accessed with:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">coord_idx</span> <span class="o">=</span> <span class="mi">12</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">result</span><span class="o">.</span><span class="n">geometry</span><span class="p">[</span><span class="s1">&#39;coord systems&#39;</span><span class="p">][</span><span class="n">coord_idx</span><span class="p">]</span>
 <span class="go">{&#39;transformation matrix&#39;: array([[ 0.0, -1.0,  0.0],</span>
@@ -636,7 +699,10 @@ contents of the coordinate systems stored in the result file.</p>
 <span class="n">pCnvVal</span> <span class="mf">0.0</span>
 </pre></div>
 </div>
-<p>The DOF solution for an analysis for each node in the analysis can be obtained using the code block below.  These results correspond to the node numbers in the result file.  This array is sized by the number of nodes by the number of degrees of freedom.</p>
+<p>The DOF solution for an analysis for each node in the analysis can be
+obtained using the code block below.  These results correspond to the
+node numbers in the result file.  This array is sized by the number of
+nodes by the number of degrees of freedom.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Return an array of results (nnod x dof)</span>
 <span class="n">nnum</span><span class="p">,</span> <span class="n">disp</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">nodal_solution</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># uses 0 based indexing</span>
 
@@ -649,7 +715,9 @@ contents of the coordinate systems stored in the result file.</p>
 <span class="n">result</span><span class="o">.</span><span class="n">plot_nodal_solution</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Normalized&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Stress can be obtained as well using the below code.  The nodal stress is computed in the same manner as ANSYS by averaging the stress evaluated at that node for all attached elements.</p>
+<p>Stress can be obtained as well using the below code.  The nodal stress
+is computed in the same manner as ANSYS by averaging the stress
+evaluated at that node for all attached elements.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># obtain the component node averaged stress for the first result</span>
 <span class="c1"># organized with one [Sx, Sy Sz, Sxy, Syz, Sxz] entry for each node</span>
 <span class="n">nnum</span><span class="p">,</span> <span class="n">stress</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">nodal_stress</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># results in a np array (nnod x 6)</span>
@@ -662,12 +730,15 @@ contents of the coordinate systems stored in the result file.</p>
 <span class="n">result</span><span class="o">.</span><span class="n">plot_principal_nodal_stress</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;SEQV&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Element stress can be obtained using the following segment of code.  Ensure that the element results are expanded for a modal analysis within ANSYS with:</p>
+<p>Element stress can be obtained using the following segment of code.
+Ensure that the element results are expanded for a modal analysis
+within ANSYS with:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">SOLU</span>
 <span class="n">MXPAND</span><span class="p">,</span> <span class="n">ALL</span><span class="p">,</span> <span class="p">,</span> <span class="p">,</span> <span class="n">YES</span>
 </pre></div>
 </div>
-<p>This block of code shows how you can access the non-averaged stresses for the first result from a modal analysis.</p>
+<p>This block of code shows how you can access the non-averaged stresses
+for the first result from a modal analysis.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyansys</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">read_binary</span><span class="p">(</span><span class="s1">&#39;file.rst&#39;</span><span class="p">)</span>
 <span class="n">estress</span><span class="p">,</span> <span class="n">elem</span><span class="p">,</span> <span class="n">enode</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">element_stress</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -712,7 +783,9 @@ contents of the coordinate systems stored in the result file.</p>
 </div>
 <div class="section" id="accessing-element-solution-data">
 <h3>Accessing Element Solution Data<a class="headerlink" href="#accessing-element-solution-data" title="Permalink to this headline">¶</a></h3>
-<p>Individual element results for the entire solution can be accessed using the <code class="docutils literal notranslate"><span class="pre">element_solution_data</span></code> method.  For example, to get the volume of each element:</p>
+<p>Individual element results for the entire solution can be accessed
+using the <code class="docutils literal notranslate"><span class="pre">element_solution_data</span></code> method.  For example, to get the
+volume of each element:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pyansys</span>
 
@@ -725,11 +798,11 @@ contents of the coordinate systems stored in the result file.</p>
 <span class="n">volume</span> <span class="o">=</span> <span class="n">edata</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>Documentation for the underlying results can be found in <a class="reference external" href="https://www.sharcnet.ca/Software/Ansys/16.2.3/en-us/help/ans_prog/Hlp_P_INT1_2.html">Description of the Results File</a>.</p>
 </div>
 <div class="section" id="animiating-a-modal-solution">
 <h3>Animiating a Modal Solution<a class="headerlink" href="#animiating-a-modal-solution" title="Permalink to this headline">¶</a></h3>
-<p>Solutions from a modal analysis can be animated using <code class="docutils literal notranslate"><span class="pre">animate_nodal_solution</span></code>.  For example:</p>
+<p>Solutions from a modal analysis can be animated using
+<code class="docutils literal notranslate"><span class="pre">animate_nodal_solution</span></code>.  For example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyansys</span> <span class="kn">import</span> <span class="n">examples</span>
 <span class="kn">import</span> <span class="nn">pyansys</span>
 
@@ -748,7 +821,9 @@ contents of the coordinate systems stored in the result file.</p>
 <span class="n">result</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">read_binary</span><span class="p">(</span><span class="s1">&#39;rotor.rst&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>You can reference the load step table and harmonic index tables by printing the result header dictionary keys <code class="docutils literal notranslate"><span class="pre">'ls_table'</span></code> and <code class="docutils literal notranslate"><span class="pre">'hindex'</span></code>:</p>
+<p>You can reference the load step table and harmonic index tables by
+printing the result header dictionary keys <code class="docutils literal notranslate"><span class="pre">'ls_table'</span></code> and
+<code class="docutils literal notranslate"><span class="pre">'hindex'</span></code>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">resultheader</span><span class="p">[</span><span class="s1">&#39;ls_table&#39;</span><span class="p">])</span>
 <span class="go"># load step, sub step, cumulative index</span>
 <span class="go">array([[ 1,  1,  1],</span>
@@ -763,7 +838,9 @@ contents of the coordinate systems stored in the result file.</p>
 <span class="go">       4, 4, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7], dtype=int32)</span>
 </pre></div>
 </div>
-<p>Where each harmonic index entry corresponds a cumulative index.  For example, result number 11 is the first mode for the 2nd harmonic index:</p>
+<p>Where each harmonic index entry corresponds a cumulative index.  For
+example, result number 11 is the first mode for the 2nd harmonic
+index:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">result</span><span class="o">.</span><span class="n">resultheader</span><span class="p">[</span><span class="s1">&#39;ls_table&#39;</span><span class="p">][</span><span class="mi">10</span><span class="p">]</span> <span class="c1"># Result 11 (using zero based indexing)</span>
 <span class="go">array([ 3,  1, 11], dtype=int32)</span>
 
@@ -776,10 +853,12 @@ contents of the coordinate systems stored in the result file.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">harmonic_index</span> <span class="o">=</span> <span class="mi">2</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">result</span><span class="o">.</span><span class="n">harmonic_index_to_cumulative</span><span class="p">(</span><span class="n">mode</span><span class="p">,</span> <span class="n">harmonic_index</span><span class="p">)</span>
 <span class="go">24</span>
-
-<span class="go">Using this indexing method, repeated modes are indexed by the same mode index.  To access the other repeated mode, use a negative harmonic index.  Should a result not exist, pyansys will return which modes are available:</span>
 </pre></div>
 </div>
+<p>Using this indexing method, repeated modes are indexed by the same
+mode index.  To access the other repeated mode, use a negative
+harmonic index.  Should a result not exist, pyansys will return which
+modes are available:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mode</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">harmonic_index</span> <span class="o">=</span> <span class="mi">20</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">result</span><span class="o">.</span><span class="n">harmonic_index_to_cumulative</span><span class="p">(</span><span class="n">mode</span><span class="p">,</span> <span class="n">harmonic_index</span><span class="p">)</span>
@@ -787,7 +866,11 @@ contents of the coordinate systems stored in the result file.</p>
 <span class="go">Available modes: [0 1 2 3 4 5 6 7 8 9]</span>
 </pre></div>
 </div>
-<p>Results from a cyclic analysis require additional post processing to be interperted correctly.  Mode shapes are stored within the result file as unprocessed parts of the real and imaginary parts of a modal solution.  <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> combines these values into a single complex array and then returns the real result of that array.</p>
+<p>Results from a cyclic analysis require additional post processing to
+be interperted correctly.  Mode shapes are stored within the result
+file as unprocessed parts of the real and imaginary parts of a modal
+solution.  <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> combines these values into a single complex
+array and then returns the real result of that array.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">nnum</span><span class="p">,</span> <span class="n">ms</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">nodal_solution</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># mode shape of result 11</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">ms</span><span class="p">[:</span><span class="mi">3</span><span class="p">])</span>
 <span class="go">[[ 44.700, 45.953, 38.717]</span>
@@ -795,7 +878,8 @@ contents of the coordinate systems stored in the result file.</p>
 <span class="go"> [ 36.000, 33.121, 39.044]]</span>
 </pre></div>
 </div>
-<p>Sometimes it is necessary to determine the maximum displacement of a mode.  To do so, return the complex solution with:</p>
+<p>Sometimes it is necessary to determine the maximum displacement of a
+mode.  To do so, return the complex solution with:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">nnum</span><span class="p">,</span> <span class="n">ms</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">nodal_solution</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">as_complex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">((</span><span class="n">ms</span><span class="o">*</span><span class="n">ms</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mf">0.5</span><span class="p">)</span>
 <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanargmax</span><span class="p">(</span><span class="n">norm</span><span class="p">)</span>
@@ -809,19 +893,26 @@ contents of the coordinate systems stored in the result file.</p>
 </pre></div>
 </div>
 <p>See <code class="docutils literal notranslate"><span class="pre">help(result.nodal_solution)</span></code> for more details.</p>
-<p>The real displacement of the sector is always the real component of the mode shape <code class="docutils literal notranslate"><span class="pre">ms</span></code>, and this can be varied by multiplying the mode shape by a complex value for a given phase.  To change the phase by 90 degrees simply:</p>
-<p>The results of a single sector can be displayed as well using the <code class="docutils literal notranslate"><span class="pre">plot_nodal_solution</span></code></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the result from the first mode of the 2nd harmonic index</span>
-<span class="n">rnum</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">harmonic_index_to_cumulative</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<p>The real displacement of the sector is always the real component of
+the mode shape <code class="docutils literal notranslate"><span class="pre">ms</span></code>, and this can be varied by multiplying the mode
+shape by a complex value for a given phase.</p>
+<p>The results of a single sector can be displayed as well using the
+<code class="docutils literal notranslate"><span class="pre">plot_nodal_solution</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">rnum</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">harmonic_index_to_cumulative</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 <span class="n">result</span><span class="o">.</span><span class="n">plot_nodal_solution</span><span class="p">(</span><span class="n">rnum</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Displacement&#39;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 <img alt="_images/rotor.jpg" src="_images/rotor.jpg" />
-<p>The phase of the result can be changed by modifying the <code class="docutils literal notranslate"><span class="pre">phase</span></code> option.  See <code class="docutils literal notranslate"><span class="pre">help(result.plot_nodal_solution)</span></code> for details on its implementation.</p>
+<p>The phase of the result can be changed by modifying the <code class="docutils literal notranslate"><span class="pre">phase</span></code>
+option.  See <code class="docutils literal notranslate"><span class="pre">help(result.plot_nodal_solution)</span></code> for details on its
+implementation.</p>
 </div>
 <div class="section" id="exporting-to-paraview">
 <h2>Exporting to ParaView<a class="headerlink" href="#exporting-to-paraview" title="Permalink to this headline">¶</a></h2>
-<p>ParaView is a visualization application that can be used for rapid generation of plots and graphs using VTK through a GUI.  <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> can translate the ANSYS result files to ParaView compatible files containing the geometry and nodal results from the analysis:</p>
+<p>ParaView is a visualization application that can be used for rapid
+generation of plots and graphs using VTK through a GUI.  <code class="docutils literal notranslate"><span class="pre">pyansys</span></code>
+can translate the ANSYS result files to ParaView compatible files
+containing the geometry and nodal results from the analysis:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyansys</span>
 <span class="kn">from</span> <span class="nn">pyansys</span> <span class="kn">import</span> <span class="n">examples</span>
 
@@ -832,7 +923,13 @@ contents of the coordinate systems stored in the result file.</p>
 <span class="n">result</span><span class="o">.</span><span class="n">save_as_vtk</span><span class="p">(</span><span class="s1">&#39;beam.vtu&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The vtk xml file can now be loaded using ParaView.  This screenshot shows the nodal displacement of the first result from the result file plotted within <a class="reference external" href="https://www.paraview.org/">ParaView</a>.  Within the vtk file are two point arrays (<code class="docutils literal notranslate"><span class="pre">NodalResult</span></code> and <code class="docutils literal notranslate"><span class="pre">nodal_stress</span></code>) for each result in the result file.  The nodal result values will depend on the analysis type, while nodal stress will always be the node average stress in the Sx, Sy Sz, Sxy, Syz, and Sxz directions.</p>
+<p>The vtk xml file can now be loaded using ParaView.  This screenshot
+shows the nodal displacement of the first result from the result file
+plotted within <a class="reference external" href="https://www.paraview.org/">ParaView</a>.  Within the
+vtk file are two point arrays (<code class="docutils literal notranslate"><span class="pre">NodalResult</span></code> and <code class="docutils literal notranslate"><span class="pre">nodal_stress</span></code>)
+for each result in the result file.  The nodal result values will
+depend on the analysis type, while nodal stress will always be the
+node average stress in the Sx, Sy Sz, Sxy, Syz, and Sxz directions.</p>
 <img alt="_images/paraview.jpg" src="_images/paraview.jpg" />
 </div>
 <div class="section" id="resultfile-object-methods">
@@ -1261,6 +1358,42 @@ properrties of that material with only the valid entries filled.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="pyansys.rst.ResultFile.nodal_boundary_conditions">
+<code class="sig-name descname">nodal_boundary_conditions</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rnum</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.nodal_boundary_conditions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Nodal boundary conditions for a given result number.</p>
+<p>These nodal boundary conditions are generally set with the
+APDL command <code class="docutils literal notranslate"><span class="pre">D</span></code>.  For example, <code class="docutils literal notranslate"><span class="pre">D,</span> <span class="pre">25,</span> <span class="pre">UX,</span> <span class="pre">0.001</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>rnum</strong> (<em>int</em><em> or </em><em>list</em>) – Cumulative result number with zero based indexing, or a
+list containing (step, substep) of the requested result.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>nnum</strong> (<em>np.ndarray</em>) – Node numbers of the nodes with boundary conditions.</p></li>
+<li><p><strong>dof</strong> (<em>np.ndarray</em>) – Array of indices of the degrees of freedom of the nodes
+with boundary conditions.  See <code class="docutils literal notranslate"><span class="pre">rst.result_dof</span></code> for the
+degrees of freedom associated with each index.</p></li>
+<li><p><strong>bc</strong> (<em>np.ndarray</em>) – Boundary conditions.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Print the boundary conditions where:
+- Node 3 is fixed
+- Node 25 has UX=0.001
+- Node 26 has UY=0.0011
+- Node 27 has UZ=0.0012</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rst</span><span class="o">.</span><span class="n">nodal_boundary_conditions</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="go">(array([ 3,  3,  3, 25, 26, 27], dtype=int32),</span>
+<span class="go">array([1, 2, 3, 1, 2, 3], dtype=int32),</span>
+<span class="go">array([0.    , 0.    , 0.    , 0.001 , 0.0011, 0.0012]))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
 <dt id="pyansys.rst.ResultFile.nodal_displacement">
 <code class="sig-name descname">nodal_displacement</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.nodal_displacement" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the DOF solution for each node in the global
@@ -1326,6 +1459,41 @@ X, Y, Z, XY, YZ, XZ, EQV.</p></li>
 </div>
 <p class="rubric">Notes</p>
 <p>Nodes without a strain will be NAN.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyansys.rst.ResultFile.nodal_input_force">
+<code class="sig-name descname">nodal_input_force</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rnum</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.nodal_input_force" title="Permalink to this definition">¶</a></dt>
+<dd><p>Nodal input force for a given result number.</p>
+<p>Nodal input force is generally set with the APDL command
+<code class="docutils literal notranslate"><span class="pre">F</span></code>.  For example, <code class="docutils literal notranslate"><span class="pre">F,</span> <span class="pre">25,</span> <span class="pre">FX,</span> <span class="pre">0.001</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>rnum</strong> (<em>int</em><em> or </em><em>list</em>) – Cumulative result number with zero based indexing, or a
+list containing (step, substep) of the requested result.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>nnum</strong> (<em>np.ndarray</em>) – Node numbers of the nodes with nodal forces.</p></li>
+<li><p><strong>dof</strong> (<em>np.ndarray</em>) – Array of indices of the degrees of freedom of the nodes
+with input force.  See <code class="docutils literal notranslate"><span class="pre">rst.result_dof</span></code> for the degrees
+of freedom associated with each index.</p></li>
+<li><p><strong>force</strong> (<em>np.ndarray</em>) – Nodal input force.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Print the nodal input force where:
+- Node 25 has FX=20
+- Node 26 has FY=30
+- Node 27 has FZ=40</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rst</span><span class="o">.</span><span class="n">nodal_input_force</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="go">(array([ 71,  52, 127], dtype=int32),</span>
+<span class="go"> array([2, 1, 3], dtype=int32),</span>
+<span class="go"> array([30., 20., 40.]))</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
@@ -2025,6 +2193,29 @@ principal using the averaged value.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="pyansys.rst.ResultFile.result_dof">
+<code class="sig-name descname">result_dof</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rnum</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.result_dof" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of degrees of freedom for a given result number.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>rnum</strong> (<em>int</em><em> or </em><em>list</em>) – Cumulative result number with zero based indexing, or a
+list containing (step, substep) of the requested result.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>dof</strong> – List of degrees of freedom.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rst</span><span class="o">.</span><span class="n">result_dof</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="go">[&#39;UX&#39;, &#39;UY&#39;, &#39;UZ&#39;]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
 <dt id="pyansys.rst.ResultFile.save_as_vtk">
 <code class="sig-name descname">save_as_vtk</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span></em>, <em class="sig-param"><span class="n">rsets</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">result_types</span><span class="o">=</span><span class="default_value">['ENS']</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.save_as_vtk" title="Permalink to this definition">¶</a></dt>
 <dd><p>Writes results to a vtk readable file.</p>
@@ -2181,7 +2372,12 @@ center of gravity</p>
 <dl class="py method">
 <dt id="pyansys.rst.ResultFile.version">
 <em class="property">property </em><code class="sig-name descname">version</code><a class="headerlink" href="#pyansys.rst.ResultFile.version" title="Permalink to this definition">¶</a></dt>
-<dd><p>The version of ANSYS used to generate this result file</p>
+<dd><p>The version of MAPDL used to generate this result file.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rst</span><span class="o">.</span><span class="n">version</span>
+<span class="go">20.1</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
@@ -2662,8 +2858,7 @@ list containing (step, substep) of the requested result.</p></li>
 - <code class="docutils literal notranslate"><span class="pre">&quot;Z&quot;</span></code>
 - <code class="docutils literal notranslate"><span class="pre">&quot;XY&quot;</span></code>
 - <code class="docutils literal notranslate"><span class="pre">&quot;YZ&quot;</span></code>
-- <code class="docutils literal notranslate"><span class="pre">&quot;XZ&quot;</span></code>
-- <code class="docutils literal notranslate"><span class="pre">&quot;EQV&quot;</span></code></p></li>
+- <code class="docutils literal notranslate"><span class="pre">&quot;XZ&quot;</span></code></p></li>
 <li><p><strong>phase</strong> (<em>float</em><em>, </em><em>optional</em>) – Phase angle of the modal result in radians.  Only valid
 when full_rotor is True.  Default 0</p></li>
 <li><p><strong>full_rotor</strong> (<em>bool</em><em>, </em><em>optional</em>) – Expand the sector solution to the full rotor.</p></li>
@@ -2690,7 +2885,7 @@ containing all nodes of the component.  Default True.</p></li>
 <p>Plot nodal elastic strain for an academic rotor</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">download_academic_rotor</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span><span class="o">.</span><span class="n">plot_nodal_elastic_strain</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span><span class="o">.</span><span class="n">plot_nodal_elastic_strain</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;X&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -2710,8 +2905,7 @@ list containing (step, substep) of the requested result.</p></li>
 - <code class="docutils literal notranslate"><span class="pre">&quot;Z&quot;</span></code>
 - <code class="docutils literal notranslate"><span class="pre">&quot;XY&quot;</span></code>
 - <code class="docutils literal notranslate"><span class="pre">&quot;YZ&quot;</span></code>
-- <code class="docutils literal notranslate"><span class="pre">&quot;XZ&quot;</span></code>
-- <code class="docutils literal notranslate"><span class="pre">&quot;EQV&quot;</span></code></p></li>
+- <code class="docutils literal notranslate"><span class="pre">&quot;XZ&quot;</span></code></p></li>
 <li><p><strong>phase</strong> (<em>float</em><em>, </em><em>optional</em>) – Phase angle of the modal result in radians.  Only valid
 when full_rotor is True.  Default 0</p></li>
 <li><p><strong>full_rotor</strong> (<em>bool</em><em>, </em><em>optional</em>) – Expand the sector solution to the full rotor.</p></li>

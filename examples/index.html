@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>MAPDL and Result Reader Examples &mdash; pyansys 0.42.2 documentation</title>
+  <title>MAPDL and Result Reader Examples &mdash; pyansys 0.43.0 documentation</title>
   
 
   
@@ -27,6 +27,7 @@
         <script src="../_static/language_data.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -66,7 +67,7 @@
             
             
               <div class="version">
-                0.42.2
+                0.43.0
               </div>
             
           
@@ -90,22 +91,19 @@
               
             
             
-              <p class="caption"><span class="caption-text">APDL Python Scripting</span></p>
+              <p class="caption"><span class="caption-text">Interactive MAPDL Python Interface</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../ansys_control.html">ANSYS APDL Interactive Control</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ansys_functions.html">ANSYS Functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../apdl_conversion.html">APDL Conversion Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ansys_examples.html">ANSYS APDL Interactive Control Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mapdl/index.html">ANSYS MAPDL Interactive Control</a></li>
 </ul>
-<p class="caption"><span class="caption-text">File IO and Visualization</span></p>
+<p class="caption"><span class="caption-text">ANSYS File Support</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../ansys_write_archive.html">Reading and Writing ANSYS Archive Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../archive.html">Reading and Writing ANSYS Archive Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../loading_results.html">Working with a ANSYS Result Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples.html">Archive and Result File Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../loading_km.html">Working with a ANSYS Full File (full)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../loading_emat.html">Working with a ANSYS Element Matrix File (.emat)</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Examples Gallery</span></p>
+<p class="caption"><span class="caption-text">Example Gallery</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">MAPDL and Result Reader Examples</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#loading-and-visualizing-result-files">Loading and Visualizing Result Files</a><ul>
@@ -128,6 +126,23 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#ansys-mapdl-examples-using-pyansys">ANSYS MAPDL Examples Using Pyansys</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="02-mapdl-examples/2d_plate_with_a_hole.html">ANSYS 2D Plane Stress Concentration Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02-mapdl-examples/2d_plate_with_a_hole.html#element-type-and-material-properties">Element Type and Material Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02-mapdl-examples/2d_plate_with_a_hole.html#geometry">Geometry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02-mapdl-examples/2d_plate_with_a_hole.html#meshing">Meshing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02-mapdl-examples/2d_plate_with_a_hole.html#boundary-conditions">Boundary Conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02-mapdl-examples/2d_plate_with_a_hole.html#solve-the-static-problem">Solve the Static Problem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02-mapdl-examples/2d_plate_with_a_hole.html#post-processing">Post-Processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02-mapdl-examples/2d_plate_with_a_hole.html#compute-the-stress-concentration">Compute the Stress Concentration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02-mapdl-examples/2d_plate_with_a_hole.html#batch-analysis">Batch Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02-mapdl-examples/2d_plate_with_a_hole.html#analytical-comparison">Analytical Comparison</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02-mapdl-examples/3d_notch.html">3D Stress Concentration Analysis for a Notched Plate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02-mapdl-examples/3d_notch.html#geometry">Geometry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02-mapdl-examples/3d_notch.html#meshing">Meshing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02-mapdl-examples/3d_notch.html#material-properties-and-boundary-conditions">Material Properties and Boundary Conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02-mapdl-examples/3d_notch.html#solve-the-static-problem">Solve the Static Problem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02-mapdl-examples/3d_notch.html#post-processing">Post-Processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02-mapdl-examples/3d_notch.html#compute-the-stress-concentration">Compute the Stress Concentration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="02-mapdl-examples/mapdl_3d_beam.html">MAPDL 3D Beam Example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="02-mapdl-examples/mapdl_beam.html">MAPDL 2D Beam Example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="02-mapdl-examples/pyvista_mesh.html">PyVista Mesh Integration</a></li>
@@ -259,21 +274,33 @@ directly analyze MAPDL result files from a cyclic analysis.</p>
 <div class="section" id="ansys-mapdl-examples-using-pyansys">
 <span id="sphx-glr-examples-02-mapdl-examples"></span><h2>ANSYS MAPDL Examples Using Pyansys<a class="headerlink" href="#ansys-mapdl-examples-using-pyansys" title="Permalink to this headline">¶</a></h2>
 <p>These examples demonstrate using MAPDL and pyansys together.</p>
-<div class="sphx-glr-thumbcontainer" tooltip="This is a simple example that loads an archive file containing a beam and then runs a modal ana..."><div class="figure align-default" id="id8">
+<div class="sphx-glr-thumbcontainer" tooltip="This tutorial shows how you can use pyansys and MAPDL to determine and verify the &quot;stress conce..."><div class="figure align-default" id="id8">
+<img alt="ANSYS 2D Plane Stress Concentration Analysis" src="../_images/sphx_glr_2d_plate_with_a_hole_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="02-mapdl-examples/2d_plate_with_a_hole.html#sphx-glr-examples-02-mapdl-examples-2d-plate-with-a-hole-py"><span class="std std-ref">ANSYS 2D Plane Stress Concentration Analysis</span></a></span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="This tutorial is the 3D corollary to the 2D plane example ref_plane_stress_concentration, but T..."><div class="figure align-default" id="id9">
+<img alt="3D Stress Concentration Analysis for a Notched Plate" src="../_images/sphx_glr_3d_notch_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="02-mapdl-examples/3d_notch.html#sphx-glr-examples-02-mapdl-examples-3d-notch-py"><span class="std std-ref">3D Stress Concentration Analysis for a Notched Plate</span></a></span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="This is a simple example that loads an archive file containing a beam and then runs a modal ana..."><div class="figure align-default" id="id10">
 <img alt="MAPDL 3D Beam Example" src="../_images/sphx_glr_mapdl_3d_beam_thumb.png" />
-<p class="caption"><span class="caption-text"><a class="reference internal" href="02-mapdl-examples/mapdl_3d_beam.html#sphx-glr-examples-02-mapdl-examples-mapdl-3d-beam-py"><span class="std std-ref">MAPDL 3D Beam Example</span></a></span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="02-mapdl-examples/mapdl_3d_beam.html#sphx-glr-examples-02-mapdl-examples-mapdl-3d-beam-py"><span class="std std-ref">MAPDL 3D Beam Example</span></a></span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
 </div>
 </div><div class="toctree-wrapper compound">
 </div>
-<div class="sphx-glr-thumbcontainer" tooltip="This is an example from FINITE ELEMENT ANALYSIS USING ANSYS 11.0"><div class="figure align-default" id="id9">
+<div class="sphx-glr-thumbcontainer" tooltip="This is an example from FINITE ELEMENT ANALYSIS USING ANSYS 11.0"><div class="figure align-default" id="id11">
 <img alt="MAPDL 2D Beam Example" src="../_images/sphx_glr_mapdl_beam_thumb.png" />
-<p class="caption"><span class="caption-text"><a class="reference internal" href="02-mapdl-examples/mapdl_beam.html#sphx-glr-examples-02-mapdl-examples-mapdl-beam-py"><span class="std std-ref">MAPDL 2D Beam Example</span></a></span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="02-mapdl-examples/mapdl_beam.html#sphx-glr-examples-02-mapdl-examples-mapdl-beam-py"><span class="std std-ref">MAPDL 2D Beam Example</span></a></span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
 </div>
 </div><div class="toctree-wrapper compound">
 </div>
-<div class="sphx-glr-thumbcontainer" tooltip="Run a modal analysis on a mesh generated from pyvista within MAPDL."><div class="figure align-default" id="id10">
+<div class="sphx-glr-thumbcontainer" tooltip="Run a modal analysis on a mesh generated from pyvista within MAPDL."><div class="figure align-default" id="id12">
 <img alt="PyVista Mesh Integration" src="../_images/sphx_glr_pyvista_mesh_thumb.png" />
-<p class="caption"><span class="caption-text"><a class="reference internal" href="02-mapdl-examples/pyvista_mesh.html#sphx-glr-examples-02-mapdl-examples-pyvista-mesh-py"><span class="std std-ref">PyVista Mesh Integration</span></a></span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="02-mapdl-examples/pyvista_mesh.html#sphx-glr-examples-02-mapdl-examples-pyvista-mesh-py"><span class="std std-ref">PyVista Mesh Integration</span></a></span><a class="headerlink" href="#id12" title="Permalink to this image">¶</a></p>
 </div>
 </div><div class="toctree-wrapper compound">
 </div>

@@ -1,0 +1,291 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Translating Scripts &mdash; pyansys 0.43.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="ANSYS APDL Interactive Control Examples" href="examples.html" />
+    <link rel="prev" title="Command Naming Conventions and Rules" href="mapdl.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> pyansys
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.43.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Interactive MAPDL Python Interface</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">ANSYS MAPDL Interactive Control</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="functions.html">ANSYS Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mesh_geometry.html">Pythonic Data Access of Mesh and Geometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mesh_geometry.html#the-mapdl-geometry-class">The MAPDL Geometry Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mesh_geometry.html#the-mapdl-mesh-class">The MAPDL Mesh Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plotting.html">Interactive Plotting using VTK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plotting.html#plotting-non-interactively-using-mapdl">Plotting Non-Interactively using MAPDL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html">Setting and Retreiving Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#parameters-description">Parameters Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mapdl.html">Command Naming Conventions and Rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mapdl.html#conditional-statements-and-loops">Conditional Statements and Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mapdl.html#warnings-and-errors">Warnings and Errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mapdl.html#prompts">Prompts</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Translating Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html">ANSYS APDL Interactive Control Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#initial-setup-and-example">Initial Setup and Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#pyansys-mapdl-basics">PyANSYS MAPDL Basics</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">ANSYS File Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../archive.html">Reading and Writing ANSYS Archive Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../loading_results.html">Working with a ANSYS Result Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Archive and Result File Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../loading_km.html">Working with a ANSYS Full File (full)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../loading_emat.html">Working with a ANSYS Element Matrix File (.emat)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Example Gallery</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">MAPDL and Result Reader Examples</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Miscellaneous</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../quality.html">Compute Cell Quality</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pyansys</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">ANSYS MAPDL Interactive Control</a> &raquo;</li>
+        
+      <li>Translating Scripts</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/mapdl/conversion.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="translating-scripts">
+<h1>Translating Scripts<a class="headerlink" href="#translating-scripts" title="Permalink to this headline">¶</a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> module contains a few basic functions to translate
+existing MAPDL scripts into <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> scripts.  Ideally, all math
+and variable setting would take place within Python as much as
+possible as APDL math is much less transparent and more difficult to
+debug.  These examples only show an automatic translation of a
+verification file and not optimized code.  Should it be necessary to
+pull parameters or arrays from ansys, use the <code class="docutils literal notranslate"><span class="pre">get_value</span></code> command,
+which is quite similar to the MAPDL <code class="docutils literal notranslate"><span class="pre">GET</span></code> command:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">get_value</span><span class="p">(</span><span class="s1">&#39;NODE&#39;</span> <span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;U&#39;</span> <span class="p">,</span><span class="s1">&#39;Y&#39;</span><span class="p">)</span>
+<span class="go">4.532094298033</span>
+</pre></div>
+</div>
+<p>Alternatively, if a parameter is already defined, you can access it
+using <code class="docutils literal notranslate"><span class="pre">mapdl.parameters</span></code> with:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">parameters</span>
+<span class="go">ARR                              : ARRAY DIM (3, 1, 1)</span>
+<span class="go">PARM_FLOAT                       : 20.0</span>
+<span class="go">PARM_INT                         : 10.0</span>
+<span class="go">PARM_LONG_STR                    : &quot;stringstringstringstringstringst&quot;</span>
+<span class="go">PARM_STR                         : &quot;string&quot;</span>
+<span class="go">DEF_Y                            : 4.532094298033</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;DEF_Y&#39;</span><span class="p">]</span>
+<span class="go">4.532094298033</span>
+</pre></div>
+</div>
+<p>Existing ANSYS scripts can be translated using:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="n">inputfile</span> <span class="o">=</span> <span class="s1">&#39;ansys_inputfile.inp&#39;</span>
+<span class="n">pyscript</span> <span class="o">=</span> <span class="s1">&#39;pyscript.py&#39;</span>
+<span class="n">pyansys</span><span class="o">.</span><span class="n">convert_script</span><span class="p">(</span><span class="n">inputfile</span><span class="p">,</span> <span class="n">pyscript</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Of particular note in the following examples is how most of the
+commands can be called as a method to the ansys object rather than
+sending a string as a command.  Additionally, take note that some
+commands require the <code class="docutils literal notranslate"><span class="pre">with</span> <span class="pre">mapdl.non_interactive:</span></code> directive since
+some commands require and will break the CORBA server connection.
+Also note that APDL macros that use <code class="docutils literal notranslate"><span class="pre">*CREATE</span></code> have been replaced
+with a python function.  This will make the code easier to debug
+should it be necessary to insert a break point in the code.</p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="examples.html" class="btn btn-neutral float-right" title="ANSYS APDL Interactive Control Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="mapdl.html" class="btn btn-neutral float-left" title="Command Naming Conventions and Rules" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Alex Kaszynski
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

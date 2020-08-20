@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Working with a ANSYS Result Files &mdash; pyansys 0.42.2 documentation</title>
+  <title>Working with a ANSYS Result Files &mdash; pyansys 0.43.0 documentation</title>
   
 
   
@@ -27,6 +27,7 @@
         <script src="_static/language_data.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -42,7 +43,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Archive and Result File Examples" href="examples.html" />
-    <link rel="prev" title="Reading and Writing ANSYS Archive Files" href="ansys_write_archive.html" /> 
+    <link rel="prev" title="Reading and Writing ANSYS Archive Files" href="archive.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -66,7 +67,7 @@
             
             
               <div class="version">
-                0.42.2
+                0.43.0
               </div>
             
           
@@ -90,20 +91,17 @@
               
             
             
-              <p class="caption"><span class="caption-text">APDL Python Scripting</span></p>
+              <p class="caption"><span class="caption-text">Interactive MAPDL Python Interface</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="ansys_control.html">ANSYS APDL Interactive Control</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ansys_functions.html">ANSYS Functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="apdl_conversion.html">APDL Conversion Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ansys_examples.html">ANSYS APDL Interactive Control Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mapdl/index.html">ANSYS MAPDL Interactive Control</a></li>
 </ul>
-<p class="caption"><span class="caption-text">File IO and Visualization</span></p>
+<p class="caption"><span class="caption-text">ANSYS File Support</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="ansys_write_archive.html">Reading and Writing ANSYS Archive Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="archive.html">Reading and Writing ANSYS Archive Files</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Working with a ANSYS Result Files</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#loading-the-result-file">Loading the Result File</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#resultfile-properties">ResultFile Properties</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#geometry">Geometry</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#mesh">Mesh</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#coordinate-systems">Coordinate Systems</a></li>
 </ul>
 </li>
@@ -121,7 +119,7 @@
 <li class="toctree-l1"><a class="reference internal" href="loading_km.html">Working with a ANSYS Full File (full)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="loading_emat.html">Working with a ANSYS Element Matrix File (.emat)</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Examples Gallery</span></p>
+<p class="caption"><span class="caption-text">Example Gallery</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="examples/index.html">MAPDL and Result Reader Examples</a></li>
 </ul>
@@ -303,17 +301,17 @@ for the first result can be accessed with:</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="geometry">
-<h2>Geometry<a class="headerlink" href="#geometry" title="Permalink to this headline">¶</a></h2>
-<p>The geometry of the model can be found by querying the
-<code class="docutils literal notranslate"><span class="pre">pyansys.geometry.Geometry</span></code> class.</p>
+<div class="section" id="mesh">
+<h2>Mesh<a class="headerlink" href="#mesh" title="Permalink to this headline">¶</a></h2>
+<p>The mesh of the result can be found by querying the <code class="docutils literal notranslate"><span class="pre">mesh</span></code> property
+of a result, which returns a <code class="docutils literal notranslate"><span class="pre">pyansys.mesh.Mesh</span></code> class.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyansys</span> <span class="kn">import</span> <span class="n">examples</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">rst</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">read_binary</span><span class="p">(</span><span class="n">examples</span><span class="o">.</span><span class="n">rstfile</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">rst</span><span class="o">.</span><span class="n">geometry</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">rst</span><span class="o">.</span><span class="n">mesh</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ANSYS</span> <span class="n">Geometry</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ANSYS</span> <span class="n">Mesh</span>
   <span class="n">Number</span> <span class="n">of</span> <span class="n">Nodes</span><span class="p">:</span>              <span class="mi">321</span>
   <span class="n">Number</span> <span class="n">of</span> <span class="n">Elements</span><span class="p">:</span>           <span class="mi">40</span>
   <span class="n">Number</span> <span class="n">of</span> <span class="n">Element</span> <span class="n">Types</span><span class="p">:</span>      <span class="mi">1</span>
@@ -323,11 +321,11 @@ for the first result can be accessed with:</p>
 </div>
 <p>Which contains the following attributes:</p>
 <dl class="py class">
-<dt id="pyansys.geometry.Geometry">
-<em class="property">class </em><code class="sig-prename descclassname">pyansys.geometry.</code><code class="sig-name descname">Geometry</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nnum</span></em>, <em class="sig-param"><span class="n">nodes</span></em>, <em class="sig-param"><span class="n">elem</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">elem_off</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">ekey</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">node_comps</span><span class="o">=</span><span class="default_value">{}</span></em>, <em class="sig-param"><span class="n">elem_comps</span><span class="o">=</span><span class="default_value">{}</span></em>, <em class="sig-param"><span class="n">rdat</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">rnum</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">keyopt</span><span class="o">=</span><span class="default_value">{}</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.geometry.Geometry" title="Permalink to this definition">¶</a></dt>
+<dt id="pyansys.mesh.Mesh">
+<em class="property">class </em><code class="sig-prename descclassname">pyansys.mesh.</code><code class="sig-name descname">Mesh</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nnum</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">nodes</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">elem</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">elem_off</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">ekey</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">node_comps</span><span class="o">=</span><span class="default_value">{}</span></em>, <em class="sig-param"><span class="n">elem_comps</span><span class="o">=</span><span class="default_value">{}</span></em>, <em class="sig-param"><span class="n">rdat</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">rnum</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">keyopt</span><span class="o">=</span><span class="default_value">{}</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.mesh.Mesh" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="py method">
-<dt id="pyansys.geometry.Geometry.ekey">
-<em class="property">property </em><code class="sig-name descname">ekey</code><a class="headerlink" href="#pyansys.geometry.Geometry.ekey" title="Permalink to this definition">¶</a></dt>
+<dt id="pyansys.mesh.Mesh.ekey">
+<em class="property">property </em><code class="sig-name descname">ekey</code><a class="headerlink" href="#pyansys.mesh.Mesh.ekey" title="Permalink to this definition">¶</a></dt>
 <dd><p>Element type key</p>
 <p>Array containing element type numbers in the first column and
 the element types (like SURF154) in the second column.</p>
@@ -344,8 +342,8 @@ the element types (like SURF154) in the second column.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="pyansys.geometry.Geometry.elem">
-<em class="property">property </em><code class="sig-name descname">elem</code><a class="headerlink" href="#pyansys.geometry.Geometry.elem" title="Permalink to this definition">¶</a></dt>
+<dt id="pyansys.mesh.Mesh.elem">
+<em class="property">property </em><code class="sig-name descname">elem</code><a class="headerlink" href="#pyansys.mesh.Mesh.elem" title="Permalink to this definition">¶</a></dt>
 <dd><p>List of elements containing raw ansys information.</p>
 <p>Each element contains 10 items plus the nodes belonging to the
 element.  The first 10 items are:</p>
@@ -378,8 +376,8 @@ element.  The first 10 items are:</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="pyansys.geometry.Geometry.elem_real_constant">
-<em class="property">property </em><code class="sig-name descname">elem_real_constant</code><a class="headerlink" href="#pyansys.geometry.Geometry.elem_real_constant" title="Permalink to this definition">¶</a></dt>
+<dt id="pyansys.mesh.Mesh.elem_real_constant">
+<em class="property">property </em><code class="sig-name descname">elem_real_constant</code><a class="headerlink" href="#pyansys.mesh.Mesh.elem_real_constant" title="Permalink to this definition">¶</a></dt>
 <dd><p>Real constant reference for each element.</p>
 <p>Use the data within <code class="docutils literal notranslate"><span class="pre">rlblock</span></code> and <code class="docutils literal notranslate"><span class="pre">rlblock_num</span></code> to get the
 real constant datat for each element.</p>
@@ -399,8 +397,8 @@ real constant datat for each element.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="pyansys.geometry.Geometry.element_components">
-<em class="property">property </em><code class="sig-name descname">element_components</code><a class="headerlink" href="#pyansys.geometry.Geometry.element_components" title="Permalink to this definition">¶</a></dt>
+<dt id="pyansys.mesh.Mesh.element_components">
+<em class="property">property </em><code class="sig-name descname">element_components</code><a class="headerlink" href="#pyansys.mesh.Mesh.element_components" title="Permalink to this definition">¶</a></dt>
 <dd><p>Element components for the archive.</p>
 <p>Output is a dictionary of element components.  Each entry is an
 array of MAPDL element numbers corresponding to the element
@@ -419,8 +417,8 @@ component.  The keys are element component names.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="pyansys.geometry.Geometry.element_coord_system">
-<code class="sig-name descname">element_coord_system</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.geometry.Geometry.element_coord_system" title="Permalink to this definition">¶</a></dt>
+<dt id="pyansys.mesh.Mesh.element_coord_system">
+<code class="sig-name descname">element_coord_system</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.mesh.Mesh.element_coord_system" title="Permalink to this definition">¶</a></dt>
 <dd><p>Element coordinate system number</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
@@ -434,8 +432,8 @@ component.  The keys are element component names.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="pyansys.geometry.Geometry.enum">
-<em class="property">property </em><code class="sig-name descname">enum</code><a class="headerlink" href="#pyansys.geometry.Geometry.enum" title="Permalink to this definition">¶</a></dt>
+<dt id="pyansys.mesh.Mesh.enum">
+<em class="property">property </em><code class="sig-name descname">enum</code><a class="headerlink" href="#pyansys.mesh.Mesh.enum" title="Permalink to this definition">¶</a></dt>
 <dd><p>ANSYS element numbers.</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
@@ -447,14 +445,14 @@ component.  The keys are element component names.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="pyansys.geometry.Geometry.etype">
-<em class="property">property </em><code class="sig-name descname">etype</code><a class="headerlink" href="#pyansys.geometry.Geometry.etype" title="Permalink to this definition">¶</a></dt>
+<dt id="pyansys.mesh.Mesh.etype">
+<em class="property">property </em><code class="sig-name descname">etype</code><a class="headerlink" href="#pyansys.mesh.Mesh.etype" title="Permalink to this definition">¶</a></dt>
 <dd><p>Element type of each element.</p>
 <p>This is the ansys element type for each element.</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Archive</span><span class="p">(</span><span class="n">pyansys</span><span class="o">.</span><span class="n">examples</span><span class="o">.</span><span class="n">hexarchivefile</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span><span class="o">.</span><span class="n">ekey</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span><span class="o">.</span><span class="n">etype</span>
 <span class="go">array([ 45,  45,  45,  45,  45,  45,  45,  45,  45,  45,  45,</span>
 <span class="go">        45,  45,  45,  45,  45,  45,  45,  45,  92,  92,  92,</span>
 <span class="go">        92,  92,  92,  92,  92,  92,  92,  92,  92,  92,  92,</span>
@@ -471,8 +469,8 @@ Reference for more details:</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="pyansys.geometry.Geometry.key_option">
-<em class="property">property </em><code class="sig-name descname">key_option</code><a class="headerlink" href="#pyansys.geometry.Geometry.key_option" title="Permalink to this definition">¶</a></dt>
+<dt id="pyansys.mesh.Mesh.key_option">
+<em class="property">property </em><code class="sig-name descname">key_option</code><a class="headerlink" href="#pyansys.mesh.Mesh.key_option" title="Permalink to this definition">¶</a></dt>
 <dd><p>Additional key options for element types</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
@@ -484,8 +482,8 @@ Reference for more details:</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="pyansys.geometry.Geometry.material_type">
-<em class="property">property </em><code class="sig-name descname">material_type</code><a class="headerlink" href="#pyansys.geometry.Geometry.material_type" title="Permalink to this definition">¶</a></dt>
+<dt id="pyansys.mesh.Mesh.material_type">
+<em class="property">property </em><code class="sig-name descname">material_type</code><a class="headerlink" href="#pyansys.mesh.Mesh.material_type" title="Permalink to this definition">¶</a></dt>
 <dd><p>Material type index of each element in the archive.</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
@@ -499,8 +497,20 @@ Reference for more details:</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="pyansys.geometry.Geometry.nnum">
-<em class="property">property </em><code class="sig-name descname">nnum</code><a class="headerlink" href="#pyansys.geometry.Geometry.nnum" title="Permalink to this definition">¶</a></dt>
+<dt id="pyansys.mesh.Mesh.n_elem">
+<em class="property">property </em><code class="sig-name descname">n_elem</code><a class="headerlink" href="#pyansys.mesh.Mesh.n_elem" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of nodes</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyansys.mesh.Mesh.n_node">
+<em class="property">property </em><code class="sig-name descname">n_node</code><a class="headerlink" href="#pyansys.mesh.Mesh.n_node" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of nodes</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyansys.mesh.Mesh.nnum">
+<em class="property">property </em><code class="sig-name descname">nnum</code><a class="headerlink" href="#pyansys.mesh.Mesh.nnum" title="Permalink to this definition">¶</a></dt>
 <dd><p>Array of node numbers.</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
@@ -512,8 +522,8 @@ Reference for more details:</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="pyansys.geometry.Geometry.node_angles">
-<em class="property">property </em><code class="sig-name descname">node_angles</code><a class="headerlink" href="#pyansys.geometry.Geometry.node_angles" title="Permalink to this definition">¶</a></dt>
+<dt id="pyansys.mesh.Mesh.node_angles">
+<em class="property">property </em><code class="sig-name descname">node_angles</code><a class="headerlink" href="#pyansys.mesh.Mesh.node_angles" title="Permalink to this definition">¶</a></dt>
 <dd><p>Node angles from the archive file.</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
@@ -531,8 +541,8 @@ Reference for more details:</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="pyansys.geometry.Geometry.node_components">
-<em class="property">property </em><code class="sig-name descname">node_components</code><a class="headerlink" href="#pyansys.geometry.Geometry.node_components" title="Permalink to this definition">¶</a></dt>
+<dt id="pyansys.mesh.Mesh.node_components">
+<em class="property">property </em><code class="sig-name descname">node_components</code><a class="headerlink" href="#pyansys.mesh.Mesh.node_components" title="Permalink to this definition">¶</a></dt>
 <dd><p>Node components for the archive.</p>
 <p>Output is a dictionary of node components.  Each entry is an
 array of MAPDL node numbers corresponding to the node
@@ -558,9 +568,9 @@ component.  The keys are node component names.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="pyansys.geometry.Geometry.nodes">
-<em class="property">property </em><code class="sig-name descname">nodes</code><a class="headerlink" href="#pyansys.geometry.Geometry.nodes" title="Permalink to this definition">¶</a></dt>
-<dd><p>Nodes from the archive file.</p>
+<dt id="pyansys.mesh.Mesh.nodes">
+<em class="property">property </em><code class="sig-name descname">nodes</code><a class="headerlink" href="#pyansys.mesh.Mesh.nodes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Array of nodes.</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Archive</span><span class="p">(</span><span class="n">pyansys</span><span class="o">.</span><span class="n">examples</span><span class="o">.</span><span class="n">hexarchivefile</span><span class="p">)</span>
@@ -577,8 +587,8 @@ component.  The keys are node component names.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="pyansys.geometry.Geometry.rlblock">
-<em class="property">property </em><code class="sig-name descname">rlblock</code><a class="headerlink" href="#pyansys.geometry.Geometry.rlblock" title="Permalink to this definition">¶</a></dt>
+<dt id="pyansys.mesh.Mesh.rlblock">
+<em class="property">property </em><code class="sig-name descname">rlblock</code><a class="headerlink" href="#pyansys.mesh.Mesh.rlblock" title="Permalink to this definition">¶</a></dt>
 <dd><p>Real constant data from the RLBLOCK.</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
@@ -593,8 +603,8 @@ component.  The keys are node component names.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="pyansys.geometry.Geometry.rlblock_num">
-<em class="property">property </em><code class="sig-name descname">rlblock_num</code><a class="headerlink" href="#pyansys.geometry.Geometry.rlblock_num" title="Permalink to this definition">¶</a></dt>
+<dt id="pyansys.mesh.Mesh.rlblock_num">
+<em class="property">property </em><code class="sig-name descname">rlblock_num</code><a class="headerlink" href="#pyansys.mesh.Mesh.rlblock_num" title="Permalink to this definition">¶</a></dt>
 <dd><p>Indices from the real constant data</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
@@ -606,8 +616,40 @@ component.  The keys are node component names.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="pyansys.geometry.Geometry.section">
-<em class="property">property </em><code class="sig-name descname">section</code><a class="headerlink" href="#pyansys.geometry.Geometry.section" title="Permalink to this definition">¶</a></dt>
+<dt id="pyansys.mesh.Mesh.save">
+<code class="sig-name descname">save</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span></em>, <em class="sig-param"><span class="n">binary</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">force_linear</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">allowable_types</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">null_unallowed</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.mesh.Mesh.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save the geometry as a vtk file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>str</em>) – Filename of output file. Writer type is inferred from
+the extension of the filename.</p></li>
+<li><p><strong>binary</strong> (<em>bool</em><em>, </em><em>optional</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, write as binary, else ASCII.</p></li>
+<li><p><strong>force_linear</strong> (<em>bool</em><em>, </em><em>optional</em>) – This parser creates quadratic elements if available.  Set
+this to True to always create linear elements.  Defaults
+to False.</p></li>
+<li><p><strong>allowable_types</strong> (<em>list</em><em>, </em><em>optional</em>) – <p>Allowable element types.  Defaults to all valid element
+types in <code class="docutils literal notranslate"><span class="pre">pyansys.elements.valid_types</span></code></p>
+<p>See <code class="docutils literal notranslate"><span class="pre">help(pyansys.elements)</span></code> for available element types.</p>
+</p></li>
+<li><p><strong>null_unallowed</strong> (<em>bool</em><em>, </em><em>optional</em>) – Elements types not matching element types will be stored
+as empty (null) elements.  Useful for debug or tracking
+element numbers.  Default False.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">geom</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;mesh.vtk&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="rubric">Notes</p>
+<p>Binary files write much faster than ASCII and have a smaller
+file size.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyansys.mesh.Mesh.section">
+<em class="property">property </em><code class="sig-name descname">section</code><a class="headerlink" href="#pyansys.mesh.Mesh.section" title="Permalink to this definition">¶</a></dt>
 <dd><p>Section number</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
@@ -936,15 +978,15 @@ node average stress in the Sx, Sy Sz, Sxy, Syz, and Sxz directions.</p>
 <h2>ResultFile Object Methods<a class="headerlink" href="#resultfile-object-methods" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
 <dt id="pyansys.rst.ResultFile">
-<em class="property">class </em><code class="sig-prename descclassname">pyansys.rst.</code><code class="sig-name descname">ResultFile</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span></em>, <em class="sig-param"><span class="n">read_geometry</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">pyansys.rst.</code><code class="sig-name descname">ResultFile</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span></em>, <em class="sig-param"><span class="n">read_mesh</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reads a binary ANSYS result file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>filename</strong> (<em>str</em><em>, </em><em>optional</em>) – Filename of the ANSYS binary result file.</p></li>
 <li><p><strong>ignore_cyclic</strong> (<em>bool</em><em>, </em><em>optional</em>) – Ignores any cyclic properties.</p></li>
-<li><p><strong>read_geometry</strong> (<em>bool</em><em>, </em><em>optional</em>) – Debug parameter.  Set to False to disable reading in the
-geometry.</p></li>
+<li><p><strong>read_mesh</strong> (<em>bool</em><em>, </em><em>optional</em>) – Debug parameter.  Set to False to disable reading in the
+mesh from the result file.</p></li>
 </ul>
 </dd>
 </dl>
@@ -1346,6 +1388,12 @@ properrties of that material with only the valid entries filled.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="pyansys.rst.ResultFile.mesh">
+<em class="property">property </em><code class="sig-name descname">mesh</code><a class="headerlink" href="#pyansys.rst.ResultFile.mesh" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mesh from result file</p>
+</dd></dl>
+
+<dl class="py method">
 <dt id="pyansys.rst.ResultFile.n_results">
 <em class="property">property </em><code class="sig-name descname">n_results</code><a class="headerlink" href="#pyansys.rst.ResultFile.n_results" title="Permalink to this definition">¶</a></dt>
 <dd><p>Number of results</p>
@@ -1558,6 +1606,42 @@ of freedom which includes <code class="docutils literal notranslate"><span class
 <p class="rubric">Notes</p>
 <p>Some solution results may not include all node numbers.  This
 is reflected in the <code class="docutils literal notranslate"><span class="pre">result</span></code> and <code class="docutils literal notranslate"><span class="pre">nnum</span></code> arrays.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyansys.rst.ResultFile.nodal_static_forces">
+<code class="sig-name descname">nodal_static_forces</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rnum</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.nodal_static_forces" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the nodal forces averaged at the nodes</p>
+<p>Nodal forces are computed on an element by element basis, and
+this method averages the nodal forces for each element for
+each node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>rnum</strong> (<em>int</em><em> or </em><em>list</em>) – Cumulative result number with zero based indexing, or a
+list containing (step, substep) of the requested result.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>nnum</strong> (<em>np.ndarray</em>) – ANSYS node numbers.</p></li>
+<li><p><strong>forces</strong> (<em>np.ndarray</em>) – Averaged nodal forces.  Array is sized <code class="docutils literal notranslate"><span class="pre">[nnod</span> <span class="pre">x</span> <span class="pre">numdof]</span></code>
+where <code class="docutils literal notranslate"><span class="pre">nnod</span></code> is the number of nodes and <code class="docutils literal notranslate"><span class="pre">numdof</span></code> is the
+number of degrees of freedom for this solution.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Load the nodal static forces for the first result using the
+example hexahedral result file.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyansys</span> <span class="kn">import</span> <span class="n">examples</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rst</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">read_binary</span><span class="p">(</span><span class="n">examples</span><span class="o">.</span><span class="n">rstfile</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nnum</span><span class="p">,</span> <span class="n">forces</span> <span class="o">=</span> <span class="n">rst</span><span class="o">.</span><span class="n">nodal_static_forces</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="rubric">Notes</p>
+<p>Nodes without a a nodal will be NAN.  These are generally
+midside (quadratic) nodes.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1826,6 +1910,59 @@ containing all nodes of the component.  Default True.</p></li>
 </dd></dl>
 
 <dl class="py method">
+<dt id="pyansys.rst.ResultFile.plot_element_result">
+<code class="sig-name descname">plot_element_result</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rnum</span></em>, <em class="sig-param"><span class="n">result_type</span></em>, <em class="sig-param"><span class="n">item_index</span></em>, <em class="sig-param"><span class="n">in_element_coord_sys</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.plot_element_result" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot an element result.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rnum</strong> (<em>int</em>) – Result number.</p></li>
+<li><p><strong>result_type</strong> (<em>str</em>) – <p>Element data type to retreive.</p>
+<ul>
+<li><p>EMS: misc. data</p></li>
+<li><p>ENF: nodal forces</p></li>
+<li><p>ENS: nodal stresses</p></li>
+<li><p>ENG: volume and energies</p></li>
+<li><p>EGR: nodal gradients</p></li>
+<li><p>EEL: elastic strains</p></li>
+<li><p>EPL: plastic strains</p></li>
+<li><p>ECR: creep strains</p></li>
+<li><p>ETH: thermal strains</p></li>
+<li><p>EUL: euler angles</p></li>
+<li><p>EFX: nodal fluxes</p></li>
+<li><p>ELF: local forces</p></li>
+<li><p>EMN: misc. non-sum values</p></li>
+<li><p>ECD: element current densities</p></li>
+<li><p>ENL: nodal nonlinear data</p></li>
+<li><p>EHC: calculated heat generations</p></li>
+<li><p>EPT: element temperatures</p></li>
+<li><p>ESF: element surface stresses</p></li>
+<li><p>EDI: diffusion strains</p></li>
+<li><p>ETB: ETABLE items</p></li>
+<li><p>ECT: contact data</p></li>
+<li><p>EXY: integration point locations</p></li>
+<li><p>EBA: back stresses</p></li>
+<li><p>ESV: state variables</p></li>
+<li><p>MNL: material nonlinear record</p></li>
+</ul>
+</p></li>
+<li><p><strong>item_index</strong> (<em>int</em>) – Index of the data item for each node within the element.</p></li>
+<li><p><strong>in_element_coord_sys</strong> (<em>bool</em><em>, </em><em>optional</em>) – Returns the results in the element coordinate system.
+Default False and will return the results in the global
+coordinate system.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>nnum</strong> (<em>np.ndarray</em>) – ANSYS node numbers</p></li>
+<li><p><strong>result</strong> (<em>np.ndarray</em>) – Array of result data</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="pyansys.rst.ResultFile.plot_nodal_displacement">
 <code class="sig-name descname">plot_nodal_displacement</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.plot_nodal_displacement" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plots the nodal solution.</p>
@@ -1917,7 +2054,8 @@ containing all nodes of the component.  Default True.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>rnum</strong> (<em>int</em>) – Result number</p></li>
+<li><p><strong>rnum</strong> (<em>int</em><em> or </em><em>list</em>) – Cumulative result number with zero based indexing, or a
+list containing (step, substep) of the requested result.</p></li>
 <li><p><strong>comp</strong> (<em>str</em><em>, </em><em>optional</em>) – Plastic strain component to display.  Available options:
 - <code class="docutils literal notranslate"><span class="pre">&quot;X&quot;</span></code>
 - <code class="docutils literal notranslate"><span class="pre">&quot;Y&quot;</span></code>
@@ -3198,7 +3336,7 @@ equivalent stress.</p>
         <a href="examples.html" class="btn btn-neutral float-right" title="Archive and Result File Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="ansys_write_archive.html" class="btn btn-neutral float-left" title="Reading and Writing ANSYS Archive Files" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="archive.html" class="btn btn-neutral float-left" title="Reading and Writing ANSYS Archive Files" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

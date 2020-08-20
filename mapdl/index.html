@@ -1,0 +1,667 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ANSYS MAPDL Interactive Control &mdash; pyansys 0.43.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="ANSYS Functions" href="functions.html" />
+    <link rel="prev" title="pyansys Documentation" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> pyansys
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.43.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Interactive MAPDL Python Interface</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ANSYS MAPDL Interactive Control</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="functions.html">ANSYS Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mesh_geometry.html">Pythonic Data Access of Mesh and Geometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mesh_geometry.html#the-mapdl-geometry-class">The MAPDL Geometry Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mesh_geometry.html#the-mapdl-mesh-class">The MAPDL Mesh Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plotting.html">Interactive Plotting using VTK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plotting.html#plotting-non-interactively-using-mapdl">Plotting Non-Interactively using MAPDL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html">Setting and Retreiving Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#parameters-description">Parameters Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mapdl.html">Command Naming Conventions and Rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mapdl.html#conditional-statements-and-loops">Conditional Statements and Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mapdl.html#warnings-and-errors">Warnings and Errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mapdl.html#prompts">Prompts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conversion.html">Translating Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html">ANSYS APDL Interactive Control Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#initial-setup-and-example">Initial Setup and Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pyansys-mapdl-basics">PyANSYS MAPDL Basics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#calling-mapdl-pythonically">Calling MAPDL Pythonically</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">ANSYS File Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../archive.html">Reading and Writing ANSYS Archive Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../loading_results.html">Working with a ANSYS Result Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Archive and Result File Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../loading_km.html">Working with a ANSYS Full File (full)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../loading_emat.html">Working with a ANSYS Element Matrix File (.emat)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Example Gallery</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">MAPDL and Result Reader Examples</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Miscellaneous</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../quality.html">Compute Cell Quality</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pyansys</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>ANSYS MAPDL Interactive Control</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/mapdl/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="ansys-mapdl-interactive-control">
+<h1>ANSYS MAPDL Interactive Control<a class="headerlink" href="#ansys-mapdl-interactive-control" title="Permalink to this headline">¶</a></h1>
+<p>ANSYS MAPDL allows for the direct scripting of structural analysis
+problems through input files.  Unfortunately, MAPDL relies on an
+outdated scripting language that can be difficult to read and control
+and either requires the MAPDL GUI for an interactive session or a
+basic text interface through a batch session.</p>
+<p>The weaknesses of this language are often compensated by generating
+APDL scripts using a secondary scripting tool like <code class="docutils literal notranslate"><span class="pre">MATLAB</span></code> or
+<code class="docutils literal notranslate"><span class="pre">Python</span></code>.  However, this added layer of complexity means that the
+development feedback loop is quite long as the user must export and
+run an entire script before determining if it ran correctly or of the
+results are valid.  This module seeks to rectify that with:</p>
+<ul class="simple">
+<li><p>Low and high level scripting of MAPDL through both basic text
+commands and python commands.</p></li>
+<li><p>Plotting of MAPDL geometry and meshes using VTK from within a Python
+environment</p></li>
+<li><p>Access MAPDL arrays as Python objects (e.g. nodes, elements,
+internal arrays, results from MAPDL post-processing)</p></li>
+</ul>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Basic Features</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">ANSYS Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mesh_geometry.html">Pythonic Data Access of Mesh and Geometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mesh_geometry.html#the-mapdl-geometry-class">The MAPDL Geometry Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mesh_geometry.html#the-mapdl-mesh-class">The MAPDL Mesh Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plotting.html">Interactive Plotting using VTK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plotting.html#plotting-non-interactively-using-mapdl">Plotting Non-Interactively using MAPDL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parameters.html">Setting and Retreiving Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parameters.html#parameters-description">Parameters Description</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Advanced Features</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="mapdl.html">Command Naming Conventions and Rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mapdl.html#conditional-statements-and-loops">Conditional Statements and Loops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mapdl.html#warnings-and-errors">Warnings and Errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mapdl.html#prompts">Prompts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conversion.html">Translating Scripts</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">ANSYS APDL Interactive Control Examples</a></li>
+</ul>
+</div>
+<div class="section" id="initial-setup-and-example">
+<h2>Initial Setup and Example<a class="headerlink" href="#initial-setup-and-example" title="Permalink to this headline">¶</a></h2>
+<p>To run, <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> needs to know the location of the MAPDL binary.
+When running for the first time, <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> will request the location
+of the MAPDL executable.  You can test your installation <code class="docutils literal notranslate"><span class="pre">pyansys</span></code>
+and set it up by running the following in python:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyansys</span> <span class="kn">import</span> <span class="n">examples</span>
+<span class="n">examples</span><span class="o">.</span><span class="n">ansys_cylinder_demo</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Python will automatically attempt to detect your MAPDL binary based on
+environmental variables.  If it is unable to find a copy of MAPDL, you
+will be prompted for the location of the MAPDL executable.  Here is a
+sample input for Linux and Windows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Enter</span> <span class="n">location</span> <span class="n">of</span> <span class="n">MAPDL</span> <span class="n">executable</span><span class="p">:</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">ansys_inc</span><span class="o">/</span><span class="n">v182</span><span class="o">/</span><span class="n">ansys</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">ansys182</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Enter</span> <span class="n">location</span> <span class="n">of</span> <span class="n">MAPDL</span> <span class="n">executable</span><span class="p">:</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Program</span> <span class="n">Files</span>\<span class="n">ANSYS</span> <span class="n">Inc</span>\<span class="n">v182</span>\<span class="n">ANSYS</span>\<span class="nb">bin</span>\<span class="n">winx64</span>\<span class="n">ansys182</span><span class="o">.</span><span class="n">exe</span>
+</pre></div>
+</div>
+<p>The settings file is stored locally and you will not not need to enter
+the path again.  If you need to change the default ansys path
+(i.e. changing the default version of MAPDL), run the following:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="n">new_path</span> <span class="o">=</span> <span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Program Files</span><span class="se">\\</span><span class="s1">ANSYS Inc</span><span class="se">\\</span><span class="s1">v182</span><span class="se">\\</span><span class="s1">ANSYS</span><span class="se">\\</span><span class="s1">bin</span><span class="se">\\</span><span class="s1">winx64</span><span class="se">\\</span><span class="s1">ansys182.exe&#39;</span>
+<span class="n">pyansys</span><span class="o">.</span><span class="n">change_default_ansys_path</span><span class="p">(</span><span class="n">new_path</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="pyansys-mapdl-basics">
+<h2>PyANSYS MAPDL Basics<a class="headerlink" href="#pyansys-mapdl-basics" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">MAPDL</span></code> control module within <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> creates an instance of
+an interactive Shell of <code class="docutils literal notranslate"><span class="pre">MAPDL</span></code> in the background and sends commands
+to that shell.  Errors and warnings are processed Pythonically letting
+the user develop a script real-time without worrying about if it will
+function correctly when deployed in batch mode.</p>
+<p>MAPDL can be started from python using <a class="reference internal" href="#pyansys.launch_mapdl" title="pyansys.launch_mapdl"><code class="xref py py-func docutils literal notranslate"><span class="pre">pyansys.launch_mapdl()</span></code></a>.
+This starts MAPDL in a temporary directory by default.  You can change
+this to your current directory with:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">pyansys</span>
+
+<span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+<span class="n">mapdl</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">launch_mapdl</span><span class="p">(</span><span class="n">run_location</span><span class="o">=</span><span class="n">path</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>MAPDL is now active and you can send commands to it as a genuine a
+Python class.  For example, if we wanted to create a surface using
+keypoints we could run:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;/PREP7&#39;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;K, 1, 0, 0, 0&#39;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;K, 2, 1, 0, 0&#39;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;K, 3, 1, 1, 0&#39;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;K, 4, 0, 1, 0&#39;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;L, 1, 2&#39;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;L, 2, 3&#39;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;L, 3, 4&#39;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;L, 4, 1&#39;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;AL, 1, 2, 3, 4&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>MAPDL interactively returns the result of each command and it is
+stored to the logging module.  Errors are caught immediately.  For
+example, if you input an invalid command:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span> <span class="o">&gt;&gt;&gt;</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;AL, 1, 2, 3&#39;</span><span class="p">)</span>
+
+<span class="ne">Exception</span><span class="p">:</span>
+<span class="n">AL</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span>
+
+<span class="n">DEFINE</span> <span class="n">AREA</span> <span class="n">BY</span> <span class="n">LIST</span> <span class="n">OF</span> <span class="n">LINES</span>
+<span class="n">LINE</span> <span class="n">LIST</span> <span class="o">=</span>     <span class="mi">1</span>    <span class="mi">2</span>    <span class="mi">3</span>
+<span class="p">(</span><span class="n">TRAVERSED</span> <span class="n">IN</span> <span class="n">SAME</span> <span class="n">DIRECTION</span> <span class="n">AS</span> <span class="n">LINE</span>     <span class="mi">1</span><span class="p">)</span>
+
+<span class="o">***</span> <span class="n">ERROR</span> <span class="o">***</span>                           <span class="n">CP</span> <span class="o">=</span>       <span class="mf">0.338</span>   <span class="n">TIME</span><span class="o">=</span> <span class="mi">09</span><span class="p">:</span><span class="mi">45</span><span class="p">:</span><span class="mi">36</span>
+<span class="n">Keypoint</span> <span class="mi">1</span> <span class="ow">is</span> <span class="n">referenced</span> <span class="n">by</span> <span class="n">only</span> <span class="n">one</span> <span class="n">line</span><span class="o">.</span>  <span class="n">Improperly</span> <span class="n">connected</span> <span class="n">line</span>
+<span class="nb">set</span> <span class="k">for</span> <span class="n">AL</span> <span class="n">command</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>This <code class="docutils literal notranslate"><span class="pre">Exception</span></code> was be caught immediately.  This means that you can
+write your MAPDL scripts in python, run them interactively and then as
+a batch without worrying if the script will run correctly if you had
+instead outputted it to a script file.</p>
+<p>The Python <code class="docutils literal notranslate"><span class="pre">mapdl</span></code> class supports much more than just sending text
+to MAPDL and includes higher level wrapping allowing for better
+scripting and interaction with MAPDL.  See the examples gallery for an
+overview of the various advanced methods to visualize, script, and
+interact with MAPDL.</p>
+<div class="section" id="calling-mapdl-pythonically">
+<h3>Calling MAPDL Pythonically<a class="headerlink" href="#calling-mapdl-pythonically" title="Permalink to this headline">¶</a></h3>
+<p>One advantage of writing scripts using <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> is the ability to
+call MAPDL commands as python functions from the <code class="docutils literal notranslate"><span class="pre">Mapdl</span></code> class.  For
+example, instead of sending commands to MAPDL as in the area creation
+example, we can instead run:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># clear existing geometry</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">finish</span><span class="p">()</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+
+<span class="c1"># create a square area using keypoints</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">prep7</span><span class="p">()</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">k</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">k</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">k</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">k</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">l</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">l</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">l</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">l</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">al</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This approach has some obvious advantages, chiefly that it’s a bit
+easier to script as <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> takes care of the string formatting
+for you.  For example, inputting points from a numpy array:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># make 10 random keypoints in MAPDL</span>
+<span class="n">points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">points</span><span class="p">):</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">k</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Additionally, each function with the MAPDL class has help associated
+within it.  For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">help</span><span class="p">(</span><span class="n">mapdl</span><span class="o">.</span><span class="n">k</span><span class="p">)</span>
+
+<span class="go">Help on method K in module pyansys.MapdlCorba:</span>
+
+<span class="go">k(npt=&#39;&#39;, x=&#39;&#39;, y=&#39;&#39;, z=&#39;&#39;) method of pyansys.mapdl_corba.MapdlCorba instance</span>
+<span class="go">    APDL Command: K</span>
+
+<span class="go">    Defines a keypoint.</span>
+
+<span class="go">    Parameters</span>
+<span class="go">    ----------</span>
+<span class="go">    npt</span>
+<span class="go">        Reference number for keypoint.  If zero, the lowest available</span>
+<span class="go">        number is assigned [NUMSTR].</span>
+
+<span class="go">    x, y, z</span>
+<span class="go">        Keypoint location in the active coordinate system (may be R, θ, Z</span>
+<span class="go">        or R, θ, Φ).  If X = P, graphical picking is enabled and all other</span>
+<span class="go">        fields (including NPT) are ignored (valid only in the GUI).</span>
+
+<span class="go">    Notes</span>
+<span class="go">    -----</span>
+<span class="go">    Defines a keypoint in the active coordinate system [CSYS] for line,</span>
+<span class="go">    area, and volume descriptions.  A previously defined keypoint of the</span>
+<span class="go">    same number will be redefined.  Keypoints may be redefined only if it</span>
+<span class="go">    is not yet attached to a line or is not yet meshed.  Solid modeling in</span>
+<span class="go">    a toroidal system is not recommended.</span>
+</pre></div>
+</div>
+<dl class="py function">
+<dt id="pyansys.launch_mapdl">
+<code class="sig-prename descclassname">pyansys.</code><code class="sig-name descname">launch_mapdl</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">exec_file</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">run_location</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">mode</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">jobname</span><span class="o">=</span><span class="default_value">'file'</span></em>, <em class="sig-param"><span class="n">nproc</span><span class="o">=</span><span class="default_value">2</span></em>, <em class="sig-param"><span class="n">override</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">loglevel</span><span class="o">=</span><span class="default_value">'INFO'</span></em>, <em class="sig-param"><span class="n">additional_switches</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">start_timeout</span><span class="o">=</span><span class="default_value">120</span></em>, <em class="sig-param"><span class="n">log_apdl</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.launch_mapdl" title="Permalink to this definition">¶</a></dt>
+<dd><p>Launch a local instance of MAPDL in the background
+and allows commands to be passed to a persistent session.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>exec_file</strong> (<em>str</em><em>, </em><em>optional</em>) – The location of the MAPDL executable.  Will use the cached
+location when left at the default <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+<li><p><strong>run_location</strong> (<em>str</em><em>, </em><em>optional</em>) – MAPDL working directory.  Defaults to a temporary working
+directory.</p></li>
+<li><p><strong>mode</strong> (<em>str</em><em>, </em><em>optional</em>) – <p>Mode to launch MAPDL.  Must be one of the following:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">'corba'</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'console'</span></code></p></li>
+</ul>
+</p></li>
+<li><p><strong>jobname</strong> (<em>str</em><em>, </em><em>optional</em>) – MAPDL jobname.  Defaults to <code class="docutils literal notranslate"><span class="pre">'file'</span></code>.</p></li>
+<li><p><strong>nproc</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of processors.  Defaults to 2.</p></li>
+<li><p><strong>override</strong> (<em>bool</em><em>, </em><em>optional</em>) – Attempts to delete the lock file at the run_location.
+Useful when a prior MAPDL session has exited prematurely and
+the lock file has not been deleted.</p></li>
+<li><p><strong>wait</strong> (<em>bool</em><em>, </em><em>optional</em>) – When True, waits until MAPDL has been initialized before
+initializing the python ansys object.  Set this to False for
+debugging.</p></li>
+<li><p><strong>loglevel</strong> (<em>str</em><em>, </em><em>optional</em>) – Sets which messages are printed to the console.  Default
+‘INFO’ prints out all MAPDL messages, ‘WARNING` prints only
+messages containing MAPDL warnings, and ‘ERROR’ prints only
+error messages.</p></li>
+<li><p><strong>additional_switches</strong> (<em>str</em><em>, </em><em>optional</em>) – <p>Additional switches for MAPDL, for example aa_r, and academic
+research license, would be added with:</p>
+<ul>
+<li><p>additional_switches=”-aa_r”</p></li>
+</ul>
+<p>Avoid adding switches like -i -o or -b as these are already
+included to start up the MAPDL server.  See the notes
+section for additional details.</p>
+</p></li>
+<li><p><strong>start_timeout</strong> (<em>float</em><em>, </em><em>optional</em>) – Time to wait before raising an error that MAPDL is unable to
+start.</p></li>
+<li><p><strong>log_broadcast</strong> (<em>bool</em><em>, </em><em>optional</em>) – Additional logging for ansys solution progress.  Default True
+and visible at log level ‘INFO’.  Only applicable when <code class="docutils literal notranslate"><span class="pre">mode=corba</span></code></p></li>
+<li><p><strong>log_apdl</strong> (<em>str</em><em>, </em><em>optional</em>) – Opens an APDL log file in the current MAPDL working directory
+to log all MAPDL commands to file.  Default False.  Set to ‘a’
+to append to an existing log or ‘w’ to write a new log.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Launch MAPDL using the default configuration.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Mapdl</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Run MAPDL with shared memory parallel and specify the location of
+the ansys binary.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">exec_file</span> <span class="o">=</span> <span class="s1">&#39;C:/Program Files/ANSYS Inc/v201/ansys/bin/win64/ANSYS201.exe&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Mapdl</span><span class="p">(</span><span class="n">exec_file</span><span class="p">,</span> <span class="n">additional_switches</span><span class="o">=</span><span class="s1">&#39;-smp&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Run MAPDL using the console mode (only on linux).</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Mapdl</span><span class="p">(</span><span class="s1">&#39;/ansys_inc/v194/ansys/bin/ansys194&#39;</span><span class="p">,</span>
+<span class="go">                          mode=&#39;console&#39;)</span>
+</pre></div>
+</div>
+<p class="rubric">Notes</p>
+<p>MAPDL has the following command line options as of 2020R1</p>
+<dl class="simple">
+<dt>-aas<span class="classifier">Enables server mode</span></dt><dd><p>When enabling server mode, a custom name for the keyfile can be
+specified using the <code class="docutils literal notranslate"><span class="pre">-iorFile</span></code> option.  This is the CORBA that
+pyansys uses for <code class="docutils literal notranslate"><span class="pre">mode='corba'</span></code>.</p>
+</dd>
+<dt>-acc &lt;device&gt;<span class="classifier">Enables the use of GPU hardware.  Enables the use of</span></dt><dd><p>GPU hardware to accelerate the analysis. See GPU Accelerator
+Capability in the Parallel Processing Guide for more information.</p>
+</dd>
+<dt>-amfg<span class="classifier">Enables the additive manufacturing capability.</span></dt><dd><p>Requires an additive manufacturing license. For general
+information about this feature, see AM Process Simulation in
+ANSYS Workbench.</p>
+</dd>
+<dt>-ansexe &lt;executable&gt;<span class="classifier">activates a custom mechanical APDL executable.</span></dt><dd><p>In the ANSYS Workbench environment, activates a custom
+Mechanical APDL executable.</p>
+</dd>
+<dt>-b &lt;list or nolist&gt;<span class="classifier">Activates batch mode</span></dt><dd><p>The options <code class="docutils literal notranslate"><span class="pre">-b</span></code> list or <code class="docutils literal notranslate"><span class="pre">-b</span></code> by itself cause the input
+listing to be included in the output. The <code class="docutils literal notranslate"><span class="pre">-b</span></code> nolist option
+causes the input listing not to be included. For more information
+about running Mechanical APDL in batch mode, see Batch Mode.</p>
+</dd>
+<dt>-custom &lt;executable&gt;<span class="classifier">Calls a custom Mechanical APDL executable</span></dt><dd><p>See Running Your Custom Executable in the Programmer’s Reference
+for more information.</p>
+</dd>
+<dt>-d &lt;device&gt;<span class="classifier">Specifies the type of graphics device</span></dt><dd><p>This option applies only to interactive mode. For Linux systems,
+graphics device choices are X11, X11C, or 3D. For Windows
+systems, graphics device options are WIN32 or WIN32C, or 3D.</p>
+</dd>
+<dt>-db value<span class="classifier">Initial memory allocation</span></dt><dd><p>Defines the portion of workspace (memory) to be used as the
+initial allocation for the database. The default is 1024
+MB. Specify a negative number to force a fixed size throughout
+the run; useful on small memory systems.</p>
+</dd>
+<dt>-dir &lt;path&gt;<span class="classifier">Defines the initial working directory</span></dt><dd><p>Using the <code class="docutils literal notranslate"><span class="pre">-dir</span></code> option overrides the
+<code class="docutils literal notranslate"><span class="pre">ANSYS201_WORKING_DIRECTORY</span></code> environment variable.</p>
+</dd>
+<dt>-dis<span class="classifier">Enables Distributed ANSYS</span></dt><dd><p>See the Parallel Processing Guide for more information.</p>
+</dd>
+<dt>-dvt<span class="classifier">Enables ANSYS DesignXplorer advanced task (add-on).</span></dt><dd><p>Requires DesignXplorer.</p>
+</dd>
+<dt>-g<span class="classifier">Launches the Mechanical APDL program with the GUI</span></dt><dd><p>Graphical User Interface (GUI) on. If you select this option, an
+X11 graphics device is assumed for Linux unless the <code class="docutils literal notranslate"><span class="pre">-d</span></code> option
+specifies a different device. This option is not used on Windows
+systems. To activate the GUI after Mechanical APDL has started,
+enter two commands in the input window: /SHOW to define the
+graphics device, and /MENU,ON to activate the GUI. The <code class="docutils literal notranslate"><span class="pre">-g</span></code> option
+is valid only for interactive mode.  Note: If you start
+Mechanical APDL via the <code class="docutils literal notranslate"><span class="pre">-g</span></code> option, the program ignores any /SHOW
+command in the start.ans file and displays a splash screen
+briefly before opening the GUI windows.</p>
+</dd>
+<dt>-i &lt;inputname&gt;<span class="classifier">Specifies the name of the file to read</span></dt><dd><p>Inputs an input file into Mechanical APDL for batch
+processing.</p>
+</dd>
+<dt>-iorFile &lt;keyfile_name&gt;<span class="classifier">Specifies the name of the server keyfile</span></dt><dd><p>Name of the server keyfile when enabling server mode. If this
+option is not supplied, the default name of the keyfile is
+<code class="docutils literal notranslate"><span class="pre">aas_MapdlID.txt</span></code>. For more information, see Mechanical APDL as
+a Server Keyfile in the Mechanical APDL as a Server User’s Guide.</p>
+</dd>
+<dt>-j &lt;Jobname&gt;<span class="classifier">Specifies the initial jobname</span></dt><dd><p>A name assigned to all files generated by the program for a
+specific model. If you omit the <code class="docutils literal notranslate"><span class="pre">-j</span></code> option, the jobname is assumed
+to be file.</p>
+</dd>
+<dt>-l &lt;language&gt;<span class="classifier">Specifies a language file to use other than English</span></dt><dd><p>This option is valid only if you have a translated message file
+in an appropriately named subdirectory in
+<code class="docutils literal notranslate"><span class="pre">/ansys_inc/v201/ansys/docu</span></code> or
+<code class="docutils literal notranslate"><span class="pre">Program</span> <span class="pre">Files\ANSYS\Inc\V201\ANSYS\docu</span></code></p>
+</dd>
+<dt>-m &lt;workspace&gt;<span class="classifier">Specifies the total size of the workspace</span></dt><dd><p>Workspace (memory) in megabytes used for the initial
+allocation. If you omit the <code class="docutils literal notranslate"><span class="pre">-m</span></code> option, the default is 2 GB
+(2048 MB). Specify a negative number to force a fixed size
+throughout the run.</p>
+</dd>
+<dt>-machines &lt;IP&gt;<span class="classifier">Specifies the distributed machines</span></dt><dd><p>Machines on which to run a Distributed ANSYS analysis. See
+Starting Distributed ANSYS in the Parallel Processing Guide for
+more information.</p>
+</dd>
+<dt>-mpi &lt;value&gt;<span class="classifier">Specifies the type of MPI to use.</span></dt><dd><p>See the Parallel Processing Guide for more information.</p>
+</dd>
+<dt>-mpifile &lt;appfile&gt;<span class="classifier">Specifies an existing MPI file</span></dt><dd><p>Specifies an existing MPI file (appfile) to be used in a
+Distributed ANSYS run. See Using MPI Files in the Parallel
+Processing Guide for more information.</p>
+</dd>
+<dt>-na &lt;value&gt;: Specifies the number of GPU accelerator devices</dt><dd><p>Nubmer of GPU devices per machine or compute node when running
+with the GPU accelerator feature. See GPU Accelerator Capability
+in the Parallel Processing Guide for more information.</p>
+</dd>
+<dt>-name &lt;value&gt;<span class="classifier">Defines Mechanical APDL parameters</span></dt><dd><p>Set mechanical APDL parameters at program start-up. The parameter
+name must be at least two characters long. For details about
+parameters, see the ANSYS Parametric Design Language Guide.</p>
+</dd>
+<dt>-np &lt;value&gt;<span class="classifier">Specifies the number of processors</span></dt><dd><p>Number of processors to use when running Distributed ANSYS or
+Shared-memory ANSYS. See the Parallel Processing Guide for more
+information.</p>
+</dd>
+<dt>-o &lt;outputname&gt;<span class="classifier">Output file</span></dt><dd><p>Specifies the name of the file to store the output from a batch
+execution of Mechanical APDL</p>
+</dd>
+<dt>-p &lt;productname&gt;<span class="classifier">ANSYS session product</span></dt><dd><p>Defines the ANSYS session product that will run during the
+session. For more detailed information about the <code class="docutils literal notranslate"><span class="pre">-p</span></code> option,
+see Selecting an ANSYS Product via the Command Line.</p>
+</dd>
+<dt>-ppf &lt;license feature name&gt;<span class="classifier">HPC license</span></dt><dd><p>Specifies which HPC license to use during a parallel processing
+run. See HPC Licensing in the Parallel Processing Guide for more
+information.</p>
+</dd>
+<dt>-rcopy &lt;path&gt;<span class="classifier">Path to remote copy of files</span></dt><dd><p>On a Linux cluster, specifies the full path to the program used
+to perform remote copy of files. The default value is
+<code class="docutils literal notranslate"><span class="pre">/usr/bin/scp</span></code>.</p>
+</dd>
+<dt>-s &lt;read or noread&gt;<span class="classifier">Read startup file</span></dt><dd><p>Specifies whether the program reads the <code class="docutils literal notranslate"><span class="pre">start.ans</span></code> file at
+start-up. If you omit the <code class="docutils literal notranslate"><span class="pre">-s</span></code> option, Mechanical APDL reads the
+start.ans file in interactive mode and not in batch mode.</p>
+</dd>
+<dt>-schost &lt;host&gt;: Coupling service host</dt><dd><p>Specifies the host machine on which the coupling service is
+running (to which the co-simulation participant/solver must
+connect) in a System Coupling analysis.</p>
+</dd>
+<dt>-scid &lt;value&gt;<span class="classifier">System Coupling analysis licensing ID</span></dt><dd><p>Specifies the licensing ID of the System Coupling analysis.</p>
+</dd>
+<dt>-sclic &lt;<a class="reference external" href="mailto:port&#37;&#52;&#48;host">port<span>&#64;</span>host</a>&gt;<span class="classifier">System Coupling analysis host</span></dt><dd><p>Specifies the licensing port and host to use for the System
+Coupling analysis.</p>
+</dd>
+<dt>-scname &lt;solver&gt;<span class="classifier">Name of the co-simulation participant</span></dt><dd><p>Specifies the unique name used by the co-simulation participant
+to identify itself to the coupling service in a System Coupling
+analysis. For Linux systems, you need to quote the name to have
+the name recognized if it contains a space: (e.g.
+<code class="docutils literal notranslate"><span class="pre">-scname</span> <span class="pre">&quot;Solution</span> <span class="pre">1&quot;</span></code>)</p>
+</dd>
+<dt>-scport &lt;port&gt;<span class="classifier">Coupling service port</span></dt><dd><p>Specifies the port on the host machine upon which the coupling
+service is listening for connections from co-simulation
+participants in a System Coupling analysis.</p>
+</dd>
+<dt>-smp<span class="classifier">Enables shared-memory parallelism.</span></dt><dd><p>See the Parallel Processing Guide for more information.</p>
+</dd>
+<dt>-usersh<span class="classifier">Enable MPI remote shell.</span></dt><dd><p>Directs the MPI software (used by Distributed ANSYS) to use the
+remote shell (rsh) protocol instead of the default secure shell
+(ssh) protocol. See Configuring Distributed ANSYS in the Parallel
+Processing Guide for more information.</p>
+</dd>
+<dt>-v<span class="classifier">Return version info</span></dt><dd><p>Returns the Mechanical APDL release number, update number,
+copyright date, customer number, and license manager version
+number.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="functions.html" class="btn btn-neutral float-right" title="ANSYS Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../index.html" class="btn btn-neutral float-left" title="pyansys Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Alex Kaszynski
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

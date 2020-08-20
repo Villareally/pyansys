@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>MAPDL 2D Beam Example &mdash; pyansys 0.42.2 documentation</title>
+  <title>MAPDL 2D Beam Example &mdash; pyansys 0.43.0 documentation</title>
   
 
   
@@ -27,6 +27,7 @@
         <script src="../../_static/language_data.js"></script>
         <script src="../../_static/clipboard.min.js"></script>
         <script src="../../_static/copybutton.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
@@ -66,7 +67,7 @@
             
             
               <div class="version">
-                0.42.2
+                0.43.0
               </div>
             
           
@@ -90,27 +91,41 @@
               
             
             
-              <p class="caption"><span class="caption-text">APDL Python Scripting</span></p>
+              <p class="caption"><span class="caption-text">Interactive MAPDL Python Interface</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../ansys_control.html">ANSYS APDL Interactive Control</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ansys_functions.html">ANSYS Functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../apdl_conversion.html">APDL Conversion Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ansys_examples.html">ANSYS APDL Interactive Control Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../mapdl/index.html">ANSYS MAPDL Interactive Control</a></li>
 </ul>
-<p class="caption"><span class="caption-text">File IO and Visualization</span></p>
+<p class="caption"><span class="caption-text">ANSYS File Support</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../ansys_write_archive.html">Reading and Writing ANSYS Archive Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../archive.html">Reading and Writing ANSYS Archive Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../loading_results.html">Working with a ANSYS Result Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples.html">Archive and Result File Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../loading_km.html">Working with a ANSYS Full File (full)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../loading_emat.html">Working with a ANSYS Element Matrix File (.emat)</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Examples Gallery</span></p>
+<p class="caption"><span class="caption-text">Example Gallery</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">MAPDL and Result Reader Examples</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../index.html#loading-and-visualizing-result-files">Loading and Visualizing Result Files</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../index.html#cyclic-result-analysis">Cyclic Result Analysis</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html#ansys-mapdl-examples-using-pyansys">ANSYS MAPDL Examples Using Pyansys</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="2d_plate_with_a_hole.html">ANSYS 2D Plane Stress Concentration Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2d_plate_with_a_hole.html#element-type-and-material-properties">Element Type and Material Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2d_plate_with_a_hole.html#geometry">Geometry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2d_plate_with_a_hole.html#meshing">Meshing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2d_plate_with_a_hole.html#boundary-conditions">Boundary Conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2d_plate_with_a_hole.html#solve-the-static-problem">Solve the Static Problem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2d_plate_with_a_hole.html#post-processing">Post-Processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2d_plate_with_a_hole.html#compute-the-stress-concentration">Compute the Stress Concentration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2d_plate_with_a_hole.html#batch-analysis">Batch Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2d_plate_with_a_hole.html#analytical-comparison">Analytical Comparison</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_notch.html">3D Stress Concentration Analysis for a Notched Plate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_notch.html#geometry">Geometry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_notch.html#meshing">Meshing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_notch.html#material-properties-and-boundary-conditions">Material Properties and Boundary Conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_notch.html#solve-the-static-problem">Solve the Static Problem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_notch.html#post-processing">Post-Processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_notch.html#compute-the-stress-concentration">Compute the Stress Concentration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="mapdl_3d_beam.html">MAPDL 3D Beam Example</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">MAPDL 2D Beam Example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyvista_mesh.html">PyVista Mesh Integration</a></li>
@@ -206,18 +221,9 @@
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>ANSYS Mechanical Enterprise
- RELEASE                    BUILD 20.1BETA  UPDATE 20191009
-
- Current routine. . . . . . . . . . . .None (BEGIN level)
-
- Active coordinate system . . . . . . .   0 (Cartesian)
-
- Display coordinate system. . . . . . .   0 (Cartesian)
-
- Analysis type. . . . . . . . . . . . .Static (steady-state)
-
- pyansys version: 0.42.2
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Product:         ANSYS Mechanical Enterprise
+MAPDL Version:   RELEASE  Release 18.2.2    BUILD 18.2.2    UPDATE 20170927
+PyANSYS Version: 0.43.0
 </pre></div>
 </div>
 <p>Define an I-beam</p>
@@ -237,11 +243,8 @@
 <span class="n">mapdl</span><span class="o">.</span><span class="n">secplot</span><span class="p">(</span><span class="n">sec_num</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="mapdl beam" class="sphx-glr-single-img" src="../../_images/sphx_glr_mapdl_beam_001.png" />
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Matplotlib is currently using agg, which is a non-GUI backend, so cannot show the figure.
-
-&#39;SECPLOT,1,,,\r\n\r\n CUMULATIVE DISPLAY NUMBER   1 WRITTEN TO FILE file140.png       - RASTER MODE.\r\n DISPLAY TITLE=&#39;
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;*** NOTE *** Display device has not yet been specified with the /SHOW command.  Display commands ignored.&#39;
 </pre></div>
 </div>
 <p>Create nodes within MAPDL</p>
@@ -252,20 +255,16 @@
 <span class="n">mapdl</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 
 <span class="c1"># list the node coordinates</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">mapdl</span><span class="o">.</span><span class="n">nodes</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mapdl</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">nodes</span><span class="p">)</span>
 
 <span class="c1"># list the node numbers</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">mapdl</span><span class="o">.</span><span class="n">nnum</span><span class="p">)</span>
-
-<span class="c1"># plot the nodes without using vtk</span>
-<span class="n">mapdl</span><span class="o">.</span><span class="n">nplot</span><span class="p">(</span><span class="n">knum</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mapdl</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">nnum</span><span class="p">)</span>
 
 <span class="c1"># plot the nodes using VTK</span>
-<span class="n">mapdl</span><span class="o">.</span><span class="n">nplot</span><span class="p">(</span><span class="n">vtk</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">knum</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cpos</span><span class="o">=</span><span class="s1">&#39;xy&#39;</span><span class="p">,</span> <span class="n">show_bounds</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">nplot</span><span class="p">(</span><span class="n">vtk</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">knum</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cpos</span><span class="o">=</span><span class="s1">&#39;xy&#39;</span><span class="p">,</span> <span class="n">show_bounds</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">point_size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="mapdl beam" class="sphx-glr-single-img" src="../../_images/sphx_glr_mapdl_beam_002.png" />
-<img alt="mapdl beam" class="sphx-glr-single-img" src="../../_images/sphx_glr_mapdl_beam_003.png" />
+<img alt="mapdl beam" class="sphx-glr-single-img" src="../../_images/sphx_glr_mapdl_beam_001.png" />
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[  0.   0.   0.]
  [ 10.   0.   0.]
@@ -300,7 +299,7 @@
 <p>create elements between the nodes
 we can just manually create elements since we know that the elements
 are sequential</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">nnum</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">nnum</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
     <span class="n">mapdl</span><span class="o">.</span><span class="n">e</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">node</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
 
 <span class="c1"># print the elements from MAPDL</span>
@@ -308,12 +307,15 @@ are sequential</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>ELIST,,,,,,
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>LIST ALL SELECTED ELEMENTS.  (LIST NODES)
 
- LIST ALL SELECTED ELEMENTS.  (LIST NODES)
+ *** ANSYS - ENGINEERING ANALYSIS SYSTEM  RELEASE Release 18.2.2   18.2.2   ***
+ ANSYS Mechanical Enterprise
+ 88888888  VERSION=LINUX x64     23:35:03  AUG 19, 2020 CP=      0.426
 
- ** WARNING: PRE-RELEASE VERSION OF ANSYS 20.1BETA
-  ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **
+
+
+
 
     ELEM MAT TYP REL ESY SEC        NODES
 
@@ -337,24 +339,40 @@ are sequential</p>
       18   1   1   1   0   1     18    19     0
       19   1   1   1   0   1     19    20     0
       20   1   1   1   0   1     20    21     0
- MORE (
-y
-
- ** WARNING: PRE-RELEASE VERSION OF ANSYS 20.1BETA
-  ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **
-
-    ELEM MAT TYP REL ESY SEC        NODES
-
       21   1   1   1   0   1     21    22     0
       22   1   1   1   0   1     22    23     0
 </pre></div>
 </div>
-<p>also, access them as a list of arrays</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">mapdl</span><span class="o">.</span><span class="n">elements</span><span class="p">)</span>
+<p>Access them as a list of arrays
+See the documentation on <code class="docutils literal notranslate"><span class="pre">mapdl.mesh.elem</span></code> for interperting the
+individual elements</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">elem</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[array([1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 2], dtype=int32), array([1, 1, 1, 1, 0, 0, 0, 0, 2, 0, 2, 3], dtype=int32), array([1, 1, 1, 1, 0, 0, 0, 0, 3, 0, 3, 4], dtype=int32), array([1, 1, 1, 1, 0, 0, 0, 0, 4, 0, 4, 5], dtype=int32), array([1, 1, 1, 1, 0, 0, 0, 0, 5, 0, 5, 6], dtype=int32), array([1, 1, 1, 1, 0, 0, 0, 0, 6, 0, 6, 7], dtype=int32), array([1, 1, 1, 1, 0, 0, 0, 0, 7, 0, 7, 8], dtype=int32), array([1, 1, 1, 1, 0, 0, 0, 0, 8, 0, 8, 9], dtype=int32), array([ 1,  1,  1,  1,  0,  0,  0,  0,  9,  0,  9, 10], dtype=int32), array([ 1,  1,  1,  1,  0,  0,  0,  0, 10,  0, 10, 11], dtype=int32), array([ 1,  1,  1,  1,  0,  0,  0,  0, 11,  0, 11, 12], dtype=int32), array([ 1,  1,  1,  1,  0,  0,  0,  0, 12,  0, 12, 13], dtype=int32), array([ 1,  1,  1,  1,  0,  0,  0,  0, 13,  0, 13, 14], dtype=int32), array([ 1,  1,  1,  1,  0,  0,  0,  0, 14,  0, 14, 15], dtype=int32), array([ 1,  1,  1,  1,  0,  0,  0,  0, 15,  0, 15, 16], dtype=int32), array([ 1,  1,  1,  1,  0,  0,  0,  0, 16,  0, 16, 17], dtype=int32), array([ 1,  1,  1,  1,  0,  0,  0,  0, 17,  0, 17, 18], dtype=int32), array([ 1,  1,  1,  1,  0,  0,  0,  0, 18,  0, 18, 19], dtype=int32), array([ 1,  1,  1,  1,  0,  0,  0,  0, 19,  0, 19, 20], dtype=int32), array([ 1,  1,  1,  1,  0,  0,  0,  0, 20,  0, 20, 21], dtype=int32), array([ 1,  1,  1,  1,  0,  0,  0,  0, 21,  0, 21, 22], dtype=int32), array([ 1,  1,  1,  1,  0,  0,  0,  0, 22,  0, 22, 23], dtype=int32)]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[1 1 1 1 0 0 0 0 1 0 1 2]
+[1 1 1 1 0 0 0 0 2 0 2 3]
+[1 1 1 1 0 0 0 0 3 0 3 4]
+[1 1 1 1 0 0 0 0 4 0 4 5]
+[1 1 1 1 0 0 0 0 5 0 5 6]
+[1 1 1 1 0 0 0 0 6 0 6 7]
+[1 1 1 1 0 0 0 0 7 0 7 8]
+[1 1 1 1 0 0 0 0 8 0 8 9]
+[ 1  1  1  1  0  0  0  0  9  0  9 10]
+[ 1  1  1  1  0  0  0  0 10  0 10 11]
+[ 1  1  1  1  0  0  0  0 11  0 11 12]
+[ 1  1  1  1  0  0  0  0 12  0 12 13]
+[ 1  1  1  1  0  0  0  0 13  0 13 14]
+[ 1  1  1  1  0  0  0  0 14  0 14 15]
+[ 1  1  1  1  0  0  0  0 15  0 15 16]
+[ 1  1  1  1  0  0  0  0 16  0 16 17]
+[ 1  1  1  1  0  0  0  0 17  0 17 18]
+[ 1  1  1  1  0  0  0  0 18  0 18 19]
+[ 1  1  1  1  0  0  0  0 19  0 19 20]
+[ 1  1  1  1  0  0  0  0 20  0 20 21]
+[ 1  1  1  1  0  0  0  0 21  0 21 22]
+[ 1  1  1  1  0  0  0  0 22  0 22 23]
 </pre></div>
 </div>
 <p>Define the boundary conditions</p>
@@ -371,7 +389,7 @@ y
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;F,12,FZ,-22840,,,\r\n\r\n SPECIFIED NODAL LOAD FZ   FOR SELECTED NODES        12 TO       12 BY        1\r\n  REAL= -22840.0000       IMAG=  0.00000000&#39;
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;SPECIFIED NODAL LOAD FZ   FOR SELECTED NODES        12 TO       12 BY        1\n  REAL= -22840.0000       IMAG=  0.00000000&#39;
 </pre></div>
 </div>
 <p>run the static analysis</p>
@@ -382,15 +400,10 @@ y
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>SOLVE,
-
- *** NOTE ***                            CP =       1.144   TIME= 17:16:49
- The automatic domain decomposition logic has selected the MESH domain
- decomposition method with 2 processes per solution.
-
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>One or more COMPONENTS exist that do not have all underlying entities selected.  Issuing an ALLSEL or other select commands before CDWRITE will ensure all underlying entities are selected.  These COMPONENTS were not written to the CDWRITE file.
  *****  ANSYS SOLVE    COMMAND  *****
 
- *** NOTE ***                            CP =       1.145   TIME= 17:16:49
+ *** NOTE ***                            CP =       0.435   TIME= 23:35:03
  There is no title defined for this analysis.
 
  *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***
@@ -403,8 +416,13 @@ y
 
 
 
- ** WARNING: PRE-RELEASE VERSION OF ANSYS 20.1BETA
-  ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **
+ *** ANSYS - ENGINEERING ANALYSIS SYSTEM  RELEASE Release 18.2.2   18.2.2   ***
+ ANSYS Mechanical Enterprise
+ 88888888  VERSION=LINUX x64     23:35:03  AUG 19, 2020 CP=      0.435
+
+
+
+
 
                        S O L U T I O N   O P T I O N S
 
@@ -413,26 +431,13 @@ y
    ANALYSIS TYPE . . . . . . . . . . . . . . . . .STATIC (STEADY-STATE)
    GLOBALLY ASSEMBLED MATRIX . . . . . . . . . . .SYMMETRIC
 
- *** NOTE ***                            CP =       1.146   TIME= 17:16:49
+ *** NOTE ***                            CP =       0.436   TIME= 23:35:03
  Present time 0 is less than or equal to the previous time.  Time will
  default to 1.
 
- *** NOTE ***                            CP =       1.146   TIME= 17:16:49
- Results printout suppressed for interactive execute.
-
- *** NOTE ***                            CP =       1.146   TIME= 17:16:49
+ *** NOTE ***                            CP =       0.436   TIME= 23:35:03
  The conditions for direct assembly have been met.  No .emat or .erot
  files will be produced.
-
-
-
-     D I S T R I B U T E D   D O M A I N   D E C O M P O S E R
-
-  ...Number of elements: 22
-  ...Number of nodes:    23
-  ...Decompose to 2 CPU domains
-  ...Element load balance ratio =     1.000
-
 
                       L O A D   S T E P   O P T I O N S
 
@@ -447,70 +452,42 @@ y
 
  SOLUTION MONITORING INFO IS WRITTEN TO FILE= file.mntr
 
- *** NOTE ***                            CP =       1.158   TIME= 17:16:49
+ *** NOTE ***                            CP =       0.444   TIME= 23:35:03
  Predictor is ON by default for structural elements with rotational
  degrees of freedom.  Use the PRED,OFF command to turn the predictor
  OFF if it adversely affects the convergence.
 
 
  Range of element maximum matrix coefficients in global coordinates
- Maximum = 2.504767151E+10 at element 11.
- Minimum = 2.504767151E+10 at element 11.
+ Maximum = 2.504767151E+10 at element 22.
+ Minimum = 2.504767151E+10 at element 22.
 
    *** ELEMENT MATRIX FORMULATION TIMES
      TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-        1        22  BEAM188       0.003   0.000141
- Time at end of element matrix formulation CP = 1.16186702.
+        1        22  BEAM188       0.008   0.000355
+ Time at end of element matrix formulation CP = 0.450386018.
 
- DISTRIBUTED SPARSE MATRIX DIRECT SOLVER.
+ SPARSE MATRIX DIRECT SOLVER.
   Number of equations =          44,    Maximum wavefront =     12
+  Memory allocated for solver              =     0.067 MB
+  Memory required for in-core solution     =     0.064 MB
+  Memory required for out-of-core solution =     0.062 MB
 
-  Local memory allocated for solver              =      0.205 MB
-  Local memory required for in-core solution     =      0.178 MB
-  Local memory required for out-of-core solution =      0.178 MB
-
-  Total memory allocated for solver              =      0.406 MB
-  Total memory required for in-core solution     =      0.353 MB
-  Total memory required for out-of-core solution =      0.353 MB
-
- *** NOTE ***                            CP =       1.167   TIME= 17:16:49
- The Distributed Sparse Matrix Solver is currently running in the
- in-core memory mode.  This memory mode uses the most amount of memory
- in order to avoid using the hard drive as much as possible, which most
- often results in the fastest solution time.  This mode is recommended
- if enough physical memory is present to accommodate all of the solver
+ *** NOTE ***                            CP =       0.453   TIME= 23:35:03
+ The Sparse Matrix Solver is currently running in the in-core memory
+ mode.  This memory mode uses the most amount of memory in order to
+ avoid using the hard drive as much as possible, which most often
+ results in the fastest solution time.  This mode is recommended if
+ enough physical memory is present to accommodate all of the solver
  data.
- curEqn=     25  totEqn=     25 Job CP sec=      0.970
-      Factor Done= 100% Factor Wall sec=      0.001 rate=       0.7 Mflops
- Distributed sparse solver maximum pivot= 5.009534302E+10 at node 4
- ROTY.
- Distributed sparse solver minimum pivot= 861490.522 at node 12 UZ.
- Distributed sparse solver minimum pivot in absolute value= 861490.522
- at node 12 UZ.
-
-   *** ELEMENT RESULT CALCULATION TIMES
-     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
-
-        1        22  BEAM188       0.010   0.000447
-
-   *** NODAL LOAD CALCULATION TIMES
-     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
-
-        1        22  BEAM188       0.001   0.000026
- *** LOAD STEP     1   SUBSTEP     1  COMPLETED.    CUM ITER =      1
- *** TIME =   1.00000         TIME INC =   1.00000      NEW TRIANG MATRIX
-
-
- *** ANSYS BINARY FILE STATISTICS
-  BUFFER SIZE USED= 16384
-        0.062 MB WRITTEN ON ASSEMBLED MATRIX FILE: file0.full
-        0.500 MB WRITTEN ON RESULTS FILE: file0.rst
-
-0
+ Sparse solver maximum pivot= 5.009534302E+10 at node 16 ROTY.
+ Sparse solver minimum pivot= 2691965.06 at node 12 UZ.
+ Sparse solver minimum pivot in absolute value= 2691965.06 at node 12
+ UZ.
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  6.724 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  1.749 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-02-mapdl-examples-mapdl-beam-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/8ff48f19145b89370dd5f4c3c4937dae/mapdl_beam.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">mapdl_beam.py</span></code></a></p>

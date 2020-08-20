@@ -1,0 +1,11 @@
+ANSYS Examples
+==============
+These examples are used to demonstrate ANSYS examples and reading them in using ``pyansys``.
+
+
+Torsional Load using SURF154 Elements
+-------------------------------------
+
+.. _examples_ref:
+
+ANSYS archive files containing solid elements (both legacy and modern) can be loaded using ReadArchive and then converted to a vtk object.

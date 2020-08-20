@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pyansys Documentation &mdash; pyansys 0.42.2 documentation</title>
+  <title>pyansys Documentation &mdash; pyansys 0.43.0 documentation</title>
   
 
   
@@ -27,6 +27,7 @@
         <script src="_static/language_data.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -41,7 +42,7 @@
   <link rel="stylesheet" href="_static/gallery-dataframe.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="ANSYS APDL Interactive Control" href="ansys_control.html" /> 
+    <link rel="next" title="ANSYS MAPDL Interactive Control" href="mapdl/index.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -65,7 +66,7 @@
             
             
               <div class="version">
-                0.42.2
+                0.43.0
               </div>
             
           
@@ -89,22 +90,19 @@
               
             
             
-              <p class="caption"><span class="caption-text">APDL Python Scripting</span></p>
+              <p class="caption"><span class="caption-text">Interactive MAPDL Python Interface</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="ansys_control.html">ANSYS APDL Interactive Control</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ansys_functions.html">ANSYS Functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="apdl_conversion.html">APDL Conversion Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ansys_examples.html">ANSYS APDL Interactive Control Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mapdl/index.html">ANSYS MAPDL Interactive Control</a></li>
 </ul>
-<p class="caption"><span class="caption-text">File IO and Visualization</span></p>
+<p class="caption"><span class="caption-text">ANSYS File Support</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="ansys_write_archive.html">Reading and Writing ANSYS Archive Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="archive.html">Reading and Writing ANSYS Archive Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="loading_results.html">Working with a ANSYS Result Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Archive and Result File Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="loading_km.html">Working with a ANSYS Full File (full)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="loading_emat.html">Working with a ANSYS Element Matrix File (.emat)</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Examples Gallery</span></p>
+<p class="caption"><span class="caption-text">Example Gallery</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="examples/index.html">MAPDL and Result Reader Examples</a></li>
 </ul>
@@ -177,42 +175,42 @@
             
   <div class="section" id="pyansys-documentation">
 <h1>pyansys Documentation<a class="headerlink" href="#pyansys-documentation" title="Permalink to this headline">¶</a></h1>
-<dl class="simple">
-<dt>This Python module allows you to:</dt><dd><ul class="simple">
-<li><p>Interactively control an instance of ANSYS v17.0 + using Python.</p></li>
-<li><p>Extract data directly from binary ANSYS v14.5+ files and to display
-or animate them.</p></li>
-<li><p>Rapidly read in binary result <code class="docutils literal notranslate"><span class="pre">(.rst)</span></code>, binary mass and stiffness
-<code class="docutils literal notranslate"><span class="pre">(.full)</span></code>, and ASCII block archive <code class="docutils literal notranslate"><span class="pre">(.cdb)</span></code>, and element matrix
-<code class="docutils literal notranslate"><span class="pre">(.emat)</span></code> files.</p></li>
+<p>The <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> provides various pythonic interfaces to the MAPDL
+application and both ASCII and binary MAPDL files.  It allows you to:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Interactively control an instance of ANSYS v17.0 on and newer using
+Python on Windows or v13 and newer on Linux.</p></li>
+<li><p>Extract data directly from binary ANSYS v14.5+ files and display or
+animate them.</p></li>
+<li><p>Rapidly read in binary results (<code class="docutils literal notranslate"><span class="pre">.rst</span></code>, <code class="docutils literal notranslate"><span class="pre">.rth</span></code>), binary mass
+and stiffness <code class="docutils literal notranslate"><span class="pre">(.full)</span></code>, and ASCII block archive <code class="docutils literal notranslate"><span class="pre">(.cdb)</span></code>, and
+element matrix <code class="docutils literal notranslate"><span class="pre">(.emat)</span></code> files.</p></li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 <p>This python module is a community driven work in progress with
 additional features regularly added based on user requests.  Open an
 issue at <a class="reference external" href="https://github.com/akaszynski/pyansys/issues">pyansys Issues</a>
 if you identity a bug or would like to request an additional method or
 feature.</p>
-<div class="toctree-wrapper compound">
-</div>
+<p>Take a look at the <a class="reference internal" href="examples/index.html#sphx-glr-examples"><span class="std std-ref">MAPDL and Result Reader Examples</span></a> gallery for several demos using <code class="docutils literal notranslate"><span class="pre">pyansys</span></code>.</p>
 <div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <p>Installation through pip:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">pyansys</span>
 </pre></div>
 </div>
-<div class="toctree-wrapper compound">
-</div>
-<div class="toctree-wrapper compound">
-</div>
-<div class="toctree-wrapper compound">
-</div>
+<p>You can also visit <a class="reference external" href="http://pypi.python.org/pypi/pyansys">PyPi</a> or <a class="reference external" href="https://github.com/akaszynski/pyansys">GitHub</a> to download the source.</p>
+<p>If you have any installation (or other) issues, please open an issue at <a class="reference external" href="https://github.com/akaszynski/pyansys/issues">pyansys Issues</a>.</p>
 </div>
 <div class="section" id="quick-examples">
 <h2>Quick Examples<a class="headerlink" href="#quick-examples" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="interactive-control">
 <h3>Interactive Control<a class="headerlink" href="#interactive-control" title="Permalink to this headline">¶</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">pyansys</span></code> lets you create an instance of ANSYS and send commands to it pythonically:</p>
+<p>You can create an interactive instance of MAPDL using <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> to
+send commands to it Pythonically, plot meshes and geometry within
+python, and access underlying results directly through python.  Here’s
+a sample code snippet.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">pyansys</span>
 
@@ -268,29 +266,48 @@ plots results directly from an ANSYS result file using <code class="docutils lit
 </div>
 </div>
 </div>
-<div class="section" id="id1">
-<h2>Installation<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
-<p>Installation through pip:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">pyansys</span>
-</pre></div>
 </div>
-<p>You can also visit <a class="reference external" href="http://pypi.python.org/pypi/pyansys">PyPi</a> or <a class="reference external" href="https://github.com/akaszynski/pyansys">GitHub</a> to download the source.</p>
-<p>Dependencies:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">numpy</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">cython</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">pyvista</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">pexpect</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">appdirs</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">vtk</span></code></p></li>
+<hr class="docutils" />
+<div class="section" id="contents">
+<h1>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Interactive MAPDL Python Interface</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="mapdl/index.html">ANSYS MAPDL Interactive Control</a></li>
 </ul>
-<p>Dependencies are installed automatically through <code class="docutils literal notranslate"><span class="pre">pip</span></code>, except for Python 2.7 in Windows, which will require some additional work to install <code class="docutils literal notranslate"><span class="pre">VTK</span></code>.  See <a class="reference external" href="https://docs.pyvista.org/getting-started/installation.html">installing pyvista</a> for more information.</p>
 </div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">ANSYS File Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="archive.html">Reading and Writing ANSYS Archive Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="loading_results.html">Working with a ANSYS Result Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Archive and Result File Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="loading_km.html">Working with a ANSYS Full File (full)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="loading_emat.html">Working with a ANSYS Element Matrix File (.emat)</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Example Gallery</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="examples/index.html">MAPDL and Result Reader Examples</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<hr class="docutils" />
 <div class="section" id="license-and-acknowledgments">
 <h2>License and Acknowledgments<a class="headerlink" href="#license-and-acknowledgments" title="Permalink to this headline">¶</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">pyansys</span></code> is licensed under the MIT license.</p>
-<p>ANSYS documentation and functions build from html provided by <a class="reference external" href="https://www.sharcnet.ca/Software/Ansys/">Sharcnet</a>.  Thanks!</p>
-<p>This module, <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> makes no commercial claim over ANSYS whatsoever.  This tool extends the functionality of <code class="docutils literal notranslate"><span class="pre">ANSYS</span></code> by adding a python interface in both file interface as well as interactive scripting without changing the core behavior or license of the original software.  The use of the interactive APDL control of <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> requires a legally licensed local copy of ANSYS.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> module is licensed under the MIT license.</p>
+<p>ANSYS documentation and functions build from html that was hosted on
+<a class="reference external" href="https://www.sharcnet.ca/Software/Ansys/">Sharcnet</a>.  They’ve since
+taken down their documentation, but it was an excellent resource and I
+appreciate their work.</p>
+<p>This module, <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> makes no commercial claim over ANSYS
+whatsoever.  This tool extends the functionality of MAPDL by adding a
+Python interface to both the core application and the binary files
+behavior or license of the original software.  The interactive use of
+MAPDL using <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> requires a legally licensed local copy of
+ANSYS.</p>
 </div>
 </div>
 
@@ -302,7 +319,7 @@ plots results directly from an ANSYS result file using <code class="docutils lit
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="ansys_control.html" class="btn btn-neutral float-right" title="ANSYS APDL Interactive Control" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="mapdl/index.html" class="btn btn-neutral float-right" title="ANSYS MAPDL Interactive Control" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
     </div>

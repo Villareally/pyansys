@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>PyVista Mesh Integration &mdash; pyansys 0.42.2 documentation</title>
+  <title>PyVista Mesh Integration &mdash; pyansys 0.43.0 documentation</title>
   
 
   
@@ -27,6 +27,7 @@
         <script src="../../_static/language_data.js"></script>
         <script src="../../_static/clipboard.min.js"></script>
         <script src="../../_static/copybutton.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
@@ -66,7 +67,7 @@
             
             
               <div class="version">
-                0.42.2
+                0.43.0
               </div>
             
           
@@ -90,27 +91,41 @@
               
             
             
-              <p class="caption"><span class="caption-text">APDL Python Scripting</span></p>
+              <p class="caption"><span class="caption-text">Interactive MAPDL Python Interface</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../ansys_control.html">ANSYS APDL Interactive Control</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ansys_functions.html">ANSYS Functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../apdl_conversion.html">APDL Conversion Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ansys_examples.html">ANSYS APDL Interactive Control Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../mapdl/index.html">ANSYS MAPDL Interactive Control</a></li>
 </ul>
-<p class="caption"><span class="caption-text">File IO and Visualization</span></p>
+<p class="caption"><span class="caption-text">ANSYS File Support</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../ansys_write_archive.html">Reading and Writing ANSYS Archive Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../archive.html">Reading and Writing ANSYS Archive Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../loading_results.html">Working with a ANSYS Result Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples.html">Archive and Result File Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../loading_km.html">Working with a ANSYS Full File (full)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../loading_emat.html">Working with a ANSYS Element Matrix File (.emat)</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Examples Gallery</span></p>
+<p class="caption"><span class="caption-text">Example Gallery</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">MAPDL and Result Reader Examples</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../index.html#loading-and-visualizing-result-files">Loading and Visualizing Result Files</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../index.html#cyclic-result-analysis">Cyclic Result Analysis</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html#ansys-mapdl-examples-using-pyansys">ANSYS MAPDL Examples Using Pyansys</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="2d_plate_with_a_hole.html">ANSYS 2D Plane Stress Concentration Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2d_plate_with_a_hole.html#element-type-and-material-properties">Element Type and Material Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2d_plate_with_a_hole.html#geometry">Geometry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2d_plate_with_a_hole.html#meshing">Meshing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2d_plate_with_a_hole.html#boundary-conditions">Boundary Conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2d_plate_with_a_hole.html#solve-the-static-problem">Solve the Static Problem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2d_plate_with_a_hole.html#post-processing">Post-Processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2d_plate_with_a_hole.html#compute-the-stress-concentration">Compute the Stress Concentration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2d_plate_with_a_hole.html#batch-analysis">Batch Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2d_plate_with_a_hole.html#analytical-comparison">Analytical Comparison</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_notch.html">3D Stress Concentration Analysis for a Notched Plate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_notch.html#geometry">Geometry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_notch.html#meshing">Meshing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_notch.html#material-properties-and-boundary-conditions">Material Properties and Boundary Conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_notch.html#solve-the-static-problem">Solve the Static Problem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_notch.html#post-processing">Post-Processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_notch.html#compute-the-stress-concentration">Compute the Stress Concentration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="mapdl_3d_beam.html">MAPDL 3D Beam Example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="mapdl_beam.html">MAPDL 2D Beam Example</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">PyVista Mesh Integration</a></li>
@@ -257,9 +272,7 @@
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>SHPP,SUMM,,
-
- SUMMARIZE SHAPE TESTING FOR ALL SELECTED ELEMENTS
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>SUMMARIZE SHAPE TESTING FOR ALL SELECTED ELEMENTS
 
  ------------------------------------------------------------------------------
             &lt;&lt;&lt;&lt;&lt;&lt;          SHAPE TESTING SUMMARY           &gt;&gt;&gt;&gt;&gt;&gt;
@@ -279,8 +292,6 @@
 
   Any                       10000              0             0         0.00 %
  ------------------------------------------------------------------------------
-
-0
 </pre></div>
 </div>
 <p>Load the result file within <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> and plot the 8th mode.</p>
@@ -294,7 +305,7 @@
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>PyANSYS MAPDL Result file object
 Units       : User Defined
-Version     : 20.1
+Version     : 18.2
 Cyclic      : False
 Result Sets : 20
 Nodes       : 10201
@@ -305,8 +316,8 @@ Available Results:
 NSL : Nodal displacements
 
 
-[(1.6018615354204973, 1.6018615354204786, 1.5911447281442),
- (8.715250743307479e-15, -1.0047518372857667e-14, -0.010716807276288584),
+[(1.6018615354080974, 1.6018615354080845, 1.6125783426810336),
+ (6.6058269965196814e-15, -6.328271240363392e-15, 0.010716807272942781),
  (0.0, 0.0, 1.0)]
 </pre></div>
 </div>
@@ -317,8 +328,8 @@ NSL : Nodal displacements
 </div>
 <img alt="pyvista mesh" class="sphx-glr-single-img" src="../../_images/sphx_glr_pyvista_mesh_003.png" />
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[(1.6007557758795974, 1.600755775879598, 1.6007557758935074),
- (1.6653345369377348e-16, 8.326672684688674e-16, 1.3910178564557896e-11),
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[(1.6007557758557476, 1.6007557758557467, 1.6007557758553712),
+ (6.661338147750939e-16, -3.3306690738754696e-16, -3.7575498268438423e-13),
  (0.0, 0.0, 1.0)]
 </pre></div>
 </div>
@@ -338,7 +349,7 @@ Enable a continous plot looping with <code class="docutils literal notranslate">
  (0.0, 0.0, 1.0)]
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  18.852 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  15.323 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-02-mapdl-examples-pyvista-mesh-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/b5d3cd54aa3e5597f4917e93d0d15ab4/pyvista_mesh.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">pyvista_mesh.py</span></code></a></p>

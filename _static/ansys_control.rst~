@@ -1,0 +1,24 @@
+ANSYS APDL Interactive Control
+==============================
+ANSYS APDL allows for the direct scritping of ANSYS through ANSYS input files.  Unfortunaltely, APDL relies on an outdated scripting language that is difficult to read and control.  The weaknesses of this language are often compensated by generating APDL scripts using a secondary scripting tool like ``MATLAB`` or ``Python``.  However, this added layer of complexity means that the development feedback loop is quite long as the user must export and run an entire script before determining if it ran correctly or of the results are valid.  This module seeks to rectivy that.
+
+The interface control module requires ANSYS to be installed on the system running ``pyansys`` for it to operate.
+
+
+Initializing ANSYS using ``pyansys``
+------------------------------------
+The ``ANSYS`` control module within ``pyansys`` creates an instance of an interactive sheel of ``ANSYS`` in the background and sends commands to that shell.  Errors and warnings are processed Pythonically letting the user develop a script real-time without worring about if it will function correctly when deployed in batch mode.
+
+To run, ``pyansys`` needs to know the location of the ansys binary.  When running for the first time, ``pyansys`` will request the location of the ansys executable.
+
+.. code:: python
+
+    
+
+Torsional Load on a Bar using SURF154 Elements
+----------------------------------------------
+This ANSYS APDL script builds a bar and applies torque to it using SURF154 elements.  This is a static analysis example.
+
+
+Script Initialization
+~~~~~~~~~~~~~~~~~~~~~

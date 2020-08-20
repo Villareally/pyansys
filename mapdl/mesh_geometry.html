@@ -1,0 +1,765 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Pythonic Data Access of Mesh and Geometry &mdash; pyansys 0.43.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Interactive Plotting using VTK" href="plotting.html" />
+    <link rel="prev" title="ANSYS Functions" href="functions.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> pyansys
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.43.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Interactive MAPDL Python Interface</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">ANSYS MAPDL Interactive Control</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="functions.html">ANSYS Functions</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Pythonic Data Access of Mesh and Geometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-mapdl-geometry-class">The MAPDL Geometry Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-mapdl-mesh-class">The MAPDL Mesh Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plotting.html">Interactive Plotting using VTK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plotting.html#plotting-non-interactively-using-mapdl">Plotting Non-Interactively using MAPDL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html">Setting and Retreiving Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#parameters-description">Parameters Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mapdl.html">Command Naming Conventions and Rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mapdl.html#conditional-statements-and-loops">Conditional Statements and Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mapdl.html#warnings-and-errors">Warnings and Errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mapdl.html#prompts">Prompts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conversion.html">Translating Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html">ANSYS APDL Interactive Control Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#initial-setup-and-example">Initial Setup and Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#pyansys-mapdl-basics">PyANSYS MAPDL Basics</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">ANSYS File Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../archive.html">Reading and Writing ANSYS Archive Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../loading_results.html">Working with a ANSYS Result Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Archive and Result File Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../loading_km.html">Working with a ANSYS Full File (full)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../loading_emat.html">Working with a ANSYS Element Matrix File (.emat)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Example Gallery</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">MAPDL and Result Reader Examples</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Miscellaneous</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../quality.html">Compute Cell Quality</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pyansys</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">ANSYS MAPDL Interactive Control</a> &raquo;</li>
+        
+      <li>Pythonic Data Access of Mesh and Geometry</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/mapdl/mesh_geometry.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pythonic-data-access-of-mesh-and-geometry">
+<h1>Pythonic Data Access of Mesh and Geometry<a class="headerlink" href="#pythonic-data-access-of-mesh-and-geometry" title="Permalink to this headline">¶</a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">pyansys.Mapdl</span></code> class allows you to access the mesh and geometry
+without writing to an intermediate file or interperting the text
+output from various MAPDL commands.  For example, to access the nodes
+and elements of a model, normally one would list the nodes within
+MAPDL <code class="docutils literal notranslate"><span class="pre">NLIST</span></code>, but this generates a string and array access either
+requires cumbersome MAPDL GET commands, or requires the nodes be
+written to a archive file and then read in within other software.  For
+example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="n">NLIST</span>
+
+<span class="n">LIST</span> <span class="n">ALL</span> <span class="n">SELECTED</span> <span class="n">NODES</span><span class="o">.</span>   <span class="n">DSYS</span><span class="o">=</span>      <span class="mi">0</span>
+
+   <span class="n">NODE</span>        <span class="n">X</span>             <span class="n">Y</span>             <span class="n">Z</span>           <span class="n">THXY</span>     <span class="n">THYZ</span>     <span class="n">THZX</span>
+       <span class="mi">1</span>   <span class="mf">0.0000</span>        <span class="mf">0.0000</span>        <span class="mf">0.0000</span>          <span class="mf">0.00</span>     <span class="mf">0.00</span>     <span class="mf">0.00</span>
+       <span class="mi">2</span>   <span class="mf">1.0000</span>        <span class="mf">0.0000</span>        <span class="mf">0.0000</span>          <span class="mf">0.00</span>     <span class="mf">0.00</span>     <span class="mf">0.00</span>
+       <span class="mi">3</span>   <span class="mf">0.2500</span>        <span class="mf">0.0000</span>        <span class="mf">0.0000</span>          <span class="mf">0.00</span>     <span class="mf">0.00</span>     <span class="mf">0.00</span>
+</pre></div>
+</div>
+<p>However, with <code class="docutils literal notranslate"><span class="pre">pyansys</span></code>, it’s possible to interface with a current
+instance of <code class="docutils literal notranslate"><span class="pre">mapdl</span></code> and access the current nodes coordinates with:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">nodes</span>
+<span class="go">[[0.   0.   0.  ]</span>
+<span class="go"> [1.   0.   0.  ]</span>
+<span class="go"> [0.25 0.   0.  ]</span>
+<span class="go"> ...,</span>
+<span class="go"> [0.75 0.5  3.5 ]</span>
+<span class="go"> [0.75 0.5  4.  ]</span>
+<span class="go"> [0.75 0.5  4.5 ]]</span>
+</pre></div>
+</div>
+<p>Both the <code class="docutils literal notranslate"><span class="pre">geometry</span></code> and <code class="docutils literal notranslate"><span class="pre">mesh</span></code> properties support additional, lower level access to MAPDL data.  Access them with:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">mesh</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">geometry</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-mapdl-geometry-class">
+<h1>The MAPDL Geometry Class<a class="headerlink" href="#the-mapdl-geometry-class" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="pyansys.mapdl_geometry.Geometry">
+<em class="property">class </em><code class="sig-prename descclassname">pyansys.mapdl_geometry.</code><code class="sig-name descname">Geometry</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">mapdl</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.mapdl_geometry.Geometry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pythonic representation of MAPDL CAD geometry</p>
+<dl class="py method">
+<dt id="pyansys.mapdl_geometry.Geometry.anum">
+<em class="property">property </em><code class="sig-name descname">anum</code><a class="headerlink" href="#pyansys.mapdl_geometry.Geometry.anum" title="Permalink to this definition">¶</a></dt>
+<dd><p>Array of area numbers.
+.. rubric:: Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">block</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">anum</span>
+<span class="go">array([1, 2, 3, 4, 5, 6], dtype=int32)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyansys.mapdl_geometry.Geometry.areas">
+<code class="sig-name descname">areas</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">quality</span><span class="o">=</span><span class="default_value">7</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.mapdl_geometry.Geometry.areas" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of areas from MAPDL represented as <code class="docutils literal notranslate"><span class="pre">pyvista.PolyData</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>quality</strong> (<em>int</em><em>, </em><em>optional</em>) – quality of the mesh to display.  Varies between 1 (worst)
+to 10 (best).</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>areas</strong> – List of <code class="docutils literal notranslate"><span class="pre">pyvista.PolyData</span></code> areas representing the active
+surface areas selected by <code class="docutils literal notranslate"><span class="pre">ASEL</span></code>.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyansys.mapdl_geometry.Geometry.keypoints">
+<em class="property">property </em><code class="sig-name descname">keypoints</code><a class="headerlink" href="#pyansys.mapdl_geometry.Geometry.keypoints" title="Permalink to this definition">¶</a></dt>
+<dd><p>Keypoint coordinates</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyansys.mapdl_geometry.Geometry.knum">
+<em class="property">property </em><code class="sig-name descname">knum</code><a class="headerlink" href="#pyansys.mapdl_geometry.Geometry.knum" title="Permalink to this definition">¶</a></dt>
+<dd><p>Array of keypoint numbers.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">block</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">knum</span>
+<span class="go">array([1, 2, 3, 4, 5, 6, 7, 8], dtype=int32)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyansys.mapdl_geometry.Geometry.lines">
+<em class="property">property </em><code class="sig-name descname">lines</code><a class="headerlink" href="#pyansys.mapdl_geometry.Geometry.lines" title="Permalink to this definition">¶</a></dt>
+<dd><p>Active lines as a pyvista.PolyData</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyansys.mapdl_geometry.Geometry.lnum">
+<em class="property">property </em><code class="sig-name descname">lnum</code><a class="headerlink" href="#pyansys.mapdl_geometry.Geometry.lnum" title="Permalink to this definition">¶</a></dt>
+<dd><p>Array of line numbers.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">block</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">lnum</span>
+<span class="go">array([ 1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12], dtype=int32)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyansys.mapdl_geometry.Geometry.n_area">
+<em class="property">property </em><code class="sig-name descname">n_area</code><a class="headerlink" href="#pyansys.mapdl_geometry.Geometry.n_area" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of areas currently selected</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">n_area</span>
+<span class="go">1</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyansys.mapdl_geometry.Geometry.n_keypoint">
+<em class="property">property </em><code class="sig-name descname">n_keypoint</code><a class="headerlink" href="#pyansys.mapdl_geometry.Geometry.n_keypoint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of keypoints currently selected</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">n_keypoint</span>
+<span class="go">1</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyansys.mapdl_geometry.Geometry.n_line">
+<em class="property">property </em><code class="sig-name descname">n_line</code><a class="headerlink" href="#pyansys.mapdl_geometry.Geometry.n_line" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of lines currently selected</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">n_line</span>
+<span class="go">1</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyansys.mapdl_geometry.Geometry.n_volu">
+<em class="property">property </em><code class="sig-name descname">n_volu</code><a class="headerlink" href="#pyansys.mapdl_geometry.Geometry.n_volu" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of volumes currently selected</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">n_area</span>
+<span class="go">1</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyansys.mapdl_geometry.Geometry.vnum">
+<em class="property">property </em><code class="sig-name descname">vnum</code><a class="headerlink" href="#pyansys.mapdl_geometry.Geometry.vnum" title="Permalink to this definition">¶</a></dt>
+<dd><p>Array of volume numbers.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">block</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">vnum</span>
+<span class="go">array([1], dtype=int32)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="the-mapdl-mesh-class">
+<h1>The MAPDL Mesh Class<a class="headerlink" href="#the-mapdl-mesh-class" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt>
+<em class="property">class </em><code class="sig-prename descclassname">pyansys.mesh.</code><code class="sig-name descname">Mesh</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nnum</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">nodes</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">elem</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">elem_off</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">ekey</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">node_comps</span><span class="o">=</span><span class="default_value">{}</span></em>, <em class="sig-param"><span class="n">elem_comps</span><span class="o">=</span><span class="default_value">{}</span></em>, <em class="sig-param"><span class="n">rdat</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">rnum</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">keyopt</span><span class="o">=</span><span class="default_value">{}</span></em><span class="sig-paren">)</span></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt>
+<em class="property">property </em><code class="sig-name descname">ekey</code></dt>
+<dd><p>Element type key</p>
+<p>Array containing element type numbers in the first column and
+the element types (like SURF154) in the second column.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Archive</span><span class="p">(</span><span class="n">pyansys</span><span class="o">.</span><span class="n">examples</span><span class="o">.</span><span class="n">hexarchivefile</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span><span class="o">.</span><span class="n">ekey</span>
+<span class="go">array([[  1,  45],</span>
+<span class="go">       [  2,  95],</span>
+<span class="go">       [  3,  92],</span>
+<span class="go">       [ 60, 154]], dtype=int32)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt>
+<em class="property">property </em><code class="sig-name descname">elem</code></dt>
+<dd><p>List of elements containing raw ansys information.</p>
+<p>Each element contains 10 items plus the nodes belonging to the
+element.  The first 10 items are:</p>
+<ul class="simple">
+<li><p>FIELD 0 : material reference number</p></li>
+<li><p>FIELD 1 : element type number</p></li>
+<li><p>FIELD 2 : real constant reference number</p></li>
+<li><p>FIELD 3 : section number</p></li>
+<li><p>FIELD 4 : element coordinate system</p></li>
+<li><p>FIELD 5 : death flag (0 - alive, 1 - dead)</p></li>
+<li><p>FIELD 6 : solid model reference</p></li>
+<li><p>FIELD 7 : coded shape key</p></li>
+<li><p>FIELD 8 : element number</p></li>
+<li><p>FIELD 9 : base element number (applicable to reinforcing elements only)</p></li>
+<li><p>FIELDS 10 - 30 : The nodes belonging to the element in ANSYS numbering.</p></li>
+</ul>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Archive</span><span class="p">(</span><span class="n">pyansys</span><span class="o">.</span><span class="n">examples</span><span class="o">.</span><span class="n">hexarchivefile</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span><span class="o">.</span><span class="n">elem</span>
+<span class="go">[array([  1,   4,  19,  15,  63,  91, 286, 240,   3,  18,  17,</span>
+<span class="go">         16,  81, 276, 267, 258,  62,  90, 285, 239],</span>
+<span class="go"> array([  4,   2,   8,  19,  91,  44, 147, 286,   5,   7,  21,</span>
+<span class="go">         18, 109, 137, 313, 276,  90,  43, 146, 285],</span>
+<span class="go"> array([ 15,  19,  12,  10, 240, 286, 203, 175,  17,  20,  13,</span>
+<span class="go">         14, 267, 304, 221, 230, 239, 285, 202, 174],</span>
+<span class="gp">...</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt>
+<em class="property">property </em><code class="sig-name descname">elem_real_constant</code></dt>
+<dd><p>Real constant reference for each element.</p>
+<p>Use the data within <code class="docutils literal notranslate"><span class="pre">rlblock</span></code> and <code class="docutils literal notranslate"><span class="pre">rlblock_num</span></code> to get the
+real constant datat for each element.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Archive</span><span class="p">(</span><span class="n">pyansys</span><span class="o">.</span><span class="n">examples</span><span class="o">.</span><span class="n">hexarchivefile</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span><span class="o">.</span><span class="n">elem_real_constant</span>
+<span class="go">array([ 1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,</span>
+<span class="go">        1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,</span>
+<span class="go">        1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,</span>
+<span class="go">        ...,</span>
+<span class="go">        1,  1,  1,  1,  1,  1,  1,  1,  1,  1, 61, 61, 61, 61,</span>
+<span class="go">       61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61,</span>
+<span class="go">       61], dtype=int32)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt>
+<em class="property">property </em><code class="sig-name descname">element_components</code></dt>
+<dd><p>Element components for the archive.</p>
+<p>Output is a dictionary of element components.  Each entry is an
+array of MAPDL element numbers corresponding to the element
+component.  The keys are element component names.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Archive</span><span class="p">(</span><span class="n">pyansys</span><span class="o">.</span><span class="n">examples</span><span class="o">.</span><span class="n">hexarchivefile</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span><span class="o">.</span><span class="n">element_components</span>
+<span class="go">{&#39;ECOMP1 &#39;: array([17, 18, 21, 22, 23, 24, 25, 26, 27, 28, 29,</span>
+<span class="go">                   30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40],</span>
+<span class="go">                   dtype=int32),</span>
+<span class="go">&#39;ECOMP2 &#39;: array([ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,</span>
+<span class="go">                  14, 15, 16, 17, 18, 19, 20, 23, 24], dtype=int32)}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt>
+<code class="sig-name descname">element_coord_system</code><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd><p>Element coordinate system number</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Archive</span><span class="p">(</span><span class="n">pyansys</span><span class="o">.</span><span class="n">examples</span><span class="o">.</span><span class="n">hexarchivefile</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span><span class="o">.</span><span class="n">element_coord_system</span>
+<span class="go">array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,</span>
+<span class="go">       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,</span>
+<span class="go">       0, 0], dtype=int32)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt>
+<em class="property">property </em><code class="sig-name descname">enum</code></dt>
+<dd><p>ANSYS element numbers.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Archive</span><span class="p">(</span><span class="n">pyansys</span><span class="o">.</span><span class="n">examples</span><span class="o">.</span><span class="n">hexarchivefile</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span><span class="o">.</span><span class="n">enum</span>
+<span class="go">array([    1,     2,     3, ...,  9998,  9999, 10000])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt>
+<em class="property">property </em><code class="sig-name descname">etype</code></dt>
+<dd><p>Element type of each element.</p>
+<p>This is the ansys element type for each element.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Archive</span><span class="p">(</span><span class="n">pyansys</span><span class="o">.</span><span class="n">examples</span><span class="o">.</span><span class="n">hexarchivefile</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span><span class="o">.</span><span class="n">etype</span>
+<span class="go">array([ 45,  45,  45,  45,  45,  45,  45,  45,  45,  45,  45,</span>
+<span class="go">        45,  45,  45,  45,  45,  45,  45,  45,  92,  92,  92,</span>
+<span class="go">        92,  92,  92,  92,  92,  92,  92,  92,  92,  92,  92,</span>
+<span class="go">        ...,</span>
+<span class="go">        92,  92,  92,  92,  92, 154, 154, 154, 154, 154, 154,</span>
+<span class="go">       154, 154, 154, 154, 154, 154, 154, 154, 154, 154, 154,</span>
+<span class="go">       154], dtype=int32)</span>
+</pre></div>
+</div>
+<p class="rubric">Notes</p>
+<p>Element types are listed below.  Please see the APDL Element
+Reference for more details:</p>
+<p><a class="reference external" href="https://www.mm.bme.hu/~gyebro/files/vem/ansys_14_element_reference.pdf">https://www.mm.bme.hu/~gyebro/files/vem/ansys_14_element_reference.pdf</a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt>
+<em class="property">property </em><code class="sig-name descname">key_option</code></dt>
+<dd><p>Additional key options for element types</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Archive</span><span class="p">(</span><span class="n">pyansys</span><span class="o">.</span><span class="n">examples</span><span class="o">.</span><span class="n">hexarchivefile</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span><span class="o">.</span><span class="n">key_option</span>
+<span class="go">{1: [[1, 11]]}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt>
+<em class="property">property </em><code class="sig-name descname">material_type</code></dt>
+<dd><p>Material type index of each element in the archive.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Archive</span><span class="p">(</span><span class="n">pyansys</span><span class="o">.</span><span class="n">examples</span><span class="o">.</span><span class="n">hexarchivefile</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span><span class="o">.</span><span class="n">material_type</span>
+<span class="go">array([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,</span>
+<span class="go">       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,</span>
+<span class="go">       1, 1, 1, 1], dtype=int32)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt>
+<em class="property">property </em><code class="sig-name descname">n_elem</code></dt>
+<dd><p>Number of nodes</p>
+</dd></dl>
+
+<dl class="py method">
+<dt>
+<em class="property">property </em><code class="sig-name descname">n_node</code></dt>
+<dd><p>Number of nodes</p>
+</dd></dl>
+
+<dl class="py method">
+<dt>
+<em class="property">property </em><code class="sig-name descname">nnum</code></dt>
+<dd><p>Array of node numbers.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Archive</span><span class="p">(</span><span class="n">pyansys</span><span class="o">.</span><span class="n">examples</span><span class="o">.</span><span class="n">hexarchivefile</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span><span class="o">.</span><span class="n">nnum</span>
+<span class="go">array([    1,     2,     3, ..., 19998, 19999, 20000])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt>
+<em class="property">property </em><code class="sig-name descname">node_angles</code></dt>
+<dd><p>Node angles from the archive file.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Archive</span><span class="p">(</span><span class="n">pyansys</span><span class="o">.</span><span class="n">examples</span><span class="o">.</span><span class="n">hexarchivefile</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span><span class="o">.</span><span class="n">nodes</span>
+<span class="go">[[0.   0.   0.  ]</span>
+<span class="go"> [0.   0.   0.  ]</span>
+<span class="go"> [0.   0.   0.  ]</span>
+<span class="go"> ...,</span>
+<span class="go"> [0.   0.   0.  ]</span>
+<span class="go"> [0.   0.   0.  ]</span>
+<span class="go"> [0.   0.   0.  ]]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt>
+<em class="property">property </em><code class="sig-name descname">node_components</code></dt>
+<dd><p>Node components for the archive.</p>
+<p>Output is a dictionary of node components.  Each entry is an
+array of MAPDL node numbers corresponding to the node
+component.  The keys are node component names.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Archive</span><span class="p">(</span><span class="n">pyansys</span><span class="o">.</span><span class="n">examples</span><span class="o">.</span><span class="n">hexarchivefile</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span><span class="o">.</span><span class="n">node_components</span>
+<span class="go">{&#39;NCOMP2  &#39;: array([  1,   2,   3,   4,   5,   6,   7,   8,</span>
+<span class="go">                     14, 15, 16, 17, 18, 19, 20, 21, 43, 44,</span>
+<span class="go">                     62, 63, 64, 81, 82, 90, 91, 92, 93, 94,</span>
+<span class="go">                     118, 119, 120, 121, 122, 123, 124, 125,</span>
+<span class="go">                     126, 137, 147, 148, 149, 150, 151, 152,</span>
+<span class="go">                     153, 165, 166, 167, 193, 194, 195, 202,</span>
+<span class="go">                     203, 204, 205, 206, 207, 221, 240, 258,</span>
+<span class="go">                     267, 268, 276, 277, 278, 285, 286, 287,</span>
+<span class="go">                     304, 305, 306, 313, 314, 315, 316</span>
+<span class="go">                     ], dtype=int32),</span>
+<span class="go">...,</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt>
+<em class="property">property </em><code class="sig-name descname">nodes</code></dt>
+<dd><p>Array of nodes.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Archive</span><span class="p">(</span><span class="n">pyansys</span><span class="o">.</span><span class="n">examples</span><span class="o">.</span><span class="n">hexarchivefile</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span><span class="o">.</span><span class="n">nodes</span>
+<span class="go">[[0.   0.   0.  ]</span>
+<span class="go"> [1.   0.   0.  ]</span>
+<span class="go"> [0.25 0.   0.  ]</span>
+<span class="go"> ...,</span>
+<span class="go"> [0.75 0.5  3.5 ]</span>
+<span class="go"> [0.75 0.5  4.  ]</span>
+<span class="go"> [0.75 0.5  4.5 ]]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt>
+<em class="property">property </em><code class="sig-name descname">rlblock</code></dt>
+<dd><p>Real constant data from the RLBLOCK.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Archive</span><span class="p">(</span><span class="n">pyansys</span><span class="o">.</span><span class="n">examples</span><span class="o">.</span><span class="n">hexarchivefile</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span><span class="o">.</span><span class="n">rlblock</span>
+<span class="go">[[0.   , 0.   , 0.   , 0.   , 0.   , 0.   , 0.02 ],</span>
+<span class="go"> [0.   , 0.   , 0.   , 0.   , 0.   , 0.   , 0.01 ],</span>
+<span class="go"> [0.   , 0.   , 0.   , 0.   , 0.   , 0.   , 0.005],</span>
+<span class="go"> [0.   , 0.   , 0.   , 0.   , 0.   , 0.   , 0.005]]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt>
+<em class="property">property </em><code class="sig-name descname">rlblock_num</code></dt>
+<dd><p>Indices from the real constant data</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Archive</span><span class="p">(</span><span class="n">pyansys</span><span class="o">.</span><span class="n">examples</span><span class="o">.</span><span class="n">hexarchivefile</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span><span class="o">.</span><span class="n">rnum</span>
+<span class="go">array([60, 61, 62, 63])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt>
+<code class="sig-name descname">save</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span></em>, <em class="sig-param"><span class="n">binary</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">force_linear</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">allowable_types</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">null_unallowed</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span></dt>
+<dd><p>Save the geometry as a vtk file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>str</em>) – Filename of output file. Writer type is inferred from
+the extension of the filename.</p></li>
+<li><p><strong>binary</strong> (<em>bool</em><em>, </em><em>optional</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, write as binary, else ASCII.</p></li>
+<li><p><strong>force_linear</strong> (<em>bool</em><em>, </em><em>optional</em>) – This parser creates quadratic elements if available.  Set
+this to True to always create linear elements.  Defaults
+to False.</p></li>
+<li><p><strong>allowable_types</strong> (<em>list</em><em>, </em><em>optional</em>) – <p>Allowable element types.  Defaults to all valid element
+types in <code class="docutils literal notranslate"><span class="pre">pyansys.elements.valid_types</span></code></p>
+<p>See <code class="docutils literal notranslate"><span class="pre">help(pyansys.elements)</span></code> for available element types.</p>
+</p></li>
+<li><p><strong>null_unallowed</strong> (<em>bool</em><em>, </em><em>optional</em>) – Elements types not matching element types will be stored
+as empty (null) elements.  Useful for debug or tracking
+element numbers.  Default False.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">geom</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;mesh.vtk&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="rubric">Notes</p>
+<p>Binary files write much faster than ASCII and have a smaller
+file size.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt>
+<em class="property">property </em><code class="sig-name descname">section</code></dt>
+<dd><p>Section number</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Archive</span><span class="p">(</span><span class="n">pyansys</span><span class="o">.</span><span class="n">examples</span><span class="o">.</span><span class="n">hexarchivefile</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span><span class="o">.</span><span class="n">section</span>
+<span class="go">array([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,</span>
+<span class="go">       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,</span>
+<span class="go">       1, 1], dtype=int32)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="plotting.html" class="btn btn-neutral float-right" title="Interactive Plotting using VTK" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="functions.html" class="btn btn-neutral float-left" title="ANSYS Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Alex Kaszynski
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

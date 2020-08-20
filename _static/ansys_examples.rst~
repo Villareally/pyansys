@@ -1,0 +1,113 @@
+ANSYS Examples
+==============
+These examples are used to demonstrate ANSYS examples and reading them in using ``pyansys``.
+
+
+Torsional Load on a Bar using SURF154 Elements
+----------------------------------------------
+This ANSYS APDL script builds a bar and applies torque to it using SURF154 elements.  This is a static analysis example.
+
+.. code::
+
+    !----------------------------------------
+    ! Input torque applied (moment)
+    ! Input radius, height, element size...
+    !----------------------------------------
+    TORQUE = 100
+    RADIUS = 2
+    H_TIP = 2
+    HEIGHT = 20
+    ELEMSIZE = 1
+    PI = acos(-1)
+    FORCE = 100/RADIUS
+    PRESSURE = FORCE/(H_TIP*2*PI*RADIUS)
+    
+    !----------------------------------------
+    ! Define higher-order SOLID186
+    ! Define surface effect elements SURF154
+    ! which is used to apply torque
+    ! as a tangential pressure
+    !----------------------------------------
+    /prep7
+    et, 1, 186
+    et, 2, 154
+    r,1,
+    r,2,
+    
+    !----------------------------------------
+    ! Aluminum properties (or something)
+    !----------------------------------------
+    mp,ex,1,10e6
+    mp,nuxy,1,.3
+    mp,dens,1,.1/386.1
+    mp,dens,2,0
+    
+    !----------------------------------------
+    ! Simple cylinder
+    !----------------------------------------
+    *do, ICOUNT, 1, 4
+    cylind,RADIUS,,HEIGHTH_TIP,HEIGHT,90*(ICOUNT-1),90*ICOUNT
+    *enddo
+    
+    
+    nummrg,kp
+    lsel,s,loc,x,0
+    
+    lsel,r,loc,y,0
+    lsel,r,loc,z,0,HEIGHT-H_TIP
+    lesize,all,ELEMSIZE*2
+    mshape,0
+    mshkey,1
+    esize,ELEMSIZE
+    allsel,all
+    VSWEEP, ALL
+    csys,1
+    asel,s,loc,z,HEIGHT-H_TIP+0.0001,HEIGHT0.0001
+    asel,r,loc,x,RADIUS
+    local,11,1
+    csys,0
+    aatt,2,2,2,11
+    amesh,all
+    finish
+    /solu
+    antype,static,new
+    eqslv,pcg,1e-8
+    
+    !----------------------------------------
+    ! Apply tangential pressure
+    !----------------------------------------
+    esel,s,type,,2
+    sfe,all,2,pres,,PRESSURE
+    
+    !----------------------------------------
+    ! Constrain bottom of cylinder/rod
+    !----------------------------------------
+    asel,s,loc,z,0
+    nsla,s,1
+    d,all,all
+    allsel,all
+    /psf,pres,,2
+    /pbc,u,1
+    /title, Simple torsional example
+    solve
+    finish
+    /post1
+    set,last
+    fsum
+    esel,u,type,,2
+    SAVE
+
+Read and plot the results within python using:
+.. code:: python
+
+    import pyansys
+    result = pyansys.ResultReader('file.rst')
+
+    # node numbers and nodal stress
+    nodennum, stress = result.NodalStress(0)
+
+    # stress at each element
+    element_stress, elemnum, enode = result.ElementStress(0)
+
+    # plot result
+    result.PlotNodalResult(0)

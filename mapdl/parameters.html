@@ -1,0 +1,401 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Setting and Retreiving Parameters &mdash; pyansys 0.43.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Command Naming Conventions and Rules" href="mapdl.html" />
+    <link rel="prev" title="Interactive Plotting using VTK" href="plotting.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> pyansys
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.43.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Interactive MAPDL Python Interface</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">ANSYS MAPDL Interactive Control</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="functions.html">ANSYS Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mesh_geometry.html">Pythonic Data Access of Mesh and Geometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mesh_geometry.html#the-mapdl-geometry-class">The MAPDL Geometry Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mesh_geometry.html#the-mapdl-mesh-class">The MAPDL Mesh Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plotting.html">Interactive Plotting using VTK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plotting.html#plotting-non-interactively-using-mapdl">Plotting Non-Interactively using MAPDL</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Setting and Retreiving Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#parameters-description">Parameters Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mapdl.html">Command Naming Conventions and Rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mapdl.html#conditional-statements-and-loops">Conditional Statements and Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mapdl.html#warnings-and-errors">Warnings and Errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mapdl.html#prompts">Prompts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conversion.html">Translating Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html">ANSYS APDL Interactive Control Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#initial-setup-and-example">Initial Setup and Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#pyansys-mapdl-basics">PyANSYS MAPDL Basics</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">ANSYS File Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../archive.html">Reading and Writing ANSYS Archive Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../loading_results.html">Working with a ANSYS Result Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Archive and Result File Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../loading_km.html">Working with a ANSYS Full File (full)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../loading_emat.html">Working with a ANSYS Element Matrix File (.emat)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Example Gallery</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">MAPDL and Result Reader Examples</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Miscellaneous</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../quality.html">Compute Cell Quality</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pyansys</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">ANSYS MAPDL Interactive Control</a> &raquo;</li>
+        
+      <li>Setting and Retreiving Parameters</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/mapdl/parameters.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="setting-and-retreiving-parameters">
+<h1>Setting and Retreiving Parameters<a class="headerlink" href="#setting-and-retreiving-parameters" title="Permalink to this headline">¶</a></h1>
+<p>APDL parameters can be retrieved using <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> using the
+<code class="docutils literal notranslate"><span class="pre">parameters</span></code> class acessable from the <code class="docutils literal notranslate"><span class="pre">mapdl</span></code> instance.  For
+example, if you wish to use the MAPDL <code class="docutils literal notranslate"><span class="pre">GET</span></code> command to populate a
+parameter, you can then access the parameter with:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;DEF_Y&#39;</span><span class="p">,</span> <span class="s1">&#39;NODE&#39;</span> <span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;U&#39;</span> <span class="p">,</span><span class="s1">&#39;Y&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;DEF_Y&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>You can also set both scalar and array parameters from python objects
+using <code class="docutils literal notranslate"><span class="pre">parameters</span></code> with:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;MY_ARRAY&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;MY_ARRAY&#39;</span><span class="p">]</span>
+<span class="go">array([0.00000e+00, 1.00000e+00, 2.00000e+00, ..., 9.99997e+05,</span>
+<span class="go">       9.99998e+05, 9.99999e+05])</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;MY_STRING&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;helloworld&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;MY_STRING&#39;</span><span class="p">]</span>
+<span class="go">&quot;helloworld&quot;</span>
+</pre></div>
+</div>
+<p>You an also access some built-in paramaters normally accessed through
+the <code class="docutils literal notranslate"><span class="pre">\*GET</span></code> command.  For example, instead of getting the current
+routine with <code class="docutils literal notranslate"><span class="pre">\*GET,</span> <span class="pre">ACTIVE,</span> <span class="pre">0,</span> <span class="pre">ROUT</span></code>, you can access it with:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">routine</span>
+<span class="go">&#39;Begin level&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="parameters-description">
+<h1>Parameters Description<a class="headerlink" href="#parameters-description" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="pyansys.parameters.Parameters">
+<em class="property">class </em><code class="sig-prename descclassname">pyansys.parameters.</code><code class="sig-name descname">Parameters</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">mapdl</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.parameters.Parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Collection of MAPDL parameters obtainable from the *GET command</p>
+<dl class="py method">
+<dt id="pyansys.parameters.Parameters.csys">
+<em class="property">property </em><code class="sig-name descname">csys</code><a class="headerlink" href="#pyansys.parameters.Parameters.csys" title="Permalink to this definition">¶</a></dt>
+<dd><p>Active coordinate system</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyansys.parameters.Parameters.dsys">
+<em class="property">property </em><code class="sig-name descname">dsys</code><a class="headerlink" href="#pyansys.parameters.Parameters.dsys" title="Permalink to this definition">¶</a></dt>
+<dd><p>Active display coordinate system</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyansys.parameters.Parameters.esys">
+<em class="property">property </em><code class="sig-name descname">esys</code><a class="headerlink" href="#pyansys.parameters.Parameters.esys" title="Permalink to this definition">¶</a></dt>
+<dd><p>Active element coordinate system</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyansys.parameters.Parameters.material">
+<em class="property">property </em><code class="sig-name descname">material</code><a class="headerlink" href="#pyansys.parameters.Parameters.material" title="Permalink to this definition">¶</a></dt>
+<dd><p>Active material</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyansys.parameters.Parameters.platform">
+<em class="property">property </em><code class="sig-name descname">platform</code><a class="headerlink" href="#pyansys.parameters.Parameters.platform" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current platform.</p>
+<p>Current platform.  For example <code class="docutils literal notranslate"><span class="pre">&quot;LIN&quot;</span></code> for Linux.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyansys.parameters.Parameters.real">
+<em class="property">property </em><code class="sig-name descname">real</code><a class="headerlink" href="#pyansys.parameters.Parameters.real" title="Permalink to this definition">¶</a></dt>
+<dd><p>Active real constant set</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyansys.parameters.Parameters.revision">
+<em class="property">property </em><code class="sig-name descname">revision</code><a class="headerlink" href="#pyansys.parameters.Parameters.revision" title="Permalink to this definition">¶</a></dt>
+<dd><p>MAPDL revision version.</p>
+<p>MAPDL revision version as a float.  For example <code class="docutils literal notranslate"><span class="pre">20.2</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyansys.parameters.Parameters.routine">
+<em class="property">property </em><code class="sig-name descname">routine</code><a class="headerlink" href="#pyansys.parameters.Parameters.routine" title="Permalink to this definition">¶</a></dt>
+<dd><p>Current routine string as a string.  For example <code class="docutils literal notranslate"><span class="pre">&quot;/PREP7&quot;</span></code></p>
+<p>MAPDL Command: *GET, ACTIVE, 0, ROUT</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><p><strong>routine</strong> – Routine as a string.  One of:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;Begin</span> <span class="pre">level&quot;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;PREP7&quot;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;SOLUTION&quot;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;POST1&quot;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;POST26&quot;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;AUX2&quot;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;AUX3&quot;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;AUX12&quot;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;AUX15&quot;</span></code></p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">routine</span>
+<span class="go">&#39;PREP7&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyansys.parameters.Parameters.rsys">
+<em class="property">property </em><code class="sig-name descname">rsys</code><a class="headerlink" href="#pyansys.parameters.Parameters.rsys" title="Permalink to this definition">¶</a></dt>
+<dd><p>Active result coordinate system</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyansys.parameters.Parameters.section">
+<em class="property">property </em><code class="sig-name descname">section</code><a class="headerlink" href="#pyansys.parameters.Parameters.section" title="Permalink to this definition">¶</a></dt>
+<dd><p>Active section number</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyansys.parameters.Parameters.type">
+<em class="property">property </em><code class="sig-name descname">type</code><a class="headerlink" href="#pyansys.parameters.Parameters.type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Active element type</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyansys.parameters.Parameters.units">
+<em class="property">property </em><code class="sig-name descname">units</code><a class="headerlink" href="#pyansys.parameters.Parameters.units" title="Permalink to this definition">¶</a></dt>
+<dd><p>Units specified by /UNITS command.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>units</strong> – Active Units.  One of:- “USER”
+- “SI”
+- “CGS”
+- “BFT”
+- “BIN”
+- “MKS
+- “MPA”
+- “uMKS</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="mapdl.html" class="btn btn-neutral float-right" title="Command Naming Conventions and Rules" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="plotting.html" class="btn btn-neutral float-left" title="Interactive Plotting using VTK" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Alex Kaszynski
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,16 @@
+ANSYS APDL Interactive Control Examples
+=======================================
+These examples are used to demonstrate how to convert an existing ANSYS APDL script to a python ``pyansys`` script.  You could also simply use the built-in ``ConvertFile`` function within pyansys:
+
+.. code:: python
+
+    import pyansys
+
+    inputfile = 'ansys_inputfile.inp'
+    pyscript = 'pyscript.py'
+    pyansys.ConvertFile(inputfile, pyscript)
+
+
+Torsional Load on a Bar using SURF154 Elements
+----------------------------------------------
+This ANSYS APDL script builds a bar and applies torque to it using SURF154 elements.  This is a static analysis example.

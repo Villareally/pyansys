@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Stress and Strain from a Cyclic Modal Analysis &mdash; pyansys 0.42.2 documentation</title>
+  <title>Stress and Strain from a Cyclic Modal Analysis &mdash; pyansys 0.43.0 documentation</title>
   
 
   
@@ -27,6 +27,7 @@
         <script src="../../_static/language_data.js"></script>
         <script src="../../_static/clipboard.min.js"></script>
         <script src="../../_static/copybutton.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
@@ -66,7 +67,7 @@
             
             
               <div class="version">
-                0.42.2
+                0.43.0
               </div>
             
           
@@ -90,22 +91,19 @@
               
             
             
-              <p class="caption"><span class="caption-text">APDL Python Scripting</span></p>
+              <p class="caption"><span class="caption-text">Interactive MAPDL Python Interface</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../ansys_control.html">ANSYS APDL Interactive Control</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ansys_functions.html">ANSYS Functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../apdl_conversion.html">APDL Conversion Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ansys_examples.html">ANSYS APDL Interactive Control Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../mapdl/index.html">ANSYS MAPDL Interactive Control</a></li>
 </ul>
-<p class="caption"><span class="caption-text">File IO and Visualization</span></p>
+<p class="caption"><span class="caption-text">ANSYS File Support</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../ansys_write_archive.html">Reading and Writing ANSYS Archive Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../archive.html">Reading and Writing ANSYS Archive Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../loading_results.html">Working with a ANSYS Result Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples.html">Archive and Result File Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../loading_km.html">Working with a ANSYS Full File (full)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../loading_emat.html">Working with a ANSYS Element Matrix File (.emat)</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Examples Gallery</span></p>
+<p class="caption"><span class="caption-text">Example Gallery</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">MAPDL and Result Reader Examples</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../index.html#loading-and-visualizing-result-files">Loading and Visualizing Result Files</a></li>
@@ -199,18 +197,16 @@
 <p>Click <a class="reference internal" href="#sphx-glr-download-examples-01-cyclic-results-academic-sector-stress-strain-py"><span class="std std-ref">here</span></a>     to download the full example code</p>
 </div>
 <div class="sphx-glr-example-title section" id="stress-and-strain-from-a-cyclic-modal-analysis">
-<span id="ref-academic-sector"></span><span id="sphx-glr-examples-01-cyclic-results-academic-sector-stress-strain-py"></span><h1>Stress and Strain from a Cyclic Modal Analysis<a class="headerlink" href="#stress-and-strain-from-a-cyclic-modal-analysis" title="Permalink to this headline">¶</a></h1>
+<span id="ref-academic-sector-stress-strain"></span><span id="sphx-glr-examples-01-cyclic-results-academic-sector-stress-strain-py"></span><h1>Stress and Strain from a Cyclic Modal Analysis<a class="headerlink" href="#stress-and-strain-from-a-cyclic-modal-analysis" title="Permalink to this headline">¶</a></h1>
 <p>This example shows how to extract strain and stress from a cyclic
 modal analysis.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># sphinx_gallery_thumbnail_number = 2</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pyansys</span>
 </pre></div>
 </div>
-<p>Download the academic modal analysis file
-rotor = pyansys.download_academic_rotor_result()</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rotor</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">read_binary</span><span class="p">(</span><span class="s1">&#39;/tmp/ansys2/file.rst&#39;</span><span class="p">)</span>
+<p>Download the academic modal analysis file</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rotor</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">download_academic_rotor_result</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">rotor</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -297,7 +293,7 @@ shows the principal stress for result <code class="docutils literal notranslate"
 </pre></div>
 </div>
 <img alt="academic sector stress strain" class="sphx-glr-single-img" src="../../_images/sphx_glr_academic_sector_stress_strain_004.png" />
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  2.626 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  3.152 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-01-cyclic-results-academic-sector-stress-strain-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/42d2d740296feb235d23bebeee90f437/academic_sector_stress_strain.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">academic_sector_stress_strain.py</span></code></a></p>

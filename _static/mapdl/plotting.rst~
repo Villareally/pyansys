@@ -1,0 +1,42 @@
+Plotting Non-Interactively
+--------------------------
+It is often useful to plot geometry and meshes as they are generated
+and for debugging (or scripting) purposes it can be useful to plot
+within ``pyansys`` as well.  To enable interactive plotting, set
+``interactive_plotting=True`` when starting ANSYS.  Plotting commands
+such as ``APLOT``, ``EPLOT``, and ``KPLOT`` will open up a
+``matploblib``.
+
+.. code:: python
+
+    import pyansys
+
+    # run ansys with interactive plotting enabled
+    mapdl = pyansys.launch_mapdl(interactive_plotting=True)
+
+    # create a square area using keypoints
+    mapdl.prep7()
+    mapdl.k(1, 0, 0, 0)
+    mapdl.k(2, 1, 0, 0)
+    mapdl.k(3, 1, 1, 0)
+    mapdl.k(4, 0, 1, 0)    
+    mapdl.l(1, 2)
+    mapdl.l(2, 3)
+    mapdl.l(3, 4)
+    mapdl.l(4, 1)
+    mapdl.al(1, 2, 3, 4)
+
+    # sets the view to "isometric"
+    mapdl.view(1, 1, 1, 1)
+    mapdl.pnum('kp', 1)  # enable keypoint numbering
+    mapdl.pnum('line', 1)  # enable line numbering
+
+    # each of these will create a matplotlib figure and pause execution
+    mapdl.aplot()
+    mapdl.lplot()
+    mapdl.kplot()
+
+.. figure:: ./images/aplot.png
+    :width: 300pt
+
+    Area Plot from ANSYS using ``pyansys``

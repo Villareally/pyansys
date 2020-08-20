@@ -1,0 +1,689 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ANSYS 2D Plane Stress Concentration Analysis &mdash; pyansys 0.43.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script src="../../_static/clipboard.min.js"></script>
+        <script src="../../_static/copybutton.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery-dataframe.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="3D Stress Concentration Analysis for a Notched Plate" href="3d_notch.html" />
+    <link rel="prev" title="Cyclic Model Visualization" href="../01-cyclic_results/sector_model.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> pyansys
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.43.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Interactive MAPDL Python Interface</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../mapdl/index.html">ANSYS MAPDL Interactive Control</a></li>
+</ul>
+<p class="caption"><span class="caption-text">ANSYS File Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../archive.html">Reading and Writing ANSYS Archive Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../loading_results.html">Working with a ANSYS Result Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">Archive and Result File Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../loading_km.html">Working with a ANSYS Full File (full)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../loading_emat.html">Working with a ANSYS Element Matrix File (.emat)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Example Gallery</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">MAPDL and Result Reader Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#loading-and-visualizing-result-files">Loading and Visualizing Result Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#cyclic-result-analysis">Cyclic Result Analysis</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#ansys-mapdl-examples-using-pyansys">ANSYS MAPDL Examples Using Pyansys</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">ANSYS 2D Plane Stress Concentration Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#element-type-and-material-properties">Element Type and Material Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#geometry">Geometry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#meshing">Meshing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#boundary-conditions">Boundary Conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#solve-the-static-problem">Solve the Static Problem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#post-processing">Post-Processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#compute-the-stress-concentration">Compute the Stress Concentration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#batch-analysis">Batch Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#analytical-comparison">Analytical Comparison</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_notch.html">3D Stress Concentration Analysis for a Notched Plate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_notch.html#geometry">Geometry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_notch.html#meshing">Meshing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_notch.html#material-properties-and-boundary-conditions">Material Properties and Boundary Conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_notch.html#solve-the-static-problem">Solve the Static Problem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_notch.html#post-processing">Post-Processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_notch.html#compute-the-stress-concentration">Compute the Stress Concentration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mapdl_3d_beam.html">MAPDL 3D Beam Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mapdl_beam.html">MAPDL 2D Beam Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyvista_mesh.html">PyVista Mesh Integration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Miscellaneous</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../quality.html">Compute Cell Quality</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">pyansys</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">MAPDL and Result Reader Examples</a> &raquo;</li>
+        
+      <li>ANSYS 2D Plane Stress Concentration Analysis</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/examples/02-mapdl-examples/2d_plate_with_a_hole.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-examples-02-mapdl-examples-2d-plate-with-a-hole-py"><span class="std std-ref">here</span></a>     to download the full example code</p>
+</div>
+<div class="sphx-glr-example-title section" id="ansys-2d-plane-stress-concentration-analysis">
+<span id="ref-plane-stress-concentration"></span><span id="sphx-glr-examples-02-mapdl-examples-2d-plate-with-a-hole-py"></span><h1>ANSYS 2D Plane Stress Concentration Analysis<a class="headerlink" href="#ansys-2d-plane-stress-concentration-analysis" title="Permalink to this headline">¶</a></h1>
+<p>This tutorial shows how you can use pyansys and MAPDL to determine and
+verify the “stress concentration factor” when modeling using 2D plane
+elements and then verify this using 3D elements.</p>
+<p>First, start MAPDL as a service and disable all but error messages.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># sphinx_gallery_thumbnail_number = 3</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">pyansys</span>
+
+<span class="c1"># os.environ[&#39;I_MPI_SHM_LMT&#39;] = &#39;shm&#39;  # necessary on Ubuntu without &quot;smp&quot;</span>
+<span class="n">mapdl</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">launch_mapdl</span><span class="p">(</span><span class="n">override</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">additional_switches</span><span class="o">=</span><span class="s1">&#39;-smp&#39;</span><span class="p">,</span>
+                             <span class="n">loglevel</span><span class="o">=</span><span class="s1">&#39;ERROR&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="element-type-and-material-properties">
+<h1>Element Type and Material Properties<a class="headerlink" href="#element-type-and-material-properties" title="Permalink to this headline">¶</a></h1>
+<p>This example will use PLANE183 elements as a thin plate can be
+modeled with plane elements provided that KEYOPTION 3 is set to 3
+and a thickness is provided.</p>
+<p>This example will use SI units.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">prep7</span><span class="p">()</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">units</span><span class="p">(</span><span class="s1">&#39;SI&#39;</span><span class="p">)</span>  <span class="c1"># SI - International system (m, kg, s, K).</span>
+
+<span class="c1"># define a PLANE183 element type with thickness</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">et</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;PLANE183&quot;</span><span class="p">,</span> <span class="n">kop3</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">r</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">)</span>  <span class="c1"># thickness of 0.001 meters)</span>
+
+<span class="c1"># Define a material (nominal steel in SI)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">mp</span><span class="p">(</span><span class="s1">&#39;EX&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">210E9</span><span class="p">)</span>  <span class="c1"># Elastic moduli in Pa (kg/(m*s**2))</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">mp</span><span class="p">(</span><span class="s1">&#39;DENS&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">7800</span><span class="p">)</span>  <span class="c1"># Density in kg/m3</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">mp</span><span class="p">(</span><span class="s1">&#39;NUXY&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>  <span class="c1"># Poisson&#39;s Ratio</span>
+
+<span class="c1"># list currently defined material properties</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mapdl</span><span class="o">.</span><span class="n">mplist</span><span class="p">())</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>LIST MATERIALS        1 TO        1 BY        1
+  PROPERTY= ALL
+
+ MATERIAL NUMBER        1
+
+      TEMP        EX
+               0.2100000E+12
+
+      TEMP        NUXY
+               0.3000000
+
+      TEMP        DENS
+                7800.000
+</pre></div>
+</div>
+</div>
+<div class="section" id="geometry">
+<h1>Geometry<a class="headerlink" href="#geometry" title="Permalink to this headline">¶</a></h1>
+<p>Create a rectangular area with the hole in the middle.  To correctly
+approximate an infinite plate, the maximum stress must occur far
+away from the edges of the plate.  A length to width factor can
+approximate this.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">length</span> <span class="o">=</span> <span class="mf">0.4</span>
+<span class="n">width</span> <span class="o">=</span> <span class="mf">0.1</span>
+
+<span class="n">ratio</span> <span class="o">=</span> <span class="mf">0.3</span>  <span class="c1"># diameter/width</span>
+<span class="n">diameter</span> <span class="o">=</span> <span class="n">width</span><span class="o">*</span><span class="n">ratio</span>
+<span class="n">radius</span> <span class="o">=</span> <span class="n">diameter</span><span class="o">*</span><span class="mf">0.5</span>
+
+
+<span class="c1"># create the rectangle</span>
+<span class="n">rect_anum</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">blc4</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="n">length</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">width</span><span class="p">)</span>
+
+<span class="c1"># create a circle in the middle of the rectangle</span>
+<span class="n">circ_anum</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">cyl4</span><span class="p">(</span><span class="n">length</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">radius</span><span class="p">)</span>
+
+<span class="c1"># Note how pyansys parses the output and returns the area numbers</span>
+<span class="c1"># created by each command.  This can be used to execute a boolean</span>
+<span class="c1"># operation on these areas to cut the circle out of the rectangle.</span>
+<span class="n">plate_with_hole_anum</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">asba</span><span class="p">(</span><span class="n">rect_anum</span><span class="p">,</span> <span class="n">circ_anum</span><span class="p">)</span>
+
+<span class="c1"># finally, plot the lines of the plate</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">lplot</span><span class="p">(</span><span class="n">vtk</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cpos</span><span class="o">=</span><span class="s1">&#39;xy&#39;</span><span class="p">,</span> <span class="n">line_width</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">26</span><span class="p">,</span>
+                <span class="n">color_lines</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">background</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="2d plate with a hole" class="sphx-glr-single-img" src="../../_images/sphx_glr_2d_plate_with_a_hole_001.png" />
+</div>
+<div class="section" id="meshing">
+<h1>Meshing<a class="headerlink" href="#meshing" title="Permalink to this headline">¶</a></h1>
+<p>Mesh the plate using a higher density near the hole and a lower
+density for the remainder of the plate by setting <code class="docutils literal notranslate"><span class="pre">LESIZE</span></code> for the
+lines nearby the hole and <code class="docutils literal notranslate"><span class="pre">ESIZE</span></code> for the mesh global size.</p>
+<p>Line numbers can be identified through inspection using <code class="docutils literal notranslate"><span class="pre">lplot</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ensure there are at 50 elements around the hole</span>
+<span class="n">hole_esize</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">diameter</span><span class="o">/</span><span class="mi">50</span>  <span class="c1"># 0.0002</span>
+<span class="n">plate_esize</span> <span class="o">=</span> <span class="mf">0.01</span>
+
+<span class="c1"># increased the density of the mesh at the center</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">lsel</span><span class="p">(</span><span class="s1">&#39;S&#39;</span><span class="p">,</span> <span class="s1">&#39;LINE&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">lesize</span><span class="p">(</span><span class="s1">&#39;ALL&#39;</span><span class="p">,</span> <span class="n">hole_esize</span><span class="p">,</span> <span class="n">kforc</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">lsel</span><span class="p">(</span><span class="s1">&#39;ALL&#39;</span><span class="p">)</span>
+
+<span class="c1"># Decrease the area mesh expansion.  This ensures that the mesh</span>
+<span class="c1"># remains fine nearby the hole</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">mopt</span><span class="p">(</span><span class="s1">&#39;EXPND&#39;</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">)</span>  <span class="c1"># default 1</span>
+
+<span class="n">mapdl</span><span class="o">.</span><span class="n">esize</span><span class="p">(</span><span class="n">plate_esize</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">amesh</span><span class="p">(</span><span class="n">plate_with_hole_anum</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">eplot</span><span class="p">(</span><span class="n">vtk</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cpos</span><span class="o">=</span><span class="s1">&#39;xy&#39;</span><span class="p">,</span> <span class="n">show_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">show_axes</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                <span class="n">line_width</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">background</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="2d plate with a hole" class="sphx-glr-single-img" src="../../_images/sphx_glr_2d_plate_with_a_hole_002.png" />
+</div>
+<div class="section" id="boundary-conditions">
+<h1>Boundary Conditions<a class="headerlink" href="#boundary-conditions" title="Permalink to this headline">¶</a></h1>
+<p>Fix the left-hand side of the plate in the X direction and set a
+force of 1 kN in the positive X direction.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fix the left-hand side.</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">nsel</span><span class="p">(</span><span class="s1">&#39;S&#39;</span><span class="p">,</span> <span class="s1">&#39;LOC&#39;</span><span class="p">,</span> <span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">d</span><span class="p">(</span><span class="s1">&#39;ALL&#39;</span><span class="p">,</span> <span class="s1">&#39;UX&#39;</span><span class="p">)</span>
+
+<span class="c1"># Fix a single node on the left-hand side of the plate in the Y</span>
+<span class="c1"># direction.  Otherwise, the mesh would be allowed to move in the y</span>
+<span class="c1"># direction and would be an improperly constrained mesh.</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">nsel</span><span class="p">(</span><span class="s1">&#39;R&#39;</span><span class="p">,</span> <span class="s1">&#39;LOC&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">n_node</span> <span class="o">==</span> <span class="mi">1</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">d</span><span class="p">(</span><span class="s1">&#39;ALL&#39;</span><span class="p">,</span> <span class="s1">&#39;UY&#39;</span><span class="p">)</span>
+
+<span class="c1"># Apply a force on the right-hand side of the plate.  For this</span>
+<span class="c1"># example, we select the nodes at the right-most side of the plate.</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">nsel</span><span class="p">(</span><span class="s1">&#39;S&#39;</span><span class="p">,</span> <span class="s1">&#39;LOC&#39;</span><span class="p">,</span> <span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="n">length</span><span class="p">)</span>
+
+<span class="c1"># Verify that only the nodes at length have been selected:</span>
+<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">mapdl</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">nodes</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="n">length</span>
+
+<span class="c1"># Next, couple the DOF for these nodes.  This lets us provide a force</span>
+<span class="c1"># to one node that will be spread throughout all nodes in this coupled</span>
+<span class="c1"># set.</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">cp</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;UX&#39;</span><span class="p">,</span> <span class="s1">&#39;ALL&#39;</span><span class="p">)</span>
+
+<span class="c1"># Select a single node in this set and apply a force to it</span>
+<span class="c1"># We use &quot;R&quot; to re-select from the current node group</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">nsel</span><span class="p">(</span><span class="s1">&#39;R&#39;</span><span class="p">,</span> <span class="s1">&#39;LOC&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">f</span><span class="p">(</span><span class="s1">&#39;ALL&#39;</span><span class="p">,</span> <span class="s1">&#39;FX&#39;</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+
+<span class="c1"># finally, be sure to select all nodes again to solve the entire solution</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">allsel</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="solve-the-static-problem">
+<h1>Solve the Static Problem<a class="headerlink" href="#solve-the-static-problem" title="Permalink to this headline">¶</a></h1>
+<p>Solve the static analysis</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;/SOLU&#39;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">antype</span><span class="p">(</span><span class="s1">&#39;STATIC&#39;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;One or more COMPONENTS exist that do not have all underlying entities selected.  Issuing an ALLSEL or other select commands before CDWRITE will ensure all underlying entities are selected.  These COMPONENTS were not written to the CDWRITE file.\n *****  ANSYS SOLVE    COMMAND  *****\n\n *** NOTE ***                            CP =       1.144   TIME= 23:34:05\n There is no title defined for this analysis.\n\n *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***\n                ---GIVE SUGGESTIONS ONLY---\n\n ELEMENT TYPE    1 IS PLANE183 WITH PLANE STRESS OPTION. NO SUGGESTION IS\n AVAILABLE.\n\n\n\n *** ANSYS - ENGINEERING ANALYSIS SYSTEM  RELEASE Release 18.2.2   18.2.2   ***\n ANSYS Mechanical Enterprise\n 88888888  VERSION=LINUX x64     23:34:05  AUG 19, 2020 CP=      1.150\n\n\n\n\n\n                       S O L U T I O N   O P T I O N S\n\n   PROBLEM DIMENSIONALITY. . . . . . . . . . . . .2-D\n   DEGREES OF FREEDOM. . . . . . UX   UY\n   ANALYSIS TYPE . . . . . . . . . . . . . . . . .STATIC (STEADY-STATE)\n   GLOBALLY ASSEMBLED MATRIX . . . . . . . . . . .SYMMETRIC\n\n *** NOTE ***                            CP =       1.153   TIME= 23:34:05\n Present time 0 is less than or equal to the previous time.  Time will\n default to 1.\n\n *** NOTE ***                            CP =       1.154   TIME= 23:34:05\n The conditions for direct assembly have been met.  No .emat or .erot\n files will be produced.\n\n                      L O A D   S T E P   O P T I O N S\n\n   LOAD STEP NUMBER. . . . . . . . . . . . . . . .     1\n   TIME AT END OF THE LOAD STEP. . . . . . . . . .  1.0000\n   NUMBER OF SUBSTEPS. . . . . . . . . . . . . . .     1\n   STEP CHANGE BOUNDARY CONDITIONS . . . . . . . .    NO\n   PRINT OUTPUT CONTROLS . . . . . . . . . . . . .NO PRINTOUT\n   DATABASE OUTPUT CONTROLS. . . . . . . . . . . .ALL DATA WRITTEN\n                                                  FOR THE LAST SUBSTEP\n\n\n SOLUTION MONITORING INFO IS WRITTEN TO FILE= file.mntr\n\n\n\n\n            **** CENTER OF MASS, MASS, AND MASS MOMENTS OF INERTIA ****\n\n  CALCULATIONS ASSUME ELEMENT MASS AT ELEMENT CENTROID\n\n  TOTAL MASS =  0.30649\n\n                           MOM. OF INERTIA         MOM. OF INERTIA\n  CENTER OF MASS            ABOUT ORIGIN        ABOUT CENTER OF MASS\n\n  XC =  0.20000          IXX =   0.1024E-02      IXX =   0.2576E-03\n  YC =  0.49997E-01      IYY =   0.1642E-01      IYY =   0.4156E-02\n  ZC =   0.0000          IZZ =   0.1744E-01      IZZ =   0.4414E-02\n                         IXY =  -0.3065E-02      IXY =   0.8905E-09\n                         IYZ =    0.000          IYZ =    0.000\n                         IZX =    0.000          IZX =    0.000\n\n\n  *** MASS SUMMARY BY ELEMENT TYPE ***\n\n  TYPE      MASS\n     1  0.306487\n\n Range of element maximum matrix coefficients in global coordinates\n Maximum = 1.265116826E+09 at element 67.\n Minimum = 359465553 at element 773.\n\n   *** ELEMENT MATRIX FORMULATION TIMES\n     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP\n\n        1       977  PLANE183      0.075   0.000077\n Time at end of element matrix formulation CP = 1.22872603.\n\n SPARSE MATRIX DIRECT SOLVER.\n  Number of equations =        6124,    Maximum wavefront =     48\n  Memory allocated for solver              =     8.486 MB\n  Memory required for in-core solution     =     8.181 MB\n  Memory required for out-of-core solution =     4.343 MB\n\n *** NOTE ***                            CP =       1.286   TIME= 23:34:05\n The Sparse Matrix Solver is currently running in the in-core memory\n mode.  This memory mode uses the most amount of memory in order to\n avoid using the hard drive as much as possible, which most often\n results in the fastest solution time.  This mode is recommended if\n enough physical memory is present to accommodate all of the solver\n data.\n Sparse solver maximum pivot= 1.958386731E+09 at node 1937 UY.\n Sparse solver minimum pivot= 3839644.71 at node 960 UY.\n Sparse solver minimum pivot in absolute value= 3839644.71 at node 960\n UY.&#39;
+</pre></div>
+</div>
+</div>
+<div class="section" id="post-processing">
+<h1>Post-Processing<a class="headerlink" href="#post-processing" title="Permalink to this headline">¶</a></h1>
+<p>The static result can be post-processed both within MAPDL and
+outside of MAPDL using <code class="docutils literal notranslate"><span class="pre">pyansys</span></code>.  This example shows how to
+extract the von Mises stress and plot it using the <code class="docutils literal notranslate"><span class="pre">pyansys</span></code>
+result reader.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># grab the result from the ``mapdl`` instance</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">result</span>
+<span class="n">result</span><span class="o">.</span><span class="n">plot_principal_nodal_stress</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;SEQV&#39;</span><span class="p">,</span> <span class="n">lighting</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                   <span class="n">cpos</span><span class="o">=</span><span class="s1">&#39;xy&#39;</span><span class="p">,</span> <span class="n">background</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span>
+                                   <span class="n">text_color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">add_text</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">nnum</span><span class="p">,</span> <span class="n">stress</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">principal_nodal_stress</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">von_mises</span> <span class="o">=</span> <span class="n">stress</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># von-Mises stress is the right most column</span>
+
+<span class="c1"># Must use nanmax as stress is not computed at mid-side nodes</span>
+<span class="n">max_stress</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmax</span><span class="p">(</span><span class="n">von_mises</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="2d plate with a hole" class="sphx-glr-single-img" src="../../_images/sphx_glr_2d_plate_with_a_hole_003.png" />
+</div>
+<div class="section" id="compute-the-stress-concentration">
+<h1>Compute the Stress Concentration<a class="headerlink" href="#compute-the-stress-concentration" title="Permalink to this headline">¶</a></h1>
+<p>The stress concentration <span class="math notranslate nohighlight">\(K_t\)</span> is the ratio of the maximum
+stress at the hole to the far-field stress, or the mean cross
+sectional stress at a point far from the hole.  Analytically, this
+can be computed with:</p>
+<p><span class="math notranslate nohighlight">\(\sigma_{nom} = \frac{F}{wt}\)</span></p>
+<p>Where</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(F\)</span> is the force</p></li>
+<li><p><span class="math notranslate nohighlight">\(w\)</span> is the width of the plate</p></li>
+<li><p><span class="math notranslate nohighlight">\(t\)</span> is the thickness of the plate.</p></li>
+</ul>
+<p>Experimentally, this is computed by taking the mean of the nodes at
+the right-most side of the plate.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># We use nanmean here because mid-side nodes have no stress</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">nodes</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">length</span>
+<span class="n">far_field_stress</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">von_mises</span><span class="p">[</span><span class="n">mask</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Far field von mises stress: </span><span class="si">%e</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">far_field_stress</span><span class="p">)</span>
+<span class="c1"># Which almost exactly equals the analytical value of 10000000.0 Pa</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Far field von mises stress: 9.999966e+06
+</pre></div>
+</div>
+<p>Since the expected nominal stress across the cross section of the
+hole will increase as the size of the hole increases, regardless of
+the stress concentration, the stress must be adjusted to arrive at
+the correct stress.  This stress is adjusted by the ratio of the
+width over the modified cross section width.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">adj</span> <span class="o">=</span> <span class="n">width</span><span class="o">/</span><span class="p">(</span><span class="n">width</span> <span class="o">-</span> <span class="n">diameter</span><span class="p">)</span>
+<span class="n">stress_adj</span> <span class="o">=</span> <span class="n">far_field_stress</span><span class="o">*</span><span class="n">adj</span>
+
+<span class="c1"># The stress concentration is then simply the maximum stress divided</span>
+<span class="c1"># by the adjusted far-field stress.</span>
+<span class="n">stress_con</span> <span class="o">=</span> <span class="p">(</span><span class="n">max_stress</span><span class="o">/</span><span class="n">stress_adj</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Stress Concentration: </span><span class="si">%.2f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">stress_con</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Stress Concentration: 2.34
+</pre></div>
+</div>
+</div>
+<div class="section" id="batch-analysis">
+<h1>Batch Analysis<a class="headerlink" href="#batch-analysis" title="Permalink to this headline">¶</a></h1>
+<p>The above script can be placed within a function to compute the
+stress concentration for a variety of hole diameters.  For each
+batch, MAPDL is reset and the geometry is generated from scratch.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_stress_con</span><span class="p">(</span><span class="n">ratio</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Compute the stress concentration for plate with a hole loaded</span>
+<span class="sd">    with a uniaxial force.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">clear</span><span class="p">(</span><span class="s1">&#39;NOSTART&#39;</span><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">prep7</span><span class="p">()</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">units</span><span class="p">(</span><span class="s1">&#39;SI&#39;</span><span class="p">)</span>  <span class="c1"># SI - International system (m, kg, s, K).</span>
+
+    <span class="c1"># define a PLANE183 element type with thickness</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">et</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;PLANE183&quot;</span><span class="p">,</span> <span class="n">kop3</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">r</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">)</span>  <span class="c1"># thickness of 0.001 meters)</span>
+
+    <span class="c1"># Define a material (nominal steel in SI)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">mp</span><span class="p">(</span><span class="s1">&#39;EX&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">210E9</span><span class="p">)</span>  <span class="c1"># Elastic moduli in Pa (kg/(m*s**2))</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">mp</span><span class="p">(</span><span class="s1">&#39;DENS&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">7800</span><span class="p">)</span>  <span class="c1"># Density in kg/m3</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">mp</span><span class="p">(</span><span class="s1">&#39;NUXY&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>  <span class="c1"># Poisson&#39;s Ratio</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">emodif</span><span class="p">(</span><span class="s1">&#39;ALL&#39;</span><span class="p">,</span> <span class="s1">&#39;MAT&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Geometry</span>
+    <span class="c1"># ~~~~~~~~</span>
+    <span class="c1"># Create a rectangular area with the hole in the middle</span>
+    <span class="n">diameter</span> <span class="o">=</span> <span class="n">width</span><span class="o">*</span><span class="n">ratio</span>
+    <span class="n">radius</span> <span class="o">=</span> <span class="n">diameter</span><span class="o">*</span><span class="mf">0.5</span>
+
+    <span class="c1"># create the rectangle</span>
+    <span class="n">rect_anum</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">blc4</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="n">length</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">width</span><span class="p">)</span>
+
+    <span class="c1"># create a circle in the middle of the rectangle</span>
+    <span class="n">circ_anum</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">cyl4</span><span class="p">(</span><span class="n">length</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">radius</span><span class="p">)</span>
+
+    <span class="c1"># Note how pyansys parses the output and returns the area numbers</span>
+    <span class="c1"># created by each command.  This can be used to execute a boolean</span>
+    <span class="c1"># operation on these areas to cut the circle out of the rectangle.</span>
+    <span class="n">plate_with_hole_anum</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">asba</span><span class="p">(</span><span class="n">rect_anum</span><span class="p">,</span> <span class="n">circ_anum</span><span class="p">)</span>
+
+    <span class="c1"># Meshing</span>
+    <span class="c1"># ~~~~~~~</span>
+    <span class="c1"># Mesh the plate using a higher density near the hole and a lower</span>
+    <span class="c1"># density for the remainder of the plate</span>
+
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">aclear</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
+
+    <span class="c1"># ensure there are at least 100 elements around the hole</span>
+    <span class="n">hole_esize</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">diameter</span><span class="o">/</span><span class="mi">100</span>  <span class="c1"># 0.0002</span>
+    <span class="n">plate_esize</span> <span class="o">=</span> <span class="mf">0.01</span>
+
+    <span class="c1"># increased the density of the mesh at the center</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">lsel</span><span class="p">(</span><span class="s1">&#39;S&#39;</span><span class="p">,</span> <span class="s1">&#39;LINE&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">lesize</span><span class="p">(</span><span class="s1">&#39;ALL&#39;</span><span class="p">,</span> <span class="n">hole_esize</span><span class="p">,</span> <span class="n">kforc</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">lsel</span><span class="p">(</span><span class="s1">&#39;ALL&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Decrease the area mesh expansion.  This ensures that the mesh</span>
+    <span class="c1"># remains fine nearby the hole</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">mopt</span><span class="p">(</span><span class="s1">&#39;EXPND&#39;</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">)</span>  <span class="c1"># default 1</span>
+
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">esize</span><span class="p">(</span><span class="n">plate_esize</span><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">amesh</span><span class="p">(</span><span class="n">plate_with_hole_anum</span><span class="p">)</span>
+
+    <span class="c1">###############################################################################</span>
+    <span class="c1"># Boundary Conditions</span>
+    <span class="c1"># ~~~~~~~~~~~~~~~~~~~</span>
+    <span class="c1"># Fix the left-hand side of the plate in the X direction</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">nsel</span><span class="p">(</span><span class="s1">&#39;S&#39;</span><span class="p">,</span> <span class="s1">&#39;LOC&#39;</span><span class="p">,</span> <span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">d</span><span class="p">(</span><span class="s1">&#39;ALL&#39;</span><span class="p">,</span> <span class="s1">&#39;UX&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Fix a single node on the left-hand side of the plate in the Y direction</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">nsel</span><span class="p">(</span><span class="s1">&#39;R&#39;</span><span class="p">,</span> <span class="s1">&#39;LOC&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">n_node</span> <span class="o">==</span> <span class="mi">1</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">d</span><span class="p">(</span><span class="s1">&#39;ALL&#39;</span><span class="p">,</span> <span class="s1">&#39;UY&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Apply a force on the right-hand side of the plate.  For this</span>
+    <span class="c1"># example, we select the right-hand side of the plate.</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">nsel</span><span class="p">(</span><span class="s1">&#39;S&#39;</span><span class="p">,</span> <span class="s1">&#39;LOC&#39;</span><span class="p">,</span> <span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="n">length</span><span class="p">)</span>
+
+    <span class="c1"># Next, couple the DOF for these nodes</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">cp</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;UX&#39;</span><span class="p">,</span> <span class="s1">&#39;ALL&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Again, select a single node in this set and apply a force to it</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">nsel</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;loc&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">f</span><span class="p">(</span><span class="s1">&#39;ALL&#39;</span><span class="p">,</span> <span class="s1">&#39;FX&#39;</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+
+    <span class="c1"># finally, be sure to select all nodes again to solve the entire solution</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">allsel</span><span class="p">()</span>
+
+    <span class="c1"># Solve the Static Problem</span>
+    <span class="c1"># ~~~~~~~~~~~~~~~~~~~~~~~~</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;/SOLU&#39;</span><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">antype</span><span class="p">(</span><span class="s1">&#39;STATIC&#39;</span><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+
+
+    <span class="c1"># Post-Processing</span>
+    <span class="c1"># ~~~~~~~~~~~~~~~</span>
+    <span class="c1"># grab the stress from the result</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">result</span>
+    <span class="n">nnum</span><span class="p">,</span> <span class="n">stress</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">principal_nodal_stress</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">von_mises</span> <span class="o">=</span> <span class="n">stress</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">max_stress</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmax</span><span class="p">(</span><span class="n">von_mises</span><span class="p">)</span>
+
+    <span class="c1"># compare to the &quot;far field&quot; stress by getting the mean value of the</span>
+    <span class="c1"># stress at the wall</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">nodes</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">length</span>
+    <span class="n">far_field_stress</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">von_mises</span><span class="p">[</span><span class="n">mask</span><span class="p">])</span>
+
+    <span class="c1"># adjust by the cross sectional area at the hole</span>
+    <span class="n">adj</span> <span class="o">=</span> <span class="n">width</span><span class="o">/</span><span class="p">(</span><span class="n">width</span> <span class="o">-</span> <span class="n">diameter</span><span class="p">)</span>
+    <span class="n">stress_adj</span> <span class="o">=</span> <span class="n">far_field_stress</span><span class="o">*</span><span class="n">adj</span>
+
+    <span class="c1"># finally, compute the stress concentration</span>
+    <span class="k">return</span> <span class="n">max_stress</span><span class="o">/</span><span class="n">stress_adj</span>
+</pre></div>
+</div>
+<p>Run the batch and record the stress concentration</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">k_t_exp</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">ratios</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;    Ratio  : Stress Concentration (K_t)&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">ratio</span> <span class="ow">in</span> <span class="n">ratios</span><span class="p">:</span>
+    <span class="n">stress_con</span> <span class="o">=</span> <span class="n">compute_stress_con</span><span class="p">(</span><span class="n">ratio</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%10.4f</span><span class="s1"> : </span><span class="si">%10.4f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">ratio</span><span class="p">,</span> <span class="n">stress_con</span><span class="p">))</span>
+    <span class="n">k_t_exp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stress_con</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Ratio  : Stress Concentration (K_t)
+0.0010 :     2.9959
+0.0273 :     2.9116
+0.0535 :     2.8363
+0.0798 :     2.7698
+0.1061 :     2.7081
+0.1323 :     2.6509
+0.1586 :     2.5967
+0.1848 :     2.5421
+0.2111 :     2.4951
+0.2374 :     2.4475
+0.2636 :     2.4041
+0.2899 :     2.3683
+0.3162 :     2.3325
+0.3424 :     2.2995
+0.3687 :     2.2724
+0.3949 :     2.2457
+0.4212 :     2.2221
+0.4475 :     2.1963
+0.4737 :     2.1775
+0.5000 :     2.1610
+</pre></div>
+</div>
+</div>
+<div class="section" id="analytical-comparison">
+<h1>Analytical Comparison<a class="headerlink" href="#analytical-comparison" title="Permalink to this headline">¶</a></h1>
+<p>Stress concentrations are often obtained by referencing tablular
+results or polynominal fits for a variety of geometries.  According
+to Peterson’s Stress Concentration Factors (ISBN 0470048247), the analytical
+equation for a hole in a thin plate in uniaxial tension:</p>
+<p><span class="math notranslate nohighlight">\(k_t = 3 - 3.14\frac{d}{h} + 3.667\left(\frac{d}{h}\right)^2 - 1.527\left(\frac{d}{h}\right)^3\)</span></p>
+<p>Where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(k_t\)</span> is the stress concentration</p></li>
+<li><p><span class="math notranslate nohighlight">\(d\)</span> is the diameter of the circle</p></li>
+<li><p><span class="math notranslate nohighlight">\(h\)</span> is the height of the plate</p></li>
+</ul>
+<p>As shown in the following plot, ANSYS matches the known tabular
+result for this geometry remarkably well using PLANE183 elements.
+The fit to the results may vary depending on the ratio between the
+height and width of the plate.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># where ratio is (d/h)</span>
+<span class="n">k_t_anl</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">-</span> <span class="mf">3.14</span><span class="o">*</span><span class="n">ratios</span> <span class="o">+</span> <span class="mf">3.667</span><span class="o">*</span><span class="n">ratios</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mf">1.527</span><span class="o">*</span><span class="n">ratios</span><span class="o">**</span><span class="mi">3</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ratios</span><span class="p">,</span> <span class="n">k_t_anl</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$K_t$ Analytical&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ratios</span><span class="p">,</span> <span class="n">k_t_exp</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$K_t$ ANSYS&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Ratio of Hole Diameter to Width of Plate&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Stress Concentration&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="2d plate with a hole" class="sphx-glr-single-img" src="../../_images/sphx_glr_2d_plate_with_a_hole_004.png" />
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Matplotlib is currently using agg, which is a non-GUI backend, so cannot show the figure.
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  20.525 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-02-mapdl-examples-2d-plate-with-a-hole-py">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/cd1312e0a011beffa18d4e9fb09ef852/2d_plate_with_a_hole.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">2d_plate_with_a_hole.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/51fb15eb19087104d4d5fe8557f352a9/2d_plate_with_a_hole.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">2d_plate_with_a_hole.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="3d_notch.html" class="btn btn-neutral float-right" title="3D Stress Concentration Analysis for a Notched Plate" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../01-cyclic_results/sector_model.html" class="btn btn-neutral float-left" title="Cyclic Model Visualization" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Alex Kaszynski
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

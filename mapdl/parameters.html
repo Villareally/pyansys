@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Setting and Retreiving Parameters &mdash; pyansys 0.43.0 documentation</title>
+  <title>Setting and Retreiving Parameters &mdash; pyansys 0.43.1 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.43.0
+                0.43.1
               </div>
             
           
@@ -107,6 +107,7 @@
 <li class="toctree-l2"><a class="reference internal" href="mapdl.html#warnings-and-errors">Warnings and Errors</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mapdl.html#prompts">Prompts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="conversion.html">Translating Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conversion.html#convert-script-description">Convert Script Description</a></li>
 <li class="toctree-l2"><a class="reference internal" href="examples.html">ANSYS APDL Interactive Control Examples</a></li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#initial-setup-and-example">Initial Setup and Example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#pyansys-mapdl-basics">PyANSYS MAPDL Basics</a></li>
@@ -230,48 +231,102 @@ routine with <code class="docutils literal notranslate"><span class="pre">\*GET,
 <dt id="pyansys.parameters.Parameters">
 <em class="property">class </em><code class="sig-prename descclassname">pyansys.parameters.</code><code class="sig-name descname">Parameters</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">mapdl</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.parameters.Parameters" title="Permalink to this definition">¶</a></dt>
 <dd><p>Collection of MAPDL parameters obtainable from the *GET command</p>
+<p class="rubric">Examples</p>
+<p>Simply list all parameters except for MAPDL MATH parameters</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">parameters</span>
+<span class="go">ARR                              : ARRAY DIM (3, 1, 1)</span>
+<span class="go">PARM_FLOAT                       : 20.0</span>
+<span class="go">PARM_INT                         : 10.0</span>
+<span class="go">PARM_LONG_STR                    : &quot;stringstringstringstringstringst&quot;</span>
+<span class="go">PARM_STR                         : &quot;string&quot;</span>
+<span class="go">PORT                             : 50052.0</span>
+</pre></div>
+</div>
+<p>Get a parameter</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;PARM_FLOAT&#39;</span><span class="p">]</span>
+<span class="go">20.0</span>
+</pre></div>
+</div>
+<p>Get an array parameter</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;ARR&#39;</span><span class="p">]</span>
+<span class="go">array([1., 2., 3.])</span>
+</pre></div>
+</div>
 <dl class="py method">
 <dt id="pyansys.parameters.Parameters.csys">
 <em class="property">property </em><code class="sig-name descname">csys</code><a class="headerlink" href="#pyansys.parameters.Parameters.csys" title="Permalink to this definition">¶</a></dt>
 <dd><p>Active coordinate system</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">csys</span>
+<span class="go">0</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pyansys.parameters.Parameters.dsys">
 <em class="property">property </em><code class="sig-name descname">dsys</code><a class="headerlink" href="#pyansys.parameters.Parameters.dsys" title="Permalink to this definition">¶</a></dt>
 <dd><p>Active display coordinate system</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">dsys</span>
+<span class="go">0</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pyansys.parameters.Parameters.esys">
 <em class="property">property </em><code class="sig-name descname">esys</code><a class="headerlink" href="#pyansys.parameters.Parameters.esys" title="Permalink to this definition">¶</a></dt>
 <dd><p>Active element coordinate system</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">esys</span>
+<span class="go">0</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pyansys.parameters.Parameters.material">
 <em class="property">property </em><code class="sig-name descname">material</code><a class="headerlink" href="#pyansys.parameters.Parameters.material" title="Permalink to this definition">¶</a></dt>
 <dd><p>Active material</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">material</span>
+<span class="go">1</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pyansys.parameters.Parameters.platform">
 <em class="property">property </em><code class="sig-name descname">platform</code><a class="headerlink" href="#pyansys.parameters.Parameters.platform" title="Permalink to this definition">¶</a></dt>
 <dd><p>The current platform.</p>
-<p>Current platform.  For example <code class="docutils literal notranslate"><span class="pre">&quot;LIN&quot;</span></code> for Linux.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">platform</span>
+<span class="go">&#39;LIN&#39;</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pyansys.parameters.Parameters.real">
 <em class="property">property </em><code class="sig-name descname">real</code><a class="headerlink" href="#pyansys.parameters.Parameters.real" title="Permalink to this definition">¶</a></dt>
 <dd><p>Active real constant set</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">real</span>
+<span class="go">1</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pyansys.parameters.Parameters.revision">
 <em class="property">property </em><code class="sig-name descname">revision</code><a class="headerlink" href="#pyansys.parameters.Parameters.revision" title="Permalink to this definition">¶</a></dt>
 <dd><p>MAPDL revision version.</p>
-<p>MAPDL revision version as a float.  For example <code class="docutils literal notranslate"><span class="pre">20.2</span></code>.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">revision</span>
+<span class="go">20.2</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
@@ -281,8 +336,10 @@ routine with <code class="docutils literal notranslate"><span class="pre">\*GET,
 <p>MAPDL Command: *GET, ACTIVE, 0, ROUT</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p><p><strong>routine</strong> – Routine as a string.  One of:</p>
-<ul class="simple">
+<dd class="field-odd"><p><p><strong>routine</strong> –</p>
+<p>Routine as a string.  One of:</p>
+<blockquote>
+<div><ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">&quot;Begin</span> <span class="pre">level&quot;</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">&quot;PREP7&quot;</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">&quot;SOLUTION&quot;</span></code></p></li>
@@ -293,6 +350,7 @@ routine with <code class="docutils literal notranslate"><span class="pre">\*GET,
 <li><p><code class="docutils literal notranslate"><span class="pre">&quot;AUX12&quot;</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">&quot;AUX15&quot;</span></code></p></li>
 </ul>
+</div></blockquote>
 </p>
 </dd>
 <dt class="field-even">Return type</dt>
@@ -310,18 +368,33 @@ routine with <code class="docutils literal notranslate"><span class="pre">\*GET,
 <dt id="pyansys.parameters.Parameters.rsys">
 <em class="property">property </em><code class="sig-name descname">rsys</code><a class="headerlink" href="#pyansys.parameters.Parameters.rsys" title="Permalink to this definition">¶</a></dt>
 <dd><p>Active result coordinate system</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">rsys</span>
+<span class="go">0</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pyansys.parameters.Parameters.section">
 <em class="property">property </em><code class="sig-name descname">section</code><a class="headerlink" href="#pyansys.parameters.Parameters.section" title="Permalink to this definition">¶</a></dt>
 <dd><p>Active section number</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">section</span>
+<span class="go">1</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pyansys.parameters.Parameters.type">
 <em class="property">property </em><code class="sig-name descname">type</code><a class="headerlink" href="#pyansys.parameters.Parameters.type" title="Permalink to this definition">¶</a></dt>
 <dd><p>Active element type</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">type</span>
+<span class="go">1</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
@@ -330,19 +403,32 @@ routine with <code class="docutils literal notranslate"><span class="pre">\*GET,
 <dd><p>Units specified by /UNITS command.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p><strong>units</strong> – Active Units.  One of:- “USER”
-- “SI”
-- “CGS”
-- “BFT”
-- “BIN”
-- “MKS
-- “MPA”
-- “uMKS</p>
+<dd class="field-odd"><p><p><strong>units</strong> –</p>
+<dl class="simple">
+<dt>Active Units.  One of:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;None&quot;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;USER&quot;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;SI&quot;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;CGS&quot;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;BFT&quot;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;BIN&quot;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;MKS</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;MPA&quot;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;uMKS&quot;</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</p>
 </dd>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p>str</p>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">units</span>
+<span class="go">&#39;NONE&#39;</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </dd></dl>

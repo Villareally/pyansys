@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Translating Scripts &mdash; pyansys 0.43.0 documentation</title>
+  <title>Translating Scripts &mdash; pyansys 0.43.1 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.43.0
+                0.43.1
               </div>
             
           
@@ -107,6 +107,7 @@
 <li class="toctree-l2"><a class="reference internal" href="mapdl.html#warnings-and-errors">Warnings and Errors</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mapdl.html#prompts">Prompts</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Translating Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#convert-script-description">Convert Script Description</a></li>
 <li class="toctree-l2"><a class="reference internal" href="examples.html">ANSYS APDL Interactive Control Examples</a></li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#initial-setup-and-example">Initial Setup and Example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#pyansys-mapdl-basics">PyANSYS MAPDL Basics</a></li>
@@ -237,6 +238,37 @@ some commands require and will break the CORBA server connection.
 Also note that APDL macros that use <code class="docutils literal notranslate"><span class="pre">*CREATE</span></code> have been replaced
 with a python function.  This will make the code easier to debug
 should it be necessary to insert a break point in the code.</p>
+</div>
+<div class="section" id="convert-script-description">
+<h1>Convert Script Description<a class="headerlink" href="#convert-script-description" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt id="pyansys.convert.convert_script">
+<code class="sig-prename descclassname">pyansys.convert.</code><code class="sig-name descname">convert_script</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename_in</span></em>, <em class="sig-param"><span class="n">filename_out</span></em>, <em class="sig-param"><span class="n">loglevel</span><span class="o">=</span><span class="default_value">'INFO'</span></em>, <em class="sig-param"><span class="n">auto_exit</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">line_ending</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">exec_file</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">macros_as_functions</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">use_function_names</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.convert.convert_script" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts an ANSYS input file to a python pyansys script.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename_in</strong> (<em>str</em>) – Filename of the ansys input file to read in.</p></li>
+<li><p><strong>filename_out</strong> (<em>str</em>) – Filename of the python script to write a translation to.</p></li>
+<li><p><strong>loglevel</strong> (<em>str</em><em>, </em><em>optional</em>) – Log level of the ansys object within the script.</p></li>
+<li><p><strong>auto_exit</strong> (<em>bool</em><em>, </em><em>optional</em>) – Adds a line to the end of the script to exit MAPDL.  Default
+<code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+<li><p><strong>line_ending</strong> (<em>str</em><em>, </em><em>optional</em>) – When None, automatically determined by OS being used.</p></li>
+<li><p><strong>macros_as_functions</strong> (<em>bool</em><em>, </em><em>optional</em>) – Attempt to convert macros to python functions.</p></li>
+<li><p><strong>use_function_names</strong> (<em>bool</em><em>, </em><em>optional</em>) – Convert MAPDL functions to pyansys.Mapdl class methods.  When
+True “K” will be converted to <code class="docutils literal notranslate"><span class="pre">mapdl.k</span></code>.  When False, it
+will be converted to <code class="docutils literal notranslate"><span class="pre">mapdl.run('k')</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>clines</strong> – List of lines translated</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
 </div>
 
 

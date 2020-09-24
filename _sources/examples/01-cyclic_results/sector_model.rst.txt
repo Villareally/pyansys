@@ -39,7 +39,7 @@ the details of the rotor result file.
 
  .. code-block:: none
 
-    PyANSYS MAPDL Result file object
+    PyANSYS MAPDL Result
     Units       : User Defined
     Version     : 15.0
     Cyclic      : True
@@ -178,7 +178,7 @@ Disable movie_filename and increase nangles for a smoother plot
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  12.777 seconds)
+   **Total running time of the script:** ( 0 minutes  11.893 seconds)
 
 
 .. _sphx_glr_download_examples_01-cyclic_results_sector_model.py:

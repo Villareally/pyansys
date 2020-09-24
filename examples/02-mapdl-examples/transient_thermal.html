@@ -1,0 +1,546 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Example Thermal Transient Analysis &mdash; pyansys 0.44.2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script src="../../_static/clipboard.min.js"></script>
+        <script src="../../_static/copybutton.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery-dataframe.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Compute Cell Quality" href="../../quality.html" />
+    <link rel="prev" title="PyVista Mesh Integration" href="pyvista_mesh.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> pyansys
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.44.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Interactive MAPDL Python Interface</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../mapdl/index.html">ANSYS MAPDL Interactive Control</a></li>
+</ul>
+<p class="caption"><span class="caption-text">ANSYS File Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../archive.html">Reading and Writing ANSYS Archive Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../loading_results.html">Working with a ANSYS Result Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">Archive and Result File Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../loading_km.html">Working with a ANSYS Full File (full)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../loading_emat.html">Working with a ANSYS Element Matrix File (.emat)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Example Gallery</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">MAPDL and Result Reader Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#loading-and-visualizing-result-files">Loading and Visualizing Result Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#cyclic-result-analysis">Cyclic Result Analysis</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#ansys-mapdl-examples-using-pyansys">ANSYS MAPDL Examples Using Pyansys</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="2d_plate_with_a_hole.html">ANSYS 2D Plane Stress Concentration Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2d_plate_with_a_hole.html#element-type-and-material-properties">Element Type and Material Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2d_plate_with_a_hole.html#geometry">Geometry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2d_plate_with_a_hole.html#meshing">Meshing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2d_plate_with_a_hole.html#boundary-conditions">Boundary Conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2d_plate_with_a_hole.html#solve-the-static-problem">Solve the Static Problem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2d_plate_with_a_hole.html#post-processing">Post-Processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2d_plate_with_a_hole.html#compute-the-stress-concentration">Compute the Stress Concentration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2d_plate_with_a_hole.html#batch-analysis">Batch Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2d_plate_with_a_hole.html#analytical-comparison">Analytical Comparison</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_notch.html">3D Stress Concentration Analysis for a Notched Plate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_notch.html#geometry">Geometry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_notch.html#meshing">Meshing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_notch.html#material-properties-and-boundary-conditions">Material Properties and Boundary Conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_notch.html#solve-the-static-problem">Solve the Static Problem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_notch.html#post-processing">Post-Processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_notch.html#compute-the-stress-concentration">Compute the Stress Concentration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_plate_thermal.html">Basic Thermal Analysis with pyansys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_plate_thermal.html#geometry-and-material-properties">Geometry and Material Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_plate_thermal.html#boundary-conditions">Boundary Conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_plate_thermal.html#solve">Solve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_plate_thermal.html#post-processing-using-mapdl">Post-Processing using MAPDL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mapdl_3d_beam.html">MAPDL 3D Beam Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mapdl_beam.html">MAPDL 2D Beam Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyvista_mesh.html">PyVista Mesh Integration</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Example Thermal Transient Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#geometry-and-mesh">Geometry and Mesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#setup-the-solution">Setup the Solution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-transient-thermal-solve">The Transient Thermal Solve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#post-processing">Post-Processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#visualize-a-slice">Visualize a Slice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#visualize-several-slices">Visualize Several Slices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#temperature-at-a-single-point">Temperature at a Single Point</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Miscellaneous</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../quality.html">Compute Cell Quality</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">pyansys</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">MAPDL and Result Reader Examples</a> &raquo;</li>
+        
+      <li>Example Thermal Transient Analysis</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/examples/02-mapdl-examples/transient_thermal.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-examples-02-mapdl-examples-transient-thermal-py"><span class="std std-ref">here</span></a>     to download the full example code</p>
+</div>
+<div class="sphx-glr-example-title section" id="example-thermal-transient-analysis">
+<span id="ref-thermal-transient"></span><span id="sphx-glr-examples-02-mapdl-examples-transient-thermal-py"></span><h1>Example Thermal Transient Analysis<a class="headerlink" href="#example-thermal-transient-analysis" title="Permalink to this headline">¶</a></h1>
+<p>This example shows how you can use <cite>pyansys</cite> to input a time dependent
+temperature table to vary the temperature at a beam.  This uses
+convection loads with independently varying convection coefficient and
+bulk temperature.</p>
+<p>Example adapted from:
+<a class="reference external" href="https://www.simutechgroup.com/tips-and-tricks/fea-articles/97-fea-tips-tricks-thermal-transient">https://www.simutechgroup.com/tips-and-tricks/fea-articles/97-fea-tips-tricks-thermal-transient</a></p>
+<p>Thanks SimuTech!</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pyansys</span>
+
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;I_MPI_SHM_LMT&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;shm&#39;</span>  <span class="c1"># necessary on Ubuntu</span>
+<span class="n">mapdl</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">launch_mapdl</span><span class="p">()</span>
+
+<span class="n">mapdl</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">prep7</span><span class="p">()</span>
+
+<span class="c1"># Material properties-- 1020 steel in imperial</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">units</span><span class="p">(</span><span class="s1">&#39;BIN&#39;</span><span class="p">)</span>  <span class="c1"># U.S. Customary system using inches (in, lbf*s2/in, s, °F).</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">mp</span><span class="p">(</span><span class="s1">&#39;EX&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">30023280.0</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">mp</span><span class="p">(</span><span class="s1">&#39;NUXY&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.290000000</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">mp</span><span class="p">(</span><span class="s1">&#39;ALPX&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">8.388888889E-06</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">mp</span><span class="p">(</span><span class="s1">&#39;DENS&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">7.346344000E-04</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">mp</span><span class="p">(</span><span class="s1">&#39;KXX&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">6.252196000E-04</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">mp</span><span class="p">(</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">38.6334760</span><span class="p">)</span>
+
+<span class="c1"># use a thermal element type</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">et</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;SOLID70&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>1
+</pre></div>
+</div>
+</div>
+<div class="section" id="geometry-and-mesh">
+<h1>Geometry and Mesh<a class="headerlink" href="#geometry-and-mesh" title="Permalink to this headline">¶</a></h1>
+<p>Create a block 5x1x1 inches in size and mesh it</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">block</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">lesize</span><span class="p">(</span><span class="s1">&#39;ALL&#39;</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="n">layer1</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">mapdl</span><span class="o">.</span><span class="n">mshape</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;3D&#39;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">mshkey</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">vmesh</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">eplot</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="transient thermal" class="sphx-glr-single-img" src="../../_images/sphx_glr_transient_thermal_001.png" />
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[(8.29555495773441, 6.295554957734411, 6.295554957734411),
+ (2.5, 0.5, 0.5),
+ (0.0, 0.0, 1.0)]
+</pre></div>
+</div>
+</div>
+<div class="section" id="setup-the-solution">
+<h1>Setup the Solution<a class="headerlink" href="#setup-the-solution" title="Permalink to this headline">¶</a></h1>
+<p>Solve a transient analysis while ramping the load up and down.</p>
+<p>Note the solution time commands in the above code fragment. The
+final TIME is set to 1000 seconds. Time substep size is permitted to
+range from a minimum of 2 seconds to a maximum of 50 seconds in the
+DELTIM command. A first substep of 10 seconds is applied. Automatic
+time substep sizing will vary substeps between the extremes.</p>
+<p>A Table Array is used for the time-dependent Convection Coefficient
+values. Times go in the Zeroth column, while associated Convection
+Coefficients go in the First column.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;/SOLU&#39;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">antype</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>            <span class="c1"># transient analysis</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">trnopt</span><span class="p">(</span><span class="s1">&#39;FULL&#39;</span><span class="p">)</span>       <span class="c1"># full transient analysis</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">kbc</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>               <span class="c1"># ramp loads up and down</span>
+
+<span class="c1"># Time stepping</span>
+<span class="n">end_time</span> <span class="o">=</span> <span class="mi">1500</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">time</span><span class="p">(</span><span class="n">end_time</span><span class="p">)</span>       <span class="c1"># end time for load step</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">autots</span><span class="p">(</span><span class="s1">&#39;ON&#39;</span><span class="p">)</span>         <span class="c1"># use automatic time stepping</span>
+
+
+<span class="c1"># setup where the subset time is 10 seconds, time</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">deltim</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>    <span class="c1"># substep size (seconds)</span>
+<span class="c1">#                          -- minimum value shorter than smallest</span>
+<span class="c1">#                            time change in the table arrays below</span>
+
+<span class="c1"># Create a table of convection times and coefficients and trasfer it to MAPDL</span>
+<span class="n">my_conv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">],</span>      <span class="c1"># start time</span>
+                    <span class="p">[</span><span class="mi">120</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">],</span>    <span class="c1"># end of first &quot;flat&quot; zone</span>
+                    <span class="p">[</span><span class="mi">130</span><span class="p">,</span> <span class="mf">0.005</span><span class="p">],</span>    <span class="c1"># ramps up in 10 seconds</span>
+                    <span class="p">[</span><span class="mi">700</span><span class="p">,</span> <span class="mf">0.005</span><span class="p">],</span>    <span class="c1"># end of second &quot;flat zone</span>
+                    <span class="p">[</span><span class="mi">710</span><span class="p">,</span> <span class="mf">0.002</span><span class="p">],</span>    <span class="c1"># ramps down in 10 seconds</span>
+                    <span class="p">[</span><span class="n">end_time</span><span class="p">,</span> <span class="mf">0.002</span><span class="p">]])</span>  <span class="c1"># end of third &quot;flat&quot; zone</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">load_table</span><span class="p">(</span><span class="s1">&#39;my_conv&#39;</span><span class="p">,</span> <span class="n">my_conv</span><span class="p">,</span> <span class="s1">&#39;TIME&#39;</span><span class="p">)</span>
+
+
+<span class="c1"># Create a table of bulk temperatures for a given time and transfer to MAPDL</span>
+<span class="n">my_bulk</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span>      <span class="c1"># start time</span>
+                    <span class="p">[</span><span class="mi">120</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span>    <span class="c1"># end of first &quot;flat&quot; zone</span>
+                    <span class="p">[</span><span class="mi">500</span><span class="p">,</span> <span class="mi">300</span><span class="p">],</span>    <span class="c1"># ramps up in 380 seconds</span>
+                    <span class="p">[</span><span class="mi">700</span><span class="p">,</span> <span class="mi">300</span><span class="p">],</span>    <span class="c1"># hold temperature for 200 seconds</span>
+                    <span class="p">[</span><span class="mi">900</span><span class="p">,</span> <span class="mi">75</span><span class="p">],</span>     <span class="c1"># temperature ramps down for 200 seconds</span>
+                    <span class="p">[</span><span class="n">end_time</span><span class="p">,</span> <span class="mi">75</span><span class="p">]])</span>   <span class="c1"># end of second &quot;flat&quot; zone</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">load_table</span><span class="p">(</span><span class="s1">&#39;my_bulk&#39;</span><span class="p">,</span> <span class="n">my_bulk</span><span class="p">,</span> <span class="s1">&#39;TIME&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-transient-thermal-solve">
+<h1>The Transient Thermal Solve<a class="headerlink" href="#the-transient-thermal-solve" title="Permalink to this headline">¶</a></h1>
+<p>This model is to be solved in one time step. For this reason, a
+<code class="docutils literal notranslate"><span class="pre">TSRES</span></code> command is used for force the solver to include a
+<code class="docutils literal notranslate"><span class="pre">SOLVE</span></code> at every time point in the two Table Arrays above. This
+ensures that the time-dependent curves are followed by the transient
+analysis. Intermediate solutions between the <code class="docutils literal notranslate"><span class="pre">TSRES</span></code> time points
+will be included according to the <code class="docutils literal notranslate"><span class="pre">DELTIM</span></code> command and the
+automatic time stepping decisions of the ANSYS solver.</p>
+<p>In this example, the times for the <code class="docutils literal notranslate"><span class="pre">TSRES</span></code> array illustrated above
+have been determined manually. A set of APDL commands could be used
+to automate this process for chosen Table Array entries, in more
+complex modeling situations, including checks that no time intervals
+are too short.</p>
+<p>Results at substeps will be wanted if the intermediate solutions of
+the time-transient analysis are to be available for post-processing
+review. The <code class="docutils literal notranslate"><span class="pre">OUTRES</span></code> command is used to control how much is written to
+the results file. In this example the OUTRES command will be used to
+simply write out all results for all substeps. In work with large
+models and may substeps, too much data will be written if such a
+strategy is employed for <code class="docutils literal notranslate"><span class="pre">OUTRES</span></code>, and other options will need to be
+considered. Note that one option for the <code class="docutils literal notranslate"><span class="pre">OUTRES</span></code> command is to
+control times at which results are written with a Table Array, much
+as is used in the <code class="docutils literal notranslate"><span class="pre">TSRES</span></code> command, but typically for a larger number
+of time points, although including those of the TSRES array.</p>
+<p>The initial condition starting temperature is controlled for this
+example with the <code class="docutils literal notranslate"><span class="pre">TUNIF</span></code> command. Note that thermal transient
+analyses can also have a starting temperature profile formed by a
+static thermal <code class="docutils literal notranslate"><span class="pre">SOLVE</span></code>. If a user neglects to set an initial
+temperature in ANSYS Mechanical APDL, a value of zero will be used,
+which is often not what is desired.</p>
+<p>The thermal convective loads are applied with an SF family
+command—in this example a convective load is applied to the end face
+of the solid model by the SFA command, using the Table Array entries
+for convection and bulk temperature that were developed above. The
+Table Array names are surrounded with percent signs (%).  A SOLVE is
+then performed.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Force transient solve to include the times within the conv and bulk arrays</span>
+<span class="c1"># my_tres = np.unique(np.vstack((my_bulk[:, 0], my_conv[:, 0])))[0]  # same as</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;my_tsres&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">120</span><span class="p">,</span> <span class="mi">130</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">700</span><span class="p">,</span> <span class="mi">710</span><span class="p">,</span> <span class="mi">900</span><span class="p">,</span> <span class="n">end_time</span><span class="p">]</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">tsres</span><span class="p">(</span><span class="s1">&#39;%my_tsres%&#39;</span><span class="p">)</span>
+
+<span class="n">mapdl</span><span class="o">.</span><span class="n">outres</span><span class="p">(</span><span class="s1">&#39;ERASE&#39;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">outres</span><span class="p">(</span><span class="s1">&#39;ALL&#39;</span><span class="p">,</span> <span class="s1">&#39;ALL&#39;</span><span class="p">)</span>
+
+<span class="n">mapdl</span><span class="o">.</span><span class="n">eqslv</span><span class="p">(</span><span class="s1">&#39;SPARSE&#39;</span><span class="p">)</span>  <span class="c1"># use sparse solver</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">tunif</span><span class="p">(</span><span class="mi">75</span><span class="p">)</span>        <span class="c1"># force uniform starting temperature (otherwise zero)</span>
+
+<span class="c1"># apply the convective load (convection coefficient plus bulk temperature)</span>
+<span class="c1"># use &quot;%&quot; around table array names</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">sfa</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;CONV&#39;</span><span class="p">,</span> <span class="s1">&#39;%my_conv%&#39;</span><span class="p">,</span> <span class="s1">&#39; %my_bulk%&#39;</span><span class="p">)</span>
+
+<span class="c1"># solve</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;One or more COMPONENTS exist that do not have all underlying entities selected.  Issuing an ALLSEL or other select commands before CDWRITE will ensure all underlying entities are selected.  These COMPONENTS were not written to the CDWRITE file.\n *** NOTE ***                            CP =       0.656   TIME= 15:29:40\n The automatic domain decomposition logic has selected the MESH domain\n decomposition method with 2 processes per solution.\n\n *****  ANSYS SOLVE    COMMAND  *****\n\n TRANSFER SOLID MODEL BOUNDARY CONDITIONS TO FINITE ELEMENT MODEL\n      SURFACE LOADS  TRANSFERRED FROM AREAS         =     25\n\n *** NOTE ***                            CP =       0.658   TIME= 15:29:40\n There is no title defined for this analysis.\n\n *** ANSYS - ENGINEERING ANALYSIS SYSTEM  RELEASE 2020 R2          20.2     ***\n DISTRIBUTED ANSYS Mechanical Enterprise\n\n 88888888  VERSION=LINUX x64     15:29:40  SEP 23, 2020 CP=      0.659\n\n\n\n\n\n                       S O L U T I O N   O P T I O N S\n\n   PROBLEM DIMENSIONALITY. . . . . . . . . . . . .3-D\n   DEGREES OF FREEDOM. . . . . . TEMP\n   ANALYSIS TYPE . . . . . . . . . . . . . . . . .TRANSIENT\n      SOLUTION METHOD. . . . . . . . . . . . . . .FULL\n   EQUATION SOLVER OPTION. . . . . . . . . . . . .SPARSE\n   GLOBALLY ASSEMBLED MATRIX . . . . . . . . . . .SYMMETRIC\n\n *** NOTE ***                            CP =       0.659   TIME= 15:29:40\n The conditions for direct assembly have been met.  No .emat or .erot\n files will be produced.\n\n\n\n     D I S T R I B U T E D   D O M A I N   D E C O M P O S E R\n\n  ...Number of elements: 625\n  ...Number of nodes:    936\n  ...Decompose to 2 CPU domains\n  ...Element load balance ratio =     1.003\n\n\n                      L O A D   S T E P   O P T I O N S\n\n   LOAD STEP NUMBER. . . . . . . . . . . . . . . .     1\n   TIME AT END OF THE LOAD STEP. . . . . . . . . .  1500.0\n   AUTOMATIC TIME STEPPING . . . . . . . . . . . .    ON\n      STARTING TIME STEP SIZE. . . . . . . . . . .  10.000\n      MINIMUM TIME STEP SIZE . . . . . . . . . . .  2.0000\n      MAXIMUM TIME STEP SIZE . . . . . . . . . . .  25.000\n   TIME STEP RESET ARRAY . . . . . . . . . . . . .  MY_TSRES\n   STEP CHANGE BOUNDARY CONDITIONS . . . . . . . .    NO\n   TRANSIENT (INERTIA) EFFECTS\n      THERMAL DOFS . . . . . . . . . . . . . . . .    ON\n   TRANSIENT INTEGRATION PARAMETERS\n      THETA. . . . . . . . . . . . . . . . . . . .  1.0000\n      OSCILLATION LIMIT CRITERION. . . . . . . . . 0.50000\n      TOLERANCE. . . . . . . . . . . . . . . . . .  0.0000\n   PRINT OUTPUT CONTROLS . . . . . . . . . . . . .NO PRINTOUT\n   DATABASE OUTPUT CONTROLS\n      ITEM     FREQUENCY   COMPONENT\n       ALL        ALL\n\n\n SOLUTION MONITORING INFO IS WRITTEN TO FILE= file.mntr\n\n\n\n\n            **** CENTER OF MASS, MASS, AND MASS MOMENTS OF INERTIA ****\n\n  CALCULATIONS ASSUME ELEMENT MASS AT ELEMENT CENTROID\n\n  TOTAL MASS =  0.36732E-02\n\n                           MOM. OF INERTIA         MOM. OF INERTIA\n  CENTER OF MASS            ABOUT ORIGIN        ABOUT CENTER OF MASS\n\n  XC =   2.5000          IXX =   0.2424E-02      IXX =   0.5877E-03\n  YC =  0.50000          IYY =   0.3181E-01      IYY =   0.7934E-02\n  ZC =  0.50000          IZZ =   0.3181E-01      IZZ =   0.7934E-02\n                         IXY =  -0.4591E-02      IXY =   0.1626E-16\n                         IYZ =  -0.9183E-03      IYZ =   0.3732E-17\n                         IZX =  -0.4591E-02      IZX =   0.1789E-16\n\n\n  *** MASS SUMMARY BY ELEMENT TYPE ***\n\n  TYPE      MASS\n     1  0.367317E-02\n\n Range of element maximum matrix coefficients in global coordinates\n Maximum = 5.168130667E-05 at element 375.\n Minimum = 4.168130667E-05 at element 226.\n\n   *** ELEMENT MATRIX FORMULATION TIMES\n     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP\n\n        1       625  SOLID70       0.008   0.000012\n Time at end of element matrix formulation CP = 0.689378977.\n\n ALL CURRENT ANSYS DATA WRITTEN TO FILE NAME= file.rdb\n  FOR POSSIBLE RESUME FROM THIS POINT\n\n DISTRIBUTED SPARSE MATRIX DIRECT SOLVER.\n  Number of equations =         936,    Maximum wavefront =     25\n\n  Local memory allocated for solver              =      0.615 MB\n  Local memory required for in-core solution     =      0.592 MB\n  Local memory required for out-of-core solution =      0.473 MB\n\n  Total memory allocated for solver              =      1.196 MB\n  Total memory required for in-core solution     =      1.152 MB\n  Total memory required for out-of-core solution =      0.926 MB\n\n *** NOTE ***                            CP =       0.713   TIME= 15:29:40\n The Distributed Sparse Matrix Solver is currently running in the\n in-core memory mode.  This memory mode uses the most amount of memory\n in order to avoid using the hard drive as much as possible, which most\n often results in the fastest solution time.  This mode is recommended\n if enough physical memory is present to accommodate all of the solver\n data.\n Distributed sparse solver maximum pivot= 3.561556377E-04 at node 883\n TEMP.\n Distributed sparse solver minimum pivot= 4.451945471E-05 at node 188\n TEMP.\n Distributed sparse solver minimum pivot in absolute value=\n 4.451945471E-05 at node 188 TEMP.&#39;
+</pre></div>
+</div>
+</div>
+<div class="section" id="post-processing">
+<h1>Post-Processing<a class="headerlink" href="#post-processing" title="Permalink to this headline">¶</a></h1>
+<p>Animate the temperature as a function of time.  Disable writing to
+disk to speed up the animation.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Animate every 5th result</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">result</span>
+<span class="n">rnums</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">nsets</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">result</span><span class="o">.</span><span class="n">animate_nodal_solution_set</span><span class="p">(</span><span class="n">rnums</span><span class="p">,</span> <span class="n">stitle</span><span class="o">=</span><span class="s1">&#39;Temperature&#39;</span><span class="p">,</span>
+                                  <span class="n">movie_filename</span><span class="o">=</span><span class="s1">&#39;animation.gif&#39;</span><span class="p">,</span>
+                                  <span class="n">loop</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="transient thermal" class="sphx-glr-single-img" src="../../_images/sphx_glr_transient_thermal_002.png" />
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Caching scalars:   0%|          | 0/36 [00:00&lt;?, ?it/s]
+Caching scalars: 100%|##########| 36/36 [00:00&lt;00:00, 2463.41it/s]
+
+[(8.29555495773441, 6.295554957734411, 6.295554957734411),
+ (2.5, 0.5, 0.5),
+ (0.0, 0.0, 1.0)]
+</pre></div>
+</div>
+</div>
+<div class="section" id="visualize-a-slice">
+<h1>Visualize a Slice<a class="headerlink" href="#visualize-a-slice" title="Permalink to this headline">¶</a></h1>
+<p>Visualize a slice through the dataset using <code class="docutils literal notranslate"><span class="pre">pyvista</span></code>
+for more details visit &lt;<a class="reference external" href="https://docs.pyvista.org/">https://docs.pyvista.org/</a>&gt;`_.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># get the temperature of a result set</span>
+<span class="n">nnum</span><span class="p">,</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">nodal_temperature</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+
+<span class="c1"># Load this result into the underlying VTK grid</span>
+<span class="n">grid</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">grid</span>
+<span class="n">grid</span><span class="p">[</span><span class="s1">&#39;temperature&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span>
+
+<span class="c1"># generate a single horizontal slice slice along the XY plane</span>
+<span class="n">single_slice</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">slice</span><span class="p">(</span><span class="n">normal</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">origin</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">])</span>
+<span class="n">single_slice</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">scalars</span><span class="o">=</span><span class="s1">&#39;temperature&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="transient thermal" class="sphx-glr-single-img" src="../../_images/sphx_glr_transient_thermal_003.png" />
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[(8.187217274930124, 6.187217274930123, 6.187217274930123),
+ (2.5, 0.5, 0.5),
+ (0.0, 0.0, 1.0)]
+</pre></div>
+</div>
+</div>
+<div class="section" id="visualize-several-slices">
+<h1>Visualize Several Slices<a class="headerlink" href="#visualize-several-slices" title="Permalink to this headline">¶</a></h1>
+<p>This shows how you can visualize a series of slices through a dataset</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># get the temperature of a different result set</span>
+<span class="n">nnum</span><span class="p">,</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">nodal_temperature</span><span class="p">(</span><span class="mi">120</span><span class="p">)</span>
+
+<span class="c1"># Load this result into the underlying VTK grid</span>
+<span class="n">grid</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">grid</span>
+<span class="n">grid</span><span class="p">[</span><span class="s1">&#39;temperature&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span>
+
+<span class="c1"># generate a single horizontal slice slice along the XY plane</span>
+<span class="n">slices</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">slice_along_axis</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">slices</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">scalars</span><span class="o">=</span><span class="s1">&#39;temperature&#39;</span><span class="p">,</span> <span class="n">lighting</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">show_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="transient thermal" class="sphx-glr-single-img" src="../../_images/sphx_glr_transient_thermal_004.png" />
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[(8.291303324594558, 6.291303324594559, 6.291303324594559),
+ (2.5, 0.5, 0.5),
+ (0.0, 0.0, 1.0)]
+</pre></div>
+</div>
+</div>
+<div class="section" id="temperature-at-a-single-point">
+<h1>Temperature at a Single Point<a class="headerlink" href="#temperature-at-a-single-point" title="Permalink to this headline">¶</a></h1>
+<p>Extract the temperature at a single node and plot it with respect to
+the input temperatures using <code class="docutils literal notranslate"><span class="pre">pyansys</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># get the index of node 12</span>
+<span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">nnum</span> <span class="o">==</span> <span class="mi">12</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># get the temperature at that index for each result</span>
+<span class="n">node_temp</span> <span class="o">=</span> <span class="p">[</span><span class="n">result</span><span class="o">.</span><span class="n">nodal_temperature</span><span class="p">(</span><span class="n">i</span><span class="p">)[</span><span class="mi">1</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">nsets</span><span class="p">)]</span>
+
+<span class="c1"># plot this as a function of time</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">time_values</span><span class="p">,</span> <span class="n">node_temp</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Node 12&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">my_bulk</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">my_bulk</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Input&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (seconds)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Temperature ($^\circ$F)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="transient thermal" class="sphx-glr-single-img" src="../../_images/sphx_glr_transient_thermal_005.png" />
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Matplotlib is currently using agg, which is a non-GUI backend, so cannot show the figure.
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  9.914 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-02-mapdl-examples-transient-thermal-py">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/5d653d9159c407658e1c60e2b6349452/transient_thermal.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">transient_thermal.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/9311e5a66c8eae2d8cfc588c20d48f0f/transient_thermal.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">transient_thermal.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../quality.html" class="btn btn-neutral float-right" title="Compute Cell Quality" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pyvista_mesh.html" class="btn btn-neutral float-left" title="PyVista Mesh Integration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Alex Kaszynski
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

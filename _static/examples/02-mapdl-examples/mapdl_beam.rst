@@ -40,8 +40,8 @@ Launch MAPDL with interactive plotting
  .. code-block:: none
 
     Product:         ANSYS Mechanical Enterprise
-    MAPDL Version:   RELEASE  Release 18.2.2    BUILD 18.2.2    UPDATE 20170927
-    PyANSYS Version: 0.43.0
+    MAPDL Version:   RELEASE  2020 R2           BUILD 20.2      UPDATE 20200601
+    PyANSYS Version: 0.44.1
 
 
 
@@ -172,9 +172,10 @@ are sequential
 
     LIST ALL SELECTED ELEMENTS.  (LIST NODES)
 
-     *** ANSYS - ENGINEERING ANALYSIS SYSTEM  RELEASE Release 18.2.2   18.2.2   ***
-     ANSYS Mechanical Enterprise
-     88888888  VERSION=LINUX x64     23:35:03  AUG 19, 2020 CP=      0.426
+     *** ANSYS - ENGINEERING ANALYSIS SYSTEM  RELEASE 2020 R2          20.2     ***
+     DISTRIBUTED ANSYS Mechanical Enterprise
+
+     88888888  VERSION=LINUX x64     15:29:28  SEP 23, 2020 CP=      0.646
 
 
 
@@ -309,9 +310,13 @@ run the static analysis
  .. code-block:: none
 
     One or more COMPONENTS exist that do not have all underlying entities selected.  Issuing an ALLSEL or other select commands before CDWRITE will ensure all underlying entities are selected.  These COMPONENTS were not written to the CDWRITE file.
+     *** NOTE ***                            CP =       0.675   TIME= 15:29:28
+     The automatic domain decomposition logic has selected the MESH domain
+     decomposition method with 2 processes per solution.
+
      *****  ANSYS SOLVE    COMMAND  *****
 
-     *** NOTE ***                            CP =       0.435   TIME= 23:35:03
+     *** NOTE ***                            CP =       0.676   TIME= 15:29:28
      There is no title defined for this analysis.
 
      *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***
@@ -324,9 +329,10 @@ run the static analysis
 
 
 
-     *** ANSYS - ENGINEERING ANALYSIS SYSTEM  RELEASE Release 18.2.2   18.2.2   ***
-     ANSYS Mechanical Enterprise
-     88888888  VERSION=LINUX x64     23:35:03  AUG 19, 2020 CP=      0.435
+     *** ANSYS - ENGINEERING ANALYSIS SYSTEM  RELEASE 2020 R2          20.2     ***
+     DISTRIBUTED ANSYS Mechanical Enterprise
+
+     88888888  VERSION=LINUX x64     15:29:28  SEP 23, 2020 CP=      0.676
 
 
 
@@ -339,13 +345,23 @@ run the static analysis
        ANALYSIS TYPE . . . . . . . . . . . . . . . . .STATIC (STEADY-STATE)
        GLOBALLY ASSEMBLED MATRIX . . . . . . . . . . .SYMMETRIC
 
-     *** NOTE ***                            CP =       0.436   TIME= 23:35:03
+     *** NOTE ***                            CP =       0.676   TIME= 15:29:28
      Present time 0 is less than or equal to the previous time.  Time will
      default to 1.
 
-     *** NOTE ***                            CP =       0.436   TIME= 23:35:03
+     *** NOTE ***                            CP =       0.677   TIME= 15:29:28
      The conditions for direct assembly have been met.  No .emat or .erot
      files will be produced.
+
+
+
+         D I S T R I B U T E D   D O M A I N   D E C O M P O S E R
+
+      ...Number of elements: 22
+      ...Number of nodes:    23
+      ...Decompose to 2 CPU domains
+      ...Element load balance ratio =     1.000
+
 
                           L O A D   S T E P   O P T I O N S
 
@@ -360,39 +376,45 @@ run the static analysis
 
      SOLUTION MONITORING INFO IS WRITTEN TO FILE= file.mntr
 
-     *** NOTE ***                            CP =       0.444   TIME= 23:35:03
+     *** NOTE ***                            CP =       0.687   TIME= 15:29:28
      Predictor is ON by default for structural elements with rotational
      degrees of freedom.  Use the PRED,OFF command to turn the predictor
      OFF if it adversely affects the convergence.
 
 
      Range of element maximum matrix coefficients in global coordinates
-     Maximum = 2.504767151E+10 at element 22.
-     Minimum = 2.504767151E+10 at element 22.
+     Maximum = 2.504767151E+10 at element 11.
+     Minimum = 2.504767151E+10 at element 11.
 
        *** ELEMENT MATRIX FORMULATION TIMES
          TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-            1        22  BEAM188       0.008   0.000355
-     Time at end of element matrix formulation CP = 0.450386018.
+            1        22  BEAM188       0.003   0.000121
+     Time at end of element matrix formulation CP = 0.690443993.
 
-     SPARSE MATRIX DIRECT SOLVER.
+     DISTRIBUTED SPARSE MATRIX DIRECT SOLVER.
       Number of equations =          44,    Maximum wavefront =     12
-      Memory allocated for solver              =     0.067 MB
-      Memory required for in-core solution     =     0.064 MB
-      Memory required for out-of-core solution =     0.062 MB
 
-     *** NOTE ***                            CP =       0.453   TIME= 23:35:03
-     The Sparse Matrix Solver is currently running in the in-core memory
-     mode.  This memory mode uses the most amount of memory in order to
-     avoid using the hard drive as much as possible, which most often
-     results in the fastest solution time.  This mode is recommended if
-     enough physical memory is present to accommodate all of the solver
+      Local memory allocated for solver              =      0.187 MB
+      Local memory required for in-core solution     =      0.178 MB
+      Local memory required for out-of-core solution =      0.178 MB
+
+      Total memory allocated for solver              =      0.371 MB
+      Total memory required for in-core solution     =      0.354 MB
+      Total memory required for out-of-core solution =      0.354 MB
+
+     *** NOTE ***                            CP =       0.693   TIME= 15:29:29
+     The Distributed Sparse Matrix Solver is currently running in the
+     in-core memory mode.  This memory mode uses the most amount of memory
+     in order to avoid using the hard drive as much as possible, which most
+     often results in the fastest solution time.  This mode is recommended
+     if enough physical memory is present to accommodate all of the solver
      data.
-     Sparse solver maximum pivot= 5.009534302E+10 at node 16 ROTY.
-     Sparse solver minimum pivot= 2691965.06 at node 12 UZ.
-     Sparse solver minimum pivot in absolute value= 2691965.06 at node 12
-     UZ.
+     Distributed sparse solver maximum pivot= 5.009534302E+10 at node 4
+     ROTY.
+     Distributed sparse solver minimum pivot= 861490.522 at node 12 UZ.
+     Distributed sparse solver minimum pivot in absolute value= 861490.522
+     at node 12 UZ.
 
 
 
@@ -400,7 +422,7 @@ run the static analysis
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  1.749 seconds)
+   **Total running time of the script:** ( 0 minutes  2.764 seconds)
 
 
 .. _sphx_glr_download_examples_02-mapdl-examples_mapdl_beam.py:

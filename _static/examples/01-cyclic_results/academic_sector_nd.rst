@@ -51,7 +51,7 @@ Download the academic modal analysis file
 
  .. code-block:: none
 
-    PyANSYS MAPDL Result file object
+    PyANSYS MAPDL Result
     Units       : User Defined
     Version     : 20.1
     Cyclic      : True
@@ -584,7 +584,7 @@ second mode in the mode pair ``(3, 2)`` instead of ``(3, 1)``.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  23.500 seconds)
+   **Total running time of the script:** ( 0 minutes  20.840 seconds)
 
 
 .. _sphx_glr_download_examples_01-cyclic_results_academic_sector_nd.py:

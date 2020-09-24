@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>MAPDL 3D Beam Example &mdash; pyansys 0.43.1 documentation</title>
+  <title>MAPDL 3D Beam Example &mdash; pyansys 0.44.2 documentation</title>
   
 
   
@@ -43,7 +43,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="MAPDL 2D Beam Example" href="mapdl_beam.html" />
-    <link rel="prev" title="3D Stress Concentration Analysis for a Notched Plate" href="3d_notch.html" /> 
+    <link rel="prev" title="Basic Thermal Analysis with pyansys" href="3d_plate_thermal.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.43.1
+                0.44.2
               </div>
             
           
@@ -126,9 +126,22 @@
 <li class="toctree-l3"><a class="reference internal" href="3d_notch.html#solve-the-static-problem">Solve the Static Problem</a></li>
 <li class="toctree-l3"><a class="reference internal" href="3d_notch.html#post-processing">Post-Processing</a></li>
 <li class="toctree-l3"><a class="reference internal" href="3d_notch.html#compute-the-stress-concentration">Compute the Stress Concentration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_plate_thermal.html">Basic Thermal Analysis with pyansys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_plate_thermal.html#geometry-and-material-properties">Geometry and Material Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_plate_thermal.html#boundary-conditions">Boundary Conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_plate_thermal.html#solve">Solve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_plate_thermal.html#post-processing-using-mapdl">Post-Processing using MAPDL</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">MAPDL 3D Beam Example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="mapdl_beam.html">MAPDL 2D Beam Example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyvista_mesh.html">PyVista Mesh Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="transient_thermal.html">Example Thermal Transient Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="transient_thermal.html#geometry-and-mesh">Geometry and Mesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="transient_thermal.html#setup-the-solution">Setup the Solution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="transient_thermal.html#the-transient-thermal-solve">The Transient Thermal Solve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="transient_thermal.html#post-processing">Post-Processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="transient_thermal.html#visualize-a-slice">Visualize a Slice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="transient_thermal.html#visualize-several-slices">Visualize Several Slices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="transient_thermal.html#temperature-at-a-single-point">Temperature at a Single Point</a></li>
 </ul>
 </li>
 </ul>
@@ -260,7 +273,7 @@ method.</p>
                               <span class="n">movie_filename</span><span class="o">=</span><span class="s1">&#39;demo.gif&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  32.394 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  10.455 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-02-mapdl-examples-mapdl-3d-beam-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/22f48a4cba202f6a451107ab70bf7b8e/mapdl_3d_beam.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">mapdl_3d_beam.py</span></code></a></p>
@@ -283,7 +296,7 @@ method.</p>
         <a href="mapdl_beam.html" class="btn btn-neutral float-right" title="MAPDL 2D Beam Example" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="3d_notch.html" class="btn btn-neutral float-left" title="3D Stress Concentration Analysis for a Notched Plate" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="3d_plate_thermal.html" class="btn btn-neutral float-left" title="Basic Thermal Analysis with pyansys" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

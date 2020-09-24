@@ -47,7 +47,7 @@ Print the pontoon result
 
  .. code-block:: none
 
-    PyANSYS MAPDL Result file object
+    PyANSYS MAPDL Result
     Title       : CASE  1001  'H =  1.0  T =  62.8  D =  -0.0  P =   0.0'
     Units       : User Defined
     Version     : 19.3
@@ -229,7 +229,7 @@ Missing solution data will plot as a white mesh
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  1.185 seconds)
+   **Total running time of the script:** ( 0 minutes  1.080 seconds)
 
 
 .. _sphx_glr_download_examples_00-read_binary_pontoon.py:

@@ -242,6 +242,27 @@ These examples demonstrate using MAPDL and pyansys together.
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="This example demonstrates how you can use MAPDL to create a plate, impose thermal boundary cond...">
+
+.. only:: html
+
+ .. figure:: /examples/02-mapdl-examples/images/thumb/sphx_glr_3d_plate_thermal_thumb.png
+     :alt: Basic Thermal Analysis with pyansys
+
+     :ref:`sphx_glr_examples_02-mapdl-examples_3d_plate_thermal.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/02-mapdl-examples/3d_plate_thermal
+
+.. raw:: html
+
     <div class="sphx-glr-thumbcontainer" tooltip="This is a simple example that loads an archive file containing a beam and then runs a modal ana...">
 
 .. only:: html
@@ -302,6 +323,27 @@ These examples demonstrate using MAPDL and pyansys together.
    :hidden:
 
    /examples/02-mapdl-examples/pyvista_mesh
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Example adapted from: https://www.simutechgroup.com/tips-and-tricks/fea-articles/97-fea-tips-tr...">
+
+.. only:: html
+
+ .. figure:: /examples/02-mapdl-examples/images/thumb/sphx_glr_transient_thermal_thumb.png
+     :alt: Example Thermal Transient Analysis
+
+     :ref:`sphx_glr_examples_02-mapdl-examples_transient_thermal.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/02-mapdl-examples/transient_thermal
 .. raw:: html
 
     <div class="sphx-glr-clear"></div>

@@ -166,21 +166,21 @@ Load the result file within ``pyansys`` and plot the 8th mode.
 
  .. code-block:: none
 
-    PyANSYS MAPDL Result file object
+    PyANSYS MAPDL Distributed Result
     Units       : User Defined
-    Version     : 18.2
+    Version     : 20.2
     Cyclic      : False
     Result Sets : 20
-    Nodes       : 10201
-    Elements    : 10000
+    Nodes       : 5160
+    Elements    : 5000
 
 
     Available Results:
     NSL : Nodal displacements
 
 
-    [(1.6018615354080974, 1.6018615354080845, 1.6125783426810336),
-     (6.6058269965196814e-15, -6.328271240363392e-15, 0.010716807272942781),
+    [(1.601861535420676, 1.6018615354206405, 1.5911447281433078),
+     (1.8707257964933888e-14, -1.6930901125533637e-14, -0.01071680727734959),
      (0.0, 0.0, 1.0)]
 
 
@@ -208,8 +208,8 @@ plot the 1st mode using contours
  .. code-block:: none
 
 
-    [(1.6007557758557476, 1.6007557758557467, 1.6007557758553712),
-     (6.661338147750939e-16, -3.3306690738754696e-16, -3.7575498268438423e-13),
+    [(1.6007557758794801, 1.6007557758794804, 1.6007557758920548),
+     (-2.7755575615628914e-16, 0.0, 1.2574281893495964e-11),
      (0.0, 0.0, 1.0)]
 
 
@@ -251,7 +251,7 @@ Enable a continous plot looping with ```loop=True```.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  15.323 seconds)
+   **Total running time of the script:** ( 0 minutes  8.766 seconds)
 
 
 .. _sphx_glr_download_examples_02-mapdl-examples_pyvista_mesh.py:

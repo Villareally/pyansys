@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ANSYS 2D Plane Stress Concentration Analysis &mdash; pyansys 0.43.1 documentation</title>
+  <title>ANSYS 2D Plane Stress Concentration Analysis &mdash; pyansys 0.44.2 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.43.1
+                0.44.2
               </div>
             
           
@@ -126,9 +126,22 @@
 <li class="toctree-l3"><a class="reference internal" href="3d_notch.html#solve-the-static-problem">Solve the Static Problem</a></li>
 <li class="toctree-l3"><a class="reference internal" href="3d_notch.html#post-processing">Post-Processing</a></li>
 <li class="toctree-l3"><a class="reference internal" href="3d_notch.html#compute-the-stress-concentration">Compute the Stress Concentration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_plate_thermal.html">Basic Thermal Analysis with pyansys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_plate_thermal.html#geometry-and-material-properties">Geometry and Material Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_plate_thermal.html#boundary-conditions">Boundary Conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_plate_thermal.html#solve">Solve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_plate_thermal.html#post-processing-using-mapdl">Post-Processing using MAPDL</a></li>
 <li class="toctree-l3"><a class="reference internal" href="mapdl_3d_beam.html">MAPDL 3D Beam Example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="mapdl_beam.html">MAPDL 2D Beam Example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyvista_mesh.html">PyVista Mesh Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="transient_thermal.html">Example Thermal Transient Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="transient_thermal.html#geometry-and-mesh">Geometry and Mesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="transient_thermal.html#setup-the-solution">Setup the Solution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="transient_thermal.html#the-transient-thermal-solve">The Transient Thermal Solve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="transient_thermal.html#post-processing">Post-Processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="transient_thermal.html#visualize-a-slice">Visualize a Slice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="transient_thermal.html#visualize-several-slices">Visualize Several Slices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="transient_thermal.html#temperature-at-a-single-point">Temperature at a Single Point</a></li>
 </ul>
 </li>
 </ul>
@@ -370,7 +383,7 @@ force of 1 kN in the positive X direction.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;One or more COMPONENTS exist that do not have all underlying entities selected.  Issuing an ALLSEL or other select commands before CDWRITE will ensure all underlying entities are selected.  These COMPONENTS were not written to the CDWRITE file.\n *****  ANSYS SOLVE    COMMAND  *****\n\n *** NOTE ***                            CP =       1.144   TIME= 23:34:05\n There is no title defined for this analysis.\n\n *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***\n                ---GIVE SUGGESTIONS ONLY---\n\n ELEMENT TYPE    1 IS PLANE183 WITH PLANE STRESS OPTION. NO SUGGESTION IS\n AVAILABLE.\n\n\n\n *** ANSYS - ENGINEERING ANALYSIS SYSTEM  RELEASE Release 18.2.2   18.2.2   ***\n ANSYS Mechanical Enterprise\n 88888888  VERSION=LINUX x64     23:34:05  AUG 19, 2020 CP=      1.150\n\n\n\n\n\n                       S O L U T I O N   O P T I O N S\n\n   PROBLEM DIMENSIONALITY. . . . . . . . . . . . .2-D\n   DEGREES OF FREEDOM. . . . . . UX   UY\n   ANALYSIS TYPE . . . . . . . . . . . . . . . . .STATIC (STEADY-STATE)\n   GLOBALLY ASSEMBLED MATRIX . . . . . . . . . . .SYMMETRIC\n\n *** NOTE ***                            CP =       1.153   TIME= 23:34:05\n Present time 0 is less than or equal to the previous time.  Time will\n default to 1.\n\n *** NOTE ***                            CP =       1.154   TIME= 23:34:05\n The conditions for direct assembly have been met.  No .emat or .erot\n files will be produced.\n\n                      L O A D   S T E P   O P T I O N S\n\n   LOAD STEP NUMBER. . . . . . . . . . . . . . . .     1\n   TIME AT END OF THE LOAD STEP. . . . . . . . . .  1.0000\n   NUMBER OF SUBSTEPS. . . . . . . . . . . . . . .     1\n   STEP CHANGE BOUNDARY CONDITIONS . . . . . . . .    NO\n   PRINT OUTPUT CONTROLS . . . . . . . . . . . . .NO PRINTOUT\n   DATABASE OUTPUT CONTROLS. . . . . . . . . . . .ALL DATA WRITTEN\n                                                  FOR THE LAST SUBSTEP\n\n\n SOLUTION MONITORING INFO IS WRITTEN TO FILE= file.mntr\n\n\n\n\n            **** CENTER OF MASS, MASS, AND MASS MOMENTS OF INERTIA ****\n\n  CALCULATIONS ASSUME ELEMENT MASS AT ELEMENT CENTROID\n\n  TOTAL MASS =  0.30649\n\n                           MOM. OF INERTIA         MOM. OF INERTIA\n  CENTER OF MASS            ABOUT ORIGIN        ABOUT CENTER OF MASS\n\n  XC =  0.20000          IXX =   0.1024E-02      IXX =   0.2576E-03\n  YC =  0.49997E-01      IYY =   0.1642E-01      IYY =   0.4156E-02\n  ZC =   0.0000          IZZ =   0.1744E-01      IZZ =   0.4414E-02\n                         IXY =  -0.3065E-02      IXY =   0.8905E-09\n                         IYZ =    0.000          IYZ =    0.000\n                         IZX =    0.000          IZX =    0.000\n\n\n  *** MASS SUMMARY BY ELEMENT TYPE ***\n\n  TYPE      MASS\n     1  0.306487\n\n Range of element maximum matrix coefficients in global coordinates\n Maximum = 1.265116826E+09 at element 67.\n Minimum = 359465553 at element 773.\n\n   *** ELEMENT MATRIX FORMULATION TIMES\n     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP\n\n        1       977  PLANE183      0.075   0.000077\n Time at end of element matrix formulation CP = 1.22872603.\n\n SPARSE MATRIX DIRECT SOLVER.\n  Number of equations =        6124,    Maximum wavefront =     48\n  Memory allocated for solver              =     8.486 MB\n  Memory required for in-core solution     =     8.181 MB\n  Memory required for out-of-core solution =     4.343 MB\n\n *** NOTE ***                            CP =       1.286   TIME= 23:34:05\n The Sparse Matrix Solver is currently running in the in-core memory\n mode.  This memory mode uses the most amount of memory in order to\n avoid using the hard drive as much as possible, which most often\n results in the fastest solution time.  This mode is recommended if\n enough physical memory is present to accommodate all of the solver\n data.\n Sparse solver maximum pivot= 1.958386731E+09 at node 1937 UY.\n Sparse solver minimum pivot= 3839644.71 at node 960 UY.\n Sparse solver minimum pivot in absolute value= 3839644.71 at node 960\n UY.&#39;
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;One or more COMPONENTS exist that do not have all underlying entities selected.  Issuing an ALLSEL or other select commands before CDWRITE will ensure all underlying entities are selected.  These COMPONENTS were not written to the CDWRITE file.\n *****  ANSYS SOLVE    COMMAND  *****\n\n *** NOTE ***                            CP =       0.980   TIME= 15:28:47\n There is no title defined for this analysis.\n\n *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***\n                ---GIVE SUGGESTIONS ONLY---\n\n ELEMENT TYPE    1 IS PLANE183 WITH PLANE STRESS OPTION. NO SUGGESTION IS\n AVAILABLE.\n\n\n\n *** ANSYS - ENGINEERING ANALYSIS SYSTEM  RELEASE 2020 R2          20.2     ***\n ANSYS Mechanical Enterprise\n 88888888  VERSION=LINUX x64     15:28:47  SEP 23, 2020 CP=      0.985\n\n\n\n\n\n                       S O L U T I O N   O P T I O N S\n\n   PROBLEM DIMENSIONALITY. . . . . . . . . . . . .2-D\n   DEGREES OF FREEDOM. . . . . . UX   UY\n   ANALYSIS TYPE . . . . . . . . . . . . . . . . .STATIC (STEADY-STATE)\n   GLOBALLY ASSEMBLED MATRIX . . . . . . . . . . .SYMMETRIC\n\n *** NOTE ***                            CP =       0.987   TIME= 15:28:47\n Present time 0 is less than or equal to the previous time.  Time will\n default to 1.\n\n *** NOTE ***                            CP =       0.987   TIME= 15:28:47\n The conditions for direct assembly have been met.  No .emat or .erot\n files will be produced.\n\n                      L O A D   S T E P   O P T I O N S\n\n   LOAD STEP NUMBER. . . . . . . . . . . . . . . .     1\n   TIME AT END OF THE LOAD STEP. . . . . . . . . .  1.0000\n   NUMBER OF SUBSTEPS. . . . . . . . . . . . . . .     1\n   STEP CHANGE BOUNDARY CONDITIONS . . . . . . . .    NO\n   PRINT OUTPUT CONTROLS . . . . . . . . . . . . .NO PRINTOUT\n   DATABASE OUTPUT CONTROLS. . . . . . . . . . . .ALL DATA WRITTEN\n                                                  FOR THE LAST SUBSTEP\n\n\n SOLUTION MONITORING INFO IS WRITTEN TO FILE= file.mntr\n\n\n\n\n            **** CENTER OF MASS, MASS, AND MASS MOMENTS OF INERTIA ****\n\n  CALCULATIONS ASSUME ELEMENT MASS AT ELEMENT CENTROID\n\n  TOTAL MASS =  0.30649\n\n                           MOM. OF INERTIA         MOM. OF INERTIA\n  CENTER OF MASS            ABOUT ORIGIN        ABOUT CENTER OF MASS\n\n  XC =  0.20000          IXX =   0.1024E-02      IXX =   0.2576E-03\n  YC =  0.49997E-01      IYY =   0.1642E-01      IYY =   0.4156E-02\n  ZC =   0.0000          IZZ =   0.1744E-01      IZZ =   0.4414E-02\n                         IXY =  -0.3065E-02      IXY =   0.8905E-09\n                         IYZ =    0.000          IYZ =    0.000\n                         IZX =    0.000          IZX =    0.000\n\n\n  *** MASS SUMMARY BY ELEMENT TYPE ***\n\n  TYPE      MASS\n     1  0.306487\n\n Range of element maximum matrix coefficients in global coordinates\n Maximum = 1.265116826E+09 at element 67.\n Minimum = 359465553 at element 773.\n\n   *** ELEMENT MATRIX FORMULATION TIMES\n     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP\n\n        1       977  PLANE183      0.065   0.000067\n Time at end of element matrix formulation CP = 1.050825.\n\n SPARSE MATRIX DIRECT SOLVER.\n  Number of equations =        6124,    Maximum wavefront =     48\n  Memory allocated for solver              =     8.424 MB\n  Memory required for in-core solution     =     8.123 MB\n  Memory required for out-of-core solution =     4.307 MB\n\n *** NOTE ***                            CP =       1.108   TIME= 15:28:47\n The Sparse Matrix Solver is currently running in the in-core memory\n mode.  This memory mode uses the most amount of memory in order to\n avoid using the hard drive as much as possible, which most often\n results in the fastest solution time.  This mode is recommended if\n enough physical memory is present to accommodate all of the solver\n data.\n Sparse solver maximum pivot= 1.958386732E+09 at node 1937 UY.\n Sparse solver minimum pivot= 3839644.71 at node 960 UY.\n Sparse solver minimum pivot in absolute value= 3839644.71 at node 960\n UY.&#39;
 </pre></div>
 </div>
 </div>
@@ -569,26 +582,26 @@ batch, MAPDL is reset and the geometry is generated from scratch.</p>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Ratio  : Stress Concentration (K_t)
-0.0010 :     2.9959
+0.0010 :     2.9957
 0.0273 :     2.9116
 0.0535 :     2.8363
-0.0798 :     2.7698
+0.0798 :     2.7701
 0.1061 :     2.7081
-0.1323 :     2.6509
+0.1323 :     2.6506
 0.1586 :     2.5967
-0.1848 :     2.5421
-0.2111 :     2.4951
-0.2374 :     2.4475
-0.2636 :     2.4041
+0.1848 :     2.5420
+0.2111 :     2.4939
+0.2374 :     2.4496
+0.2636 :     2.4040
 0.2899 :     2.3683
-0.3162 :     2.3325
-0.3424 :     2.2995
-0.3687 :     2.2724
+0.3162 :     2.3339
+0.3424 :     2.2998
+0.3687 :     2.2732
 0.3949 :     2.2457
-0.4212 :     2.2221
+0.4212 :     2.2224
 0.4475 :     2.1963
 0.4737 :     2.1775
-0.5000 :     2.1610
+0.5000 :     2.1609
 </pre></div>
 </div>
 </div>
@@ -625,7 +638,7 @@ height and width of the plate.</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Matplotlib is currently using agg, which is a non-GUI backend, so cannot show the figure.
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  20.525 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  21.367 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-02-mapdl-examples-2d-plate-with-a-hole-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/cd1312e0a011beffa18d4e9fb09ef852/2d_plate_with_a_hole.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">2d_plate_with_a_hole.py</span></code></a></p>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>PyVista Mesh Integration &mdash; pyansys 0.43.1 documentation</title>
+  <title>PyVista Mesh Integration &mdash; pyansys 0.44.2 documentation</title>
   
 
   
@@ -42,7 +42,7 @@
   <link rel="stylesheet" href="../../_static/gallery-dataframe.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Compute Cell Quality" href="../../quality.html" />
+    <link rel="next" title="Example Thermal Transient Analysis" href="transient_thermal.html" />
     <link rel="prev" title="MAPDL 2D Beam Example" href="mapdl_beam.html" /> 
 </head>
 
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.43.1
+                0.44.2
               </div>
             
           
@@ -126,9 +126,22 @@
 <li class="toctree-l3"><a class="reference internal" href="3d_notch.html#solve-the-static-problem">Solve the Static Problem</a></li>
 <li class="toctree-l3"><a class="reference internal" href="3d_notch.html#post-processing">Post-Processing</a></li>
 <li class="toctree-l3"><a class="reference internal" href="3d_notch.html#compute-the-stress-concentration">Compute the Stress Concentration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_plate_thermal.html">Basic Thermal Analysis with pyansys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_plate_thermal.html#geometry-and-material-properties">Geometry and Material Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_plate_thermal.html#boundary-conditions">Boundary Conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_plate_thermal.html#solve">Solve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_plate_thermal.html#post-processing-using-mapdl">Post-Processing using MAPDL</a></li>
 <li class="toctree-l3"><a class="reference internal" href="mapdl_3d_beam.html">MAPDL 3D Beam Example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="mapdl_beam.html">MAPDL 2D Beam Example</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">PyVista Mesh Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="transient_thermal.html">Example Thermal Transient Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="transient_thermal.html#geometry-and-mesh">Geometry and Mesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="transient_thermal.html#setup-the-solution">Setup the Solution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="transient_thermal.html#the-transient-thermal-solve">The Transient Thermal Solve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="transient_thermal.html#post-processing">Post-Processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="transient_thermal.html#visualize-a-slice">Visualize a Slice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="transient_thermal.html#visualize-several-slices">Visualize Several Slices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="transient_thermal.html#temperature-at-a-single-point">Temperature at a Single Point</a></li>
 </ul>
 </li>
 </ul>
@@ -303,21 +316,21 @@
 </div>
 <img alt="pyvista mesh" class="sphx-glr-single-img" src="../../_images/sphx_glr_pyvista_mesh_002.png" />
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>PyANSYS MAPDL Result file object
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>PyANSYS MAPDL Distributed Result
 Units       : User Defined
-Version     : 18.2
+Version     : 20.2
 Cyclic      : False
 Result Sets : 20
-Nodes       : 10201
-Elements    : 10000
+Nodes       : 5160
+Elements    : 5000
 
 
 Available Results:
 NSL : Nodal displacements
 
 
-[(1.6018615354080974, 1.6018615354080845, 1.6125783426810336),
- (6.6058269965196814e-15, -6.328271240363392e-15, 0.010716807272942781),
+[(1.601861535420676, 1.6018615354206405, 1.5911447281433078),
+ (1.8707257964933888e-14, -1.6930901125533637e-14, -0.01071680727734959),
  (0.0, 0.0, 1.0)]
 </pre></div>
 </div>
@@ -328,8 +341,8 @@ NSL : Nodal displacements
 </div>
 <img alt="pyvista mesh" class="sphx-glr-single-img" src="../../_images/sphx_glr_pyvista_mesh_003.png" />
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[(1.6007557758557476, 1.6007557758557467, 1.6007557758553712),
- (6.661338147750939e-16, -3.3306690738754696e-16, -3.7575498268438423e-13),
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[(1.6007557758794801, 1.6007557758794804, 1.6007557758920548),
+ (-2.7755575615628914e-16, 0.0, 1.2574281893495964e-11),
  (0.0, 0.0, 1.0)]
 </pre></div>
 </div>
@@ -349,7 +362,7 @@ Enable a continous plot looping with <code class="docutils literal notranslate">
  (0.0, 0.0, 1.0)]
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  15.323 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  8.766 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-02-mapdl-examples-pyvista-mesh-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/b5d3cd54aa3e5597f4917e93d0d15ab4/pyvista_mesh.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">pyvista_mesh.py</span></code></a></p>
@@ -369,7 +382,7 @@ Enable a continous plot looping with <code class="docutils literal notranslate">
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../../quality.html" class="btn btn-neutral float-right" title="Compute Cell Quality" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="transient_thermal.html" class="btn btn-neutral float-right" title="Example Thermal Transient Analysis" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="mapdl_beam.html" class="btn btn-neutral float-left" title="MAPDL 2D Beam Example" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

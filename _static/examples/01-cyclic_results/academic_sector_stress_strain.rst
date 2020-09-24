@@ -50,7 +50,7 @@ Download the academic modal analysis file
 
  .. code-block:: none
 
-    PyANSYS MAPDL Result file object
+    PyANSYS MAPDL Result
     Units       : User Defined
     Version     : 20.1
     Cyclic      : True
@@ -209,7 +209,7 @@ Available stress components are ``['S1', 'S2', 'S3', 'SINT', 'SEQV']``.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  3.152 seconds)
+   **Total running time of the script:** ( 0 minutes  2.569 seconds)
 
 
 .. _sphx_glr_download_examples_01-cyclic_results_academic_sector_stress_strain.py:

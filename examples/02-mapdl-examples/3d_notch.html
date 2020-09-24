@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>3D Stress Concentration Analysis for a Notched Plate &mdash; pyansys 0.43.1 documentation</title>
+  <title>3D Stress Concentration Analysis for a Notched Plate &mdash; pyansys 0.44.2 documentation</title>
   
 
   
@@ -42,7 +42,7 @@
   <link rel="stylesheet" href="../../_static/gallery-dataframe.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="MAPDL 3D Beam Example" href="mapdl_3d_beam.html" />
+    <link rel="next" title="Basic Thermal Analysis with pyansys" href="3d_plate_thermal.html" />
     <link rel="prev" title="ANSYS 2D Plane Stress Concentration Analysis" href="2d_plate_with_a_hole.html" /> 
 </head>
 
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.43.1
+                0.44.2
               </div>
             
           
@@ -126,9 +126,22 @@
 <li class="toctree-l3"><a class="reference internal" href="#solve-the-static-problem">Solve the Static Problem</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#post-processing">Post-Processing</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#compute-the-stress-concentration">Compute the Stress Concentration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_plate_thermal.html">Basic Thermal Analysis with pyansys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_plate_thermal.html#geometry-and-material-properties">Geometry and Material Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_plate_thermal.html#boundary-conditions">Boundary Conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_plate_thermal.html#solve">Solve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_plate_thermal.html#post-processing-using-mapdl">Post-Processing using MAPDL</a></li>
 <li class="toctree-l3"><a class="reference internal" href="mapdl_3d_beam.html">MAPDL 3D Beam Example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="mapdl_beam.html">MAPDL 2D Beam Example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyvista_mesh.html">PyVista Mesh Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="transient_thermal.html">Example Thermal Transient Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="transient_thermal.html#geometry-and-mesh">Geometry and Mesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="transient_thermal.html#setup-the-solution">Setup the Solution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="transient_thermal.html#the-transient-thermal-solve">The Transient Thermal Solve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="transient_thermal.html#post-processing">Post-Processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="transient_thermal.html#visualize-a-slice">Visualize a Slice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="transient_thermal.html#visualize-several-slices">Visualize Several Slices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="transient_thermal.html#temperature-at-a-single-point">Temperature at a Single Point</a></li>
 </ul>
 </li>
 </ul>
@@ -409,7 +422,7 @@ force of 1 kN in the positive X direction.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;FINISH SOLUTION PROCESSING\n\n\n ***** ROUTINE COMPLETED *****  CP =         3.523\n\n&#39;
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;FINISH SOLUTION PROCESSING\n\n\n ***** ROUTINE COMPLETED *****  CP =         3.601&#39;
 </pre></div>
 </div>
 </div>
@@ -459,7 +472,7 @@ the right-most side of the plate.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Far field von mises stress: 9.997886e+05
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Far field von mises stress: 9.997885e+05
 </pre></div>
 </div>
 <p>Since the expected nominal stress across the cross section of the
@@ -530,7 +543,7 @@ width over the modified cross section width.</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Stress Concentration: 1.60
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  5.986 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  6.257 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-02-mapdl-examples-3d-notch-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/5e24b0da16b467ec87feed13e726c555/3d_notch.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">3d_notch.py</span></code></a></p>
@@ -550,7 +563,7 @@ width over the modified cross section width.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="mapdl_3d_beam.html" class="btn btn-neutral float-right" title="MAPDL 3D Beam Example" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="3d_plate_thermal.html" class="btn btn-neutral float-right" title="Basic Thermal Analysis with pyansys" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="2d_plate_with_a_hole.html" class="btn btn-neutral float-left" title="ANSYS 2D Plane Stress Concentration Analysis" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

@@ -295,7 +295,7 @@ Solve the static analysis
  .. code-block:: none
 
 
-    'FINISH SOLUTION PROCESSING\n\n\n ***** ROUTINE COMPLETED *****  CP =         3.523\n\n'
+    'FINISH SOLUTION PROCESSING\n\n\n ***** ROUTINE COMPLETED *****  CP =         3.601'
 
 
 
@@ -373,7 +373,7 @@ the right-most side of the plate.
 
  .. code-block:: none
 
-    Far field von mises stress: 9.997886e+05
+    Far field von mises stress: 9.997885e+05
 
 
 
@@ -462,7 +462,7 @@ width over the modified cross section width.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  5.986 seconds)
+   **Total running time of the script:** ( 0 minutes  6.257 seconds)
 
 
 .. _sphx_glr_download_examples_02-mapdl-examples_3d_notch.py:

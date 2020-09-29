@@ -310,7 +310,7 @@ These examples demonstrate using MAPDL and pyansys together.
 .. only:: html
 
  .. figure:: /examples/02-mapdl-examples/images/thumb/sphx_glr_path_operations_thumb.png
-     :alt: Path Operations Within pyansys and MAPDL
+     :alt: Path Operations within pyansys and MAPDL
 
      :ref:`sphx_glr_examples_02-mapdl-examples_path_operations.py`
 

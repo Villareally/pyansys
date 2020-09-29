@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Basic Thermal Analysis with pyansys &mdash; pyansys 0.44.2 documentation</title>
+  <title>Basic Thermal Analysis with pyansys &mdash; pyansys 0.44.5 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.44.2
+                0.44.5
               </div>
             
           
@@ -133,6 +133,11 @@
 <li class="toctree-l3"><a class="reference internal" href="#post-processing-using-mapdl">Post-Processing using MAPDL</a></li>
 <li class="toctree-l3"><a class="reference internal" href="mapdl_3d_beam.html">MAPDL 3D Beam Example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="mapdl_beam.html">MAPDL 2D Beam Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="path_operations.html">Path Operations Within pyansys and MAPDL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="path_operations.html#mapdl-solve-a-beam-with-a-non-uniform-load">MAPDL: Solve a Beam with a Non-Uniform Load</a></li>
+<li class="toctree-l3"><a class="reference internal" href="path_operations.html#post-processing-mapdl-path-operation">Post-Processing - MAPDL Path Operation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="path_operations.html#comparing-with-path-operation-within-pyvista">Comparing with Path Operation Within <cite>pyvista</cite></a></li>
+<li class="toctree-l3"><a class="reference internal" href="path_operations.html#d-slice-interpolation">2D Slice Interpolation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyvista_mesh.html">PyVista Mesh Integration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="transient_thermal.html">Example Thermal Transient Analysis</a></li>
 <li class="toctree-l3"><a class="reference internal" href="transient_thermal.html#geometry-and-mesh">Geometry and Mesh</a></li>
@@ -277,19 +282,19 @@ pyansys.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>*** NOTE ***                            CP =       0.752   TIME= 15:29:15
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>*** NOTE ***                            CP =       0.675   TIME= 21:46:23
  The automatic domain decomposition logic has selected the MESH domain
  decomposition method with 2 processes per solution.
 
  *****  ANSYS SOLVE    COMMAND  *****
 
- *** NOTE ***                            CP =       0.753   TIME= 15:29:15
+ *** NOTE ***                            CP =       0.677   TIME= 21:46:23
  There is no title defined for this analysis.
 
  *** ANSYS - ENGINEERING ANALYSIS SYSTEM  RELEASE 2020 R2          20.2     ***
  DISTRIBUTED ANSYS Mechanical Enterprise
 
- 88888888  VERSION=LINUX x64     15:29:15  SEP 23, 2020 CP=      0.756
+ 88888888  VERSION=LINUX x64     21:46:23  SEP 28, 2020 CP=      0.680
 
 
 
@@ -302,11 +307,11 @@ pyansys.</p>
    ANALYSIS TYPE . . . . . . . . . . . . . . . . .STATIC (STEADY-STATE)
    GLOBALLY ASSEMBLED MATRIX . . . . . . . . . . .SYMMETRIC
 
- *** NOTE ***                            CP =       0.757   TIME= 15:29:15
+ *** NOTE ***                            CP =       0.681   TIME= 21:46:23
  Present time 0 is less than or equal to the previous time.  Time will
  default to 1.
 
- *** NOTE ***                            CP =       0.757   TIME= 15:29:15
+ *** NOTE ***                            CP =       0.681   TIME= 21:46:23
  The conditions for direct assembly have been met.  No .emat or .erot
  files will be produced.
 
@@ -341,8 +346,8 @@ pyansys.</p>
    *** ELEMENT MATRIX FORMULATION TIMES
      TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-        1       450  SOLID90       0.017   0.000038
- Time at end of element matrix formulation CP = 0.796117067.
+        1       450  SOLID90       0.018   0.000040
+ Time at end of element matrix formulation CP = 0.734174013.
 
  DISTRIBUTED SPARSE MATRIX DIRECT SOLVER.
   Number of equations =        2606,    Maximum wavefront =     72
@@ -355,7 +360,7 @@ pyansys.</p>
   Total memory required for in-core solution     =      4.935 MB
   Total memory required for out-of-core solution =      3.034 MB
 
- *** NOTE ***                            CP =       0.861   TIME= 15:29:15
+ *** NOTE ***                            CP =       0.808   TIME= 21:46:24
  The Distributed Sparse Matrix Solver is currently running in the
  in-core memory mode.  This memory mode uses the most amount of memory
  in order to avoid using the hard drive as much as possible, which most
@@ -389,18 +394,9 @@ directly through MAPDL.</p>
 result file using pyansys</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nnum</span><span class="p">,</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">result</span><span class="o">.</span><span class="n">nodal_temperature</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="c1"># this is the same as pyansys.read_binary(mapdl._result_file)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">mapdl</span><span class="o">.</span><span class="n">result</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/tmp/ansys_cfmhthlpwk/file0.rth
-[11.41342066 17.70960818 24.03472642 ... 96.77753462 96.76893653
- 96.73371864]
-</pre></div>
-</div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  3.306 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  3.275 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-02-mapdl-examples-3d-plate-thermal-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/15dba5b250bd10f2e4629480d09ea1a4/3d_plate_thermal.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">3d_plate_thermal.py</span></code></a></p>

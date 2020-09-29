@@ -305,6 +305,27 @@ These examples demonstrate using MAPDL and pyansys together.
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="This tutorial shows how you can use pyansys and MAPDL to interpolate along a path for stress.  ...">
+
+.. only:: html
+
+ .. figure:: /examples/02-mapdl-examples/images/thumb/sphx_glr_path_operations_thumb.png
+     :alt: Path Operations Within pyansys and MAPDL
+
+     :ref:`sphx_glr_examples_02-mapdl-examples_path_operations.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/02-mapdl-examples/path_operations
+
+.. raw:: html
+
     <div class="sphx-glr-thumbcontainer" tooltip="Run a modal analysis on a mesh generated from pyvista within MAPDL.">
 
 .. only:: html

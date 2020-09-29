@@ -295,7 +295,7 @@ Solve the static analysis
  .. code-block:: none
 
 
-    'FINISH SOLUTION PROCESSING\n\n\n ***** ROUTINE COMPLETED *****  CP =         3.601'
+    'FINISH SOLUTION PROCESSING\n\n\n ***** ROUTINE COMPLETED *****  CP =         4.048'
 
 
 
@@ -462,7 +462,7 @@ width over the modified cross section width.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  6.257 seconds)
+   **Total running time of the script:** ( 0 minutes  6.538 seconds)
 
 
 .. _sphx_glr_download_examples_02-mapdl-examples_3d_notch.py:

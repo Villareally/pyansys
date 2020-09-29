@@ -120,19 +120,19 @@ Solve the thermal static analysis and print the results
 
  .. code-block:: none
 
-    *** NOTE ***                            CP =       0.752   TIME= 15:29:15
+    *** NOTE ***                            CP =       0.675   TIME= 21:46:23
      The automatic domain decomposition logic has selected the MESH domain
      decomposition method with 2 processes per solution.
 
      *****  ANSYS SOLVE    COMMAND  *****
 
-     *** NOTE ***                            CP =       0.753   TIME= 15:29:15
+     *** NOTE ***                            CP =       0.677   TIME= 21:46:23
      There is no title defined for this analysis.
 
      *** ANSYS - ENGINEERING ANALYSIS SYSTEM  RELEASE 2020 R2          20.2     ***
      DISTRIBUTED ANSYS Mechanical Enterprise
 
-     88888888  VERSION=LINUX x64     15:29:15  SEP 23, 2020 CP=      0.756
+     88888888  VERSION=LINUX x64     21:46:23  SEP 28, 2020 CP=      0.680
 
 
 
@@ -145,11 +145,11 @@ Solve the thermal static analysis and print the results
        ANALYSIS TYPE . . . . . . . . . . . . . . . . .STATIC (STEADY-STATE)
        GLOBALLY ASSEMBLED MATRIX . . . . . . . . . . .SYMMETRIC
 
-     *** NOTE ***                            CP =       0.757   TIME= 15:29:15
+     *** NOTE ***                            CP =       0.681   TIME= 21:46:23
      Present time 0 is less than or equal to the previous time.  Time will
      default to 1.
 
-     *** NOTE ***                            CP =       0.757   TIME= 15:29:15
+     *** NOTE ***                            CP =       0.681   TIME= 21:46:23
      The conditions for direct assembly have been met.  No .emat or .erot
      files will be produced.
 
@@ -184,8 +184,8 @@ Solve the thermal static analysis and print the results
        *** ELEMENT MATRIX FORMULATION TIMES
          TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-            1       450  SOLID90       0.017   0.000038
-     Time at end of element matrix formulation CP = 0.796117067.
+            1       450  SOLID90       0.018   0.000040
+     Time at end of element matrix formulation CP = 0.734174013.
 
      DISTRIBUTED SPARSE MATRIX DIRECT SOLVER.
       Number of equations =        2606,    Maximum wavefront =     72
@@ -198,7 +198,7 @@ Solve the thermal static analysis and print the results
       Total memory required for in-core solution     =      4.935 MB
       Total memory required for out-of-core solution =      3.034 MB
 
-     *** NOTE ***                            CP =       0.861   TIME= 15:29:15
+     *** NOTE ***                            CP =       0.808   TIME= 21:46:24
      The Distributed Sparse Matrix Solver is currently running in the
      in-core memory mode.  This memory mode uses the most amount of memory
      in order to avoid using the hard drive as much as possible, which most
@@ -257,21 +257,9 @@ result file using pyansys
     nnum, temp = mapdl.result.nodal_temperature(0)
     # this is the same as pyansys.read_binary(mapdl._result_file)
 
-    print(mapdl.result.filename)
-    print(temp)
 
 
 
-
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-    /tmp/ansys_cfmhthlpwk/file0.rth
-    [11.41342066 17.70960818 24.03472642 ... 96.77753462 96.76893653
-     96.73371864]
 
 
 
@@ -279,7 +267,7 @@ result file using pyansys
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  3.306 seconds)
+   **Total running time of the script:** ( 0 minutes  3.275 seconds)
 
 
 .. _sphx_glr_download_examples_02-mapdl-examples_3d_plate_thermal.py:

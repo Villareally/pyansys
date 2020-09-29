@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Working with a ANSYS Result Files &mdash; pyansys 0.44.2 documentation</title>
+  <title>Working with a ANSYS Result Files &mdash; pyansys 0.44.5 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.44.2
+                0.44.5
               </div>
             
           
@@ -1490,6 +1490,41 @@ properrties of that material with only the valid entries filled.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="pyansys.rst.Result.nodal_acceleration">
+<code class="sig-name descname">nodal_acceleration</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rnum</span></em>, <em class="sig-param"><span class="n">in_nodal_coord_sys</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.Result.nodal_acceleration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Nodal velocities for a given result set.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rnum</strong> (<em>int</em><em> or </em><em>list</em>) – Cumulative result number with zero based indexing, or a
+list containing (step, substep) of the requested result.</p></li>
+<li><p><strong>in_nodal_coord_sys</strong> (<em>bool</em><em>, </em><em>optional</em>) – When <code class="docutils literal notranslate"><span class="pre">True</span></code>, returns results in the nodal coordinate
+system.  Default False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>nnum</strong> (<em>int np.ndarray</em>) – Node numbers associated with the results.</p></li>
+<li><p><strong>result</strong> (<em>float np.ndarray</em>) – Array of nodal accelerations.  Array is (<code class="docutils literal notranslate"><span class="pre">nnod</span></code> x
+<code class="docutils literal notranslate"><span class="pre">sumdof</span></code>), the number of nodes by the number of degrees
+of freedom which includes <code class="docutils literal notranslate"><span class="pre">numdof</span></code> and <code class="docutils literal notranslate"><span class="pre">nfldof</span></code></p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rst</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">read_binary</span><span class="p">(</span><span class="s1">&#39;file.rst&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nnum</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">rst</span><span class="o">.</span><span class="n">nodal_acceleration</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="rubric">Notes</p>
+<p>Some solution results may not include results for each node.
+These results are removed by and the node numbers of the
+solution results are reflected in <code class="docutils literal notranslate"><span class="pre">nnum</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt id="pyansys.rst.Result.nodal_boundary_conditions">
 <code class="sig-name descname">nodal_boundary_conditions</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rnum</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.Result.nodal_boundary_conditions" title="Permalink to this definition">¶</a></dt>
 <dd><p>Nodal boundary conditions for a given result number.</p>
@@ -1530,20 +1565,24 @@ degrees of freedom associated with each index.</p></li>
 <code class="sig-name descname">nodal_displacement</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.Result.nodal_displacement" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the DOF solution for each node in the global
 cartesian coordinate system or nodal coordinate system.</p>
+<p>Solution may be nodal temperatures or nodal displacements
+depending on the type of the solution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>rnum</strong> (<em>int</em><em> or </em><em>list</em>) – Cumulative result number with zero based indexing, or a
 list containing (step, substep) of the requested result.</p></li>
-<li><p><strong>in_nodal_coord_sys</strong> (<em>bool</em><em>, </em><em>optional</em>) – When True, returns results in the nodal coordinate system.
-Default False.</p></li>
+<li><p><strong>in_nodal_coord_sys</strong> (<em>bool</em><em>, </em><em>optional</em>) – When <code class="docutils literal notranslate"><span class="pre">True</span></code>, returns results in the nodal coordinate system.
+Default <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><ul class="simple">
 <li><p><strong>nnum</strong> (<em>int np.ndarray</em>) – Node numbers associated with the results.</p></li>
-<li><p><strong>result</strong> (<em>float np.ndarray</em>) – Result is (<code class="docutils literal notranslate"><span class="pre">nnod</span></code> x <code class="docutils literal notranslate"><span class="pre">sumdof</span></code>), or number of nodes by degrees
-of freedom which includes <code class="docutils literal notranslate"><span class="pre">numdof</span></code> and <code class="docutils literal notranslate"><span class="pre">nfldof</span></code>.</p></li>
+<li><p><strong>result</strong> (<em>float np.ndarray</em>) – Array of nodal displacements or nodal temperatures.  Array
+is (<code class="docutils literal notranslate"><span class="pre">nnod</span></code> x <code class="docutils literal notranslate"><span class="pre">sumdof</span></code>), the number of nodes by the
+number of degrees of freedom which includes <code class="docutils literal notranslate"><span class="pre">numdof</span></code> and
+<code class="docutils literal notranslate"><span class="pre">nfldof</span></code></p></li>
 </ul>
 </p>
 </dd>
@@ -1664,20 +1703,24 @@ X, Y, Z, XY, YZ, XZ, EQV.</p></li>
 <code class="sig-name descname">nodal_solution</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rnum</span></em>, <em class="sig-param"><span class="n">in_nodal_coord_sys</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.Result.nodal_solution" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the DOF solution for each node in the global
 cartesian coordinate system or nodal coordinate system.</p>
+<p>Solution may be nodal temperatures or nodal displacements
+depending on the type of the solution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>rnum</strong> (<em>int</em><em> or </em><em>list</em>) – Cumulative result number with zero based indexing, or a
 list containing (step, substep) of the requested result.</p></li>
-<li><p><strong>in_nodal_coord_sys</strong> (<em>bool</em><em>, </em><em>optional</em>) – When True, returns results in the nodal coordinate system.
-Default False.</p></li>
+<li><p><strong>in_nodal_coord_sys</strong> (<em>bool</em><em>, </em><em>optional</em>) – When <code class="docutils literal notranslate"><span class="pre">True</span></code>, returns results in the nodal coordinate system.
+Default <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><ul class="simple">
 <li><p><strong>nnum</strong> (<em>int np.ndarray</em>) – Node numbers associated with the results.</p></li>
-<li><p><strong>result</strong> (<em>float np.ndarray</em>) – Result is (<code class="docutils literal notranslate"><span class="pre">nnod</span></code> x <code class="docutils literal notranslate"><span class="pre">sumdof</span></code>), or number of nodes by degrees
-of freedom which includes <code class="docutils literal notranslate"><span class="pre">numdof</span></code> and <code class="docutils literal notranslate"><span class="pre">nfldof</span></code>.</p></li>
+<li><p><strong>result</strong> (<em>float np.ndarray</em>) – Array of nodal displacements or nodal temperatures.  Array
+is (<code class="docutils literal notranslate"><span class="pre">nnod</span></code> x <code class="docutils literal notranslate"><span class="pre">sumdof</span></code>), the number of nodes by the
+number of degrees of freedom which includes <code class="docutils literal notranslate"><span class="pre">numdof</span></code> and
+<code class="docutils literal notranslate"><span class="pre">nfldof</span></code></p></li>
 </ul>
 </p>
 </dd>
@@ -1830,27 +1873,64 @@ X, Y, Z, XY, YZ, XZ, EQV, ESWELL</p></li>
 <dl class="py method">
 <dt id="pyansys.rst.Result.nodal_time_history">
 <code class="sig-name descname">nodal_time_history</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">solution_type</span><span class="o">=</span><span class="default_value">'NSL'</span></em>, <em class="sig-param"><span class="n">in_nodal_coord_sys</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.Result.nodal_time_history" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the DOF solution for each node in the global
+<dd><p>The DOF solution for each node for all result sets.</p>
+<p>The nodal results are returned returned in the global
 cartesian coordinate system or nodal coordinate system.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>solution_type</strong> (<em>str</em><em>, </em><em>optional</em>) – Specify, whether nodal displacements (<code class="docutils literal notranslate"><span class="pre">'NSL'</span></code>), nodal
-velocities (<code class="docutils literal notranslate"><span class="pre">'VEL'</span></code>) or nodal accelerations (<code class="docutils literal notranslate"><span class="pre">'ACC'</span></code>)
-will be read.</p></li>
-<li><p><strong>in_nodal_coord_sys</strong> (<em>bool</em><em>, </em><em>optional</em>) – When True, returns results in the nodal coordinate system.
-Default False.</p></li>
+<li><p><strong>solution_type</strong> (<em>str</em><em>, </em><em>optional</em>) – The solution type.  Must be either nodal displacements
+(<code class="docutils literal notranslate"><span class="pre">'NSL'</span></code>), nodal velocities (<code class="docutils literal notranslate"><span class="pre">'VEL'</span></code>) or nodal
+accelerations (<code class="docutils literal notranslate"><span class="pre">'ACC'</span></code>).</p></li>
+<li><p><strong>in_nodal_coord_sys</strong> (<em>bool</em><em>, </em><em>optional</em>) – When <code class="docutils literal notranslate"><span class="pre">True</span></code>, returns results in the nodal coordinate system.
+Default <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><ul class="simple">
 <li><p><strong>nnum</strong> (<em>int np.ndarray</em>) – Node numbers associated with the results.</p></li>
-<li><p><strong>result</strong> (<em>float np.ndarray</em>) – Result is <code class="docutils literal notranslate"><span class="pre">self.nsets</span> <span class="pre">x</span> <span class="pre">nnod</span> <span class="pre">x</span> <span class="pre">Sumdof</span></code>, or number of
+<li><p><strong>result</strong> (<em>float np.ndarray</em>) – Nodal solution for all result sets.  Array is sized
+<code class="docutils literal notranslate"><span class="pre">rst.nsets</span> <span class="pre">x</span> <span class="pre">nnod</span> <span class="pre">x</span> <span class="pre">Sumdof</span></code>, which is the number of
 time steps by number of nodes by degrees of freedom.</p></li>
 </ul>
 </p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyansys.rst.Result.nodal_velocity">
+<code class="sig-name descname">nodal_velocity</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rnum</span></em>, <em class="sig-param"><span class="n">in_nodal_coord_sys</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.Result.nodal_velocity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Nodal velocities for a given result set.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rnum</strong> (<em>int</em><em> or </em><em>list</em>) – Cumulative result number with zero based indexing, or a
+list containing (step, substep) of the requested result.</p></li>
+<li><p><strong>in_nodal_coord_sys</strong> (<em>bool</em><em>, </em><em>optional</em>) – When <code class="docutils literal notranslate"><span class="pre">True</span></code>, returns results in the nodal coordinate
+system.  Default False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>nnum</strong> (<em>int np.ndarray</em>) – Node numbers associated with the results.</p></li>
+<li><p><strong>result</strong> (<em>float np.ndarray</em>) – Array of nodal velocities.  Array is (<code class="docutils literal notranslate"><span class="pre">nnod</span></code> x
+<code class="docutils literal notranslate"><span class="pre">sumdof</span></code>), the number of nodes by the number of degrees
+of freedom which includes <code class="docutils literal notranslate"><span class="pre">numdof</span></code> and <code class="docutils literal notranslate"><span class="pre">nfldof</span></code></p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rst</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">read_binary</span><span class="p">(</span><span class="s1">&#39;file.rst&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nnum</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">rst</span><span class="o">.</span><span class="n">nodal_velocity</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="rubric">Notes</p>
+<p>Some solution results may not include results for each node.
+These results are removed by and the node numbers of the
+solution results are reflected in <code class="docutils literal notranslate"><span class="pre">nnum</span></code>.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -2059,10 +2139,13 @@ coordinate system.</p></li>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>rnum</strong> (<em>int</em><em> or </em><em>list</em>) – Cumulative result number with zero based indexing, or a
 list containing (step, substep) of the requested result.</p></li>
-<li><p><strong>comp</strong> (<em>str</em><em>, </em><em>optional</em>) – Display component to display.  Options are <code class="docutils literal notranslate"><span class="pre">'x'</span></code>,
-<code class="docutils literal notranslate"><span class="pre">'y'</span></code>, <code class="docutils literal notranslate"><span class="pre">'z'</span></code>, or <code class="docutils literal notranslate"><span class="pre">'norm'</span></code>.  This corresponds to the
-x directin, y direction, z direction, and the normalized
-result.</p></li>
+<li><p><strong>comp</strong> (<em>str</em><em>, </em><em>optional</em>) – Display component to display.  Options are <code class="docutils literal notranslate"><span class="pre">'X'</span></code>,
+<code class="docutils literal notranslate"><span class="pre">'Y'</span></code>, <code class="docutils literal notranslate"><span class="pre">'Z'</span></code>, <code class="docutils literal notranslate"><span class="pre">'NORM'</span></code>, or an available degree of
+freedom.  Result may also include other degrees of
+freedom, check <code class="docutils literal notranslate"><span class="pre">rst.result_dof</span></code> for available degrees of
+freedoms for a given result.  Defaults to <code class="docutils literal notranslate"><span class="pre">&quot;NORM&quot;</span></code> for a
+structural displacement result, and <code class="docutils literal notranslate"><span class="pre">&quot;TEMP&quot;</span></code> for a
+thermal result.</p></li>
 <li><p><strong>show_displacement</strong> (<em>bool</em><em>, </em><em>optional</em>) – Deforms mesh according to the result.</p></li>
 <li><p><strong>displacement_factor</strong> (<em>float</em><em>, </em><em>optional</em>) – Increases or decreases displacement by a factor.</p></li>
 <li><p><strong>node_components</strong> (<em>list</em><em>, </em><em>optional</em>) – Accepts either a string or a list strings of node
@@ -2177,17 +2260,20 @@ containing all nodes of the component.  Default True.</p></li>
 
 <dl class="py method">
 <dt id="pyansys.rst.Result.plot_nodal_solution">
-<code class="sig-name descname">plot_nodal_solution</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rnum</span></em>, <em class="sig-param"><span class="n">comp</span><span class="o">=</span><span class="default_value">'norm'</span></em>, <em class="sig-param"><span class="n">show_displacement</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">displacement_factor</span><span class="o">=</span><span class="default_value">1.0</span></em>, <em class="sig-param"><span class="n">node_components</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">element_components</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">sel_type_all</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.Result.plot_nodal_solution" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">plot_nodal_solution</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rnum</span></em>, <em class="sig-param"><span class="n">comp</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">show_displacement</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">displacement_factor</span><span class="o">=</span><span class="default_value">1.0</span></em>, <em class="sig-param"><span class="n">node_components</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">element_components</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">sel_type_all</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.Result.plot_nodal_solution" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plots the nodal solution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>rnum</strong> (<em>int</em><em> or </em><em>list</em>) – Cumulative result number with zero based indexing, or a
 list containing (step, substep) of the requested result.</p></li>
-<li><p><strong>comp</strong> (<em>str</em><em>, </em><em>optional</em>) – Display component to display.  Options are <code class="docutils literal notranslate"><span class="pre">'x'</span></code>,
-<code class="docutils literal notranslate"><span class="pre">'y'</span></code>, <code class="docutils literal notranslate"><span class="pre">'z'</span></code>, or <code class="docutils literal notranslate"><span class="pre">'norm'</span></code>.  This corresponds to the
-x directin, y direction, z direction, and the normalized
-result.</p></li>
+<li><p><strong>comp</strong> (<em>str</em><em>, </em><em>optional</em>) – Display component to display.  Options are <code class="docutils literal notranslate"><span class="pre">'X'</span></code>,
+<code class="docutils literal notranslate"><span class="pre">'Y'</span></code>, <code class="docutils literal notranslate"><span class="pre">'Z'</span></code>, <code class="docutils literal notranslate"><span class="pre">'NORM'</span></code>, or an available degree of
+freedom.  Result may also include other degrees of
+freedom, check <code class="docutils literal notranslate"><span class="pre">rst.result_dof</span></code> for available degrees of
+freedoms for a given result.  Defaults to <code class="docutils literal notranslate"><span class="pre">&quot;NORM&quot;</span></code> for a
+structural displacement result, and <code class="docutils literal notranslate"><span class="pre">&quot;TEMP&quot;</span></code> for a
+thermal result.</p></li>
 <li><p><strong>show_displacement</strong> (<em>bool</em><em>, </em><em>optional</em>) – Deforms mesh according to the result.</p></li>
 <li><p><strong>displacement_factor</strong> (<em>float</em><em>, </em><em>optional</em>) – Increases or decreases displacement by a factor.</p></li>
 <li><p><strong>node_components</strong> (<em>list</em><em>, </em><em>optional</em>) – Accepts either a string or a list strings of node

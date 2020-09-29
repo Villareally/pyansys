@@ -1,0 +1,487 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Path Operations Within pyansys and MAPDL &mdash; pyansys 0.44.5 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script src="../../_static/clipboard.min.js"></script>
+        <script src="../../_static/copybutton.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery-dataframe.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="PyVista Mesh Integration" href="pyvista_mesh.html" />
+    <link rel="prev" title="MAPDL 2D Beam Example" href="mapdl_beam.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> pyansys
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.44.5
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Interactive MAPDL Python Interface</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../mapdl/index.html">ANSYS MAPDL Interactive Control</a></li>
+</ul>
+<p class="caption"><span class="caption-text">ANSYS File Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../archive.html">Reading and Writing ANSYS Archive Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../loading_results.html">Working with a ANSYS Result Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">Archive and Result File Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../loading_km.html">Working with a ANSYS Full File (full)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../loading_emat.html">Working with a ANSYS Element Matrix File (.emat)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Example Gallery</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">MAPDL and Result Reader Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#loading-and-visualizing-result-files">Loading and Visualizing Result Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#cyclic-result-analysis">Cyclic Result Analysis</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#ansys-mapdl-examples-using-pyansys">ANSYS MAPDL Examples Using Pyansys</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="2d_plate_with_a_hole.html">ANSYS 2D Plane Stress Concentration Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2d_plate_with_a_hole.html#element-type-and-material-properties">Element Type and Material Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2d_plate_with_a_hole.html#geometry">Geometry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2d_plate_with_a_hole.html#meshing">Meshing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2d_plate_with_a_hole.html#boundary-conditions">Boundary Conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2d_plate_with_a_hole.html#solve-the-static-problem">Solve the Static Problem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2d_plate_with_a_hole.html#post-processing">Post-Processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2d_plate_with_a_hole.html#compute-the-stress-concentration">Compute the Stress Concentration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2d_plate_with_a_hole.html#batch-analysis">Batch Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2d_plate_with_a_hole.html#analytical-comparison">Analytical Comparison</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_notch.html">3D Stress Concentration Analysis for a Notched Plate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_notch.html#geometry">Geometry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_notch.html#meshing">Meshing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_notch.html#material-properties-and-boundary-conditions">Material Properties and Boundary Conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_notch.html#solve-the-static-problem">Solve the Static Problem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_notch.html#post-processing">Post-Processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_notch.html#compute-the-stress-concentration">Compute the Stress Concentration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_plate_thermal.html">Basic Thermal Analysis with pyansys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_plate_thermal.html#geometry-and-material-properties">Geometry and Material Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_plate_thermal.html#boundary-conditions">Boundary Conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_plate_thermal.html#solve">Solve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_plate_thermal.html#post-processing-using-mapdl">Post-Processing using MAPDL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mapdl_3d_beam.html">MAPDL 3D Beam Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mapdl_beam.html">MAPDL 2D Beam Example</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Path Operations Within pyansys and MAPDL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mapdl-solve-a-beam-with-a-non-uniform-load">MAPDL: Solve a Beam with a Non-Uniform Load</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#post-processing-mapdl-path-operation">Post-Processing - MAPDL Path Operation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#comparing-with-path-operation-within-pyvista">Comparing with Path Operation Within <cite>pyvista</cite></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#d-slice-interpolation">2D Slice Interpolation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyvista_mesh.html">PyVista Mesh Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="transient_thermal.html">Example Thermal Transient Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="transient_thermal.html#geometry-and-mesh">Geometry and Mesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="transient_thermal.html#setup-the-solution">Setup the Solution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="transient_thermal.html#the-transient-thermal-solve">The Transient Thermal Solve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="transient_thermal.html#post-processing">Post-Processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="transient_thermal.html#visualize-a-slice">Visualize a Slice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="transient_thermal.html#visualize-several-slices">Visualize Several Slices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="transient_thermal.html#temperature-at-a-single-point">Temperature at a Single Point</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Miscellaneous</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../quality.html">Compute Cell Quality</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">pyansys</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">MAPDL and Result Reader Examples</a> &raquo;</li>
+        
+      <li>Path Operations Within pyansys and MAPDL</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/examples/02-mapdl-examples/path_operations.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-examples-02-mapdl-examples-path-operations-py"><span class="std std-ref">here</span></a>     to download the full example code</p>
+</div>
+<div class="sphx-glr-example-title section" id="path-operations-within-pyansys-and-mapdl">
+<span id="ref-plane-stress-concentration"></span><span id="sphx-glr-examples-02-mapdl-examples-path-operations-py"></span><h1>Path Operations Within pyansys and MAPDL<a class="headerlink" href="#path-operations-within-pyansys-and-mapdl" title="Permalink to this headline">¶</a></h1>
+<p>This tutorial shows how you can use pyansys and MAPDL to interpolate
+along a path for stress.  This shows some advanced features of the
+<cite>pyvista</cite> module to perform the interpolation.</p>
+<p>First, start MAPDL as a service and disable all but error messages.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># sphinx_gallery_thumbnail_number = 3</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">import</span> <span class="nn">pyansys</span>
+
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;I_MPI_SHM_LMT&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;shm&#39;</span>  <span class="c1"># necessary on Ubuntu</span>
+<span class="n">mapdl</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">launch_mapdl</span><span class="p">(</span><span class="n">loglevel</span><span class="o">=</span><span class="s1">&#39;ERROR&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="mapdl-solve-a-beam-with-a-non-uniform-load">
+<h1>MAPDL: Solve a Beam with a Non-Uniform Load<a class="headerlink" href="#mapdl-solve-a-beam-with-a-non-uniform-load" title="Permalink to this headline">¶</a></h1>
+<p>Create a beam, apply a load, and solve for the static solution.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># beam dimensions</span>
+<span class="n">_width</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">_height</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">_length</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="c1"># simple 3D beam</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">prep7</span><span class="p">()</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">mp</span><span class="p">(</span><span class="s2">&quot;EX&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">70000</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">mp</span><span class="p">(</span><span class="s2">&quot;NUXY&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">csys</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">blc4</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">_length</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">et</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;SOLID186&quot;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">type</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">keyopt</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">desize</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="n">mapdl</span><span class="o">.</span><span class="n">vmesh</span><span class="p">(</span><span class="s2">&quot;ALL&quot;</span><span class="p">)</span>
+<span class="c1"># mapdl.eplot()</span>
+
+<span class="c1"># fixed constraint</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">nsel</span><span class="p">(</span><span class="s2">&quot;s&quot;</span><span class="p">,</span> <span class="s2">&quot;loc&quot;</span><span class="p">,</span> <span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">d</span><span class="p">(</span><span class="s2">&quot;all&quot;</span><span class="p">,</span> <span class="s2">&quot;ux&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">d</span><span class="p">(</span><span class="s2">&quot;all&quot;</span><span class="p">,</span> <span class="s2">&quot;uy&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">d</span><span class="p">(</span><span class="s2">&quot;all&quot;</span><span class="p">,</span> <span class="s2">&quot;uz&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># arbitrary non-uniform load</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">nsel</span><span class="p">(</span><span class="s2">&quot;s&quot;</span><span class="p">,</span> <span class="s2">&quot;loc&quot;</span><span class="p">,</span> <span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="n">_length</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">f</span><span class="p">(</span><span class="s2">&quot;all&quot;</span><span class="p">,</span> <span class="s2">&quot;fz&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">f</span><span class="p">(</span><span class="s2">&quot;all&quot;</span><span class="p">,</span> <span class="s2">&quot;fy&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">nsel</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="s2">&quot;loc&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">f</span><span class="p">(</span><span class="s2">&quot;all&quot;</span><span class="p">,</span> <span class="s2">&quot;fx&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;alls&quot;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;/solu&quot;</span><span class="p">)</span>
+<span class="n">sol_output</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+
+<span class="c1"># plot the normalized global displacement</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">result</span><span class="o">.</span><span class="n">plot_nodal_displacement</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">lighting</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">show_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># same as:</span>
+<span class="c1"># mapdl.post_processing.plot_nodal_displacement(lighting=False, show_edges=True)</span>
+</pre></div>
+</div>
+<img alt="path operations" class="sphx-glr-single-img" src="../../_images/sphx_glr_path_operations_001.png" />
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[(11.638097539230095, 12.388097539230095, 16.388097539230095),
+ (0.25, 1.0, 5.0),
+ (0.0, 0.0, 1.0)]
+</pre></div>
+</div>
+</div>
+<div class="section" id="post-processing-mapdl-path-operation">
+<h1>Post-Processing - MAPDL Path Operation<a class="headerlink" href="#post-processing-mapdl-path-operation" title="Permalink to this headline">¶</a></h1>
+<p>Compute the stress along a path within MAPDL and convert the result
+to a numpy array</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">post1</span><span class="p">()</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">plesol</span><span class="p">(</span><span class="s2">&quot;s&quot;</span><span class="p">,</span> <span class="s2">&quot;int&quot;</span><span class="p">)</span>
+
+<span class="c1"># path definition</span>
+<span class="n">pl_end</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.5</span><span class="o">*</span><span class="n">_width</span><span class="p">,</span> <span class="n">_height</span><span class="p">,</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">_length</span><span class="p">)</span>
+<span class="n">pl_start</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.5</span><span class="o">*</span><span class="n">_width</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">_length</span><span class="p">)</span>
+
+<span class="n">mapdl</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;_width = </span><span class="si">%f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">_width</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;_height = </span><span class="si">%f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">_height</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;_length = </span><span class="si">%f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">_length</span><span class="p">)</span>
+
+<span class="n">mapdl</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;pl_end = node(0.5*_width, _height, 0.5*_length)&quot;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;pl_start = node(0.5*_width, 0, 0.5*_length)&quot;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">path</span><span class="p">(</span><span class="s2">&quot;my_path&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">ndiv</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">ppath</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;pl_start&quot;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">ppath</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;pl_end&quot;</span><span class="p">)</span>
+
+<span class="c1"># mapping components of interest to path.</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">pdef</span><span class="p">(</span><span class="s2">&quot;Sx_my_path&quot;</span><span class="p">,</span> <span class="s2">&quot;s&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">pdef</span><span class="p">(</span><span class="s2">&quot;Sy_my_path&quot;</span><span class="p">,</span> <span class="s2">&quot;s&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">pdef</span><span class="p">(</span><span class="s2">&quot;Sz_my_path&quot;</span><span class="p">,</span> <span class="s2">&quot;s&quot;</span><span class="p">,</span> <span class="s2">&quot;z&quot;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">pdef</span><span class="p">(</span><span class="s2">&quot;Sxy_my_path&quot;</span><span class="p">,</span> <span class="s2">&quot;s&quot;</span><span class="p">,</span> <span class="s2">&quot;xy&quot;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">pdef</span><span class="p">(</span><span class="s2">&quot;Syz_my_path&quot;</span><span class="p">,</span> <span class="s2">&quot;s&quot;</span><span class="p">,</span> <span class="s2">&quot;yz&quot;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">pdef</span><span class="p">(</span><span class="s2">&quot;Szx_my_path&quot;</span><span class="p">,</span> <span class="s2">&quot;s&quot;</span><span class="p">,</span> <span class="s2">&quot;xz&quot;</span><span class="p">)</span>
+
+<span class="c1"># Extract the path results from MAPDL and send to a numpy array</span>
+<span class="n">nsigfig</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">header</span><span class="p">(</span><span class="s1">&#39;OFF&#39;</span><span class="p">,</span> <span class="s1">&#39;OFF&#39;</span><span class="p">,</span> <span class="s1">&#39;OFF&#39;</span><span class="p">,</span> <span class="s1">&#39;OFF&#39;</span><span class="p">,</span> <span class="s1">&#39;OFF&#39;</span><span class="p">,</span> <span class="s1">&#39;OFF&#39;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">,</span> <span class="n">nsigfig</span> <span class="o">+</span> <span class="mi">9</span><span class="p">,</span> <span class="n">nsigfig</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="mf">1E9</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">240</span><span class="p">)</span>
+
+<span class="n">path_out</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">prpath</span><span class="p">(</span><span class="s2">&quot;Sx_my_path&quot;</span><span class="p">,</span> <span class="s2">&quot;Sy_my_path&quot;</span><span class="p">,</span> <span class="s2">&quot;Sz_my_path&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;Sxy_my_path&quot;</span><span class="p">,</span> <span class="s2">&quot;Syz_my_path&quot;</span><span class="p">,</span> <span class="s2">&quot;Szx_my_path&quot;</span><span class="p">)</span>
+<span class="n">table</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">genfromtxt</span><span class="p">(</span><span class="n">path_out</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()[</span><span class="mi">1</span><span class="p">:])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Numpy Array from MAPDL Shape:&#39;</span><span class="p">,</span> <span class="n">table</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Numpy Array from MAPDL Shape: (101, 7)
+</pre></div>
+</div>
+</div>
+<div class="section" id="comparing-with-path-operation-within-pyvista">
+<h1>Comparing with Path Operation Within <cite>pyvista</cite><a class="headerlink" href="#comparing-with-path-operation-within-pyvista" title="Permalink to this headline">¶</a></h1>
+<p>The same path operation can be performed within <cite>pyvista</cite> by saving
+the resulting stress and storing within the underlying <code class="docutils literal notranslate"><span class="pre">UnstructuredGrid</span></code></p>
+<p>Take note that there is slight piece-wise behavior in both MAPDL’s
+and VTK’s interpoltion methods (both of which result in nearly
+identical interpolations).  The underlying algorthim of VTK is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>The `vtkProbeFilter`, once it finds the cell containing a query
+point, uses the cell&#39;s interpolation functions to perform the
+interpolate / compute the point attributes.
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># same thing in pyvista</span>
+<span class="n">rst</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">result</span>
+<span class="n">nnum</span><span class="p">,</span> <span class="n">stress</span> <span class="o">=</span> <span class="n">rst</span><span class="o">.</span><span class="n">nodal_stress</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># get SYZ stress</span>
+<span class="n">stress_yz</span> <span class="o">=</span> <span class="n">stress</span><span class="p">[:,</span> <span class="mi">5</span><span class="p">]</span>
+
+<span class="c1"># Assign the YZ stress to the underlying grid within the result instance.</span>
+<span class="c1"># For this example, NAN values must be replaced with 0 for the</span>
+<span class="c1"># interpolation to succeed</span>
+<span class="n">rst</span><span class="o">.</span><span class="n">grid</span><span class="p">[</span><span class="s1">&#39;Stress YZ&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">stress_yz</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">stress</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">rst</span><span class="o">.</span><span class="n">grid</span><span class="p">[</span><span class="s1">&#39;Stress YZ&#39;</span><span class="p">][</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c1"># Create a line and sample over it</span>
+<span class="n">line</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Line</span><span class="p">(</span><span class="n">pl_start</span><span class="p">,</span> <span class="n">pl_end</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">rst</span><span class="o">.</span><span class="n">grid</span><span class="p">)</span>
+
+<span class="c1"># Note: We could have used a spline (or really, any dataset), and</span>
+<span class="c1"># interpolated over it instead of a simple line.</span>
+
+<span class="c1"># plot the interpolated stress from VTK and MAPDL</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">out</span><span class="o">.</span><span class="n">points</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">out</span><span class="p">[</span><span class="s1">&#39;Stress YZ&#39;</span><span class="p">],</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Stress vtk&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">table</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">table</span><span class="p">[:,</span> <span class="mi">6</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Stress MAPDL&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Y Position (in.)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Stress YZ (psi)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="path operations" class="sphx-glr-single-img" src="../../_images/sphx_glr_path_operations_002.png" />
+</div>
+<div class="section" id="d-slice-interpolation">
+<h1>2D Slice Interpolation<a class="headerlink" href="#d-slice-interpolation" title="Permalink to this headline">¶</a></h1>
+<p>Take a 2D slice along the beam and plot it alongside the stress at
+the line.</p>
+<p>Note that this slice occurs between the edge nodes of this beam,
+necessitating interpolation as stress/strain is (in general)
+extrapolated to the edge nodes of ANSYS FEMs.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">stress_slice</span> <span class="o">=</span> <span class="n">rst</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">slice</span><span class="p">(</span><span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="n">pl_start</span><span class="p">)</span>
+
+<span class="c1"># can plot this individually</span>
+<span class="c1"># stress_slice.plot(scalars=stress_slice[&#39;Stress YZ&#39;], stitle=&#39;Stress YZ&#39;)</span>
+
+<span class="c1"># good camera position (determined manually using pl.camera_position)</span>
+<span class="n">cpos</span> <span class="o">=</span> <span class="p">[(</span><span class="mf">3.2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span>
+        <span class="p">(</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">),</span>
+        <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)]</span>
+
+<span class="n">rng</span> <span class="o">=</span> <span class="p">[</span><span class="n">rst</span><span class="o">.</span><span class="n">grid</span><span class="p">[</span><span class="s1">&#39;Stress YZ&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">rst</span><span class="o">.</span><span class="n">grid</span><span class="p">[</span><span class="s1">&#39;Stress YZ&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()]</span>
+<span class="n">pl</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Plotter</span><span class="p">()</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">scalars</span><span class="o">=</span><span class="n">out</span><span class="p">[</span><span class="s1">&#39;Stress YZ&#39;</span><span class="p">],</span> <span class="n">line_width</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">stress_slice</span><span class="p">,</span> <span class="n">scalars</span><span class="o">=</span><span class="s1">&#39;Stress YZ&#39;</span><span class="p">,</span> <span class="n">opacity</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">rst</span><span class="o">.</span><span class="n">grid</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;wireframe&#39;</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">camera_position</span> <span class="o">=</span> <span class="n">cpos</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="path operations" class="sphx-glr-single-img" src="../../_images/sphx_glr_path_operations_003.png" />
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[(3.2, 4.0, 8.0),
+ (0.25, 1.0, 5.0),
+ (0.0, 0.0, 1.0)]
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  5.840 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-02-mapdl-examples-path-operations-py">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/3abf0f74d022c0b9c4129c2585057176/path_operations.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">path_operations.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/8cc89627b7fb79609fb00a4b2a742a16/path_operations.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">path_operations.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pyvista_mesh.html" class="btn btn-neutral float-right" title="PyVista Mesh Integration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="mapdl_beam.html" class="btn btn-neutral float-left" title="MAPDL 2D Beam Example" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Alex Kaszynski
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>3D Stress Concentration Analysis for a Notched Plate &mdash; pyansys 0.44.2 documentation</title>
+  <title>3D Stress Concentration Analysis for a Notched Plate &mdash; pyansys 0.44.5 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.44.2
+                0.44.5
               </div>
             
           
@@ -133,6 +133,11 @@
 <li class="toctree-l3"><a class="reference internal" href="3d_plate_thermal.html#post-processing-using-mapdl">Post-Processing using MAPDL</a></li>
 <li class="toctree-l3"><a class="reference internal" href="mapdl_3d_beam.html">MAPDL 3D Beam Example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="mapdl_beam.html">MAPDL 2D Beam Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="path_operations.html">Path Operations Within pyansys and MAPDL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="path_operations.html#mapdl-solve-a-beam-with-a-non-uniform-load">MAPDL: Solve a Beam with a Non-Uniform Load</a></li>
+<li class="toctree-l3"><a class="reference internal" href="path_operations.html#post-processing-mapdl-path-operation">Post-Processing - MAPDL Path Operation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="path_operations.html#comparing-with-path-operation-within-pyvista">Comparing with Path Operation Within <cite>pyvista</cite></a></li>
+<li class="toctree-l3"><a class="reference internal" href="path_operations.html#d-slice-interpolation">2D Slice Interpolation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyvista_mesh.html">PyVista Mesh Integration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="transient_thermal.html">Example Thermal Transient Analysis</a></li>
 <li class="toctree-l3"><a class="reference internal" href="transient_thermal.html#geometry-and-mesh">Geometry and Mesh</a></li>
@@ -223,7 +228,7 @@
 <div class="sphx-glr-example-title section" id="d-stress-concentration-analysis-for-a-notched-plate">
 <span id="ref-3d-plane-stress-concentration"></span><span id="sphx-glr-examples-02-mapdl-examples-3d-notch-py"></span><h1>3D Stress Concentration Analysis for a Notched Plate<a class="headerlink" href="#d-stress-concentration-analysis-for-a-notched-plate" title="Permalink to this headline">¶</a></h1>
 <p>This tutorial is the 3D corollary to the 2D plane example
-<a class="reference internal" href="2d_plate_with_a_hole.html#ref-plane-stress-concentration"><span class="std std-ref">ANSYS 2D Plane Stress Concentration Analysis</span></a>, but This example verifies the
+<a class="reference internal" href="path_operations.html#ref-plane-stress-concentration"><span class="std std-ref">Path Operations Within pyansys and MAPDL</span></a>, but This example verifies the
 stress concentration factor <span class="math notranslate nohighlight">\(K-t\)</span> when modeling opposite single
 notches in a finite width thin plate</p>
 <p>First, start MAPDL as a service and disable all but error messages.</p>
@@ -422,7 +427,7 @@ force of 1 kN in the positive X direction.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;FINISH SOLUTION PROCESSING\n\n\n ***** ROUTINE COMPLETED *****  CP =         3.601&#39;
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;FINISH SOLUTION PROCESSING\n\n\n ***** ROUTINE COMPLETED *****  CP =         4.048&#39;
 </pre></div>
 </div>
 </div>
@@ -543,7 +548,7 @@ width over the modified cross section width.</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Stress Concentration: 1.60
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  6.257 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  6.538 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-02-mapdl-examples-3d-notch-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/5e24b0da16b467ec87feed13e726c555/3d_notch.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">3d_notch.py</span></code></a></p>

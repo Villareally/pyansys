@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>PyVista Mesh Integration &mdash; pyansys 0.44.2 documentation</title>
+  <title>PyVista Mesh Integration &mdash; pyansys 0.44.5 documentation</title>
   
 
   
@@ -43,7 +43,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Example Thermal Transient Analysis" href="transient_thermal.html" />
-    <link rel="prev" title="MAPDL 2D Beam Example" href="mapdl_beam.html" /> 
+    <link rel="prev" title="Path Operations Within pyansys and MAPDL" href="path_operations.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.44.2
+                0.44.5
               </div>
             
           
@@ -133,6 +133,11 @@
 <li class="toctree-l3"><a class="reference internal" href="3d_plate_thermal.html#post-processing-using-mapdl">Post-Processing using MAPDL</a></li>
 <li class="toctree-l3"><a class="reference internal" href="mapdl_3d_beam.html">MAPDL 3D Beam Example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="mapdl_beam.html">MAPDL 2D Beam Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="path_operations.html">Path Operations Within pyansys and MAPDL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="path_operations.html#mapdl-solve-a-beam-with-a-non-uniform-load">MAPDL: Solve a Beam with a Non-Uniform Load</a></li>
+<li class="toctree-l3"><a class="reference internal" href="path_operations.html#post-processing-mapdl-path-operation">Post-Processing - MAPDL Path Operation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="path_operations.html#comparing-with-path-operation-within-pyvista">Comparing with Path Operation Within <cite>pyvista</cite></a></li>
+<li class="toctree-l3"><a class="reference internal" href="path_operations.html#d-slice-interpolation">2D Slice Interpolation</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">PyVista Mesh Integration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="transient_thermal.html">Example Thermal Transient Analysis</a></li>
 <li class="toctree-l3"><a class="reference internal" href="transient_thermal.html#geometry-and-mesh">Geometry and Mesh</a></li>
@@ -247,7 +252,7 @@
 </pre></div>
 </div>
 <p>Write the mesh to an archive file</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">archive_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">mapdl</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;tmp.cdb&#39;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">archive_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">mapdl</span><span class="o">.</span><span class="n">directory</span><span class="p">,</span> <span class="s1">&#39;tmp.cdb&#39;</span><span class="p">)</span>
 <span class="n">pyansys</span><span class="o">.</span><span class="n">save_as_archive</span><span class="p">(</span><span class="n">archive_filename</span><span class="p">,</span> <span class="n">mesh</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -362,7 +367,7 @@ Enable a continous plot looping with <code class="docutils literal notranslate">
  (0.0, 0.0, 1.0)]
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  8.766 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  8.954 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-02-mapdl-examples-pyvista-mesh-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/b5d3cd54aa3e5597f4917e93d0d15ab4/pyvista_mesh.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">pyvista_mesh.py</span></code></a></p>
@@ -385,7 +390,7 @@ Enable a continous plot looping with <code class="docutils literal notranslate">
         <a href="transient_thermal.html" class="btn btn-neutral float-right" title="Example Thermal Transient Analysis" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="mapdl_beam.html" class="btn btn-neutral float-left" title="MAPDL 2D Beam Example" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="path_operations.html" class="btn btn-neutral float-left" title="Path Operations Within pyansys and MAPDL" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

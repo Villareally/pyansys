@@ -60,7 +60,7 @@ Write the mesh to an archive file
 
 .. code-block:: default
 
-    archive_filename = os.path.join(mapdl.path, 'tmp.cdb')
+    archive_filename = os.path.join(mapdl.directory, 'tmp.cdb')
     pyansys.save_as_archive(archive_filename, mesh)
 
 
@@ -251,7 +251,7 @@ Enable a continous plot looping with ```loop=True```.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  8.766 seconds)
+   **Total running time of the script:** ( 0 minutes  8.954 seconds)
 
 
 .. _sphx_glr_download_examples_02-mapdl-examples_pyvista_mesh.py:

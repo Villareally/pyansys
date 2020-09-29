@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>MAPDL 2D Beam Example &mdash; pyansys 0.44.2 documentation</title>
+  <title>MAPDL 2D Beam Example &mdash; pyansys 0.44.5 documentation</title>
   
 
   
@@ -42,7 +42,7 @@
   <link rel="stylesheet" href="../../_static/gallery-dataframe.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="PyVista Mesh Integration" href="pyvista_mesh.html" />
+    <link rel="next" title="Path Operations Within pyansys and MAPDL" href="path_operations.html" />
     <link rel="prev" title="MAPDL 3D Beam Example" href="mapdl_3d_beam.html" /> 
 </head>
 
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.44.2
+                0.44.5
               </div>
             
           
@@ -133,6 +133,11 @@
 <li class="toctree-l3"><a class="reference internal" href="3d_plate_thermal.html#post-processing-using-mapdl">Post-Processing using MAPDL</a></li>
 <li class="toctree-l3"><a class="reference internal" href="mapdl_3d_beam.html">MAPDL 3D Beam Example</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">MAPDL 2D Beam Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="path_operations.html">Path Operations Within pyansys and MAPDL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="path_operations.html#mapdl-solve-a-beam-with-a-non-uniform-load">MAPDL: Solve a Beam with a Non-Uniform Load</a></li>
+<li class="toctree-l3"><a class="reference internal" href="path_operations.html#post-processing-mapdl-path-operation">Post-Processing - MAPDL Path Operation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="path_operations.html#comparing-with-path-operation-within-pyvista">Comparing with Path Operation Within <cite>pyvista</cite></a></li>
+<li class="toctree-l3"><a class="reference internal" href="path_operations.html#d-slice-interpolation">2D Slice Interpolation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyvista_mesh.html">PyVista Mesh Integration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="transient_thermal.html">Example Thermal Transient Analysis</a></li>
 <li class="toctree-l3"><a class="reference internal" href="transient_thermal.html#geometry-and-mesh">Geometry and Mesh</a></li>
@@ -236,7 +241,7 @@
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Product:         ANSYS Mechanical Enterprise
 MAPDL Version:   RELEASE  2020 R2           BUILD 20.2      UPDATE 20200601
-PyANSYS Version: 0.44.1
+PyANSYS Version: 0.44.5
 </pre></div>
 </div>
 <p>Define an I-beam</p>
@@ -325,7 +330,7 @@ are sequential</p>
  *** ANSYS - ENGINEERING ANALYSIS SYSTEM  RELEASE 2020 R2          20.2     ***
  DISTRIBUTED ANSYS Mechanical Enterprise
 
- 88888888  VERSION=LINUX x64     15:29:28  SEP 23, 2020 CP=      0.646
+ 88888888  VERSION=LINUX x64     21:46:38  SEP 28, 2020 CP=      0.643
 
 
 
@@ -415,13 +420,13 @@ individual elements</p>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>One or more COMPONENTS exist that do not have all underlying entities selected.  Issuing an ALLSEL or other select commands before CDWRITE will ensure all underlying entities are selected.  These COMPONENTS were not written to the CDWRITE file.
- *** NOTE ***                            CP =       0.675   TIME= 15:29:28
+ *** NOTE ***                            CP =       0.701   TIME= 21:46:38
  The automatic domain decomposition logic has selected the MESH domain
  decomposition method with 2 processes per solution.
 
  *****  ANSYS SOLVE    COMMAND  *****
 
- *** NOTE ***                            CP =       0.676   TIME= 15:29:28
+ *** NOTE ***                            CP =       0.702   TIME= 21:46:38
  There is no title defined for this analysis.
 
  *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***
@@ -437,7 +442,7 @@ individual elements</p>
  *** ANSYS - ENGINEERING ANALYSIS SYSTEM  RELEASE 2020 R2          20.2     ***
  DISTRIBUTED ANSYS Mechanical Enterprise
 
- 88888888  VERSION=LINUX x64     15:29:28  SEP 23, 2020 CP=      0.676
+ 88888888  VERSION=LINUX x64     21:46:38  SEP 28, 2020 CP=      0.702
 
 
 
@@ -450,11 +455,11 @@ individual elements</p>
    ANALYSIS TYPE . . . . . . . . . . . . . . . . .STATIC (STEADY-STATE)
    GLOBALLY ASSEMBLED MATRIX . . . . . . . . . . .SYMMETRIC
 
- *** NOTE ***                            CP =       0.676   TIME= 15:29:28
+ *** NOTE ***                            CP =       0.702   TIME= 21:46:38
  Present time 0 is less than or equal to the previous time.  Time will
  default to 1.
 
- *** NOTE ***                            CP =       0.677   TIME= 15:29:28
+ *** NOTE ***                            CP =       0.702   TIME= 21:46:38
  The conditions for direct assembly have been met.  No .emat or .erot
  files will be produced.
 
@@ -481,7 +486,7 @@ individual elements</p>
 
  SOLUTION MONITORING INFO IS WRITTEN TO FILE= file.mntr
 
- *** NOTE ***                            CP =       0.687   TIME= 15:29:28
+ *** NOTE ***                            CP =       0.713   TIME= 21:46:38
  Predictor is ON by default for structural elements with rotational
  degrees of freedom.  Use the PRED,OFF command to turn the predictor
  OFF if it adversely affects the convergence.
@@ -494,8 +499,8 @@ individual elements</p>
    *** ELEMENT MATRIX FORMULATION TIMES
      TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-        1        22  BEAM188       0.003   0.000121
- Time at end of element matrix formulation CP = 0.690443993.
+        1        22  BEAM188       0.003   0.000131
+ Time at end of element matrix formulation CP = 0.716953039.
 
  DISTRIBUTED SPARSE MATRIX DIRECT SOLVER.
   Number of equations =          44,    Maximum wavefront =     12
@@ -508,7 +513,7 @@ individual elements</p>
   Total memory required for in-core solution     =      0.354 MB
   Total memory required for out-of-core solution =      0.354 MB
 
- *** NOTE ***                            CP =       0.693   TIME= 15:29:29
+ *** NOTE ***                            CP =       0.720   TIME= 21:46:38
  The Distributed Sparse Matrix Solver is currently running in the
  in-core memory mode.  This memory mode uses the most amount of memory
  in order to avoid using the hard drive as much as possible, which most
@@ -522,7 +527,7 @@ individual elements</p>
  at node 12 UZ.
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  2.764 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  2.808 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-02-mapdl-examples-mapdl-beam-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/8ff48f19145b89370dd5f4c3c4937dae/mapdl_beam.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">mapdl_beam.py</span></code></a></p>
@@ -542,7 +547,7 @@ individual elements</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="pyvista_mesh.html" class="btn btn-neutral float-right" title="PyVista Mesh Integration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="path_operations.html" class="btn btn-neutral float-right" title="Path Operations Within pyansys and MAPDL" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="mapdl_3d_beam.html" class="btn btn-neutral float-left" title="MAPDL 3D Beam Example" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

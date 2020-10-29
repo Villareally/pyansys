@@ -1,0 +1,237 @@
+.. only:: html
+
+    .. note::
+        :class: sphx-glr-download-link-note
+
+        Click :ref:`here <sphx_glr_download_examples_00-read_binary_custom_visualization.py>`     to download the full example code
+    .. rst-class:: sphx-glr-example-title
+
+    .. _sphx_glr_examples_00-read_binary_custom_visualization.py:
+
+
+.. _ref_custom_visualization:
+
+Custom Scalar Visualization
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Display custom scalars using an existing mesh.
+
+
+.. code-block:: default
+
+
+    import pyvista
+    import numpy as np
+
+    import pyansys
+
+    # Download an example shaft modal analysis result file
+    shaft = pyansys.download_shaft_modal()
+
+
+
+
+
+
+
+
+Each result file contains both a ``mesh`` property and a ``grid``
+property.  The ``mesh`` property can be through as the MAPDL
+representation of the FEM while the ``grid`` property can be through
+of the Python visualizing property used to plot within Python.
+
+
+.. code-block:: default
+
+
+    print('shaft.mesh:\n', shaft.mesh)
+    print('-'*79)
+    print('shaft.grid:\n', shaft.grid)
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    shaft.mesh:
+     ANSYS Mesh
+      Number of Nodes:              27132
+      Number of Elements:           25051
+      Number of Element Types:      6
+      Number of Node Components:    4
+      Number of Element Components: 3
+
+    -------------------------------------------------------------------------------
+    shaft.grid:
+     UnstructuredGrid (0x7f36425a5210)
+      N Cells:      25051
+      N Points:     27132
+      X Bounds:     0.000e+00, 2.700e+02
+      Y Bounds:     -4.000e+01, 4.000e+01
+      Z Bounds:     -4.000e+01, 4.000e+01
+      N Arrays:     16
+
+
+
+
+
+Plotting
+~~~~~~~~
+
+The grid instance is a `pyvista.UnstructuredGrid` part of the
+`pyvista` library.  This class allows for advanced plotting using
+VTK in just a few lines of code.  For example, you can plot the
+underlying mesh with:
+
+
+.. code-block:: default
+
+
+    shaft.grid.plot(color='w', smooth_shading=True)
+
+
+
+
+.. image:: /examples/00-read_binary/images/sphx_glr_custom_visualization_001.png
+    :alt: custom visualization
+    :class: sphx-glr-single-img
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+
+    [(461.5153157248284, 326.5153157248283, 326.5153157248283),
+     (135.00000000000003, 0.0, 0.0),
+     (0.0, 0.0, 1.0)]
+
+
+
+Plotting Node Scalars
+~~~~~~~~~~~~~~~~~~~~~
+
+If you point-wise or cell-wise scalars (nodes and elements in FEA),
+you can plot these scalars by setting the ``scalars=`` parameter.
+Here, I'm simply using the x location of the nodes to color the
+mesh.
+
+It follows that you can use any set of scalars provided that it
+matches the number of nodes in the unstructured grid or the number
+of cells in the unstructured grid.  Here, we're plotting node values.
+
+
+.. code-block:: default
+
+
+    x_scalars = shaft.grid.points[:, 0]
+    shaft.grid.plot(scalars=x_scalars, smooth_shading=True)
+
+
+
+
+
+.. image:: /examples/00-read_binary/images/sphx_glr_custom_visualization_002.png
+    :alt: custom visualization
+    :class: sphx-glr-single-img
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+
+    [(461.5153157248284, 326.5153157248283, 326.5153157248283),
+     (135.00000000000003, 0.0, 0.0),
+     (0.0, 0.0, 1.0)]
+
+
+
+Plotting With Missing Values
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If you do not have values for every node (for example, the midside
+nodes), you can leave these values as NAN and the plotter will take
+care of plotting only the real values.
+
+For example, if you have calculated strain scalars that are only
+available at certain nodes, you can still plot those.  This example
+just nulls out the first 2000 nodes to be able to visualize the
+missing values.  If your are just missing midside values, your plot
+will not show the missing values since `pyvista` only plots the edge
+nodes.
+
+
+.. code-block:: default
+
+
+    pontoon = pyansys.download_pontoon()
+    nnum, strain = pontoon.nodal_elastic_strain(0)
+
+    scalars = strain[:, 0]
+    scalars[:2000] = np.nan  # here, we simulate unknown values
+
+    pontoon.grid.plot(scalars=scalars, show_edges=True)
+
+
+
+
+.. image:: /examples/00-read_binary/images/sphx_glr_custom_visualization_003.png
+    :alt: custom visualization
+    :class: sphx-glr-single-img
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+
+    [(150.0152852510816, 105.0152852510816, 108.01528525108166),
+     (45.000000000000014, 8.881784197001252e-16, 3.000000000000005),
+     (0.0, 0.0, 1.0)]
+
+
+
+
+.. rst-class:: sphx-glr-timing
+
+   **Total running time of the script:** ( 0 minutes  1.406 seconds)
+
+
+.. _sphx_glr_download_examples_00-read_binary_custom_visualization.py:
+
+
+.. only :: html
+
+ .. container:: sphx-glr-footer
+    :class: sphx-glr-footer-example
+
+
+
+  .. container:: sphx-glr-download sphx-glr-download-python
+
+     :download:`Download Python source code: custom_visualization.py <custom_visualization.py>`
+
+
+
+  .. container:: sphx-glr-download sphx-glr-download-jupyter
+
+     :download:`Download Jupyter notebook: custom_visualization.ipynb <custom_visualization.ipynb>`
+
+
+.. only:: html
+
+ .. rst-class:: sphx-glr-signature
+
+    `Gallery generated by Sphinx-Gallery <https://sphinx-gallery.github.io>`_

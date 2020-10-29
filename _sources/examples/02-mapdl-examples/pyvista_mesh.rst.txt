@@ -166,13 +166,13 @@ Load the result file within ``pyansys`` and plot the 8th mode.
 
  .. code-block:: none
 
-    PyANSYS MAPDL Distributed Result
+    PyANSYS MAPDL Result
     Units       : User Defined
     Version     : 20.2
     Cyclic      : False
     Result Sets : 20
-    Nodes       : 5160
-    Elements    : 5000
+    Nodes       : 10201
+    Elements    : 10000
 
 
     Available Results:
@@ -251,7 +251,7 @@ Enable a continous plot looping with ```loop=True```.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  8.954 seconds)
+   **Total running time of the script:** ( 0 minutes  8.485 seconds)
 
 
 .. _sphx_glr_download_examples_02-mapdl-examples_pyvista_mesh.py:

@@ -178,7 +178,7 @@ Disable movie_filename and increase nangles for a smoother plot
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  12.017 seconds)
+   **Total running time of the script:** ( 0 minutes  10.998 seconds)
 
 
 .. _sphx_glr_download_examples_01-cyclic_results_sector_model.py:

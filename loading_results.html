@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Working with a ANSYS Result Files &mdash; pyansys 0.44.5 documentation</title>
+  <title>Working with a ANSYS Result Files &mdash; pyansys 0.44.10 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.44.5
+                0.44.10
               </div>
             
           
@@ -1699,6 +1699,49 @@ X, Y, Z, XY, YZ, XZ, EQV.</p></li>
 </dd></dl>
 
 <dl class="py method">
+<dt id="pyansys.rst.Result.nodal_reaction_forces">
+<code class="sig-name descname">nodal_reaction_forces</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rnum</span></em>, <em class="sig-param"><span class="n">sort</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.Result.nodal_reaction_forces" title="Permalink to this definition">¶</a></dt>
+<dd><p>Nodal reaction forces.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rnum</strong> (<em>int</em><em> or </em><em>list</em>) – Cumulative result number with zero based indexing, or a
+list containing (step, substep) of the requested result.</p></li>
+<li><p><strong>sort</strong> (<em>bool</em>) – Sort results by node number.  Default <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>rforces</strong> (<em>np.ndarray</em>) – Reaction Forces</p></li>
+<li><p><strong>nnum</strong> (<em>np.ndarray</em>) – Node numbers corresponding to the reaction forces.  Does
+not necessarily corresponds to <code class="docutils literal notranslate"><span class="pre">rst.mesh.nnum</span></code> as each
+node may not have a reaction force in each degree of
+freedom.</p></li>
+<li><p><strong>dof</strong> (<em>np.ndarray</em>) – Degree of freedom corresponding to each node using the
+MAPDL degree of freedom reference table.  See
+<code class="docutils literal notranslate"><span class="pre">rst.result_dof</span></code> for the corresponding degrees of
+freedom for a given solution.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Get the nodal reaction forces for the first result and print
+the reaction forces of a single node.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rst</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">read_binary</span><span class="p">(</span><span class="s1">&#39;file.rst&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rforces</span><span class="p">,</span> <span class="n">nnum</span><span class="p">,</span> <span class="n">dof</span> <span class="o">=</span> <span class="n">rst</span><span class="o">.</span><span class="n">nodal_reaction_forces</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dof_ref</span> <span class="o">=</span> <span class="n">rst</span><span class="o">.</span><span class="n">result_dof</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rforces</span><span class="p">[:</span><span class="mi">3</span><span class="p">],</span> <span class="n">nnum</span><span class="p">[:</span><span class="mi">3</span><span class="p">],</span> <span class="n">dof</span><span class="p">[:</span><span class="mi">3</span><span class="p">],</span> <span class="n">dof_ref</span>
+<span class="go">(array([  24102.21376091, -109357.01854005,   22899.5303263 ]),</span>
+<span class="go"> array([4142, 4142, 4142]),</span>
+<span class="go"> array([1, 2, 3], dtype=int32),</span>
+<span class="go"> [&#39;UX&#39;, &#39;UY&#39;, &#39;UZ&#39;])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
 <dt id="pyansys.rst.Result.nodal_solution">
 <code class="sig-name descname">nodal_solution</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rnum</span></em>, <em class="sig-param"><span class="n">in_nodal_coord_sys</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.Result.nodal_solution" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the DOF solution for each node in the global
@@ -2126,8 +2169,6 @@ coordinate system.</p></li>
 </p>
 </dd>
 </dl>
-<p class="rubric">Examples</p>
-<p># &gt;&gt;&gt; rst.plot_element_result(</p>
 </dd></dl>
 
 <dl class="py method">

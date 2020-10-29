@@ -26,6 +26,27 @@ Loading and Visualizing Result Files
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="Display custom scalars using an existing mesh.">
+
+.. only:: html
+
+ .. figure:: /examples/00-read_binary/images/thumb/sphx_glr_custom_visualization_thumb.png
+     :alt: Custom Scalar Visualization
+
+     :ref:`sphx_glr_examples_00-read_binary_custom_visualization.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/00-read_binary/custom_visualization
+
+.. raw:: html
+
     <div class="sphx-glr-thumbcontainer" tooltip="Visualize the nodal stress in the radial direction.  This is equivalant to setting the result c...">
 
 .. only:: html

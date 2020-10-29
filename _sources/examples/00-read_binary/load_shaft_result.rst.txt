@@ -343,7 +343,7 @@ Disable ``movie_filename`` and increase ``nangles`` for a smoother plot
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  4.292 seconds)
+   **Total running time of the script:** ( 0 minutes  3.720 seconds)
 
 
 .. _sphx_glr_download_examples_00-read_binary_load_shaft_result.py:

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Path Operations within pyansys and MAPDL &mdash; pyansys 0.44.10 documentation</title>
+  <title>Path Operations within pyansys and MAPDL &mdash; pyansys 0.44.19 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.44.10
+                0.44.19
               </div>
             
           
@@ -119,6 +119,7 @@
 <li class="toctree-l3"><a class="reference internal" href="2d_plate_with_a_hole.html#compute-the-stress-concentration">Compute the Stress Concentration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="2d_plate_with_a_hole.html#batch-analysis">Batch Analysis</a></li>
 <li class="toctree-l3"><a class="reference internal" href="2d_plate_with_a_hole.html#analytical-comparison">Analytical Comparison</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2d_plate_with_a_hole.html#cleanup">Cleanup</a></li>
 <li class="toctree-l3"><a class="reference internal" href="3d_notch.html">3D Stress Concentration Analysis for a Notched Plate</a></li>
 <li class="toctree-l3"><a class="reference internal" href="3d_notch.html#geometry">Geometry</a></li>
 <li class="toctree-l3"><a class="reference internal" href="3d_notch.html#meshing">Meshing</a></li>
@@ -126,12 +127,15 @@
 <li class="toctree-l3"><a class="reference internal" href="3d_notch.html#solve-the-static-problem">Solve the Static Problem</a></li>
 <li class="toctree-l3"><a class="reference internal" href="3d_notch.html#post-processing">Post-Processing</a></li>
 <li class="toctree-l3"><a class="reference internal" href="3d_notch.html#compute-the-stress-concentration">Compute the Stress Concentration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_notch.html#cleanup">Cleanup</a></li>
 <li class="toctree-l3"><a class="reference internal" href="3d_plate_thermal.html">Basic Thermal Analysis with pyansys</a></li>
 <li class="toctree-l3"><a class="reference internal" href="3d_plate_thermal.html#geometry-and-material-properties">Geometry and Material Properties</a></li>
 <li class="toctree-l3"><a class="reference internal" href="3d_plate_thermal.html#boundary-conditions">Boundary Conditions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="3d_plate_thermal.html#solve">Solve</a></li>
 <li class="toctree-l3"><a class="reference internal" href="3d_plate_thermal.html#post-processing-using-mapdl">Post-Processing using MAPDL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_plate_thermal.html#cleanup">Cleanup</a></li>
 <li class="toctree-l3"><a class="reference internal" href="mapdl_3d_beam.html">MAPDL 3D Beam Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mapdl_3d_beam.html#cleanup">Cleanup</a></li>
 <li class="toctree-l3"><a class="reference internal" href="mapdl_beam.html">MAPDL 2D Beam Example</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Path Operations within pyansys and MAPDL</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#mapdl-solve-a-beam-with-a-non-uniform-load">MAPDL: Solve a Beam with a Non-Uniform Load</a></li>
@@ -226,7 +230,7 @@
 <p>Click <a class="reference internal" href="#sphx-glr-download-examples-02-mapdl-examples-path-operations-py"><span class="std std-ref">here</span></a>     to download the full example code</p>
 </div>
 <div class="sphx-glr-example-title section" id="path-operations-within-pyansys-and-mapdl">
-<span id="ref-plane-stress-concentration"></span><span id="sphx-glr-examples-02-mapdl-examples-path-operations-py"></span><h1>Path Operations within pyansys and MAPDL<a class="headerlink" href="#path-operations-within-pyansys-and-mapdl" title="Permalink to this headline">¶</a></h1>
+<span id="ref-path-operation"></span><span id="sphx-glr-examples-02-mapdl-examples-path-operations-py"></span><h1>Path Operations within pyansys and MAPDL<a class="headerlink" href="#path-operations-within-pyansys-and-mapdl" title="Permalink to this headline">¶</a></h1>
 <p>This tutorial shows how you can use pyansys and MAPDL to interpolate
 along a path for stress.  This shows some advanced features of the
 <cite>pyvista</cite> module to perform the interpolation.</p>
@@ -240,7 +244,6 @@ along a path for stress.  This shows some advanced features of the
 
 <span class="kn">import</span> <span class="nn">pyansys</span>
 
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;I_MPI_SHM_LMT&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;shm&#39;</span>  <span class="c1"># necessary on Ubuntu</span>
 <span class="n">mapdl</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">launch_mapdl</span><span class="p">(</span><span class="n">loglevel</span><span class="o">=</span><span class="s1">&#39;ERROR&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -423,7 +426,7 @@ extrapolated to the edge nodes of ANSYS FEMs.</p>
  (0.0, 0.0, 1.0)]
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  5.338 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  4.891 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-02-mapdl-examples-path-operations-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/3abf0f74d022c0b9c4129c2585057176/path_operations.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">path_operations.py</span></code></a></p>

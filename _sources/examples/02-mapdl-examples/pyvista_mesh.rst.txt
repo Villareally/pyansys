@@ -26,8 +26,7 @@ Run a modal analysis on a mesh generated from pyvista within MAPDL.
     import pyansys
 
     # launch MAPDL and run a modal analysis
-    os.environ['I_MPI_SHM_LMT'] = 'shm'  # necessary for Ubuntu
-    mapdl = pyansys.launch_mapdl(loglevel='WARNING', override=True)
+    mapdl = pyansys.launch_mapdl(loglevel='WARNING')
 
     # Create a simple plane mesh centered at (0, 0, 0) on the XY plane
     mesh = pv.Plane(i_resolution=100, j_resolution=100)
@@ -251,7 +250,7 @@ Enable a continous plot looping with ```loop=True```.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  8.485 seconds)
+   **Total running time of the script:** ( 0 minutes  15.725 seconds)
 
 
 .. _sphx_glr_download_examples_02-mapdl-examples_pyvista_mesh.py:

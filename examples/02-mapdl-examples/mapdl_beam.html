@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>MAPDL 2D Beam Example &mdash; pyansys 0.44.10 documentation</title>
+  <title>MAPDL 2D Beam Example &mdash; pyansys 0.44.19 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.44.10
+                0.44.19
               </div>
             
           
@@ -119,6 +119,7 @@
 <li class="toctree-l3"><a class="reference internal" href="2d_plate_with_a_hole.html#compute-the-stress-concentration">Compute the Stress Concentration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="2d_plate_with_a_hole.html#batch-analysis">Batch Analysis</a></li>
 <li class="toctree-l3"><a class="reference internal" href="2d_plate_with_a_hole.html#analytical-comparison">Analytical Comparison</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2d_plate_with_a_hole.html#cleanup">Cleanup</a></li>
 <li class="toctree-l3"><a class="reference internal" href="3d_notch.html">3D Stress Concentration Analysis for a Notched Plate</a></li>
 <li class="toctree-l3"><a class="reference internal" href="3d_notch.html#geometry">Geometry</a></li>
 <li class="toctree-l3"><a class="reference internal" href="3d_notch.html#meshing">Meshing</a></li>
@@ -126,12 +127,15 @@
 <li class="toctree-l3"><a class="reference internal" href="3d_notch.html#solve-the-static-problem">Solve the Static Problem</a></li>
 <li class="toctree-l3"><a class="reference internal" href="3d_notch.html#post-processing">Post-Processing</a></li>
 <li class="toctree-l3"><a class="reference internal" href="3d_notch.html#compute-the-stress-concentration">Compute the Stress Concentration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_notch.html#cleanup">Cleanup</a></li>
 <li class="toctree-l3"><a class="reference internal" href="3d_plate_thermal.html">Basic Thermal Analysis with pyansys</a></li>
 <li class="toctree-l3"><a class="reference internal" href="3d_plate_thermal.html#geometry-and-material-properties">Geometry and Material Properties</a></li>
 <li class="toctree-l3"><a class="reference internal" href="3d_plate_thermal.html#boundary-conditions">Boundary Conditions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="3d_plate_thermal.html#solve">Solve</a></li>
 <li class="toctree-l3"><a class="reference internal" href="3d_plate_thermal.html#post-processing-using-mapdl">Post-Processing using MAPDL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3d_plate_thermal.html#cleanup">Cleanup</a></li>
 <li class="toctree-l3"><a class="reference internal" href="mapdl_3d_beam.html">MAPDL 3D Beam Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mapdl_3d_beam.html#cleanup">Cleanup</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">MAPDL 2D Beam Example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="path_operations.html">Path Operations within pyansys and MAPDL</a></li>
 <li class="toctree-l3"><a class="reference internal" href="path_operations.html#mapdl-solve-a-beam-with-a-non-uniform-load">MAPDL: Solve a Beam with a Non-Uniform Load</a></li>
@@ -230,8 +234,7 @@
 <p>This is an example from FINITE ELEMENT ANALYSIS USING ANSYS 11.0</p>
 <p>Launch MAPDL with interactive plotting</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyansys</span>
-<span class="n">mapdl</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">launch_mapdl</span><span class="p">(</span><span class="n">override</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">loglevel</span><span class="o">=</span><span class="s1">&#39;WARNING&#39;</span><span class="p">,</span>
-                             <span class="n">interactive_plotting</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">mapdl</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">launch_mapdl</span><span class="p">(</span><span class="n">interactive_plotting</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">loglevel</span><span class="o">=</span><span class="s1">&#39;ERROR&#39;</span><span class="p">)</span>
 
 <span class="c1"># reduce pixel count for larger font documentation plots</span>
 <span class="n">mapdl</span><span class="o">.</span><span class="n">gfile</span><span class="p">(</span><span class="mi">1200</span><span class="p">)</span>
@@ -241,7 +244,7 @@
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Product:         ANSYS Mechanical Enterprise
 MAPDL Version:   RELEASE  2020 R2           BUILD 20.2      UPDATE 20200601
-PyANSYS Version: 0.44.10
+PyANSYS Version: 0.44.13
 </pre></div>
 </div>
 <p>Define an I-beam</p>
@@ -330,7 +333,7 @@ are sequential</p>
  *** ANSYS - ENGINEERING ANALYSIS SYSTEM  RELEASE 2020 R2          20.2     ***
  DISTRIBUTED ANSYS Mechanical Enterprise
 
- 88888888  VERSION=LINUX x64     11:02:48  OCT 29, 2020 CP=      0.656
+ 88888888  VERSION=LINUX x64     23:49:35  NOV 16, 2020 CP=      0.629
 
 
 
@@ -420,13 +423,13 @@ individual elements</p>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>One or more COMPONENTS exist that do not have all underlying entities selected.  Issuing an ALLSEL or other select commands before CDWRITE will ensure all underlying entities are selected.  These COMPONENTS were not written to the CDWRITE file.
- *** NOTE ***                            CP =       0.665   TIME= 11:02:48
+ *** NOTE ***                            CP =       0.649   TIME= 23:49:35
  The automatic domain decomposition logic has selected the MESH domain
  decomposition method with 2 processes per solution.
 
  *****  ANSYS SOLVE    COMMAND  *****
 
- *** NOTE ***                            CP =       0.666   TIME= 11:02:48
+ *** NOTE ***                            CP =       0.649   TIME= 23:49:35
  There is no title defined for this analysis.
 
  *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***
@@ -442,7 +445,7 @@ individual elements</p>
  *** ANSYS - ENGINEERING ANALYSIS SYSTEM  RELEASE 2020 R2          20.2     ***
  DISTRIBUTED ANSYS Mechanical Enterprise
 
- 88888888  VERSION=LINUX x64     11:02:48  OCT 29, 2020 CP=      0.666
+ 88888888  VERSION=LINUX x64     23:49:35  NOV 16, 2020 CP=      0.650
 
 
 
@@ -455,11 +458,11 @@ individual elements</p>
    ANALYSIS TYPE . . . . . . . . . . . . . . . . .STATIC (STEADY-STATE)
    GLOBALLY ASSEMBLED MATRIX . . . . . . . . . . .SYMMETRIC
 
- *** NOTE ***                            CP =       0.667   TIME= 11:02:48
+ *** NOTE ***                            CP =       0.650   TIME= 23:49:35
  Present time 0 is less than or equal to the previous time.  Time will
  default to 1.
 
- *** NOTE ***                            CP =       0.667   TIME= 11:02:48
+ *** NOTE ***                            CP =       0.650   TIME= 23:49:35
  The conditions for direct assembly have been met.  No .emat or .erot
  files will be produced.
 
@@ -486,7 +489,7 @@ individual elements</p>
 
  SOLUTION MONITORING INFO IS WRITTEN TO FILE= file.mntr
 
- *** NOTE ***                            CP =       0.677   TIME= 11:02:48
+ *** NOTE ***                            CP =       0.660   TIME= 23:49:35
  Predictor is ON by default for structural elements with rotational
  degrees of freedom.  Use the PRED,OFF command to turn the predictor
  OFF if it adversely affects the convergence.
@@ -499,8 +502,8 @@ individual elements</p>
    *** ELEMENT MATRIX FORMULATION TIMES
      TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-        1        22  BEAM188       0.003   0.000138
- Time at end of element matrix formulation CP = 0.680335045.
+        1        22  BEAM188       0.003   0.000127
+ Time at end of element matrix formulation CP = 0.663324952.
 
  DISTRIBUTED SPARSE MATRIX DIRECT SOLVER.
   Number of equations =          44,    Maximum wavefront =     12
@@ -513,7 +516,7 @@ individual elements</p>
   Total memory required for in-core solution     =      0.354 MB
   Total memory required for out-of-core solution =      0.354 MB
 
- *** NOTE ***                            CP =       0.683   TIME= 11:02:48
+ *** NOTE ***                            CP =       0.666   TIME= 23:49:35
  The Distributed Sparse Matrix Solver is currently running in the
  in-core memory mode.  This memory mode uses the most amount of memory
  in order to avoid using the hard drive as much as possible, which most
@@ -527,7 +530,7 @@ individual elements</p>
  at node 12 UZ.
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  2.753 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  1.984 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-02-mapdl-examples-mapdl-beam-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/8ff48f19145b89370dd5f4c3c4937dae/mapdl_beam.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">mapdl_beam.py</span></code></a></p>

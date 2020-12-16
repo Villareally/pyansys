@@ -9,7 +9,7 @@
     .. _sphx_glr_examples_02-mapdl-examples_path_operations.py:
 
 
-.. _ref_plane_stress_concentration:
+.. _ref_path_operation:
 
 Path Operations within pyansys and MAPDL
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -32,7 +32,6 @@ First, start MAPDL as a service and disable all but error messages.
 
     import pyansys
 
-    os.environ['I_MPI_SHM_LMT'] = 'shm'  # necessary on Ubuntu
     mapdl = pyansys.launch_mapdl(loglevel='ERROR')
 
 
@@ -288,7 +287,7 @@ extrapolated to the edge nodes of ANSYS FEMs.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  5.338 seconds)
+   **Total running time of the script:** ( 0 minutes  4.891 seconds)
 
 
 .. _sphx_glr_download_examples_02-mapdl-examples_path_operations.py:

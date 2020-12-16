@@ -30,7 +30,6 @@ First, start MAPDL as a service and disable all but error messages.
 
     import pyansys
 
-    # os.environ['I_MPI_SHM_LMT'] = 'shm'  # necessary on Ubuntu without "smp"
     mapdl = pyansys.launch_mapdl(override=True, additional_switches='-smp',
                                  loglevel='ERROR')
 
@@ -207,7 +206,7 @@ force of 1 kN in the positive X direction.
     mapdl.nsel('S', 'LOC', 'X', length)
 
     # Verify that only the nodes at length have been selected:
-    assert np.unique(mapdl.mesh.nodes[:, 0]) == length
+    assert np.allclose(mapdl.mesh.nodes[:, 0], length)
 
     # Next, couple the DOF for these nodes.  This lets us provide a force
     # to one node that will be spread throughout all nodes in this coupled
@@ -239,7 +238,8 @@ Solve the static analysis
 
     mapdl.run('/SOLU')
     mapdl.antype('STATIC')
-    mapdl.solve()
+    output = mapdl.solve()
+    print(output)
 
 
 
@@ -251,8 +251,109 @@ Solve the static analysis
 
  .. code-block:: none
 
+    One or more COMPONENTS exist that do not have all underlying entities selected.  Issuing an ALLSEL or other select commands before CDWRITE will ensure all underlying entities are selected.  These COMPONENTS were not written to the CDWRITE file.
+     *****  ANSYS SOLVE    COMMAND  *****
 
-    'One or more COMPONENTS exist that do not have all underlying entities selected.  Issuing an ALLSEL or other select commands before CDWRITE will ensure all underlying entities are selected.  These COMPONENTS were not written to the CDWRITE file.\n *****  ANSYS SOLVE    COMMAND  *****\n\n *** NOTE ***                            CP =       0.965   TIME= 11:02:09\n There is no title defined for this analysis.\n\n *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***\n                ---GIVE SUGGESTIONS ONLY---\n\n ELEMENT TYPE    1 IS PLANE183 WITH PLANE STRESS OPTION. NO SUGGESTION IS\n AVAILABLE.\n\n\n\n *** ANSYS - ENGINEERING ANALYSIS SYSTEM  RELEASE 2020 R2          20.2     ***\n ANSYS Mechanical Enterprise\n 88888888  VERSION=LINUX x64     11:02:09  OCT 29, 2020 CP=      0.970\n\n\n\n\n\n                       S O L U T I O N   O P T I O N S\n\n   PROBLEM DIMENSIONALITY. . . . . . . . . . . . .2-D\n   DEGREES OF FREEDOM. . . . . . UX   UY\n   ANALYSIS TYPE . . . . . . . . . . . . . . . . .STATIC (STEADY-STATE)\n   GLOBALLY ASSEMBLED MATRIX . . . . . . . . . . .SYMMETRIC\n\n *** NOTE ***                            CP =       0.973   TIME= 11:02:09\n Present time 0 is less than or equal to the previous time.  Time will\n default to 1.\n\n *** NOTE ***                            CP =       0.973   TIME= 11:02:09\n The conditions for direct assembly have been met.  No .emat or .erot\n files will be produced.\n\n                      L O A D   S T E P   O P T I O N S\n\n   LOAD STEP NUMBER. . . . . . . . . . . . . . . .     1\n   TIME AT END OF THE LOAD STEP. . . . . . . . . .  1.0000\n   NUMBER OF SUBSTEPS. . . . . . . . . . . . . . .     1\n   STEP CHANGE BOUNDARY CONDITIONS . . . . . . . .    NO\n   PRINT OUTPUT CONTROLS . . . . . . . . . . . . .NO PRINTOUT\n   DATABASE OUTPUT CONTROLS. . . . . . . . . . . .ALL DATA WRITTEN\n                                                  FOR THE LAST SUBSTEP\n\n\n SOLUTION MONITORING INFO IS WRITTEN TO FILE= file.mntr\n\n\n\n\n            **** CENTER OF MASS, MASS, AND MASS MOMENTS OF INERTIA ****\n\n  CALCULATIONS ASSUME ELEMENT MASS AT ELEMENT CENTROID\n\n  TOTAL MASS =  0.30649\n\n                           MOM. OF INERTIA         MOM. OF INERTIA\n  CENTER OF MASS            ABOUT ORIGIN        ABOUT CENTER OF MASS\n\n  XC =  0.20000          IXX =   0.1024E-02      IXX =   0.2576E-03\n  YC =  0.49997E-01      IYY =   0.1642E-01      IYY =   0.4156E-02\n  ZC =   0.0000          IZZ =   0.1744E-01      IZZ =   0.4414E-02\n                         IXY =  -0.3065E-02      IXY =   0.8905E-09\n                         IYZ =    0.000          IYZ =    0.000\n                         IZX =    0.000          IZX =    0.000\n\n\n  *** MASS SUMMARY BY ELEMENT TYPE ***\n\n  TYPE      MASS\n     1  0.306487\n\n Range of element maximum matrix coefficients in global coordinates\n Maximum = 1.265116826E+09 at element 67.\n Minimum = 359465553 at element 773.\n\n   *** ELEMENT MATRIX FORMULATION TIMES\n     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP\n\n        1       977  PLANE183      0.062   0.000063\n Time at end of element matrix formulation CP = 1.03910708.\n\n SPARSE MATRIX DIRECT SOLVER.\n  Number of equations =        6124,    Maximum wavefront =     48\n  Memory allocated for solver              =     8.424 MB\n  Memory required for in-core solution     =     8.123 MB\n  Memory required for out-of-core solution =     4.307 MB\n\n *** NOTE ***                            CP =       1.099   TIME= 11:02:09\n The Sparse Matrix Solver is currently running in the in-core memory\n mode.  This memory mode uses the most amount of memory in order to\n avoid using the hard drive as much as possible, which most often\n results in the fastest solution time.  This mode is recommended if\n enough physical memory is present to accommodate all of the solver\n data.\n Sparse solver maximum pivot= 1.958386732E+09 at node 1937 UY.\n Sparse solver minimum pivot= 3839644.71 at node 960 UY.\n Sparse solver minimum pivot in absolute value= 3839644.71 at node 960\n UY.'
+     *** NOTE ***                            CP =       1.035   TIME= 23:49:01
+     There is no title defined for this analysis.
+
+     *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***
+                    ---GIVE SUGGESTIONS ONLY---
+
+     ELEMENT TYPE    1 IS PLANE183 WITH PLANE STRESS OPTION. NO SUGGESTION IS
+     AVAILABLE.
+
+
+
+     *** ANSYS - ENGINEERING ANALYSIS SYSTEM  RELEASE 2020 R2          20.2     ***
+     ANSYS Mechanical Enterprise
+     88888888  VERSION=LINUX x64     23:49:01  NOV 16, 2020 CP=      1.041
+
+
+
+
+
+                           S O L U T I O N   O P T I O N S
+
+       PROBLEM DIMENSIONALITY. . . . . . . . . . . . .2-D
+       DEGREES OF FREEDOM. . . . . . UX   UY
+       ANALYSIS TYPE . . . . . . . . . . . . . . . . .STATIC (STEADY-STATE)
+       GLOBALLY ASSEMBLED MATRIX . . . . . . . . . . .SYMMETRIC
+
+     *** NOTE ***                            CP =       1.045   TIME= 23:49:01
+     Present time 0 is less than or equal to the previous time.  Time will
+     default to 1.
+
+     *** NOTE ***                            CP =       1.046   TIME= 23:49:01
+     The conditions for direct assembly have been met.  No .emat or .erot
+     files will be produced.
+
+                          L O A D   S T E P   O P T I O N S
+
+       LOAD STEP NUMBER. . . . . . . . . . . . . . . .     1
+       TIME AT END OF THE LOAD STEP. . . . . . . . . .  1.0000
+       NUMBER OF SUBSTEPS. . . . . . . . . . . . . . .     1
+       STEP CHANGE BOUNDARY CONDITIONS . . . . . . . .    NO
+       PRINT OUTPUT CONTROLS . . . . . . . . . . . . .NO PRINTOUT
+       DATABASE OUTPUT CONTROLS. . . . . . . . . . . .ALL DATA WRITTEN
+                                                      FOR THE LAST SUBSTEP
+
+
+     SOLUTION MONITORING INFO IS WRITTEN TO FILE= file.mntr
+
+
+
+
+                **** CENTER OF MASS, MASS, AND MASS MOMENTS OF INERTIA ****
+
+      CALCULATIONS ASSUME ELEMENT MASS AT ELEMENT CENTROID
+
+      TOTAL MASS =  0.30649
+
+                               MOM. OF INERTIA         MOM. OF INERTIA
+      CENTER OF MASS            ABOUT ORIGIN        ABOUT CENTER OF MASS
+
+      XC =  0.20000          IXX =   0.1024E-02      IXX =   0.2576E-03
+      YC =  0.49997E-01      IYY =   0.1642E-01      IYY =   0.4156E-02
+      ZC =   0.0000          IZZ =   0.1744E-01      IZZ =   0.4414E-02
+                             IXY =  -0.3065E-02      IXY =   0.8905E-09
+                             IYZ =    0.000          IYZ =    0.000
+                             IZX =    0.000          IZX =    0.000
+
+
+      *** MASS SUMMARY BY ELEMENT TYPE ***
+
+      TYPE      MASS
+         1  0.306487
+
+     Range of element maximum matrix coefficients in global coordinates
+     Maximum = 1.265116826E+09 at element 67.
+     Minimum = 359465553 at element 773.
+
+       *** ELEMENT MATRIX FORMULATION TIMES
+         TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+            1       977  PLANE183      0.062   0.000064
+     Time at end of element matrix formulation CP = 1.12740004.
+
+     SPARSE MATRIX DIRECT SOLVER.
+      Number of equations =        6124,    Maximum wavefront =     48
+      Memory allocated for solver              =     8.424 MB
+      Memory required for in-core solution     =     8.123 MB
+      Memory required for out-of-core solution =     4.307 MB
+
+     *** NOTE ***                            CP =       1.195   TIME= 23:49:01
+     The Sparse Matrix Solver is currently running in the in-core memory
+     mode.  This memory mode uses the most amount of memory in order to
+     avoid using the hard drive as much as possible, which most often
+     results in the fastest solution time.  This mode is recommended if
+     enough physical memory is present to accommodate all of the solver
+     data.
+     Sparse solver maximum pivot= 1.958386732E+09 at node 1937 UY.
+     Sparse solver minimum pivot= 3839644.71 at node 960 UY.
+     Sparse solver minimum pivot in absolute value= 3839644.71 at node 960
+     UY.
+
 
 
 
@@ -580,6 +681,8 @@ height and width of the plate.
 
 
 
+
+
 .. image:: /examples/02-mapdl-examples/images/sphx_glr_2d_plate_with_a_hole_004.png
     :alt: 2d plate with a hole
     :class: sphx-glr-single-img
@@ -588,10 +691,25 @@ height and width of the plate.
 
 
 
+Cleanup
+~~~~~~~
+Close mapdl when complete
+
+
+.. code-block:: default
+
+    mapdl.exit()
+
+
+
+
+
+
+
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  20.364 seconds)
+   **Total running time of the script:** ( 0 minutes  22.153 seconds)
 
 
 .. _sphx_glr_download_examples_02-mapdl-examples_2d_plate_with_a_hole.py:

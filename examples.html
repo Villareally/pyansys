@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Archive and Result File Examples &mdash; pyansys 0.44.10 documentation</title>
+  <title>Archive and Result File Examples &mdash; pyansys 0.44.19 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.44.10
+                0.44.19
               </div>
             
           
@@ -203,9 +203,8 @@
 <span class="c1"># Read ansys archive file</span>
 <span class="n">archive</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Archive</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
 
-<span class="c1"># Print raw data from cdb</span>
-<span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">archive</span><span class="o">.</span><span class="n">raw</span><span class="p">:</span>
-   <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> : </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">archive</span><span class="o">.</span><span class="n">raw</span><span class="p">[</span><span class="n">key</span><span class="p">]))</span>
+<span class="c1"># Print overview of data read from cdb</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">archive</span><span class="p">)</span>
 
 <span class="c1"># Create a vtk unstructured grid from the raw data and plot it</span>
 <span class="n">grid</span> <span class="o">=</span> <span class="n">archive</span><span class="o">.</span><span class="n">parse_vtk</span><span class="p">(</span><span class="n">force_linear</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>

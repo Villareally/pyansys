@@ -5,22 +5,22 @@
 
 Computation times
 =================
-**01:02.679** total execution time for **examples_02-mapdl-examples** files:
+**01:04.648** total execution time for **examples_02-mapdl-examples** files:
 
 +--------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_02-mapdl-examples_2d_plate_with_a_hole.py` (``2d_plate_with_a_hole.py``) | 00:20.364 | 0.0 MB |
+| :ref:`sphx_glr_examples_02-mapdl-examples_2d_plate_with_a_hole.py` (``2d_plate_with_a_hole.py``) | 00:22.153 | 0.0 MB |
 +--------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_02-mapdl-examples_mapdl_3d_beam.py` (``mapdl_3d_beam.py``)               | 00:09.921 | 0.0 MB |
+| :ref:`sphx_glr_examples_02-mapdl-examples_pyvista_mesh.py` (``pyvista_mesh.py``)                 | 00:15.725 | 0.0 MB |
 +--------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_02-mapdl-examples_transient_thermal.py` (``transient_thermal.py``)       | 00:08.896 | 0.0 MB |
+| :ref:`sphx_glr_examples_02-mapdl-examples_transient_thermal.py` (``transient_thermal.py``)       | 00:08.018 | 0.0 MB |
 +--------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_02-mapdl-examples_pyvista_mesh.py` (``pyvista_mesh.py``)                 | 00:08.485 | 0.0 MB |
+| :ref:`sphx_glr_examples_02-mapdl-examples_3d_notch.py` (``3d_notch.py``)                         | 00:05.957 | 0.0 MB |
 +--------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_02-mapdl-examples_path_operations.py` (``path_operations.py``)           | 00:05.338 | 0.0 MB |
+| :ref:`sphx_glr_examples_02-mapdl-examples_path_operations.py` (``path_operations.py``)           | 00:04.891 | 0.0 MB |
 +--------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_02-mapdl-examples_3d_notch.py` (``3d_notch.py``)                         | 00:04.846 | 0.0 MB |
+| :ref:`sphx_glr_examples_02-mapdl-examples_mapdl_3d_beam.py` (``mapdl_3d_beam.py``)               | 00:02.995 | 0.0 MB |
 +--------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_02-mapdl-examples_mapdl_beam.py` (``mapdl_beam.py``)                     | 00:02.753 | 0.0 MB |
+| :ref:`sphx_glr_examples_02-mapdl-examples_3d_plate_thermal.py` (``3d_plate_thermal.py``)         | 00:02.925 | 0.0 MB |
 +--------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_02-mapdl-examples_3d_plate_thermal.py` (``3d_plate_thermal.py``)         | 00:02.076 | 0.0 MB |
+| :ref:`sphx_glr_examples_02-mapdl-examples_mapdl_beam.py` (``mapdl_beam.py``)                     | 00:01.984 | 0.0 MB |
 +--------------------------------------------------------------------------------------------------+-----------+--------+

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Reading and Writing ANSYS Archive Files &mdash; pyansys 0.44.10 documentation</title>
+  <title>Reading and Writing ANSYS Archive Files &mdash; pyansys 0.44.19 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.44.10
+                0.44.19
               </div>
             
           
@@ -283,8 +283,11 @@ will be written as SOLID187.</p>
 <dl class="py class">
 <dt id="pyansys.archive.Archive">
 <em class="property">class </em><code class="sig-prename descclassname">pyansys.archive.</code><code class="sig-name descname">Archive</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span></em>, <em class="sig-param"><span class="n">read_parameters</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">parse_vtk</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">force_linear</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">allowable_types</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">null_unallowed</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">verbose</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">''</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.archive.Archive" title="Permalink to this definition">¶</a></dt>
-<dd><p>Read a blocked ANSYS archive file.</p>
-<p>Reads a blocked CDB file and optionally parses it to a vtk grid.</p>
+<dd><p>Read a blocked ANSYS archive file or input file.</p>
+<p>Reads a blocked CDB file and optionally parses it to a vtk grid.
+This can be used to read in files written from MAPDL using the
+<code class="docutils literal notranslate"><span class="pre">CDWRITE</span></code> command or input files (<a href="#id1"><span class="problematic" id="id2">``</span></a><a href="#id3"><span class="problematic" id="id4">*</span></a>.dat) files written from
+ANSYS Workbench.</p>
 <p>Write the archive file using <code class="docutils literal notranslate"><span class="pre">CDWRITE,</span> <span class="pre">DB,</span> <span class="pre">archive.cdb</span></code></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -303,6 +306,9 @@ types in <code class="docutils literal notranslate"><span class="pre">pyansys.el
 <li><p><strong>null_unallowed</strong> (<em>bool</em><em>, </em><em>optional</em>) – Elements types not matching element types will be stored
 as empty (null) elements.  Useful for debug or tracking
 element numbers.  Default False.</p></li>
+<li><p><strong>verbose</strong> (<em>bool</em><em>, </em><em>optional</em>) – Print out each step when reading the archive file.  Used for
+debug purposes and defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<li><p><strong>name</strong> (<em>str</em><em>, </em><em>optional</em>) – Internally used parameter used to have a custom <code class="docutils literal notranslate"><span class="pre">__repr__</span></code>.</p></li>
 </ul>
 </dd>
 </dl>
@@ -329,6 +335,16 @@ element numbers.  Default False.</p></li>
 <span class="go">       [0.75, 0.5 , 4.5 ]])</span>
 </pre></div>
 </div>
+<p>Read an ANSYS workbench input file</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">my_archive</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Archive</span><span class="p">(</span><span class="s1">&#39;C:\Users\jerry\stuff.dat&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="rubric">Notes</p>
+<p>This class only reads EBLOCK records with SOLID records.  For
+example, the record <code class="docutils literal notranslate"><span class="pre">EBLOCK,19,SOLID,,3588</span></code> will be read, but
+<code class="docutils literal notranslate"><span class="pre">EBLOCK,10,,,3588</span></code> will not be read.  Generally, MAPDL will only
+write SOLID records and Mechanical Workbench may write SOLID
+records.  These additional records will be ignored.</p>
 <dl class="py method">
 <dt id="pyansys.archive.Archive.ekey">
 <em class="property">property </em><code class="sig-name descname">ekey</code><a class="headerlink" href="#pyansys.archive.Archive.ekey" title="Permalink to this definition">¶</a></dt>
@@ -627,7 +643,7 @@ component.  The keys are node component names.</p>
 
 <dl class="py method">
 <dt id="pyansys.archive.Archive.plot">
-<code class="sig-name descname">plot</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.archive.Archive.plot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">plot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">off_screen</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">full_screen</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">screenshot</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">interactive</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">cpos</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">window_size</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">show_bounds</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">show_axes</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">notebook</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">background</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">text</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">return_img</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">eye_dome_lighting</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">volume</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">parallel_projection</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">use_ipyvtk</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.archive.Archive.plot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plot a vtk or numpy object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -649,6 +665,8 @@ Assumes a jupyter console is active.</p></li>
 <li><p><strong>show_axes</strong> (<em>bool</em><em>, </em><em>optional</em>) – Shows a vtk axes widget.  Enabled by default.</p></li>
 <li><p><strong>text</strong> (<em>str</em><em>, </em><em>optional</em>) – Adds text at the bottom of the plot.</p></li>
 <li><p><strong>volume</strong> (<em>bool</em><em>, </em><em>optional</em>) – Use the <code class="docutils literal notranslate"><span class="pre">add_volume</span></code> method for volume rendering.</p></li>
+<li><p><strong>use_ipyvtk</strong> (<em>bool</em><em>, </em><em>optional</em>) – Use the <code class="docutils literal notranslate"><span class="pre">ipyvtk-simple</span></code> <code class="docutils literal notranslate"><span class="pre">ViewInteractiveWidget</span></code> to
+visualize the plot within a juyterlab notebook.</p></li>
 <li><p><strong>**kwargs</strong> (<em>optional keyword arguments</em>) – See help(Plotter.add_mesh) for additional options.</p></li>
 </ul>
 </dd>

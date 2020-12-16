@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Command Naming Conventions and Rules &mdash; pyansys 0.44.10 documentation</title>
+  <title>Command Naming Conventions and Rules &mdash; pyansys 0.44.19 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.44.10
+                0.44.19
               </div>
             
           
@@ -697,7 +697,9 @@ of <code class="docutils literal notranslate"><span class="pre">ninc</span></cod
 <li><p><strong>na1</strong> (<em>int</em><em>, </em><em>optional</em>) – Minimum area to display.</p></li>
 <li><p><strong>na2</strong> (<em>int</em><em>, </em><em>optional</em>) – Maximum area to display</p></li>
 <li><p><strong>ninc</strong> (<em>int</em><em>, </em><em>optional</em>) – Increment between minimum and maximum area.</p></li>
-<li><p><strong>str</strong><strong>, </strong><strong>optional</strong> (<em>degen</em><em>,</em>) – Degeneracy marker.  This option is ignored when <code class="docutils literal notranslate"><span class="pre">vtk=True</span></code>.</p></li>
+<li><p><strong>degen</strong> – Degeneracy marker.  This option is ignored when <code class="docutils literal notranslate"><span class="pre">vtk=True</span></code>.</p></li>
+<li><p><strong>str</strong> – Degeneracy marker.  This option is ignored when <code class="docutils literal notranslate"><span class="pre">vtk=True</span></code>.</p></li>
+<li><p><strong>optional</strong> – Degeneracy marker.  This option is ignored when <code class="docutils literal notranslate"><span class="pre">vtk=True</span></code>.</p></li>
 <li><p><strong>scale</strong> – Scale factor for the size of the degeneracy-marker star.
 The scale is the size in window space (-1 to 1 in both
 directions) (defaults to .075).  This option is ignored
@@ -736,7 +738,7 @@ areas by their number.</p>
 
 <dl class="py method">
 <dt id="pyansys.mapdl._MapdlCore.clear">
-<code class="sig-name descname">clear</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.mapdl._MapdlCore.clear" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">clear</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">read</span><span class="o">=</span><span class="default_value">'NOSTART'</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.mapdl._MapdlCore.clear" title="Permalink to this definition">¶</a></dt>
 <dd><p>APDL Command: /CLEAR</p>
 <p>Clears the database.</p>
 <dl class="field-list simple">
@@ -840,7 +842,10 @@ as shown in the Item1 columns of the tables below.</p></li>
 <li><p><strong>it1num</strong> – The number (or label) for the specified Item1 (if any). Valid
 IT1NUM values are as shown in the IT1NUM columns of the tables
 below. Some Item1 labels do not require an IT1NUM value.</p></li>
-<li><p><strong>it2num</strong> (<em>item2</em><em>,</em>) – A second set of item labels and numbers to further qualify the item
+<li><p><strong>item2</strong> – A second set of item labels and numbers to further qualify the item
+for which data are to be retrieved. Most items do not require this
+level of information.</p></li>
+<li><p><strong>it2num</strong> – A second set of item labels and numbers to further qualify the item
 for which data are to be retrieved. Most items do not require this
 level of information.</p></li>
 </ul>
@@ -920,7 +925,10 @@ as shown in the Item1 columns of the tables below.</p></li>
 <li><p><strong>it1num</strong> – The number (or label) for the specified Item1 (if any). Valid
 IT1NUM values are as shown in the IT1NUM columns of the tables
 below. Some Item1 labels do not require an IT1NUM value.</p></li>
-<li><p><strong>it2num</strong> (<em>item2</em><em>,</em>) – A second set of item labels and numbers to further qualify the item
+<li><p><strong>item2</strong> – A second set of item labels and numbers to further qualify the item
+for which data are to be retrieved. Most items do not require this
+level of information.</p></li>
+<li><p><strong>it2num</strong> – A second set of item labels and numbers to further qualify the item
 for which data are to be retrieved. Most items do not require this
 level of information.</p></li>
 </ul>
@@ -962,7 +970,15 @@ level of information.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>np2</strong><strong>, </strong><strong>ninc</strong> (<em>np1</em><em>,</em>) – Display keypoints from NP1 to NP2 (defaults to NP1) in
+<li><p><strong>np1</strong> – Display keypoints from NP1 to NP2 (defaults to NP1) in
+steps of NINC (defaults to 1).  If NP1 = ALL (default),
+NP2 and NINC are ignored and all selected keypoints [KSEL]
+are displayed.</p></li>
+<li><p><strong>np2</strong> – Display keypoints from NP1 to NP2 (defaults to NP1) in
+steps of NINC (defaults to 1).  If NP1 = ALL (default),
+NP2 and NINC are ignored and all selected keypoints [KSEL]
+are displayed.</p></li>
+<li><p><strong>ninc</strong> – Display keypoints from NP1 to NP2 (defaults to NP1) in
 steps of NINC (defaults to 1).  If NP1 = ALL (default),
 NP2 and NINC are ignored and all selected keypoints [KSEL]
 are displayed.</p></li>
@@ -1063,7 +1079,13 @@ primary variable.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>nl2</strong><strong>, </strong><strong>ninc</strong> (<em>nl1</em><em>,</em>) – Display lines from NL1 to NL2 (defaults to NL1) in steps
+<li><p><strong>nl1</strong> – Display lines from NL1 to NL2 (defaults to NL1) in steps
+of NINC (defaults to 1).  If NL1 = ALL (default), NL2 and
+NINC are ignored and display all selected lines [LSEL].</p></li>
+<li><p><strong>nl2</strong> – Display lines from NL1 to NL2 (defaults to NL1) in steps
+of NINC (defaults to 1).  If NL1 = ALL (default), NL2 and
+NINC are ignored and display all selected lines [LSEL].</p></li>
+<li><p><strong>ninc</strong> – Display lines from NL1 to NL2 (defaults to NL1) in steps
 of NINC (defaults to 1).  If NL1 = ALL (default), NL2 and
 NINC are ignored and display all selected lines [LSEL].</p></li>
 <li><p><strong>vtk</strong> (<em>bool</em><em>, </em><em>optional</em>) – Plot the currently selected lines using <code class="docutils literal notranslate"><span class="pre">pyvista</span></code>.</p></li>
@@ -1543,7 +1565,15 @@ command logging is enabled.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>nv2</strong><strong>, </strong><strong>ninc</strong> (<em>nv1</em><em>,</em>) – Display volumes from NV1 to NV2 (defaults to NV1) in steps
+<li><p><strong>nv1</strong> – Display volumes from NV1 to NV2 (defaults to NV1) in steps
+of NINC (defaults to 1).  If NV1 = ALL (default), NV2 and
+NINC are ignored and all selected volumes [VSEL] are
+displayed.  Ignored when <code class="docutils literal notranslate"><span class="pre">vtk=True</span></code>.</p></li>
+<li><p><strong>nv2</strong> – Display volumes from NV1 to NV2 (defaults to NV1) in steps
+of NINC (defaults to 1).  If NV1 = ALL (default), NV2 and
+NINC are ignored and all selected volumes [VSEL] are
+displayed.  Ignored when <code class="docutils literal notranslate"><span class="pre">vtk=True</span></code>.</p></li>
+<li><p><strong>ninc</strong> – Display volumes from NV1 to NV2 (defaults to NV1) in steps
 of NINC (defaults to 1).  If NV1 = ALL (default), NV2 and
 NINC are ignored and all selected volumes [VSEL] are
 displayed.  Ignored when <code class="docutils literal notranslate"><span class="pre">vtk=True</span></code>.</p></li>

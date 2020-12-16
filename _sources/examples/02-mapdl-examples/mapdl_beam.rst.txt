@@ -22,8 +22,7 @@ Launch MAPDL with interactive plotting
 .. code-block:: default
 
     import pyansys
-    mapdl = pyansys.launch_mapdl(override=True, loglevel='WARNING',
-                                 interactive_plotting=True)
+    mapdl = pyansys.launch_mapdl(interactive_plotting=True, loglevel='ERROR')
 
     # reduce pixel count for larger font documentation plots
     mapdl.gfile(1200)
@@ -41,7 +40,7 @@ Launch MAPDL with interactive plotting
 
     Product:         ANSYS Mechanical Enterprise
     MAPDL Version:   RELEASE  2020 R2           BUILD 20.2      UPDATE 20200601
-    PyANSYS Version: 0.44.10
+    PyANSYS Version: 0.44.13
 
 
 
@@ -175,7 +174,7 @@ are sequential
      *** ANSYS - ENGINEERING ANALYSIS SYSTEM  RELEASE 2020 R2          20.2     ***
      DISTRIBUTED ANSYS Mechanical Enterprise
 
-     88888888  VERSION=LINUX x64     11:02:48  OCT 29, 2020 CP=      0.656
+     88888888  VERSION=LINUX x64     23:49:35  NOV 16, 2020 CP=      0.629
 
 
 
@@ -310,13 +309,13 @@ run the static analysis
  .. code-block:: none
 
     One or more COMPONENTS exist that do not have all underlying entities selected.  Issuing an ALLSEL or other select commands before CDWRITE will ensure all underlying entities are selected.  These COMPONENTS were not written to the CDWRITE file.
-     *** NOTE ***                            CP =       0.665   TIME= 11:02:48
+     *** NOTE ***                            CP =       0.649   TIME= 23:49:35
      The automatic domain decomposition logic has selected the MESH domain
      decomposition method with 2 processes per solution.
 
      *****  ANSYS SOLVE    COMMAND  *****
 
-     *** NOTE ***                            CP =       0.666   TIME= 11:02:48
+     *** NOTE ***                            CP =       0.649   TIME= 23:49:35
      There is no title defined for this analysis.
 
      *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***
@@ -332,7 +331,7 @@ run the static analysis
      *** ANSYS - ENGINEERING ANALYSIS SYSTEM  RELEASE 2020 R2          20.2     ***
      DISTRIBUTED ANSYS Mechanical Enterprise
 
-     88888888  VERSION=LINUX x64     11:02:48  OCT 29, 2020 CP=      0.666
+     88888888  VERSION=LINUX x64     23:49:35  NOV 16, 2020 CP=      0.650
 
 
 
@@ -345,11 +344,11 @@ run the static analysis
        ANALYSIS TYPE . . . . . . . . . . . . . . . . .STATIC (STEADY-STATE)
        GLOBALLY ASSEMBLED MATRIX . . . . . . . . . . .SYMMETRIC
 
-     *** NOTE ***                            CP =       0.667   TIME= 11:02:48
+     *** NOTE ***                            CP =       0.650   TIME= 23:49:35
      Present time 0 is less than or equal to the previous time.  Time will
      default to 1.
 
-     *** NOTE ***                            CP =       0.667   TIME= 11:02:48
+     *** NOTE ***                            CP =       0.650   TIME= 23:49:35
      The conditions for direct assembly have been met.  No .emat or .erot
      files will be produced.
 
@@ -376,7 +375,7 @@ run the static analysis
 
      SOLUTION MONITORING INFO IS WRITTEN TO FILE= file.mntr
 
-     *** NOTE ***                            CP =       0.677   TIME= 11:02:48
+     *** NOTE ***                            CP =       0.660   TIME= 23:49:35
      Predictor is ON by default for structural elements with rotational
      degrees of freedom.  Use the PRED,OFF command to turn the predictor
      OFF if it adversely affects the convergence.
@@ -389,8 +388,8 @@ run the static analysis
        *** ELEMENT MATRIX FORMULATION TIMES
          TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-            1        22  BEAM188       0.003   0.000138
-     Time at end of element matrix formulation CP = 0.680335045.
+            1        22  BEAM188       0.003   0.000127
+     Time at end of element matrix formulation CP = 0.663324952.
 
      DISTRIBUTED SPARSE MATRIX DIRECT SOLVER.
       Number of equations =          44,    Maximum wavefront =     12
@@ -403,7 +402,7 @@ run the static analysis
       Total memory required for in-core solution     =      0.354 MB
       Total memory required for out-of-core solution =      0.354 MB
 
-     *** NOTE ***                            CP =       0.683   TIME= 11:02:48
+     *** NOTE ***                            CP =       0.666   TIME= 23:49:35
      The Distributed Sparse Matrix Solver is currently running in the
      in-core memory mode.  This memory mode uses the most amount of memory
      in order to avoid using the hard drive as much as possible, which most
@@ -422,7 +421,7 @@ run the static analysis
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  2.753 seconds)
+   **Total running time of the script:** ( 0 minutes  1.984 seconds)
 
 
 .. _sphx_glr_download_examples_02-mapdl-examples_mapdl_beam.py:

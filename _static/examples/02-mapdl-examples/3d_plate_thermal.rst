@@ -28,7 +28,6 @@ First, start MAPDL as a service and disable all but error messages.
     import os
     import pyansys
 
-    os.environ['I_MPI_SHM_LMT'] = 'shm'  # necessary on Ubuntu without "smp"
     mapdl = pyansys.launch_mapdl(loglevel='ERROR')
 
 
@@ -120,19 +119,19 @@ Solve the thermal static analysis and print the results
 
  .. code-block:: none
 
-    *** NOTE ***                            CP =       0.711   TIME= 11:02:34
+    *** NOTE ***                            CP =       0.663   TIME= 23:49:28
      The automatic domain decomposition logic has selected the MESH domain
      decomposition method with 2 processes per solution.
 
      *****  ANSYS SOLVE    COMMAND  *****
 
-     *** NOTE ***                            CP =       0.712   TIME= 11:02:34
+     *** NOTE ***                            CP =       0.664   TIME= 23:49:28
      There is no title defined for this analysis.
 
      *** ANSYS - ENGINEERING ANALYSIS SYSTEM  RELEASE 2020 R2          20.2     ***
      DISTRIBUTED ANSYS Mechanical Enterprise
 
-     88888888  VERSION=LINUX x64     11:02:34  OCT 29, 2020 CP=      0.715
+     88888888  VERSION=LINUX x64     23:49:28  NOV 16, 2020 CP=      0.667
 
 
 
@@ -145,11 +144,11 @@ Solve the thermal static analysis and print the results
        ANALYSIS TYPE . . . . . . . . . . . . . . . . .STATIC (STEADY-STATE)
        GLOBALLY ASSEMBLED MATRIX . . . . . . . . . . .SYMMETRIC
 
-     *** NOTE ***                            CP =       0.716   TIME= 11:02:34
+     *** NOTE ***                            CP =       0.668   TIME= 23:49:28
      Present time 0 is less than or equal to the previous time.  Time will
      default to 1.
 
-     *** NOTE ***                            CP =       0.716   TIME= 11:02:34
+     *** NOTE ***                            CP =       0.668   TIME= 23:49:28
      The conditions for direct assembly have been met.  No .emat or .erot
      files will be produced.
 
@@ -184,8 +183,8 @@ Solve the thermal static analysis and print the results
        *** ELEMENT MATRIX FORMULATION TIMES
          TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-            1       450  SOLID90       0.017   0.000039
-     Time at end of element matrix formulation CP = 0.761896014.
+            1       450  SOLID90       0.018   0.000039
+     Time at end of element matrix formulation CP = 0.71310401.
 
      DISTRIBUTED SPARSE MATRIX DIRECT SOLVER.
       Number of equations =        2606,    Maximum wavefront =     72
@@ -198,7 +197,7 @@ Solve the thermal static analysis and print the results
       Total memory required for in-core solution     =      4.935 MB
       Total memory required for out-of-core solution =      3.034 MB
 
-     *** NOTE ***                            CP =       0.830   TIME= 11:02:34
+     *** NOTE ***                            CP =       0.783   TIME= 23:49:28
      The Distributed Sparse Matrix Solver is currently running in the
      in-core memory mode.  This memory mode uses the most amount of memory
      in order to avoid using the hard drive as much as possible, which most
@@ -254,8 +253,36 @@ result file using pyansys
 .. code-block:: default
 
 
-    nnum, temp = mapdl.result.nodal_temperature(0)
+    result = mapdl.result
+    nnum, temp = result.nodal_temperature(0)
     # this is the same as pyansys.read_binary(mapdl._result_file)
+    print(nnum, temp)
+
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    [   1    2    3 ... 2718 2719 2720] [11.41342066 17.70960818 24.03472642 ... 96.77753462 96.76893653
+     96.73371864]
+
+
+
+
+Cleanup
+~~~~~~~
+Close mapdl when complete
+
+
+.. code-block:: default
+
+    mapdl.exit()
 
 
 
@@ -267,7 +294,7 @@ result file using pyansys
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  2.076 seconds)
+   **Total running time of the script:** ( 0 minutes  2.925 seconds)
 
 
 .. _sphx_glr_download_examples_02-mapdl-examples_3d_plate_thermal.py:

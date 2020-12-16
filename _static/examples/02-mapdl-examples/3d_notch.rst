@@ -29,7 +29,6 @@ First, start MAPDL as a service and disable all but error messages.
     import numpy as np
     import pyansys
 
-    # os.environ['I_MPI_SHM_LMT'] = 'shm'  # necessary on Ubuntu without "smp"
     mapdl = pyansys.launch_mapdl(override=True, additional_switches='-smp',
                                  loglevel='ERROR')
 
@@ -295,7 +294,7 @@ Solve the static analysis
  .. code-block:: none
 
 
-    'FINISH SOLUTION PROCESSING\n\n\n ***** ROUTINE COMPLETED *****  CP =         3.624'
+    'FINISH SOLUTION PROCESSING\n\n\n ***** ROUTINE COMPLETED *****  CP =         3.609'
 
 
 
@@ -448,6 +447,8 @@ width over the modified cross section width.
 
 
 
+
+
 .. rst-class:: sphx-glr-script-out
 
  Out:
@@ -459,10 +460,25 @@ width over the modified cross section width.
 
 
 
+Cleanup
+~~~~~~~
+Close mapdl when complete
+
+
+.. code-block:: default
+
+    mapdl.exit()
+
+
+
+
+
+
+
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  4.846 seconds)
+   **Total running time of the script:** ( 0 minutes  5.957 seconds)
 
 
 .. _sphx_glr_download_examples_02-mapdl-examples_3d_notch.py:

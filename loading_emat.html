@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Working with a ANSYS Element Matrix File (.emat) &mdash; pyansys 0.44.10 documentation</title>
+  <title>Working with a ANSYS Element Matrix File (.emat) &mdash; pyansys 0.44.19 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.44.10
+                0.44.19
               </div>
             
           
@@ -104,6 +104,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Working with a ANSYS Element Matrix File (.emat)</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#example">Example</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#applied-force">Applied Force</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dof-reference">DOF Reference</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#ematfile-object-methods">EmatFile Object Methods</a></li>
@@ -202,7 +203,7 @@
 </pre></div>
 </div>
 <p>Read a single element from the result file:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">element_data</span> <span class="o">=</span> <span class="n">emat_file</span><span class="o">.</span><span class="n">read_element</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dof_ref</span><span class="p">,</span> <span class="n">element_data</span> <span class="o">=</span> <span class="n">emat_file</span><span class="o">.</span><span class="n">read_element</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The dictionary <code class="docutils literal notranslate"><span class="pre">element_data</span></code> contains the entries used to construct stiffness, mass, and damping matrices.  If recorded, the dictionary will also applied force vectors.</p>
@@ -213,6 +214,95 @@
 </pre></div>
 </div>
 <p>See <code class="docutils literal notranslate"><span class="pre">emat_file.nnum</span></code> for the sorted nodes this applied force corresponds to.</p>
+</div>
+<div class="section" id="dof-reference">
+<h3>DOF Reference<a class="headerlink" href="#dof-reference" title="Permalink to this headline">¶</a></h3>
+<p>Each degree of freedom index from <code class="docutils literal notranslate"><span class="pre">read_element</span></code> corresponds to a
+physical degree of freedom.  The table of this correspondence is
+below:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Index</p></td>
+<td><p>DOF</p></td>
+</tr>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>UX</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>UY</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>UZ</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>ROTX</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>ROTY</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>ROTZ</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>AX</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>AY</p></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>AZ</p></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p>VX</p></td>
+</tr>
+<tr class="row-even"><td><p>11</p></td>
+<td><p>VY</p></td>
+</tr>
+<tr class="row-odd"><td><p>12</p></td>
+<td><p>VZ</p></td>
+</tr>
+<tr class="row-even"><td><p>16</p></td>
+<td><p>WARP</p></td>
+</tr>
+<tr class="row-odd"><td><p>17</p></td>
+<td><p>CONC</p></td>
+</tr>
+<tr class="row-even"><td><p>18</p></td>
+<td><p>HDSP</p></td>
+</tr>
+<tr class="row-odd"><td><p>19</p></td>
+<td><p>PRES</p></td>
+</tr>
+<tr class="row-even"><td><p>20</p></td>
+<td><p>TEMP</p></td>
+</tr>
+<tr class="row-odd"><td><p>21</p></td>
+<td><p>VOLT</p></td>
+</tr>
+<tr class="row-even"><td><p>22</p></td>
+<td><p>MAG</p></td>
+</tr>
+<tr class="row-odd"><td><p>23</p></td>
+<td><p>ENKE</p></td>
+</tr>
+<tr class="row-even"><td><p>24</p></td>
+<td><p>ENDS</p></td>
+</tr>
+<tr class="row-odd"><td><p>25</p></td>
+<td><p>EMF</p></td>
+</tr>
+<tr class="row-even"><td><p>26</p></td>
+<td><p>CURR</p></td>
+</tr>
+<tr class="row-odd"><td><p>27 - 32</p></td>
+<td><p>Spares</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="section" id="ematfile-object-methods">
